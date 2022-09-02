@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+   
+    {
+      "item": "urushi:normal_katana_blade_tier_9"
+    },
+    {
+"item": "urushi:smooth_black_urushi_planks"
+    }
+  ],
+  "result": {
+    "item": "urushi:normal_katana_tier_9",
+    "count": 1
+  }
+}

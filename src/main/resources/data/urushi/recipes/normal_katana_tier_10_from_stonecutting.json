@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "urushi:normal_katana_tier_10"
+  },
+  "result": "urushi:normal_katana_tier_10",
+  "count": 1
+}

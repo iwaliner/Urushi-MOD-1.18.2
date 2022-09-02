@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " pd",
+    " Xp",
+    "X  "
+  ],
+  "key": {
+    "p": {
+     "item": "minecraft:paper"
+    },
+    "d": {
+     "tag": "forge:dyes/red"
+    },
+    "X": {
+    "item": "urushi:japanese_timber_bamboo"
+    }
+  },
+  "result": {
+    "item": "urushi:open_wagasa",
+    "count": 1
+  }
+}

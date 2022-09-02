@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+   
+    {
+      "item": "urushi:rice_cake"
+    },
+    {
+      "item": "urushi:azuki_crop"
+    },
+    {
+      "item": "urushi:azuki_crop"
+    }
+  ],
+  "result": {
+    "item": "urushi:ohagi",
+    "count": 1
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "urushi:block/iron_ingot_8",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "urushi:block/iron_ingot_8",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "urushi:block/iron_ingot_8"
+    },
+    "facing=west": {
+      "model": "urushi:block/iron_ingot_8",
+      "y": 90
+    }
+  }
+}

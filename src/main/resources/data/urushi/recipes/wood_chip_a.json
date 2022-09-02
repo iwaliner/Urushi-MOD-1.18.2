@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+   
+    {
+      "item": "urushi:japanese_apricot_bark"
+    }
+  ],
+  "result": {
+    "item": "urushi:wood_chip",
+    "count": 1
+  }
+}

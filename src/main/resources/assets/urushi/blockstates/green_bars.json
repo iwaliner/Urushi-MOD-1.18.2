@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "urushi:block/green_bars",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "urushi:block/green_bars",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "urushi:block/green_bars"
+    },
+    "facing=west": {
+      "model": "urushi:block/green_bars",
+      "y": 90
+    }
+  }
+}

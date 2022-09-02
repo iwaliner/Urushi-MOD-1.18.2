@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=west": {
+      "model": "urushi:block/chiseled_lacquer_log",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "urushi:block/chiseled_lacquer_log",
+      "y": 180
+    },
+    "facing=north": {
+      "model": "urushi:block/chiseled_lacquer_log"
+    },
+    "facing=east": {
+      "model": "urushi:block/chiseled_lacquer_log",
+      "y": 90
+    }
+  }
+}

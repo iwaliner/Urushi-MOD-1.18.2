@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "urushi:block/groove_mesh",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "urushi:block/groove_mesh",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "urushi:block/groove_mesh"
+    },
+    "facing=west": {
+      "model": "urushi:block/groove_mesh",
+      "y": 90
+    }
+  }
+}

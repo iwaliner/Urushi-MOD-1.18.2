@@ -1,0 +1,73 @@
+{
+	"parent": "block/block",
+	"textures": {
+		"0": "urushi:block/nusa",
+		"1": "urushi:block/planks_smooth_oak",
+		"particle": "urushi:block/nusa"
+	},
+	"elements": [
+		{
+			"from": [4, 0, 4],
+			"to": [12, 1, 12],
+			"faces": {
+				"north": {"uv": [0, 0, 8, 1], "texture": "#1"},
+				"east": {"uv": [0, 0, 8, 1], "texture": "#1"},
+				"south": {"uv": [0, 0, 8, 1], "texture": "#1"},
+				"west": {"uv": [0, 0, 8, 1], "texture": "#1"},
+				"up": {"uv": [4, 4, 12, 12], "texture": "#1"},
+				"down": {"uv": [4, 4, 12, 12], "texture": "#1"}
+			}
+		},
+		{
+			"from": [8, 1, 0],
+			"to": [8, 16, 16],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 15], "texture": "#missing"},
+				"east": {"uv": [1, 0, 15, 15], "texture": "#0"},
+				"south": {"uv": [0, 0, 0, 15], "texture": "#missing"},
+				"west": {"uv": [1, 0, 15, 15], "texture": "#0"},
+				"up": {"uv": [0, 0, 0, 16], "texture": "#missing"},
+				"down": {"uv": [0, 0, 0, 16], "texture": "#missing"}
+			}
+		},
+		{
+			"from": [8, 1, 0],
+			"to": [8, 16, 16],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 15], "texture": "#missing"},
+				"east": {"uv": [1, 0, 15, 15], "texture": "#0"},
+				"south": {"uv": [0, 0, 0, 15], "texture": "#missing"},
+				"west": {"uv": [1, 0, 15, 15], "texture": "#0"},
+				"up": {"uv": [0, 0, 0, 14], "texture": "#missing"},
+				"down": {"uv": [0, 0, 0, 14], "texture": "#missing"}
+			}
+		},
+		{
+			"from": [0, 1, 8],
+			"to": [16, 16, 8],
+			"faces": {
+				"north": {"uv": [1, 0, 15, 15], "texture": "#0"},
+				"east": {"uv": [0, 0, 0, 15], "texture": "#missing"},
+				"south": {"uv": [0, 0, 16, 15], "texture": "#0"},
+				"west": {"uv": [0, 0, 0, 15], "texture": "#missing"},
+				"up": {"uv": [0, 0, 16, 0], "texture": "#missing"},
+				"down": {"uv": [0, 0, 16, 0], "texture": "#missing"}
+			}
+		},
+		{
+			"from": [8, 1, 0],
+			"to": [8, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 15], "texture": "#missing"},
+				"east": {"uv": [1, 0, 15, 15], "texture": "#0"},
+				"south": {"uv": [0, 0, 0, 15], "texture": "#missing"},
+				"west": {"uv": [1, 0, 15, 15], "texture": "#0"},
+				"up": {"uv": [0, 0, 0, 15], "texture": "#missing"},
+				"down": {"uv": [0, 0, 0, 15], "texture": "#missing"}
+			}
+		}
+	]
+}

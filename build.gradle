@@ -1,0 +1,160 @@
+buildscript {
+    repositories {
+         maven { url = 'https://maven.minecraftforge.net' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+    }
+}
+
+plugins {
+    id 'eclipse'
+    id 'maven-publish'
+}
+apply plugin: 'net.minecraftforge.gradle'
+
+
+version = '1.18.2-alpha4.0'
+group = 'com.iwaliner.urushi'
+archivesBaseName = 'Urushi'
+
+// Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
+minecraft {
+   mappings channel: 'official', version: '1.18.2'
+  runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            property 'forge.logging.console.level', 'debug'
+
+           property 'forge.enabledGameTestNamespaces', 'examplemod'
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            property 'forge.logging.console.level', 'debug'
+
+            property 'forge.enabledGameTestNamespaces', 'examplemod'
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
+        }
+
+         gameTestServer {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            property 'forge.logging.console.level', 'debug'
+
+            property 'forge.enabledGameTestNamespaces', 'examplemod'
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+
+            mods {
+                examplemod {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
+//このdependenciesはminecraftの指定のみデフォルトでされている。今回はここでほかのMODを指定していく。
+dependencies {
+    //この下の一行はもともと記述されている。
+    minecraft 'net.minecraftforge:forge:1.18.2-40.1.0'
+
+    //導入する外部MODを指定。
+//「curse.maven:」+「文字列A」+「-」「数値B」+「:」+「数値C」で構成される。
+//文字列Aは、CurseForgeの各MODページのURL内に入っている、mod名に限りなく近い文字列。
+//数値Bは、CurseForgeの各MODページの右側に表示されている「About Project」内の「Project ID」で記されている数値。
+//数値Cは、CurseForgeにて使いたいMODの「Files」タブを開き、使いたい特定のバージョンの下線付き文字部分をクリックしてそのバージョンが詳しく書かれているページに飛び、そこのページのURLの末尾に書かれている数値
+    implementation  fg.deobf("curse.maven:jei-238222:3940240")
+    implementation  fg.deobf("curse.maven:mouse-tweaks-60089:3601896")
+    implementation  fg.deobf("curse.maven:the-one-probe-245211:3927518")
+    implementation  fg.deobf("curse.maven:mysterious-mountain-lib-368098:3857113")
+    //implementation  fg.deobf("curse.maven:farmers-delight-398521:3834150")
+    implementation  fg.deobf("curse.maven:sakura-333079:3954611")
+    //implementation  fg.deobf("curse.maven:tofucraftreload-317469:3940352")
+
+}
+
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "examplemod",
+                "Specification-Vendor"    : "examplemodsareus",
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : "examplemodsareus",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+
+jar.finalizedBy('reobfJar')
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "urushi:block/shitomi_bottom",
+    "textures": {
+        "front": "urushi:block/shitomi_jungle",
+        "side": "urushi:block/planks_smooth_jungle"
+    }
+}

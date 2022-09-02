@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+    "item": "minecraft:fern"
+    },
+    {
+    "item": "minecraft:fern"
+    },
+    {
+   "item": "minecraft:fern"
+    },
+    {
+     "tag": "forge:string"
+    }
+  ],
+  "result": {
+    "item": "urushi:green_tatami",
+    "count": 4
+  }
+}

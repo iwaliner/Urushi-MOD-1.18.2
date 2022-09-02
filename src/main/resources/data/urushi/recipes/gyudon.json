@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+   
+    {
+      "item": "minecraft:cooked_beef"
+    },
+    {
+      "item": "urushi:rice"
+    }
+  ],
+  "result": {
+    "item": "urushi:gyudon",
+    "count": 1
+  }
+}

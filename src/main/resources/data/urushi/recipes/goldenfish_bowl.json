@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+     "tag": "forge:glass_panes"
+    },
+    {
+      "item": "urushi:goldfish_bucket"
+    }
+  ],
+  "result": {
+    "item": "urushi:goldfish_bowl",
+    "count": 1
+  }
+}

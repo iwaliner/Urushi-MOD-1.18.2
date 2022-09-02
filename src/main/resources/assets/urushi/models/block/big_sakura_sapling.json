@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "urushi:block/sakura_sapling_large"
+    }
+}

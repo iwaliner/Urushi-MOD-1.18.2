@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sbs",
+    "ptp",
+    "sss"
+  ],
+  "key": {
+    "t": {
+     "item": "minecraft:torch"
+    },
+    "p": {
+     "item": "minecraft:paper"
+    },
+    "b": {
+     "item": "urushi:japanese_timber_bamboo"
+    },
+    "s": {
+    "tag": "minecraft:wooden_slabs"
+    }
+  },
+  "result": {
+    "item": "urushi:andon",
+    "count": 16
+  }
+}

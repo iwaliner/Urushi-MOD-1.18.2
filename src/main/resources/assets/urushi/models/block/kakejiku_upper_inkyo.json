@@ -1,0 +1,6 @@
+{
+	"parent": "urushi:block/kakejiku_upper_base",
+	"textures": {
+		"0": "urushi:block/kakejiku_inkyo_upper"
+	}
+}

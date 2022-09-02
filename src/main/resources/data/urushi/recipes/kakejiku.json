@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "s",
+    "p",
+    "r"
+  ],
+  "key": {
+    "p": {
+    "item": "minecraft:paper"
+    },
+    "s": {
+   "tag": "forge:string"
+    },
+    "r": {
+    "item": "urushi:japanese_timber_bamboo"
+    }
+  },
+  "result": {
+    "item": "urushi:kakejiku_1",
+    "count": 4
+  }
+}

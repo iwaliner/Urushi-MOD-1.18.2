@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "urushi:block/parapet_red",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "urushi:block/parapet_red",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "urushi:block/parapet_red"
+    },
+    "facing=west": {
+      "model": "urushi:block/parapet_red",
+      "y": 90
+    }
+  }
+}

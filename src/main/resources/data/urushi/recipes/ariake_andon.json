@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " b ",
+    "ptp",
+    " s "
+  ],
+  "key": {
+    "t": {
+     "item": "minecraft:torch"
+    },
+    "p": {
+     "item": "minecraft:paper"
+    },
+    "b": {
+     "item": "urushi:smooth_black_urushi_planks"
+    },
+    "s": {
+    "item": "urushi:smooth_red_urushi_slab"
+    }
+  },
+  "result": {
+    "item": "urushi:ariake_andon",
+    "count": 16
+  }
+}

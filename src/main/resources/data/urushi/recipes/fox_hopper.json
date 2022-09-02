@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "#k#",
+    " # "
+  ],
+  "key": {
+  "k": {
+     "item": "urushi:kitsunebi"
+    },
+    "#": {
+      "tag": "minecraft:wool"
+    }
+  },
+  "result": {
+    "item": "urushi:fox_hopper",
+    "count": 1
+  }
+}

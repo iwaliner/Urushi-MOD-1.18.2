@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+   
+    {
+      "item": "urushi:azuki_crop"
+    },
+    {
+      "item": "urushi:rice"
+    }
+  ],
+  "result": {
+    "item": "urushi:sekihan",
+    "count": 1
+  }
+}

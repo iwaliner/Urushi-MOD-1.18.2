@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_post",
+    "textures": {
+        "texture": "urushi:block/planks_black_urushi_stained"
+    }
+}

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " dm",
+    " m ",
+    "sg "
+  ],
+  "key": {
+    "d": {
+     "tag": "forge:dyes/pink"
+    },
+    "g": {
+     "item": "minecraft:grass"
+    },
+    "m": {
+     "item": "urushi:rice_cake"
+    },
+    "s": {
+    "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "urushi:color_dango",
+    "count": 1
+  }
+}

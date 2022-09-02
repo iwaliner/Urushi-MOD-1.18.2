@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "urushi:block/birch_bars",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "urushi:block/birch_bars",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "urushi:block/birch_bars"
+    },
+    "facing=west": {
+      "model": "urushi:block/birch_bars",
+      "y": 90
+    }
+  }
+}

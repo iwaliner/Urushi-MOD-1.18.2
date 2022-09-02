@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "##"
+  ],
+  "key": {
+    "#": {
+     "item": "minecraft:magenta_wool"
+    },
+    "X": {
+    "item": "urushi:japanese_timber_bamboo"
+    }
+  },
+  "result": {
+    "item": "urushi:magenta_noren",
+    "count": 8
+  }
+}

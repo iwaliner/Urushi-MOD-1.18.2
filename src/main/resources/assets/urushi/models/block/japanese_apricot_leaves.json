@@ -1,0 +1,6 @@
+{
+    "parent": "block/leaves",
+    "textures": {
+        "all": "urushi:block/ume_leaves"
+    }
+}

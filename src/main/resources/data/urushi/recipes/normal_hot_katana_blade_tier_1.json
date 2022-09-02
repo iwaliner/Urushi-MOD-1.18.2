@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " #",
+    "# "
+  ],
+  "key": {
+    "#": {
+      "item": "urushi:normal_iron_ingot_0"
+    }
+  },
+  "result": {
+    "item": "urushi:normal_hot_katana_blade_tier_1",
+    "count": 1
+  }
+}
