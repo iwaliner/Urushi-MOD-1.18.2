@@ -6,10 +6,10 @@
       "item": "urushi:rice_cake"
     },
     {
-      "item": "urushi:azuki_crop"
+      "tag": "forge:crops/redbean"
     },
     {
-      "item": "urushi:azuki_crop"
+      "tag": "forge:crops/redbean"
     }
   ],
   "result": {

@@ -1,20 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "BBB",
-    "BDB",
-    "BBB"
-  ],
-  "key": {
-    "B": {
-     "item": "urushi:raw_urushi_ball"
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+   
+    {
+      "item": "urushi:raw_urushi_ball"
     },
-    "D": {
-    "tag": "forge:dyes/black"
+    {
+      "item": "urushi:tiny_black_dye"
     }
-  },
+  ],
   "result": {
     "item": "urushi:black_urushi_ball",
-    "count": 8
+    "count": 1
   }
 }

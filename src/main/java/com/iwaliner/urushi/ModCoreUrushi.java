@@ -1,11 +1,14 @@
 package com.iwaliner.urushi;
 
 import com.iwaliner.urushi.block.IronIngotBlock;
-import com.iwaliner.urushi.world.tree.PlacementFeatures;
+import com.iwaliner.urushi.world.PlacementFeatures;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -13,17 +16,17 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -35,7 +38,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Supplier;
 
 @Mod("urushi")
 public class ModCoreUrushi {
@@ -63,9 +65,10 @@ public class ModCoreUrushi {
     };
     public ModCoreUrushi() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-       ItemAndBlockRegister.register(modEventBus);
-       BlockEntityRegister.register(modEventBus);
-       MinecraftForge.EVENT_BUS.register(this);
+        ItemAndBlockRegister.register(modEventBus);
+        BlockEntityRegister.register(modEventBus);
+        EntityRegister.register(modEventBus);
+        MinecraftForge.EVENT_BUS.register(this);
 
     }
     /**構造物を自然生成*/
@@ -163,6 +166,45 @@ public class ModCoreUrushi {
                         event.getWorld().destroyBlock(event.getPos(),true);
                         event.setCanceled(true);
                     }
+                }
+            }
+        }
+    }
+
+    /**葉の上に落下したとき落下ダメージを受けないように*/
+    @SubscribeEvent
+    public void LeavesDamageEvent(LivingHurtEvent event) {
+        if(event.getSource()== DamageSource.FALL){
+            if(event.getEntityLiving().level.getBlockState(event.getEntityLiving().blockPosition().below()).getBlock() instanceof LeavesBlock){
+                event.setCanceled(true);
+            }
+        }
+    }
+    /**砂が海岸や海系のバイオーム内で水に接すると塩を含んだ砂になる*/
+    @SubscribeEvent
+    public void SaltEvent(BlockEvent.NeighborNotifyEvent event) {
+        ResourceKey<Biome> biome=ResourceKey.create(Registry.BIOME_REGISTRY,event.getWorld().getBiome(event.getPos()).value().getRegistryName());
+        Set<BiomeDictionary.Type> type=BiomeDictionary.getTypes(biome);
+
+        if (type.contains(BiomeDictionary.Type.BEACH)|| type.contains(BiomeDictionary.Type.OCEAN)) {
+            if (event.getState().getMaterial() == Material.WATER) {
+                for (int i = 0; i < 6; i++) {
+                    if (event.getWorld().getBlockState(event.getPos().relative(UrushiUtils.getDirectionFromInt(i))).getBlock() == Blocks.SAND) {
+                        event.getWorld().setBlock(event.getPos().relative(UrushiUtils.getDirectionFromInt(i)), ItemAndBlockRegister.salt_and_sand.get().defaultBlockState(), 2);
+                        event.getWorld().playSound((Player) null, event.getPos().relative(UrushiUtils.getDirectionFromInt(i)), SoundEvents.SAND_BREAK, SoundSource.BLOCKS, 1.0F, 1F);
+                    }
+                }
+
+            } else if (event.getState().getBlock() == Blocks.SAND) {
+                boolean flag = false;
+                for (int i = 0; i < 6; i++) {
+                    if (event.getWorld().getBlockState(event.getPos().relative(UrushiUtils.getDirectionFromInt(i))).getMaterial() == Material.WATER) {
+                        flag = true;
+                    }
+                }
+                if (flag) {
+                    event.getWorld().setBlock(event.getPos(), ItemAndBlockRegister.salt_and_sand.get().defaultBlockState(), 2);
+                    event.getWorld().playSound((Player) null, event.getPos(), SoundEvents.SAND_BREAK, SoundSource.BLOCKS, 1.0F, 1F);
                 }
             }
         }

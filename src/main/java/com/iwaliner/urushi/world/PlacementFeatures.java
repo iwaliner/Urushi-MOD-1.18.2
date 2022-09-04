@@ -1,6 +1,7 @@
-package com.iwaliner.urushi.world.tree;
+package com.iwaliner.urushi.world;
 
 import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.iwaliner.urushi.world.tree.TreeGenerator;
 import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.features.OreFeatures;

@@ -92,6 +92,7 @@
     "urushi:cypress_parapet",
     "urushi:lacquer_sapling",
     "urushi:lacquer_log",
+    "urushi:chiseled_lacquer_log",
     "urushi:red_urushi_planks",
     "urushi:red_urushi_slab",
     "urushi:red_urushi_stairs",
@@ -176,6 +177,7 @@
     "urushi:bamboo_stairs",
     "urushi:bamboo_wall",
     "urushi:bamboo_charcoal_block",
+    "urushi:senbakoki",
     "urushi:rope"
   ]
 }

@@ -6,7 +6,7 @@
       "item": "urushi:blank_fusuma"
     },
     {
-      "item": "minecraft:sugar"
+      "tag": "forge:sugar"
     }
   ],
   "result": {

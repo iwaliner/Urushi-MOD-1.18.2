@@ -441,5 +441,11 @@
    "block.urushi.rope": "Rope",
    "item.urushi.open_wagasa": "Paper Umbrella (open)",
    "item.urushi.close_wagasa": "Paper Umbrella (close)",
-   "info.urushi.wagasa": "eliminate falling damage"
+   "info.urushi.wagasa": "eliminate falling damage",
+   "item.urushi.tiny_red_dye": "Tiny Red Dye",
+   "item.urushi.tiny_black_dye": "Tiny Black Dye",
+   "block.urushi.senbakoki": "Senbakoki",
+   "info.urushi.rawrice": "Use Rice Ears to Senbakoki to get 2x Raw Rice.",
+   "info.urushi.rawurushi": "Use Bowl to Chiseled Lacquer Log to get.",
+   "info.urushi.placeablefood": "Click with sneaking to place this food."
 }

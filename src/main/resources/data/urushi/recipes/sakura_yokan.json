@@ -6,13 +6,13 @@
       "item": "urushi:kanten_powder"
     },
     {
-      "item": "minecraft:sugar"
+      "tag": "forge:sugar"
     },
     {
       "item": "urushi:sakura_leaves"
     },
     {
-      "item": "urushi:azuki_crop"
+      "tag": "forge:crops/redbean"
     }
   ],
   "result": {

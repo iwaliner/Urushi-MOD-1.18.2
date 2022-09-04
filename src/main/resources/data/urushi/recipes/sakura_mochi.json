@@ -9,7 +9,7 @@
       "item": "urushi:sakura_leaves"
     },
     {
-      "item": "urushi:azuki_crop"
+      "tag": "forge:crops/redbean"
     }
   ],
   "result": {

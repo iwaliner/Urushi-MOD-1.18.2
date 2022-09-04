@@ -15,7 +15,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 
 
-version = '1.18.2-alpha4.0'
+version = '1.18.2-alpha4.1'
 group = 'com.iwaliner.urushi'
 archivesBaseName = 'Urushi'
 
@@ -102,24 +102,38 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
 }
 //このdependenciesはminecraftの指定のみデフォルトでされている。今回はここでほかのMODを指定していく。
 dependencies {
     //この下の一行はもともと記述されている。
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.0'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.1.17'
 
     //導入する外部MODを指定。
 //「curse.maven:」+「文字列A」+「-」「数値B」+「:」+「数値C」で構成される。
 //文字列Aは、CurseForgeの各MODページのURL内に入っている、mod名に限りなく近い文字列。
 //数値Bは、CurseForgeの各MODページの右側に表示されている「About Project」内の「Project ID」で記されている数値。
 //数値Cは、CurseForgeにて使いたいMODの「Files」タブを開き、使いたい特定のバージョンの下線付き文字部分をクリックしてそのバージョンが詳しく書かれているページに飛び、そこのページのURLの末尾に書かれている数値
-    implementation  fg.deobf("curse.maven:jei-238222:3940240")
+    //implementation  fg.deobf("curse.maven:jei-238222:3940240")
     implementation  fg.deobf("curse.maven:mouse-tweaks-60089:3601896")
     implementation  fg.deobf("curse.maven:the-one-probe-245211:3927518")
     implementation  fg.deobf("curse.maven:mysterious-mountain-lib-368098:3857113")
     //implementation  fg.deobf("curse.maven:farmers-delight-398521:3834150")
     implementation  fg.deobf("curse.maven:sakura-333079:3954611")
-    //implementation  fg.deobf("curse.maven:tofucraftreload-317469:3940352")
+    implementation  fg.deobf("curse.maven:tofucraftreload-317469:3940352")
+
+
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 
 }
 

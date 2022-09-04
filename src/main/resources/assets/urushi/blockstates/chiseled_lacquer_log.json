@@ -1,18 +1,33 @@
 {
   "variants": {
-    "facing=west": {
+    "facing=west,filled=false": {
       "model": "urushi:block/chiseled_lacquer_log",
       "y": 270
     },
-    "facing=south": {
+    "facing=south,filled=false": {
       "model": "urushi:block/chiseled_lacquer_log",
       "y": 180
     },
-    "facing=north": {
+    "facing=north,filled=false": {
       "model": "urushi:block/chiseled_lacquer_log"
     },
-    "facing=east": {
+    "facing=east,filled=false": {
       "model": "urushi:block/chiseled_lacquer_log",
+      "y": 90
+    },
+    "facing=west,filled=true": {
+      "model": "urushi:block/chiseled_lacquer_log_filled",
+      "y": 270
+    },
+    "facing=south,filled=true": {
+      "model": "urushi:block/chiseled_lacquer_log_filled",
+      "y": 180
+    },
+    "facing=north,filled=true": {
+      "model": "urushi:block/chiseled_lacquer_log_filled"
+    },
+    "facing=east,filled=true": {
+      "model": "urushi:block/chiseled_lacquer_log_filled",
       "y": 90
     }
   }
