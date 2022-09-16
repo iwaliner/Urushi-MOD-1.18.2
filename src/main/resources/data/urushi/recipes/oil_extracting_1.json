@@ -1,0 +1,11 @@
+{
+  "type": "urushi:oil_extracting",
+  "ingredients": [
+  {
+    "item": "minecraft:wheat_seeds"
+    }
+  ],
+  "result": {
+  "item":"urushi:vegetable_oil"
+  }
+}

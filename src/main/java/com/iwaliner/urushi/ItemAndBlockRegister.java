@@ -25,7 +25,7 @@ import java.util.function.Supplier;
 @Mod.EventBusSubscriber(modid = ModCoreUrushi.ModID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemAndBlockRegister {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ModCoreUrushi.ModID);
-    private static final DeferredRegister<Block> BLOCKS= DeferredRegister.create(ForgeRegistries.BLOCKS, ModCoreUrushi.ModID);
+    public static final DeferredRegister<Block> BLOCKS= DeferredRegister.create(ForgeRegistries.BLOCKS, ModCoreUrushi.ModID);
     public static final RegistryObject<Block> sikkui =B("plaster","p",0,() -> {return new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SNOW).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> sikkui_slab =B("plaster_slab","p",0,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SNOW).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> sikkui_stairs =B("plaster_stairs","p",0,() -> {return new StairBlock(ItemAndBlockRegister.sikkui.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.STONE, MaterialColor.SNOW).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
@@ -105,31 +105,37 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> smooth_oak_stairs =B("smooth_oak_stairs","a",-1,() -> {return new StairBlock(smooth_oak_planks.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> oak_parapet =B("oak_parapet","a",-1,() -> {return new ParapetBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> oak_bars =B("oak_bars","a",-1,() -> {return new BarsBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> oak_fushiranma =B("oak_fushiranma","a",-1,() -> {return new FushiranmaBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_spruce_planks =B("smooth_spruce_planks","a",-1,() -> {return new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.PODZOL).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_spruce_slab =B("smooth_spruce_slab","a",-1,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.PODZOL).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_spruce_stairs =B("smooth_spruce_stairs","a",-1,() -> {return new StairBlock(smooth_spruce_planks.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.PODZOL).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> spruce_parapet =B("spruce_parapet","a",-1,() -> {return new ParapetBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.PODZOL).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> spruce_bars =B("spruce_bars","a",-1,() -> {return new BarsBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.PODZOL).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> spruce_fushiranma =B("spruce_fushiranma","a",-1,() -> {return new FushiranmaBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.PODZOL).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_birch_planks =B("smooth_birch_planks","a",-1,() -> {return new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_birch_slab =B("smooth_birch_slab","a",-1,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_birch_stairs =B("smooth_birch_stairs","a",-1,() -> {return new StairBlock(smooth_birch_planks.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> birch_parapet =B("birch_parapet","a",-1,() -> {return new ParapetBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> birch_bars =B("birch_bars","a",-1,() -> {return new BarsBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> birch_fushiranma =B("birch_fushiranma","a",-1,() -> {return new FushiranmaBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_jungle_planks =B("smooth_jungle_planks","a",-1,() -> {return new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_jungle_slab =B("smooth_jungle_slab","a",-1,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_jungle_stairs =B("smooth_jungle_stairs","a",-1,() -> {return new StairBlock(smooth_jungle_planks.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> jungle_parapet =B("jungle_parapet","a",-1,() -> {return new ParapetBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> jungle_bars =B("jungle_bars","a",-1,() -> {return new BarsBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> jungle_fushiranma =B("jungle_fushiranma","a",-1,() -> {return new FushiranmaBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_acacia_planks =B("smooth_acacia_planks","a",-1,() -> {return new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_acacia_slab =B("smooth_acacia_slab","a",-1,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_acacia_stairs =B("smooth_acacia_stairs","a",-1,() -> {return new StairBlock(smooth_acacia_planks.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> acacia_parapet =B("acacia_parapet","a",-1,() -> {return new ParapetBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> acacia_bars =B("acacia_bars","a",-1,() -> {return new BarsBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> acacia_fushiranma =B("acacia_fushiranma","a",-1,() -> {return new FushiranmaBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_dark_oak_planks =B("smooth_dark_oak_planks","a",-1,() -> {return new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_dark_oak_slab =B("smooth_dark_oak_slab","a",-1,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_dark_oak_stairs =B("smooth_dark_oak_stairs","a",-1,() -> {return new StairBlock(smooth_dark_oak_planks.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> dark_oak_parapet =B("dark_oak_parapet","a",-1,() -> {return new ParapetBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> dark_oak_bars =B("dark_oak_bars","a",-1,() -> {return new BarsBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> dark_oak_fushiranma =B("dark_oak_fushiranma","a",-1,() -> {return new FushiranmaBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> green_bars =B("green_bars","a",-1,() -> {return new BarsBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.TERRACOTTA_GREEN).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Item> japanese_apricot_bark =I("japanese_apricot_bark");
     public static final RegistryObject<Block> japanese_apricot_sapling =B("japanese_apricot_sapling","a",-1,() -> {return new SaplingBlock(new ApricotTreeGrower(),BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_PINK).sound(SoundType.GRASS).noCollission().instabreak().randomTicks());});
@@ -153,6 +159,7 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> smooth_japanese_apricot_slab =B("smooth_japanese_apricot_slab","a",-1,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.TERRACOTTA_PINK).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_japanese_apricot_stairs =B("smooth_japanese_apricot_stairs","a",-1,() -> {return new StairBlock(smooth_japanese_apricot_planks.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.TERRACOTTA_PINK).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> japanese_apricot_parapet =B("japanese_apricot_parapet","a",-1,() -> {return new ParapetBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.TERRACOTTA_PINK).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> japanese_apricot_fushiranma =B("japanese_apricot_fushiranma","a",-1,() -> {return new FushiranmaBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.TERRACOTTA_PINK).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Item> sakura_bark =I("sakura_bark");
     public static final RegistryObject<Block> sakura_sapling =B("sakura_sapling","a",-1,() -> {return new SaplingBlock(new SakuraTreeGrower(),BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_WHITE).sound(SoundType.GRASS).noCollission().instabreak().randomTicks());});
     public static final RegistryObject<Block> big_sakura_sapling =B("big_sakura_sapling","a",-1,() -> {return new SaplingBlock(new FancySakuraTreeGrower(),BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_WHITE).sound(SoundType.GRASS).noCollission().instabreak().randomTicks());});
@@ -177,6 +184,7 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> smooth_sakura_slab =B("smooth_sakura_slab","a",-1,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_sakura_stairs =B("smooth_sakura_stairs","a",-1,() -> {return new StairBlock(smooth_sakura_planks.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> sakura_parapet =B("sakura_parapet","a",-1,() -> {return new ParapetBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> sakura_fushiranma =B("sakura_fushiranma","a",-1,() -> {return new FushiranmaBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Item> cypress_bark =I("cypress_bark");
     public static final RegistryObject<Block> cypress_sapling =B("cypress_sapling","a",-1,() -> {return new SaplingBlock(new CypressTreeGrower(),BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.GRASS).sound(SoundType.GRASS).noCollission().instabreak().randomTicks());});
     public static final RegistryObject<Block> cypress_leaves =B("cypress_leaves","h",-1,() -> {return leaves(MaterialColor.GRASS,SoundType.AZALEA_LEAVES);});
@@ -197,6 +205,7 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> smooth_cypress_slab =B("smooth_cypress_slab","a",-1,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_cypress_stairs =B("smooth_cypress_stairs","a",-1,() -> {return new StairBlock(smooth_cypress_planks.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> cypress_parapet =B("cypress_parapet","a",-1,() -> {return new ParapetBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> cypress_fushiranma =B("cypress_fushiranma","a",-1,() -> {return new FushiranmaBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> lacquer_sapling =B("lacquer_sapling","a",-1,() -> {return new SaplingBlock(new LacquerTreeGrower(),BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.GRASS).sound(SoundType.GRASS).noCollission().instabreak().randomTicks());});
     public static final RegistryObject<Block> lacquer_leaves =B("lacquer_leaves","h",-1,() -> {return leaves(MaterialColor.GRASS,SoundType.AZALEA_LEAVES);});
     public static final RegistryObject<Block> lacquer_log =B("lacquer_log","a",-1,() -> {return chiselablelog(MaterialColor.WOOD, MaterialColor.WOOD);});
@@ -219,6 +228,7 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> smooth_red_urushi_slab =B("smooth_red_urushi_slab","a",-1,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_RED).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_red_urushi_stairs =B("smooth_red_urushi_stairs","a",-1,() -> {return new StairBlock(smooth_red_urushi_planks.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_RED).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> red_urushi_parapet =B("red_urushi_parapet","a",-1,() -> {return new ParapetBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_RED).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> red_urushi_fushiranma =B("red_urushi_fushiranma","a",-1,() -> {return new FushiranmaBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_RED).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> black_urushi_planks =B("black_urushi_planks","a",-1,() -> {return new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> black_urushi_slab =B("black_urushi_slab","a",-1,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> black_urushi_stairs =B("black_urushi_stairs","a",-1,() -> {return new StairBlock(black_urushi_planks.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
@@ -232,6 +242,7 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> smooth_black_urushi_slab =B("smooth_black_urushi_slab","a",-1,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> smooth_black_urushi_stairs =B("smooth_black_urushi_stairs","a",-1,() -> {return new StairBlock(smooth_black_urushi_planks.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> black_urushi_parapet =B("black_urushi_parapet","a",-1,() -> {return new ParapetBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> black_urushi_fushiranma =B("black_urushi_fushiranma","a",-1,() -> {return new FushiranmaBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> wooden_cabinetry_slab =B("wooden_cabinetry_slab","a",-1,() -> {return new WoodenCabinetrySlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.TERRACOTTA_BLACK).sound(SoundType.WOOD).strength(1.0F, 10.0F).dynamicShape());});
     public static final RegistryObject<Block> wooden_cabinetry =B("wooden_cabinetry","a",-1,() -> {return new WoodenCabinetryBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.TERRACOTTA_BLACK).sound(SoundType.WOOD).strength(1.0F, 10.0F).dynamicShape());});
     public static final RegistryObject<Block> andon =B("andon","a",-1,() -> {return new AndonBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.PODZOL).sound(SoundType.WOOD).strength(0.2F, 10.0F).noOcclusion().lightLevel((p_235470_0_) -> {return 15;}));});
@@ -319,11 +330,18 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> azuki_crop =B("azuki_crop","h",-1,() -> {return new UrushiCropBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.GRASS).sound(SoundType.GRASS).randomTicks().noCollission().instabreak());});
     public static final RegistryObject<Block> soy_crop =B("soy_crop","h",-1,() -> {return new UrushiCropBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.GRASS).sound(SoundType.GRASS).randomTicks().noCollission().instabreak());});
     public static final RegistryObject<Item> raw_rice =ITEMS.register("raw_rice", () -> {return new ToolchipItem("rawrice",(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> rice =ITEMS.register("rice", () -> {return new PlaceableFoodItem((new Item.Properties()).food(FoodUrushi.Rice).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> tkg =ITEMS.register("tkg", () -> {return new PlaceableFoodItem((new Item.Properties()).food(FoodUrushi.TKG).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> sekihan =ITEMS.register("sekihan", () -> {return new PlaceableFoodItem((new Item.Properties()).food(FoodUrushi.Sekihan).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> gyudon =ITEMS.register("gyudon", () -> {return new PlaceableFoodItem((new Item.Properties()).food(FoodUrushi.Gyudon).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> butadon =ITEMS.register("butadon", () -> {return new PlaceableFoodItem((new Item.Properties()).food(FoodUrushi.Butadon).tab(ModCoreUrushi.UrushiTab));});
+    public static final RegistryObject<Item> rice =ITEMS.register("rice", () -> {return new PlaceableFoodItem(()->EntityRegister.RiceFoodEntity.get(),(new Item.Properties()).food(FoodUrushi.Rice).tab(ModCoreUrushi.UrushiTab));});
+    public static final RegistryObject<Item> tkg =ITEMS.register("tkg", () -> {return new PlaceableFoodItem(()->EntityRegister.TKGFoodEntity.get(),(new Item.Properties()).food(FoodUrushi.TKG).tab(ModCoreUrushi.UrushiTab));});
+    public static final RegistryObject<Item> sekihan =ITEMS.register("sekihan", () -> {return new PlaceableFoodItem(()->EntityRegister.SekihanFoodEntity.get(),(new Item.Properties()).food(FoodUrushi.Sekihan).tab(ModCoreUrushi.UrushiTab));});
+    public static final RegistryObject<Item> gyudon =ITEMS.register("gyudon", () -> {return new PlaceableFoodItem(()->EntityRegister.GyudonFoodEntity.get(),(new Item.Properties()).food(FoodUrushi.Gyudon).tab(ModCoreUrushi.UrushiTab));});
+    public static final RegistryObject<Item> butadon =ITEMS.register("butadon", () -> {return new PlaceableFoodItem(()->EntityRegister.ButadonFoodEntity.get(),(new Item.Properties()).food(FoodUrushi.Butadon).tab(ModCoreUrushi.UrushiTab));});
+    public static final RegistryObject<Item> karaage =ITEMS.register("karaage", () -> {return new PlaceableFoodItem(()->EntityRegister.KaraageFoodEntity.get(),(new Item.Properties()).food(FoodUrushi.Karaage).tab(ModCoreUrushi.UrushiTab));});
+    public static final RegistryObject<Item> tofu =ITEMS.register("tofu", () -> {return new PlaceableFoodItem(()->EntityRegister.TofuFoodEntity.get(),(new Item.Properties()).food(FoodUrushi.Tofu).tab(ModCoreUrushi.UrushiTab));});
+    public static final RegistryObject<Item> aburaage =ITEMS.register("abura_age", () -> {return new PlaceableFoodItem(()->EntityRegister.AburaageFoodEntity.get(),(new Item.Properties()).food(FoodUrushi.Aburaage).tab(ModCoreUrushi.UrushiTab));});
+    public static final RegistryObject<Item> noodle_knife =ITEMS.register("noodle_knife", () -> {return new NoodleKnifeItem((new Item.Properties()).tab(ModCoreUrushi.UrushiTab).durability(1024));});
+    public static final RegistryObject<Block> dough =B("dough","n",-1,() -> {return new DoughBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.WOOL).instabreak().sound(SoundType.WOOD));});
+    public static final RegistryObject<Block> udon =B("udon","n",-1,() -> {return new UdonBlock(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.WOOL).instabreak().sound(SoundType.WOOD));});
+    public static final RegistryObject<Item> kitsune_udon =ITEMS.register("kitsune_udon", () -> {return new PlaceableFoodItem(()->EntityRegister.KitsuneUdonFoodEntity.get(),(new Item.Properties()).food(FoodUrushi.KitsuneUdon).tab(ModCoreUrushi.UrushiTab));});
     public static final RegistryObject<Block> salt_and_sand =B("salt_and_sand","s",-1,() -> {return new SaltAndSandBlock(BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(1F, 10F).sound(SoundType.SAND));});
     public static final RegistryObject<Item> salt =ITEMS.register("salt", () -> {return new ToolchipItem("salt",(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
     public static final RegistryObject<Item> kanten_powder =I("kanten_powder");
@@ -375,6 +393,12 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Item> climbing_rope =ITEMS.register("climbing_rope", () -> {return new ClimbingRopesItem((new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
     public static final RegistryObject<Item> open_wagasa =ITEMS.register("open_wagasa", () -> {return new WagasaItem(true,(new Item.Properties()).tab(ModCoreUrushi.UrushiTab).stacksTo(1));});
     public static final RegistryObject<Item> close_wagasa =ITEMS.register("close_wagasa", () -> {return new WagasaItem(false,(new Item.Properties()).stacksTo(1));});
+    public static final RegistryObject<LiquidBlock> HotSpringBlock =BLOCKS.register("hot_spring_water",() -> {return new HotSpringWaterBlock(()->FluidRegister.HotSpringStill.get(),BlockBehaviour.Properties.of(Material.WATER, MaterialColor.WATER).noDrops().strength(1000F).noCollission());});
+    public static final RegistryObject<Item> hot_spring_bucket =ITEMS.register("hot_spring_water_bucket", () -> {return new BucketItem(FluidRegister.HotSpringStill,(new Item.Properties()).tab(ModCoreUrushi.UrushiTab).stacksTo(1));});
+    //public static final RegistryObject<Block> hot_spring_source =B("hot_spring_source","p",0,() -> {return new HotSpringSourceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F).randomTicks());});
+    public static final RegistryObject<Item> vegetable_oil =I("vegetable_oil");
+    public static final RegistryObject<Block> oil_extractor =B("oil_extractor","a",-1,() -> {return new OilExtractorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).sound(SoundType.LADDER).strength(1F, 3.0F));});
+    public static final RegistryObject<Block> fryer =B("fryer","p",0,() -> {return new FryerBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.WOOL).sound(SoundType.METAL).strength(1F, 10.0F).requiresCorrectToolForDrops().dynamicShape());});
 
 
     private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos blockPos) {
@@ -425,7 +449,7 @@ public class ItemAndBlockRegister {
     private static <T extends Block> RegistryObject<T> B(String name,String tool,int l, Supplier<T > sup) {
         RegistryObject<T> object = BLOCKS.register(name, sup);
         ITEMS.register(name,() -> {return new BlockItem( Objects.requireNonNull(object.get()), (new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-if(ModCoreUrushi.password==88659) {
+if(ModCoreUrushi.isDebug) {
     if (tool == "p") {
         ModCoreUrushi.pickaxeList.add(ModCoreUrushi.ModID + ":" + name);
     } else if (tool == "a") {
@@ -452,10 +476,11 @@ if(ModCoreUrushi.password==88659) {
 }
         return object;
     }
+
     private static <T extends Block> RegistryObject<T> BIron(String name, Supplier<T > sup) {
         RegistryObject<T> object = BLOCKS.register(name, sup);
         ITEMS.register(name,() -> {return new IronIngotItem( Objects.requireNonNull(object.get()), (new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-        if(ModCoreUrushi.password==88659) {
+        if(ModCoreUrushi.isDebug) {
             ModCoreUrushi.pickaxeList.add(ModCoreUrushi.ModID + ":" + name);
         }
         return object;

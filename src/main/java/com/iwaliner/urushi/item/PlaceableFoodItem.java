@@ -21,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
@@ -29,10 +30,10 @@ import java.util.List;
 
 public class PlaceableFoodItem extends Item {
 
-
-    public PlaceableFoodItem( Properties p_i48487_1_) {
+private java.util.function.Supplier<? extends EntityType<?>> entityType;
+    public PlaceableFoodItem(java.util.function.Supplier<? extends EntityType<?>> p_54694_, Properties p_i48487_1_) {
         super(p_i48487_1_);
-
+        entityType=p_54694_;
     }
 
 
@@ -41,8 +42,7 @@ public class PlaceableFoodItem extends Item {
         if(!context.getPlayer().isSuppressingBounce()){
             return InteractionResult.PASS;
         }
-        EntityType<?> entity= UrushiUtils.getEntityTypeFromFoodItem(this.asItem());
-
+        EntityType<?> entity=entityType.get();
         if ((context.getLevel().isClientSide)) {
             return InteractionResult.SUCCESS;
         }

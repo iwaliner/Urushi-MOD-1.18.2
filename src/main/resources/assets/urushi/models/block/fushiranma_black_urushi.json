@@ -1,0 +1,7 @@
+{
+	"parent": "urushi:block/fushiranma_base",
+	"textures": {
+		"0": "urushi:block/smooth_planks_black_urushi_stained",
+		"particle": "urushi:block/smooth_planks_black_urushi_stained"
+	}
+}

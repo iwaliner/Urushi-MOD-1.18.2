@@ -30,7 +30,7 @@ public class MineableTagGenerator {
 
     private static void BuildTag(List<String> list,String fileName) {
         // デバッグ環境でなければ実行しない
-        if (ModCoreUrushi.password !=88659)
+        if (!ModCoreUrushi.isDebug)
             return;
 
         // 指定フォルダ内に生成する

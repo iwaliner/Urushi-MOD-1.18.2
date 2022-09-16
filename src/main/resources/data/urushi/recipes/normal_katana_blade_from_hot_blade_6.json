@@ -1,0 +1,11 @@
+{
+  "type": "urushi:throwing_in",
+  "ingredients": [
+  {
+    "item": "urushi:normal_hot_katana_blade_tier_6"
+    }
+  ],
+  "result": {
+  "item":"urushi:normal_katana_blade_tier_6"
+  }
+}

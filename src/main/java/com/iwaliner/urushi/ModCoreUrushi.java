@@ -1,7 +1,7 @@
 package com.iwaliner.urushi;
 
 import com.iwaliner.urushi.block.IronIngotBlock;
-import com.iwaliner.urushi.world.PlacementFeatures;
+import com.iwaliner.urushi.world.feature.PlacementFeatures;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
@@ -29,14 +31,18 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 @Mod("urushi")
@@ -44,7 +50,9 @@ public class ModCoreUrushi {
     public static final String ModID = "urushi";
     public static File dataDirectory;
     public static File dataInBuildDirectory;
-    public static int password=88659;
+    public static File assetsDirectory;
+    public static File assetsInBuildDirectory;
+
     public static List<String> pickaxeList=new ArrayList<>();
     public static List<String> axeList=new ArrayList<>();
     public static List<String> shovelList=new ArrayList<>();
@@ -55,6 +63,8 @@ public class ModCoreUrushi {
     public static List<String> goldenToolList=new ArrayList<>();
     public static List<String> diamondToolList=new ArrayList<>();
     public static List<String> netheriteToolList=new ArrayList<>();
+
+    public static boolean isDebug=FMLPaths.GAMEDIR.get().toString().contains("イワライナー(メインドライブ)")&&FMLPaths.GAMEDIR.get().toString().contains("run");
     public static Logger logger = LogManager.getLogger("urushi");
 
     public static final CreativeModeTab UrushiTab = new CreativeModeTab("urushi") {
@@ -65,9 +75,28 @@ public class ModCoreUrushi {
     };
     public ModCoreUrushi() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        /**コンフィグを登録*/
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON,ConfigUrushi.spec,"urushi.toml");
+
+        /**アイテムとブロックを登録*/
         ItemAndBlockRegister.register(modEventBus);
+
+        /**ブロックエンティティ(旧タイルエンティティ)を登録*/
         BlockEntityRegister.register(modEventBus);
+
+        /**エンティティを登録*/
         EntityRegister.register(modEventBus);
+
+        /**流体を登録*/
+        FluidRegister.register(modEventBus);
+
+        /**レシピタイプを登録*/
+        RecipeTypeRegister.register(modEventBus);
+
+        /**メニュー(旧コンテナ)を登録*/
+        MenuRegister.register(modEventBus);
+
+
         MinecraftForge.EVENT_BUS.register(this);
 
     }
@@ -103,6 +132,13 @@ public class ModCoreUrushi {
             base.add(PlacementFeatures.CYPRESS_PLACE);
         }
 
+        if(type.contains(BiomeDictionary.Type.MOUNTAIN)&&biome!=Biomes.MEADOW){
+
+                List<Holder<PlacedFeature>> base = event.getGeneration().getFeatures(GenerationStep.Decoration.LAKES);
+                base.add(PlacementFeatures.HOT_SPRING_PLACE);
+
+        }
+
         if(type.contains(BiomeDictionary.Type.SANDY)||type.contains(BiomeDictionary.Type.MESA)){
 
         }else{
@@ -128,16 +164,17 @@ public class ModCoreUrushi {
     }
 
     /**プレイヤーの移動速度を上昇*/
-  /*  @SubscribeEvent
-    public void PlayerSpeedEvent(EntityEvent.EnteringChunk event) {
+    @SubscribeEvent
+    public void PlayerSpeedEvent(EntityEvent.EnteringSection event) {
         if(ConfigUrushi.TurnOnSpeedUp.get()) {
-            if (event.getEntity() instanceof PlayerEntity) {
-                PlayerEntity entityPlayer = (PlayerEntity) event.getEntity();
+            if (event.getEntity() instanceof Player) {
+                Player entityPlayer = (Player) event.getEntity();
                 entityPlayer.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.116D);
                 entityPlayer.getAttributes().save();
             }
         }
-    }*/
+    }
+
     /**草を壊して種が出るように*/
     @SubscribeEvent
     public void GrassDropEvent(BlockEvent.BreakEvent event) {
@@ -180,6 +217,7 @@ public class ModCoreUrushi {
             }
         }
     }
+
     /**砂が海岸や海系のバイオーム内で水に接すると塩を含んだ砂になる*/
     @SubscribeEvent
     public void SaltEvent(BlockEvent.NeighborNotifyEvent event) {

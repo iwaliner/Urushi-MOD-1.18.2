@@ -1,5 +1,6 @@
 package com.iwaliner.urushi.block;
 
+import com.iwaliner.urushi.ConfigUrushi;
 import com.mojang.math.Vector3d;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -50,7 +51,7 @@ public class JapaneseTimberBambooBlock extends Block implements net.minecraftfor
             for(i = 1; p_225542_2_.getBlockState(p_225542_3_.below(i)).is(this); ++i) {
             }
 
-            if (i < 10) {
+            if (i < ConfigUrushi.maxHightBamboo.get()) {
                 int j = p_225542_1_.getValue(AGE);
                 if (j >0) {
                     p_225542_2_.setBlockAndUpdate(p_225542_3_.above(), this.defaultBlockState());

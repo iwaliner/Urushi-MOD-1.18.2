@@ -25,7 +25,7 @@ public class TKGFoodRenderer<T extends TKGFoodEntity> extends EntityRenderer<T> 
     public static EntityModel<FoodEntity> model ;
     public TKGFoodRenderer(EntityRendererProvider.Context context) {
         super(context);
-        this.model = new RiceFoodModel<>(context.bakeLayer(ClientSetUp.TKG));
+        this.model = new RiceFoodModel<>(context.bakeLayer(ClientSetUp.RICE));
         this.TEXTURE_LOCATION=new ResourceLocation("urushi:textures/entity/food/tkg.png");
     }
     public void render(T p_115418_, float p_115419_, float p_115420_, PoseStack p_115421_, MultiBufferSource p_115422_, int p_115423_) {

@@ -4,6 +4,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 
+import java.util.Map;
+
 public class UrushiUtils {
     public  static Direction getDirectionFromInt(int i){
         switch (i){
@@ -27,18 +29,5 @@ public class UrushiUtils {
             default:    return 6;
         }
     }
-    public static EntityType<?> getEntityTypeFromFoodItem(Item item){
-        if(item==ItemAndBlockRegister.rice.get()){
-            return EntityRegister.RiceFoodEntity.get();
-        }else if(item==ItemAndBlockRegister.tkg.get()){
-            return EntityRegister.TKGFoodEntity.get();
-        }else if(item==ItemAndBlockRegister.sekihan.get()){
-            return EntityRegister.SekihanFoodEntity.get();
-        }else if(item==ItemAndBlockRegister.gyudon.get()){
-            return EntityRegister.GyudonFoodEntity.get();
-        }else if(item==ItemAndBlockRegister.butadon.get()){
-            return EntityRegister.ButadonFoodEntity.get();
-        }
-        return EntityRegister.RiceFoodEntity.get();
-    }
+
 }

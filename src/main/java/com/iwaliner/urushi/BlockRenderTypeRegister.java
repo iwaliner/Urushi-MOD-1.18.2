@@ -85,8 +85,10 @@ public class BlockRenderTypeRegister {
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.rope.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.senbakoki.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.dirt_furnace.get(), RenderType.cutout());
-
-
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.HotSpringBlock.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(FluidRegister.HotSpringStill.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(FluidRegister.HotSpringFlow.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.fryer.get(), RenderType.translucent());
 
     }
 }
