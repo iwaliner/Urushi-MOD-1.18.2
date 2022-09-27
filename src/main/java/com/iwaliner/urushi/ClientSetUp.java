@@ -3,17 +3,16 @@ package com.iwaliner.urushi;
 import baguchan.tofucraft.client.TofuModelLayers;
 import baguchan.tofucraft.client.model.TofuSpiderModel;
 import baguchan.tofucraft.client.model.TofunianModel;
+import com.iwaliner.urushi.blockentity.screen.DoubledWoodenCabinetryScreen;
 import com.iwaliner.urushi.blockentity.screen.FryerScreen;
-import com.iwaliner.urushi.entiity.food.model.AburaageFoodModel;
-import com.iwaliner.urushi.entiity.food.model.KaraageFoodModel;
-import com.iwaliner.urushi.entiity.food.model.RiceFoodModel;
-import com.iwaliner.urushi.entiity.food.model.TofuFoodModel;
+import com.iwaliner.urushi.entiity.food.model.*;
 import com.iwaliner.urushi.entiity.food.renderer.*;
 import com.iwaliner.urushi.json.MineableTagGenerator;
 import com.iwaliner.urushi.json.NormalBlockItemJsonMaker;
 import com.iwaliner.urushi.json.RequiredToolMaterialTagGenerator;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -38,6 +37,9 @@ public class ClientSetUp {
     public static final ModelLayerLocation KARAAGE = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "karaage_food"), "karaage_food");
     public static final ModelLayerLocation TOFU = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "tofu_food"), "tofu_food");
     public static final ModelLayerLocation ABURAAGE = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "aburaage_food"), "aburaage_food");
+    public static final ModelLayerLocation DANGO = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "dango_food"), "dango_food");
+    public static final ModelLayerLocation RICE_CAKE = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "rice_cake_food"), "rice_cake_food");
+    public static final ModelLayerLocation ROASTED_RICE_CAKE = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "roasted_rice_cake_food"), "roasted_rice_cake_food");
 
 
     /**エンティティの見た目を登録*/
@@ -52,6 +54,14 @@ public class ClientSetUp {
         event.registerEntityRenderer(EntityRegister.KaraageFoodEntity.get(), KaraageFoodRenderer::new);
         event.registerEntityRenderer(EntityRegister.TofuFoodEntity.get(), TofuFoodRenderer::new);
         event.registerEntityRenderer(EntityRegister.AburaageFoodEntity.get(), AburaageFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.KusaDangoFoodEntity.get(), KusaDangoFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.ColorDangoFoodEntity.get(), ColorDangoFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.MitarashiDangoFoodEntity.get(), MitarashiDangoFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.RiceCakeFoodEntity.get(), RiceCakeFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.RoastedRiceCakeFoodEntity.get(), RoastedRiceCakeFoodRenderer::new);
+        event.registerEntityRenderer(EntityRegister.KitsunebiEntity.get(),  (p_174088_) -> {
+            return new ThrownItemRenderer<>(p_174088_, 1.0F, true);
+        });
     }
 
     /**エンティティのレイヤーを指定*/
@@ -61,6 +71,9 @@ public class ClientSetUp {
         event.registerLayerDefinition(KARAAGE, KaraageFoodModel::createBodyLayer);
         event.registerLayerDefinition(TOFU, TofuFoodModel::createBodyLayer);
         event.registerLayerDefinition(ABURAAGE, AburaageFoodModel::createBodyLayer);
+        event.registerLayerDefinition(DANGO, DangoFoodModel::createBodyLayer);
+        event.registerLayerDefinition(RICE_CAKE, RiceCakeFoodModel::createBodyLayer);
+        event.registerLayerDefinition(ROASTED_RICE_CAKE, RoastedRiceCakeFoodModel::createBodyLayer);
     }
 
     @Nullable
@@ -86,10 +99,14 @@ public class ClientSetUp {
 
        /**コンテナにGUIを登録*/
         MenuScreens.register(MenuRegister.FryerMenu.get(), FryerScreen::new);
+        MenuScreens.register(MenuRegister.DoubledWoodenCabinetryMenu.get(), DoubledWoodenCabinetryScreen::new);
 
 
 
-    /**jsonファイルを自動生成するために開発環境のパスを登録*/
+
+
+
+        /**jsonファイルを自動生成するために開発環境のパスを登録*/
         if(ModCoreUrushi.isDebug) {
         FMLPaths.GAMEDIR.get();
         ModCoreUrushi.assetsDirectory = new File(FMLPaths.GAMEDIR.get().getParent().toString() + "/src/main/resources/assets/urushi/");

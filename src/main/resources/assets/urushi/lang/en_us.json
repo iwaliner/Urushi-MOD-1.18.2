@@ -474,5 +474,13 @@
    "block.urushi.red_urushi_fushiranma": "Red Urushi Fushiranma",
    "block.urushi.black_urushi_fushiranma": "Black Urushi Fushiranma",
    "fluid.urushi.hot_spring_water": "Hot Spring Water",
-   "item.urushi.hot_spring_water_bucket": "Hot Spring Water Bucket"
+   "item.urushi.hot_spring_water_bucket": "Hot Spring Water Bucket",
+   "gui.jei.category.urushi.fox_eating": "Fox Eating",
+   "gui.jei.category.urushi.fox_eating.text": "let a fox eat this",
+   "block.urushi.senryoubako": "Senryoubako",
+   "entity.urushi.kusa_dango_food": "Kusa Dango",
+   "entity.urushi.color_dango_food": "Color Dango",
+   "entity.urushi.mitarashi_dango_food": "Mitarashi Dango",
+   "entity.urushi.rice_cake_food": "Rice Cake",
+   "entity.urushi.roasted_rice_cake_food": "Roasted Rice Cake"
 }

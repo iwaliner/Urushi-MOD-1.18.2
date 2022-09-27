@@ -2,7 +2,13 @@ package com.iwaliner.urushi.block;
 
 
 import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.block.BlockRenderDispatcher;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -20,6 +26,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -28,6 +35,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class ChiseledLacquerLogBlock extends HorizonalRotateBlock{
@@ -72,21 +80,23 @@ public class ChiseledLacquerLogBlock extends HorizonalRotateBlock{
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
-        if(state.getValue(FILLED)==true) {
-            BlockPos offsetPos = pos;
-            if (state.getValue(FACING) == Direction.NORTH) {
-                offsetPos = pos.north();
-            } else if (state.getValue(FACING) == Direction.SOUTH) {
-                offsetPos = pos.south();
-            } else if (state.getValue(FACING) == Direction.WEST) {
-                offsetPos = pos.west();
-            } else if (state.getValue(FACING) == Direction.EAST) {
-                offsetPos = pos.east();
+        if(random.nextInt(10)==0) {
+            if (state.getValue(FILLED) == true) {
+                BlockPos offsetPos = pos;
+                if (state.getValue(FACING) == Direction.NORTH) {
+                    offsetPos = pos.north();
+                } else if (state.getValue(FACING) == Direction.SOUTH) {
+                    offsetPos = pos.south();
+                } else if (state.getValue(FACING) == Direction.WEST) {
+                    offsetPos = pos.west();
+                } else if (state.getValue(FACING) == Direction.EAST) {
+                    offsetPos = pos.east();
+                }
+                double d0 = (double) offsetPos.getX() + random.nextInt(10) * 0.1D;
+                double d1 = (double) offsetPos.getY() + random.nextInt(8) * 0.1D;
+                double d2 = (double) offsetPos.getZ() + random.nextInt(10) * 0.1D;
+                level.addParticle(ParticleTypes.FALLING_HONEY, d0, d1, d2, 0.0D, 0D, 0.0D);
             }
-            double d0 = (double) offsetPos.getX() + random.nextInt(10) * 0.1D;
-            double d1 = (double) offsetPos.getY() + random.nextInt(8) * 0.1D;
-            double d2 = (double) offsetPos.getZ() + random.nextInt(10) * 0.1D;
-            level.addParticle(ParticleTypes.FALLING_HONEY, d0, d1, d2, 0.0D, 0D, 0.0D);
         }
     }
     @Override

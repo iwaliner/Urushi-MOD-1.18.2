@@ -15,7 +15,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 
 
-version = '1.18.2-alpha4.3'
+version = '1.18.2-4.4'
 group = 'com.iwaliner.urushi'
 archivesBaseName = 'Urushi'
 
@@ -32,10 +32,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-           property 'forge.enabledGameTestNamespaces', 'examplemod'
+           property 'forge.enabledGameTestNamespaces', 'urushi'
 
             mods {
-                examplemod {
+                urushi {
                     source sourceSets.main
                 }
             }
@@ -48,10 +48,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'examplemod'
+            property 'forge.enabledGameTestNamespaces', 'urushi'
 
             mods {
-                examplemod {
+                urushi {
                     source sourceSets.main
                 }
             }
@@ -64,10 +64,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'examplemod'
+            property 'forge.enabledGameTestNamespaces', 'urushi'
 
             mods {
-                examplemod {
+                urushi {
                     source sourceSets.main
                 }
             }
@@ -80,10 +80,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'urushi', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                examplemod {
+                urushi {
                     source sourceSets.main
                 }
             }

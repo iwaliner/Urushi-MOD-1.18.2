@@ -474,5 +474,13 @@
    "block.urushi.red_urushi_fushiranma": "朱漆の竹節欄間",
    "block.urushi.black_urushi_fushiranma": "黒漆の竹節欄間",
    "fluid.urushi.hot_spring_water": "温泉水",
-   "item.urushi.hot_spring_water_bucket": "温泉水入りバケツ"
+   "item.urushi.hot_spring_water_bucket": "温泉水入りバケツ",
+   "gui.jei.category.urushi.fox_eating": "狐の食事",
+   "gui.jei.category.urushi.fox_eating.text": "キツネにこれを食べさせる",
+   "block.urushi.senryoubako": "千両箱",
+   "entity.urushi.kusa_dango_food": "草団子",
+   "entity.urushi.color_dango_food": "三色団子",
+   "entity.urushi.mitarashi_dango_food": "みたらし団子",
+   "entity.urushi.rice_cake_food": "餅",
+   "entity.urushi.roasted_rice_cake_food": "焼き餅"
 }

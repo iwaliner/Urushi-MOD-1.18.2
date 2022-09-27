@@ -1,5 +1,6 @@
 package com.iwaliner.urushi;
 
+import baguchan.tofucraft.registry.TofuBiomes;
 import com.iwaliner.urushi.block.IronIngotBlock;
 import com.iwaliner.urushi.world.feature.PlacementFeatures;
 
@@ -9,7 +10,9 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -24,6 +27,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
@@ -90,11 +94,17 @@ public class ModCoreUrushi {
         /**流体を登録*/
         FluidRegister.register(modEventBus);
 
+        /**バイオームを登録*/
+        BiomeRegister.register(modEventBus);
+
         /**レシピタイプを登録*/
         RecipeTypeRegister.register(modEventBus);
 
         /**メニュー(旧コンテナ)を登録*/
         MenuRegister.register(modEventBus);
+
+        /**ディメンションを登録*/
+        DimensionRegister.register();
 
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -245,6 +255,14 @@ public class ModCoreUrushi {
                     event.getWorld().playSound((Player) null, event.getPos(), SoundEvents.SAND_BREAK, SoundSource.BLOCKS, 1.0F, 1F);
                 }
             }
+        }
+    }
+
+    /**油揚げを狐が食べると狐火に*/
+    @SubscribeEvent
+    public void FoxEvent(LivingEquipmentChangeEvent event) {
+        if (event.getEntityLiving() instanceof Fox &&event.getFrom().getItem()== ItemAndBlockRegister.aburaage.get()) {
+            event.getEntityLiving().setItemSlot(EquipmentSlot.MAINHAND,new ItemStack(ItemAndBlockRegister.kitsunebiItem.get()));
         }
     }
 }

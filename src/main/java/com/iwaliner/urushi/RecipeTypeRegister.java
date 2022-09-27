@@ -24,12 +24,15 @@ public class RecipeTypeRegister {
             = RECIPE_SERIALIZER.register("throwing_in", com.iwaliner.urushi.recipe.ThrowingInRecipe.ThrowingInSerializer::new);
     public static final RegistryObject<SenbakokiRecipe.SenbakokiSerializer> SenbakokiSerializer
             = RECIPE_SERIALIZER.register("senbakoki", com.iwaliner.urushi.recipe.SenbakokiRecipe.SenbakokiSerializer::new);
+    public static final RegistryObject<com.iwaliner.urushi.recipe.FoxEatingRecipe.FoxEatingSerializer> FoxEatingSerializer
+            = RECIPE_SERIALIZER.register("fox_eating", com.iwaliner.urushi.recipe.FoxEatingRecipe.FoxEatingSerializer::new);
 
     public static RecipeType<FryingRecipe> FryingRecipe = new FryingRecipe.FryingRecipeType();
     public static RecipeType<HammeringRecipe> HammeringRecipe = new HammeringRecipe.HammeringRecipeType();
     public static RecipeType<OilExtractingRecipe> OilExtractingRecipe = new OilExtractingRecipe.OilExtractingRecipeType();
     public static RecipeType<ThrowingInRecipe> ThrowingInRecipe = new ThrowingInRecipe.ThrowingInRecipeType();
     public static RecipeType<SenbakokiRecipe> SenbakokiRecipe = new SenbakokiRecipe.SenbakokiRecipeType();
+    public static RecipeType<FoxEatingRecipe> FoxEatingRecipe = new FoxEatingRecipe.FoxEatingRecipeType();
 
 
     public static void register(IEventBus eventBus) {

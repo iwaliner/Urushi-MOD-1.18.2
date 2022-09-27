@@ -12,5 +12,8 @@ public class FoodUrushi {
     public static final FoodProperties Karaage = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.8F).build();
     public static final FoodProperties Tofu = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.4F).build();
     public static final FoodProperties Aburaage = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).build();
+    public static final FoodProperties Dango = (new FoodProperties.Builder()).nutrition(8).saturationMod(1.0F).build();
+    public static final FoodProperties RiceCake = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).build();
+    public static final FoodProperties RoastedRiceCake = (new FoodProperties.Builder()).nutrition(8).saturationMod(1.0F).build();
 
 }
