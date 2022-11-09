@@ -1,11 +1,14 @@
 package com.iwaliner.urushi.block;
 
 import com.iwaliner.urushi.ConfigUrushi;
+import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.iwaliner.urushi.TagUrushi;
 import com.mojang.math.Vector3d;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -21,11 +24,12 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
 public class JapaneseTimberBambooBlock extends Block implements net.minecraftforge.common.IPlantable{
-    public static final IntegerProperty AGE = BlockStateProperties.AGE_15;
+    public static final IntegerProperty AGE = BlockStateProperties.AGE_5;
     protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 
 
@@ -45,23 +49,53 @@ public class JapaneseTimberBambooBlock extends Block implements net.minecraftfor
     }
 
     @Override
-    public void randomTick(BlockState p_225542_1_, ServerLevel p_225542_2_, BlockPos p_225542_3_, Random p_60554_) {
-        if (p_225542_2_.isEmptyBlock(p_225542_3_.above())) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
+
+        if (level.isEmptyBlock(pos.above())) {
             int i;
-            for(i = 1; p_225542_2_.getBlockState(p_225542_3_.below(i)).is(this); ++i) {
+            for(i = 1; level.getBlockState(pos.below(i)).is(this); ++i) {
             }
 
             if (i < ConfigUrushi.maxHightBamboo.get()) {
-                int j = p_225542_1_.getValue(AGE);
-                if (j >0) {
-                    p_225542_2_.setBlockAndUpdate(p_225542_3_.above(), this.defaultBlockState());
-                    p_225542_2_.setBlock(p_225542_3_, p_225542_1_.setValue(AGE, Integer.valueOf(0)), 4);
-                } else {
-                    p_225542_2_.setBlock(p_225542_3_, p_225542_1_.setValue(AGE, Integer.valueOf(j + 1)), 4);
-
+                int j = state.getValue(AGE);
+                if(state.getValue(AGE)==Integer.valueOf(3)){
+                    level.setBlockAndUpdate(pos, this.defaultBlockState().setValue(AGE,Integer.valueOf(0)));
                 }
+                if (j ==0||j ==1) {
+
+                    if(i<ConfigUrushi.maxHightBamboo.get()-6){
+                        level.setBlockAndUpdate(pos.above(), this.defaultBlockState().setValue(AGE,Integer.valueOf(0)));
+
+                    }else{
+                        if(random.nextInt(3)==0){
+                            level.setBlockAndUpdate(pos.above(), this.defaultBlockState().setValue(AGE,Integer.valueOf(1)));
+                        }else {
+                            if(j==0) {
+                                level.setBlockAndUpdate(pos.above(), this.defaultBlockState().setValue(AGE, Integer.valueOf(0)));
+                            }else{
+                                level.setBlockAndUpdate(pos.above(), this.defaultBlockState().setValue(AGE, Integer.valueOf(2)));
+
+                            }
+                        }
+                    }
+                }
+            }else if(state.getValue(AGE)!=Integer.valueOf(2)){
+                level.setBlockAndUpdate(pos, this.defaultBlockState().setValue(AGE, Integer.valueOf(2)));
             }
         }
+    }
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+       if( context.getLevel().getBlockState(context.getClickedPos().below()).getBlock() instanceof JapaneseTimberBambooBlock){
+           if(context.getLevel().getBlockState(context.getClickedPos().below()).getValue(AGE)==Integer.valueOf(3)){
+               context.getLevel().setBlockAndUpdate(context.getClickedPos().below(), this.defaultBlockState());
+           }
+          return this.defaultBlockState();
+       }else{
+           return  this.defaultBlockState().setValue(AGE,Integer.valueOf(3));
+       }
     }
 
     @Override
@@ -83,9 +117,7 @@ public class JapaneseTimberBambooBlock extends Block implements net.minecraftfor
             return true;
         } else {
 
-            if (blockstate.is(Blocks.GRASS_BLOCK) || blockstate.is(Blocks.DIRT) || blockstate.is(Blocks.COARSE_DIRT) || blockstate.is(Blocks.PODZOL) || blockstate.is(Blocks.SAND) || blockstate.is(Blocks.RED_SAND)) {
-                BlockPos blockpos = pos.below();
-
+            if (blockstate.is(TagUrushi.JAPANESE_TIMBER_BAMBOO_PLACEABLE) ) {
                 return true;
             }
 
@@ -108,11 +140,7 @@ public class JapaneseTimberBambooBlock extends Block implements net.minecraftfor
         return defaultBlockState();
     }
 
-   @Override
-   public VoxelShape getCollisionShape(BlockState p_220071_1_, BlockGetter p_220071_2_, BlockPos p_220071_3_, CollisionContext p_60575_) {
-       Vec3 vector3d = p_220071_1_.getOffset(p_220071_2_, p_220071_3_);
-       return SHAPE.move(vector3d.x, vector3d.y, vector3d.z);
-   }
+
 
     public BlockBehaviour.OffsetType getOffsetType() {
         return BlockBehaviour.OffsetType.XZ;

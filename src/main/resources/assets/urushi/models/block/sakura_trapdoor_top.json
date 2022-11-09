@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/template_orientable_trapdoor_top",
+  "parent": "urushi:block/connectable_trapdoor_top_base",
   "textures": {
+  "1": "urushi:block/sakura_planks",
     "texture": "urushi:block/sakura_trapdoor"
   }
 }

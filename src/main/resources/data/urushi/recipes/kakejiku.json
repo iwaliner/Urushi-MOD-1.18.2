@@ -13,7 +13,7 @@
    "tag": "forge:string"
     },
     "r": {
-    "item": "urushi:japanese_timber_bamboo"
+"tag": "forge:bamboo"
     }
   },
   "result": {

@@ -3,6 +3,7 @@ package com.iwaliner.urushi.block;
 
 
 import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.iwaliner.urushi.TagUrushi;
 import it.unimi.dsi.fastutil.objects.Object2FloatMap;
 import it.unimi.dsi.fastutil.objects.Object2FloatOpenHashMap;
 import net.minecraft.Util;
@@ -40,7 +41,7 @@ import java.util.Random;
 public class OilExtractorBlock extends Block implements WorldlyContainerHolder {
     public static final IntegerProperty LEVEL = BlockStateProperties.LEVEL_COMPOSTER;
     private static final VoxelShape OUTER_SHAPE = Shapes.block();
-    public static final Object2FloatMap<ItemLike> COMPOSTABLES = new Object2FloatOpenHashMap<>();
+   // public static final Object2FloatMap<ItemLike> COMPOSTABLES = new Object2FloatOpenHashMap<>();
 
     private static final float value=0.85f;
 
@@ -53,19 +54,19 @@ public class OilExtractorBlock extends Block implements WorldlyContainerHolder {
     });
 
 
-
+/*
     private static void add(float p_51921_, ItemLike p_51922_) {
         COMPOSTABLES.put(p_51922_.asItem(), p_51921_);
-    }
+    }*/
 
     public OilExtractorBlock(Properties p_i49986_1_) {
         super(p_i49986_1_);
         this.registerDefaultState(this.stateDefinition.any().setValue(LEVEL, Integer.valueOf(0)));
-        COMPOSTABLES.defaultReturnValue(-1.0F);
-        add(value,Items.WHEAT_SEEDS);
-       add(value,Items.BEETROOT_SEEDS);
-       add(value,Items.MELON_SEEDS);
-       add(value,Items.PUMPKIN_SEEDS);
+     //   COMPOSTABLES.defaultReturnValue(-1.0F);
+    //    add(value,Items.WHEAT_SEEDS);
+    //   add(value,Items.BEETROOT_SEEDS);
+   //    add(value,Items.MELON_SEEDS);
+   //    add(value,Items.PUMPKIN_SEEDS);
     }
 
 
@@ -92,7 +93,7 @@ public class OilExtractorBlock extends Block implements WorldlyContainerHolder {
     public InteractionResult use(BlockState p_51949_, Level p_51950_, BlockPos p_51951_, Player p_51952_, InteractionHand p_51953_, BlockHitResult p_51954_) {
         int i = p_51949_.getValue(LEVEL);
         ItemStack itemstack = p_51952_.getItemInHand(p_51953_);
-        if (i < 8 && COMPOSTABLES.containsKey(itemstack.getItem())) {
+        if (i < 8 && itemstack.is(TagUrushi.OIL_EXTRACTOR_INSERTALE)) {
             if (i < 7 && !p_51950_.isClientSide) {
                 BlockState blockstate = addItem(p_51949_, p_51950_, p_51951_, itemstack);
                 p_51950_.levelEvent(1500, p_51951_, p_51949_ != blockstate ? 1 : 0);
@@ -113,7 +114,7 @@ public class OilExtractorBlock extends Block implements WorldlyContainerHolder {
 
     public static BlockState insertItem(BlockState p_51930_, ServerLevel p_51931_, ItemStack p_51932_, BlockPos p_51933_) {
         int i = p_51930_.getValue(LEVEL);
-        if (i < 7 && COMPOSTABLES.containsKey(p_51932_.getItem())) {
+        if (i < 7 && p_51932_.is(TagUrushi.OIL_EXTRACTOR_INSERTALE)) {
             BlockState blockstate = addItem(p_51930_, p_51931_, p_51933_, p_51932_);
             p_51932_.shrink(1);
             return blockstate;
@@ -144,7 +145,7 @@ public class OilExtractorBlock extends Block implements WorldlyContainerHolder {
 
     static BlockState addItem(BlockState p_51984_, LevelAccessor p_51985_, BlockPos p_51986_, ItemStack p_51987_) {
         int i = p_51984_.getValue(LEVEL);
-        float f = COMPOSTABLES.getFloat(p_51987_.getItem());
+        float f = value;
         if ((i != 0 || !(f > 0.0F)) && !(p_51985_.getRandom().nextDouble() < (double)f)) {
             return p_51984_;
         } else {
@@ -231,7 +232,7 @@ public class OilExtractorBlock extends Block implements WorldlyContainerHolder {
         }
 
         public boolean canPlaceItemThroughFace(int p_52028_, ItemStack p_52029_, @Nullable Direction p_52030_) {
-            return !this.changed && p_52030_ == Direction.UP && OilExtractorBlock.COMPOSTABLES.containsKey(p_52029_.getItem());
+            return !this.changed && p_52030_ == Direction.UP && p_52029_.is(TagUrushi.OIL_EXTRACTOR_INSERTALE);
         }
 
         public boolean canTakeItemThroughFace(int p_52034_, ItemStack p_52035_, Direction p_52036_) {

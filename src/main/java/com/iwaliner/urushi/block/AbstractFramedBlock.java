@@ -2,12 +2,11 @@ package com.iwaliner.urushi.block;
 
 import com.google.common.collect.Maps;
 
-import net.minecraft.ChatFormatting;
+import com.iwaliner.urushi.util.UrushiUtils;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -24,7 +23,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
@@ -159,9 +157,8 @@ public class AbstractFramedBlock extends Block {
 
     @Override
     public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
-        list.add((new TranslatableComponent("info.urushi.framed_block1" )).withStyle(ChatFormatting.GRAY));
-        list.add((new TranslatableComponent("info.urushi.framed_block2" )).withStyle(ChatFormatting.GRAY));
-
+        UrushiUtils.setInfo(list,"framed_block1");
+        UrushiUtils.setInfo(list,"framed_block2");
     }
 
 }

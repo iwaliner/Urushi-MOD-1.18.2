@@ -92,7 +92,7 @@ public class NormalKatanaItem extends TieredItem {
         return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
     }
 
-    @Override
+   @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         boolean flag=player.isOnGround();
         float a=flag?2F:1F;
@@ -112,7 +112,7 @@ public class NormalKatanaItem extends TieredItem {
             for (LivingEntity entity : list) {
                 if(entity instanceof Player) {
                 }else{
-                    entity.hurt(DamageSource.GENERIC, getDamage());
+                    entity.hurt(DamageSource.GENERIC, getDamage()/2);
                     player.level.playSound((Player) null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.PLAYER_ATTACK_KNOCKBACK, SoundSource.PLAYERS, 1.5F, 1F);
                 }
             }
@@ -120,9 +120,11 @@ public class NormalKatanaItem extends TieredItem {
         return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide());
     }
 
+
+
     @Override
     public InteractionResult interactLivingEntity(ItemStack itemStack, Player player, LivingEntity living, InteractionHand hand) {
-            living.hurt(DamageSource.GENERIC,getDamage());
+            living.hurt(DamageSource.GENERIC,getDamage()/2);
             this.use(player.level,player,hand);
             player.level.playSound((Player) null, living.getX(), living.getY(), living.getZ(), SoundEvents.PLAYER_ATTACK_KNOCKBACK, SoundSource.PLAYERS, 1.5F, 1F);
             return InteractionResult.sidedSuccess(player.level.isClientSide);

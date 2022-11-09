@@ -1,7 +1,13 @@
 package com.iwaliner.urushi;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.block.BlockColors;
+import net.minecraft.client.color.item.ItemColors;
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -11,8 +17,23 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class BlockRenderTypeRegister {
     @SubscribeEvent
     public static void onRenderTypeSetup(FMLClientSetupEvent event) {
+        BlockColors blockcolors = Minecraft.getInstance().getBlockColors();
+        ItemColors itemcolors = Minecraft.getInstance().getItemColors();
+        blockcolors.register((state, reader, pos, i) -> BiomeColors.getAverageGrassColor(reader, pos),
+                ItemAndBlockRegister.grass_block_with_fallen_red_leaves.get(),
+                ItemAndBlockRegister.grass_block_with_fallen_orange_leaves.get(),
+                ItemAndBlockRegister.grass_block_with_fallen_yellow_leaves.get(),
+                ItemAndBlockRegister.grass_block_with_fallen_japanese_apricot_leaves.get(),
+                ItemAndBlockRegister.grass_block_with_fallen_sakura_leaves.get());
+        itemcolors.register((stack, i) -> {
+                     return 12300080;},
+                ItemAndBlockRegister.grass_block_with_fallen_red_leaves.get(),
+                ItemAndBlockRegister.grass_block_with_fallen_orange_leaves.get(),
+                ItemAndBlockRegister.grass_block_with_fallen_yellow_leaves.get(),
+                ItemAndBlockRegister.grass_block_with_fallen_japanese_apricot_leaves.get(),
+                ItemAndBlockRegister.grass_block_with_fallen_sakura_leaves.get());
 
-        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.mesh_groove.get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.mesh_groove.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.connectable_glass.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.connectable_glass_pane.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.metal_framed_glass.get(), RenderType.cutout());
@@ -82,13 +103,48 @@ public class BlockRenderTypeRegister {
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.kakejiku_14.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.lacquer_sapling.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.lacquer_leaves.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.rope.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.lycoris.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.senbakoki.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.dirt_furnace.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.HotSpringBlock.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(FluidRegister.HotSpringStill.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(FluidRegister.HotSpringFlow.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.fryer.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.yomi_vines.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.yomi_vines_plant.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.quartz_cluster.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.eulalia.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.double_eulalia.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.shiitake.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.wall_shiitake.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.red_leaves.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.red_sapling.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.orange_leaves.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.orange_sapling.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.yellow_leaves.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.yellow_sapling.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.japanese_cedar_sapling.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.fallen_red_leaves.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.fallen_orange_leaves.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.fallen_yellow_leaves.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.fallen_sakura_leaves.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.fallen_japanese_apricot_leaves.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.grass_block_with_fallen_red_leaves.get(), RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.grass_block_with_fallen_orange_leaves.get(), RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.grass_block_with_fallen_yellow_leaves.get(), RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.grass_block_with_fallen_japanese_apricot_leaves.get(), RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.grass_block_with_fallen_sakura_leaves.get(), RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.lantern_plant.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.stone_trapdoor.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.kakuriyo_portal.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.ghost_red_kakuriyo_portal_frame.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.ghost_kakuriyo_portal_core.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.ghost_black_kakuriyo_portal_frame.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.yomi_stone_trapdoor.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.ghost_dirt.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.ghost_stone.get(), RenderType.translucent());
+
+
 
     }
 }

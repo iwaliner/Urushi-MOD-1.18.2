@@ -2,11 +2,10 @@ package com.iwaliner.urushi.block;
 
 
 import com.iwaliner.urushi.ItemAndBlockRegister;
-import net.minecraft.ChatFormatting;
+import com.iwaliner.urushi.util.UrushiUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -85,7 +84,7 @@ public class DirtFurnaceBlock extends HorizonalRotateBlock {
     }
     @Override
     public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
-        list.add((new TranslatableComponent("info.urushi.dirtfurnace" )).withStyle(ChatFormatting.GRAY));
+        UrushiUtils.setInfo(list,"dirtfurnace");
          }
 
 }

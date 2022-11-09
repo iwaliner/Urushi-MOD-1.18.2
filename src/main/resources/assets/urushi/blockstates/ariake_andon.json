@@ -1,18 +1,33 @@
 {
   "variants": {
-    "facing=west": {
+    "facing=west,open=false": {
       "model": "urushi:block/ariake_andon",
       "y": 270
     },
-    "facing=south": {
+    "facing=south,open=false": {
       "model": "urushi:block/ariake_andon",
       "y": 180
     },
-    "facing=north": {
+    "facing=north,open=false": {
       "model": "urushi:block/ariake_andon"
     },
-    "facing=east": {
+    "facing=east,open=false": {
       "model": "urushi:block/ariake_andon",
+      "y": 90
+    },
+    "facing=west,open=true": {
+      "model": "urushi:block/ariake_andon_noon",
+      "y": 270
+    },
+    "facing=south,open=true": {
+      "model": "urushi:block/ariake_andon_noon",
+      "y": 180
+    },
+    "facing=north,open=true": {
+      "model": "urushi:block/ariake_andon_noon"
+    },
+    "facing=east,open=true": {
+      "model": "urushi:block/ariake_andon_noon",
       "y": 90
     }
   }

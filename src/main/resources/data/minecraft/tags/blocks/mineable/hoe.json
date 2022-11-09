@@ -15,15 +15,27 @@
     "urushi:green_tatami_carpet",
     "urushi:brown_tatami",
     "urushi:brown_tatami_carpet",
+    "urushi:red_leaves",
+    "urushi:fallen_red_leaves",
+    "urushi:orange_leaves",
+    "urushi:fallen_orange_leaves",
+    "urushi:yellow_leaves",
+    "urushi:fallen_yellow_leaves",
     "urushi:japanese_apricot_leaves",
+    "urushi:fallen_japanese_apricot_leaves",
     "urushi:glowing_japanese_apricot_leaves",
     "urushi:sakura_leaves",
+    "urushi:fallen_sakura_leaves",
     "urushi:glowing_sakura_leaves",
     "urushi:cypress_leaves",
+    "urushi:japanese_cedar_leaves",
     "urushi:lacquer_leaves",
     "urushi:tawara",
     "urushi:rice_crop",
     "urushi:azuki_crop",
-    "urushi:soy_crop"
+    "urushi:soy_crop",
+    "urushi:eulalia",
+    "urushi:double_eulalia",
+    "urushi:lycoris"
   ]
 }

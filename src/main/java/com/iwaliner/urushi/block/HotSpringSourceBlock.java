@@ -1,7 +1,7 @@
 package com.iwaliner.urushi.block;
 
 import com.iwaliner.urushi.ItemAndBlockRegister;
-import com.iwaliner.urushi.UrushiUtils;
+import com.iwaliner.urushi.util.UrushiUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

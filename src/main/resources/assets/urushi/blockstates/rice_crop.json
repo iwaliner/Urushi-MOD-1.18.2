@@ -14,6 +14,15 @@
     },
     "age=4": {
       "model": "urushi:block/rice_stage7"
+    },
+    "age=5": {
+      "model": "urushi:block/rice_stage7"
+    },
+    "age=6": {
+      "model": "urushi:block/rice_stage7"
+    },
+    "age=7": {
+      "model": "urushi:block/rice_stage7"
     }
   }
 }

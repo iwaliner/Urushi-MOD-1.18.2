@@ -5,28 +5,28 @@
      "tag": "forge:slimeballs"
     },
     {
-      "item": "minecraft:sand"
+      "tag": "minecraft:sand"
     },
     {
-      "item": "minecraft:sand"
+       "tag": "minecraft:sand"
     },
     {
-      "item": "minecraft:sand"
+       "tag": "minecraft:sand"
     },
     {
-     "item": "minecraft:sand"
+      "tag": "minecraft:sand"
     },
     {
-     "item": "minecraft:gravel"
+     "tag": "forge:gravel"
     },
     {
-     "item": "minecraft:gravel"
+     "tag": "forge:gravel"
     },
     {
-     "item": "minecraft:gravel"
+   "tag": "forge:gravel"
     },
     {
-     "item": "minecraft:gravel"
+    "tag": "forge:gravel"
     }
   ],
   "result": {

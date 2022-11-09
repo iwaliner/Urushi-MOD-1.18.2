@@ -13,7 +13,7 @@
      "item": "minecraft:paper"
     },
     "b": {
-     "item": "urushi:japanese_timber_bamboo"
+     "tag": "forge:bamboo"
     },
     "s": {
     "tag": "minecraft:wooden_slabs"

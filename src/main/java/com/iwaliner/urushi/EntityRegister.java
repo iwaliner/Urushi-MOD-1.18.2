@@ -1,5 +1,6 @@
 package com.iwaliner.urushi;
 
+import com.iwaliner.urushi.entiity.GhostEntity;
 import com.iwaliner.urushi.entiity.KitsunebiEntity;
 import com.iwaliner.urushi.entiity.food.*;
 import net.minecraft.resources.ResourceLocation;
@@ -27,6 +28,7 @@ public class EntityRegister {
     public static final RegistryObject<EntityType<ColorDangoFoodEntity>> ColorDangoFoodEntity=Entities.register("color_dango_food", () -> EntityType.Builder.<ColorDangoFoodEntity>of(ColorDangoFoodEntity::new, MobCategory.MISC).sized(0.25F, 0.7F).clientTrackingRange(8).build(new ResourceLocation(ModCoreUrushi.ModID,"color_dango_food").toString()));
     public static final RegistryObject<EntityType<MitarashiDangoFoodEntity>> MitarashiDangoFoodEntity=Entities.register("mitarashi_dango_food", () -> EntityType.Builder.<MitarashiDangoFoodEntity>of(MitarashiDangoFoodEntity::new, MobCategory.MISC).sized(0.25F, 0.7F).clientTrackingRange(8).build(new ResourceLocation(ModCoreUrushi.ModID,"mitarashi_dango_food").toString()));
     public static final RegistryObject<EntityType<KitsunebiEntity>> KitsunebiEntity=Entities.register("kitsunebi", () -> EntityType.Builder.<KitsunebiEntity>of(KitsunebiEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build(new ResourceLocation(ModCoreUrushi.ModID,"kitsunebi").toString()));
+    public static final RegistryObject<EntityType<GhostEntity>> Ghost=Entities.register("ghost", () -> EntityType.Builder.<GhostEntity>of(GhostEntity::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).build(new ResourceLocation(ModCoreUrushi.ModID,"ghost").toString()));
 
     public static void register(IEventBus eventBus) {
         Entities.register(eventBus);

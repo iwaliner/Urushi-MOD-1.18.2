@@ -1,11 +1,10 @@
 package com.iwaliner.urushi.block;
 
 import com.iwaliner.urushi.BlockEntityRegister;
+import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.blockentity.FoxHopperBlockEntity;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -80,6 +79,6 @@ public class FoxHopperBlock extends HopperBlock {
     }
     @Override
     public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
-        list.add((new TranslatableComponent("info.urushi.fox_hopper" )).withStyle(ChatFormatting.GRAY));
+       UrushiUtils.setInfo(list,"fox_hopper");
     }
 }

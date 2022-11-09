@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "urushi:ironsand_ore"
+    "urushi:ironsand_ore",
+    "urushi:yomi_copper_ore",
+    "urushi:yomi_iron_ore"
   ]
 }

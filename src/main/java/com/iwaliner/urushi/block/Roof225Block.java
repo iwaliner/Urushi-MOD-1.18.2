@@ -2,11 +2,10 @@ package com.iwaliner.urushi.block;
 
 
 
-import net.minecraft.ChatFormatting;
+import com.iwaliner.urushi.util.UrushiUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -19,7 +18,6 @@ import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class Roof225Block extends HorizonalRotateSlabBlock {
@@ -96,8 +94,7 @@ public class Roof225Block extends HorizonalRotateSlabBlock {
 
     @Override
     public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
-        list.add((new TranslatableComponent("info.urushi.roof_225" )).withStyle(ChatFormatting.GRAY));
-
+        UrushiUtils.setInfo(list,"roof_225");
     }
 
 }

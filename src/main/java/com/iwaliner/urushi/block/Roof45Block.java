@@ -1,11 +1,10 @@
 package com.iwaliner.urushi.block;
 
 
-import net.minecraft.ChatFormatting;
+import com.iwaliner.urushi.util.UrushiUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
@@ -60,7 +59,6 @@ public class Roof45Block extends HorizonalRotateBlock {
 
     @Override
     public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
-        list.add((new TranslatableComponent("info.urushi.roof_45" )).withStyle(ChatFormatting.GRAY));
-
+       UrushiUtils.setInfo(list,"roof_45");
     }
 }

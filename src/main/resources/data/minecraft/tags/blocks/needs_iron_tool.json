@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "urushi:iron_giboshi",
-    "urushi:gold_giboshi"
+    "urushi:gold_giboshi",
+    "urushi:jadeite_ore",
+    "urushi:yomi_gold_ore"
   ]
 }

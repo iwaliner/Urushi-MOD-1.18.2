@@ -41,6 +41,8 @@ public class StrippableLogBlock extends RotatedPillarBlock {
             item= ItemAndBlockRegister.sakura_bark.get();
         }else if(ItemAndBlockRegister.cypress_bark.isPresent()&&type==2){
             item= ItemAndBlockRegister.cypress_bark.get();
+        }else if(ItemAndBlockRegister.cypress_bark.isPresent()&&type==3){
+            item= ItemAndBlockRegister.japanese_cedar_bark.get();
         }
 
         if(player.getItemInHand(hand).getItem() instanceof AxeItem){

@@ -2,17 +2,11 @@ package com.iwaliner.urushi.item;
 
 
 import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.entiity.KitsunebiEntity;
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.particle.BlockMarker;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -104,8 +98,8 @@ public class KitsunebiItem extends Item {
    }
    @Override
    public void appendHoverText(ItemStack p_41421_, @Nullable Level p_41422_, List<Component> list, TooltipFlag p_41424_) {
-      list.add((new TranslatableComponent("info.urushi.kitsunebi" )).withStyle(ChatFormatting.GRAY));
-      list.add((new TranslatableComponent("info.urushi.kitsunebi2" )).withStyle(ChatFormatting.GRAY));
+      UrushiUtils.setInfo(list,"kitsunebi");
+      UrushiUtils.setInfo(list,"kitsunebi2");
    }
 
    public boolean isFoil(ItemStack p_77636_1_) {

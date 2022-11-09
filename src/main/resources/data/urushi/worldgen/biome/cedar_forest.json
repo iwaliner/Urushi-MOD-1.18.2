@@ -1,0 +1,72 @@
+{
+  "depth": 0.2,
+  "scale": 0.1,
+  "precipitation": "rain",
+  "temperature": 0.2,
+  "downfall": 0.8,
+  "category": "forest",
+  "effects": {
+    "sky_color": 5726341,
+    "fog_color": 11314048,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "grass_color": 5475430,
+    "music": {
+      "sound": "minecraft:music.cat",
+      "min_delay": 12000,
+      "max_delay": 24000,
+      "replace_current_music": false
+    }
+  },
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon"
+    ]
+  },
+  "features": [
+    [
+    "minecraft:seagrass_river",
+    "minecraft:patch_grass_forest"
+  ],
+    [
+      "minecraft:freeze_top_layer"
+    ]
+  ],
+  "spawners": {
+    "creature": [
+      {
+        "type": "minecraft:rabbit",
+        "weight": 10,
+        "minCount": 2,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:fox",
+        "weight": 10,
+        "minCount": 2,
+        "maxCount": 4
+      }
+    ],
+    "monster": [
+      {
+        "type": "urushi:ghost",
+        "weight": 50,
+        "minCount": 2,
+        "maxCount": 4
+      }
+    ],
+    "ambient": [
+    ],
+    "water_creature": [
+    ],
+    "water_ambient": [
+    ],
+    "misc": [
+    ]
+  },
+  "player_spawn_friendly": true,
+  "spawn_costs": {
+  }
+}

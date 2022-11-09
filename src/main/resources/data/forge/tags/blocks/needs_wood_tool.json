@@ -37,6 +37,25 @@
     "urushi:lidless_groove",
     "urushi:groove",
     "urushi:mesh_groove",
-    "urushi:fryer"
+    "urushi:fryer",
+    "urushi:yomi_stone",
+    "urushi:cobbled_yomi_stone",
+    "urushi:polished_yomi_stone",
+    "urushi:large_yomi_stone_bricks",
+    "urushi:small_yomi_stone_bricks",
+    "urushi:yomi_stone_slab",
+    "urushi:cobbled_yomi_stone_slab",
+    "urushi:polished_yomi_stone_slab",
+    "urushi:large_yomi_stone_brick_slab",
+    "urushi:small_yomi_stone_brick_slab",
+    "urushi:yomi_stone_stairs",
+    "urushi:cobbled_yomi_stone_stairs",
+    "urushi:polished_yomi_stone_stairs",
+    "urushi:large_yomi_stone_brick_stairs",
+    "urushi:small_yomi_stone_brick_stairs",
+    "urushi:cobbled_yomi_stone_wall",
+    "urushi:polished_yomi_stone_wall",
+    "urushi:large_yomi_stone_brick_wall",
+    "urushi:small_yomi_stone_brick_wall"
   ]
 }

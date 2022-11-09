@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " g ",
+    "gjg",
+    " g "
+  ],
+  "key": {
+    "g": {
+     "tag": "forge:nuggets/gold"
+    },
+    "j": {
+      "item": "urushi:jadeite"
+    }
+  },
+  "result": {
+    "item": "urushi:enhanced_jadeite",
+    "count": 1
+  }
+}

@@ -2,12 +2,12 @@
   "depth": 0.2,
   "scale": 0.1,
   "precipitation": "rain",
-  "temperature": 0.75,
-  "downfall": 0.8,
+  "temperature": 0.6,
+  "downfall": 0.4,
   "category": "forest",
   "effects": {
-    "sky_color": 10409179,
-    "fog_color": 234167065,
+    "sky_color": 5726341,
+    "fog_color": 11314048,
     "water_color": 4159204,
     "water_fog_color": 329011,
     "grass_color": 8692750,
@@ -19,34 +19,17 @@
     }
   },
   "carvers": {
-    
+    "air": [
+      "minecraft:cave",
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon"
+    ]
   },
   "features": [
-    
-    "minecraft:ore_copper",
-    "minecraft:ore_copper_large",
-    "minecraft:ore_gold",
-    "minecraft:ore_gold_lower",
-    "minecraft:ore_iron_middle",
-    "minecraft:ore_iron_small",
-    "minecraft:ore_iron_upper",
+    [
     "minecraft:seagrass_river",
-    "minecraft:kelp_warm",
-    "minecraft:kelp_cold",
-    "minecraft:ore_clay",
-    "minecraft:ore_gravel",
-    "minecraft:ore_andesite_lower",
-    "minecraft:ore_andesite_upper",
-    "minecraft:ore_diorite_lower",
-    "minecraft:ore_diorite_upper",
-    "minecraft:ore_granite_lower",
-    "minecraft:ore_granite_upper",
-    "minecraft:ore_tuff",
     "minecraft:patch_grass_forest"
-  
-  ],
-  "starts": [
-    "minecraft:village_plains"
+  ]
   ],
   "spawners": {
     "creature": [
@@ -55,11 +38,17 @@
         "weight": 10,
         "minCount": 2,
         "maxCount": 4
+      },
+      {
+        "type": "minecraft:fox",
+        "weight": 10,
+        "minCount": 2,
+        "maxCount": 4
       }
     ],
     "monster": [
       {
-        "type": "minecraft:zombie",
+        "type": "urushi:ghost",
         "weight": 50,
         "minCount": 2,
         "maxCount": 4

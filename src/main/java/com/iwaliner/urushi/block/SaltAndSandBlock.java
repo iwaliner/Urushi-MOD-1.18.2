@@ -3,10 +3,9 @@ package com.iwaliner.urushi.block;
 
 
 import com.iwaliner.urushi.ItemAndBlockRegister;
-import net.minecraft.ChatFormatting;
+import com.iwaliner.urushi.util.UrushiUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -22,7 +21,6 @@ import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class SaltAndSandBlock extends FallingBlock {
@@ -40,8 +38,7 @@ public class SaltAndSandBlock extends FallingBlock {
 
     @Override
     public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
-        list.add((new TranslatableComponent("info.urushi.saltandsand" )).withStyle(ChatFormatting.GRAY));
-
+       UrushiUtils.setInfo(list,"saltandsand");
     }
 
 }
