@@ -82,4 +82,13 @@ public class LanternPlantBlock extends BushBlock {
             return p_51029_.getBlockState(blockpos).canSustainPlant(p_51029_, blockpos, Direction.UP, this);
         return this.mayPlaceOn(p_51029_.getBlockState(blockpos), p_51029_, blockpos);
     }
+    @Override
+    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return true;
+    }
+
+    @Override
+    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return 60;
+    }
 }

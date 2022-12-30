@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+  "minecraft:magma_block",
+  "urushi:magma_slab",
+   "urushi:magma_stairs"
+  ]
+}

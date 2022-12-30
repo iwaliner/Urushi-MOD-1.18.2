@@ -1,6 +1,8 @@
 package com.iwaliner.urushi;
 
 import com.iwaliner.urushi.block.FryerBlock;
+import com.iwaliner.urushi.block.InvisibleButtonBlock;
+import com.iwaliner.urushi.block.InvisiblePressurePlateBlock;
 import com.iwaliner.urushi.blockentity.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -19,6 +21,9 @@ public class BlockEntityRegister {
     public static final RegistryObject<BlockEntityType<FryerBlockEntity>> FryerBlockEntity=Tiles.register("fryer", () -> BlockEntityType.Builder.of(FryerBlockEntity::new, ItemAndBlockRegister.fryer.get()).build(null));
     public static final RegistryObject<BlockEntityType<FoxHopperBlockEntity>> FoxHopperBlockEntity=Tiles.register("fox_hopper", () -> BlockEntityType.Builder.of(FoxHopperBlockEntity::new, ItemAndBlockRegister.fox_hopper.get()).build(null));
     public static final RegistryObject<BlockEntityType<SenryoubakoBlockEntity>> SenryoubakoBlockEntity=Tiles.register("senryoubako", () -> BlockEntityType.Builder.of(SenryoubakoBlockEntity::new, ItemAndBlockRegister.senryoubako.get()).build(null));
+    public static final RegistryObject<BlockEntityType<InvisibleButtonBlockEntity>> InvisibleButton=Tiles.register("invisible_button", () -> BlockEntityType.Builder.of(InvisibleButtonBlockEntity::new, ItemAndBlockRegister.invisible_button.get()).build(null));
+    public static final RegistryObject<BlockEntityType<InvisibleLeverBlockEntity>> InvisibleLever=Tiles.register("invisible_lever", () -> BlockEntityType.Builder.of(InvisibleLeverBlockEntity::new, ItemAndBlockRegister.invisible_lever.get()).build(null));
+    public static final RegistryObject<BlockEntityType<InvisiblePressurePlateBlockEntity>> InvisiblePressurePlate=Tiles.register("invisible_pressure_plate", () -> BlockEntityType.Builder.of(InvisiblePressurePlateBlockEntity::new, ItemAndBlockRegister.invisible_pressure_plate.get()).build(null));
     public static void register(IEventBus eventBus) {
         Tiles.register(eventBus);
     }

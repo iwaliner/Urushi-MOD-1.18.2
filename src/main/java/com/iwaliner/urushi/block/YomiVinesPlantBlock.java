@@ -3,6 +3,7 @@ package com.iwaliner.urushi.block;
 import com.iwaliner.urushi.ItemAndBlockRegister;
 import com.iwaliner.urushi.TagUrushi;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -42,5 +43,13 @@ public class YomiVinesPlantBlock extends CaveVinesPlantBlock {
             return InteractionResult.PASS;
         }
     }
+    @Override
+    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return true;
+    }
 
+    @Override
+    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return 60;
+    }
 }

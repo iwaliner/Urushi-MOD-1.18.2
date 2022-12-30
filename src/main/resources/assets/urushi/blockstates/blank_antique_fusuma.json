@@ -1,69 +1,137 @@
 {
   "variants": {
-    "facing=north,half=lower,open=false": {
+    "facing=north,half=lower,open=false,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_under_close"
     },
-    "facing=north,half=lower,open=true": {
+    "facing=north,half=lower,open=true,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_under_open"
     },
     
-    "facing=north,half=upper,open=false": {
+    "facing=north,half=upper,open=false,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_upper_close"
     },
-    "facing=north,half=upper,open=true": {
+    "facing=north,half=upper,open=true,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_upper_open"
     },
-    "facing=west,half=lower,open=false": {
+    "facing=west,half=lower,open=false,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_under_close",
       "y": 270
     },
-    "facing=west,half=lower,open=true": {
+    "facing=west,half=lower,open=true,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_under_open",
       "y": 270
     },
-    "facing=west,half=upper,open=false": {
+    "facing=west,half=upper,open=false,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_upper_close",
       "y": 270
     },
-    "facing=west,half=upper,open=true": {
+    "facing=west,half=upper,open=true,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_upper_open",
       "y": 270
     },
     
-    "facing=east,half=lower,open=false": {
+    "facing=east,half=lower,open=false,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_under_close",
       "y": 90
     },
-    "facing=east,half=lower,open=true": {
+    "facing=east,half=lower,open=true,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_under_open",
       "y": 90
     },
     
-    "facing=east,half=upper,open=false": {
+    "facing=east,half=upper,open=false,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_upper_close",
       "y": 90
     },
-    "facing=east,half=upper,open=true": {
+    "facing=east,half=upper,open=true,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_upper_open",
       "y": 90
     },
     
-    "facing=south,half=lower,open=false": {
+    "facing=south,half=lower,open=false,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_under_close",
       "y": 180
     },
-    "facing=south,half=lower,open=true": {
+    "facing=south,half=lower,open=true,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_under_open",
       "y": 180
     },
     
-    "facing=south,half=upper,open=false": {
+    "facing=south,half=upper,open=false,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_upper_close",
       "y": 180
     },
-    "facing=south,half=upper,open=true": {
+    "facing=south,half=upper,open=true,inverted=false": {
       "model": "urushi:block/blank_antique_fusuma_upper_open",
       "y": 180
+    },
+    
+    
+    
+    "facing=north,half=lower,open=false,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_under_close_inverted",
+        "y": 180
+    },
+    "facing=north,half=lower,open=true,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_under_open_inverted",
+       "y": 180
+    },
+    
+    "facing=north,half=upper,open=false,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_upper_close_inverted",
+       "y": 180
+    },
+    "facing=north,half=upper,open=true,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_upper_open_inverted",
+       "y": 180
+    },
+    "facing=west,half=lower,open=false,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_under_close_inverted",
+      "y": 90
+    },
+    "facing=west,half=lower,open=true,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_under_open_inverted",
+      "y": 90
+    },
+    "facing=west,half=upper,open=false,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_upper_close_inverted",
+      "y": 90
+    },
+    "facing=west,half=upper,open=true,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_upper_open_inverted",
+      "y": 90
+    },
+    
+    "facing=east,half=lower,open=false,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_under_close_inverted",
+      "y": 270
+    },
+    "facing=east,half=lower,open=true,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_under_open_inverted",
+      "y": 270
+    },
+    
+    "facing=east,half=upper,open=false,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_upper_close_inverted",
+      "y": 270
+    },
+    "facing=east,half=upper,open=true,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_upper_open_inverted",
+      "y": 270
+    },
+    
+    "facing=south,half=lower,open=false,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_under_close_inverted"
+    },
+    "facing=south,half=lower,open=true,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_under_open_inverted"
+    },
+    
+    "facing=south,half=upper,open=false,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_upper_close_inverted"
+    },
+    "facing=south,half=upper,open=true,inverted=true": {
+      "model": "urushi:block/blank_antique_fusuma_upper_open_inverted"
     }
   }
 }

@@ -18,6 +18,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoField;
 import java.util.List;
 import java.util.Map;
 
@@ -79,5 +81,20 @@ public class UrushiUtils {
             }
         }
         return flag;
+    }
+    public static boolean BlockNeighborBlockSurvey(Level level, BlockPos pos,Block block){
+        boolean flag = false;
+        for (int i = 0; i < 6; i++) {
+            if (level.getBlockState(pos.relative(UrushiUtils.getDirectionFromInt(i))).getBlock() ==block) {
+                flag = true;
+            }
+        }
+        return flag;
+    }
+    public static boolean isShogatsu() {
+        LocalDate localdate = LocalDate.now();
+        int i = localdate.get(ChronoField.DAY_OF_MONTH);
+        int j = localdate.get(ChronoField.MONTH_OF_YEAR);
+        return j == 1 && i <=7;
     }
 }

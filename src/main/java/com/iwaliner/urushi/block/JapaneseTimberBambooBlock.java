@@ -152,4 +152,13 @@ public class JapaneseTimberBambooBlock extends Block implements net.minecraftfor
         Vec3 vector3d = p_220053_1_.getOffset(p_220071_2_, p_220071_3_);
         return SHAPE.move(vector3d.x, vector3d.y, vector3d.z);
     }
+    @Override
+    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return true;
+    }
+
+    @Override
+    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return 60;
+    }
 }

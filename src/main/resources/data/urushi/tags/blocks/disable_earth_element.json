@@ -1,0 +1,28 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:redstone_wire",
+    "minecraft:dried_kelp_block",
+    "minecraft:magma_block",
+    "minecraft:red_mushroom",
+    "minecraft:brown_mushroom",
+    "minecraft:coal_block",
+    "minecraft:coal_ore",
+    "minecraft:deepslate_coal_ore",
+    "minecraft:clay",
+    "minecraft:prismarine",
+    "minecraft:prismarine_slab",
+    "minecraft:prismarine_stairs",
+    "minecraft:prismarine_wall",
+    "minecraft:prismarine_bricks",
+    "minecraft:prismarine_brick_slab",
+    "minecraft:prismarine_brick_stairs",
+    "minecraft:dark_prismarine",
+    "minecraft:dark_prismarine_slab",
+    "minecraft:dark_prismarine_stairs",
+    "minecraft:tripwire_hook",
+    "minecraft:conduit",
+    "urushi:magma_slab",
+    "urushi:magma_stairs"
+  ]
+}

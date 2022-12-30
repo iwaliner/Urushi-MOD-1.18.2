@@ -1,0 +1,8 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "urushi:block/petrified_log_top",
+        "front": "urushi:block/petrifired_log_side_amber_fire",
+        "side": "urushi:block/petrified_log_side"
+    }
+}

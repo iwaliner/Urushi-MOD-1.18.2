@@ -2,11 +2,14 @@ package com.iwaliner.urushi.block;
 
 import com.google.common.collect.Maps;
 
+import com.iwaliner.urushi.ClientSetUp;
 import com.iwaliner.urushi.util.UrushiUtils;
+import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -151,14 +154,22 @@ public class AbstractFramedBlock extends Block {
                 .setValue(EAST, Boolean.valueOf(this.connectsTo(thisState, eState)))
                 .setValue(UP, Boolean.valueOf(this.connectsTo(thisState, aState)))
                 .setValue(DOWN, Boolean.valueOf(this.connectsTo(thisState, bState)))
-                .setValue(VARIANT, Boolean.valueOf(context.getPlayer().isSuppressingBounce()))
+                //.setValue(VARIANT, Boolean.valueOf(context.getPlayer().isSuppressingBounce()))
+                .setValue(VARIANT, ClientSetUp.connectionKey.isDown())
                 ;
     }
 
     @Override
     public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
         UrushiUtils.setInfo(list,"framed_block1");
-        UrushiUtils.setInfo(list,"framed_block2");
+        String keyString=ClientSetUp.connectionKey.getKey().getName();
+        String begin=".";
+        int beginIndex = keyString.indexOf(begin);
+        String preExtractedKey = keyString.substring(beginIndex+1);
+        int beginIndex2 = preExtractedKey.indexOf(begin);
+        String extractedKey = preExtractedKey.substring(beginIndex2+1);
+        list.add((new TranslatableComponent("info.urushi.framed_block2").append(" '"+extractedKey+"' ").append(new TranslatableComponent("info.urushi.framed_block3"))).withStyle(ChatFormatting.GRAY));
+
     }
 
 }

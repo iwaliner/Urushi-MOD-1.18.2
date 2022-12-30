@@ -2961,51 +2961,7 @@
                       "then_run": {
                         "type": "minecraft:sequence",
                         "sequence": [
-                          {
-                            "type": "minecraft:condition",
-                            "if_true": {
-                              "type": "minecraft:noise_threshold",
-                              "noise": "minecraft:surface",
-                              "min_threshold": -0.909,
-                              "max_threshold": -0.5454
-                            },
-                            "then_run": {
-                              "type": "minecraft:block",
-                              "result_state": {
-                                "Name": "minecraft:coarse_dirt"
-                              }
-                            }
-                          },
-                          {
-                            "type": "minecraft:condition",
-                            "if_true": {
-                              "type": "minecraft:noise_threshold",
-                              "noise": "minecraft:surface",
-                              "min_threshold": -0.1818,
-                              "max_threshold": 0.1818
-                            },
-                            "then_run": {
-                              "type": "minecraft:block",
-                              "result_state": {
-                                "Name": "minecraft:coarse_dirt"
-                              }
-                            }
-                          },
-                          {
-                            "type": "minecraft:condition",
-                            "if_true": {
-                              "type": "minecraft:noise_threshold",
-                              "noise": "minecraft:surface",
-                              "min_threshold": 0.5454,
-                              "max_threshold": 0.909
-                            },
-                            "then_run": {
-                              "type": "minecraft:block",
-                              "result_state": {
-                                "Name": "minecraft:coarse_dirt"
-                              }
-                            }
-                          },
+
                           {
                             "type": "minecraft:sequence",
                             "sequence": [
@@ -3020,7 +2976,7 @@
                                 "then_run": {
                                   "type": "minecraft:block",
                                   "result_state": {
-                                    "Name": "minecraft:grass_block",
+                                    "Name": "urushi:kakuriyo_grass_block",
                                     "Properties": {
                                       "snowy": "false"
                                     }
@@ -3030,7 +2986,7 @@
                               {
                                 "type": "minecraft:block",
                                 "result_state": {
-                                  "Name": "minecraft:dirt"
+                                  "Name": "urushi:kakuriyo_dirt"
                                 }
                               }
                             ]
@@ -3918,21 +3874,6 @@
                                     "Name": "urushi:yomi_stone"
                                   }
                                 }
-                              },
-                              {
-                                "type": "minecraft:condition",
-                                "if_true": {
-                                  "type": "minecraft:noise_threshold",
-                                  "noise": "minecraft:surface",
-                                  "min_threshold": -0.06060606060606061,
-                                  "max_threshold": 1.7976931348623157e+308
-                                },
-                                "then_run": {
-                                  "type": "minecraft:block",
-                                  "result_state": {
-                                    "Name": "minecraft:coarse_dirt"
-                                  }
-                                }
                               }
                             ]
                           }
@@ -4021,7 +3962,7 @@
                                       "then_run": {
                                         "type": "minecraft:block",
                                         "result_state": {
-                                          "Name": "minecraft:grass_block",
+                                          "Name": "urushi:kakuriyo_grass_block",
                                           "Properties": {
                                             "snowy": "false"
                                           }
@@ -4031,7 +3972,7 @@
                                     {
                                       "type": "minecraft:block",
                                       "result_state": {
-                                        "Name": "minecraft:dirt"
+                                        "Name": "urushi:kakuriyo_dirt"
                                       }
                                     }
                                   ]
@@ -4079,21 +4020,6 @@
                           "then_run": {
                             "type": "minecraft:sequence",
                             "sequence": [
-                              {
-                                "type": "minecraft:condition",
-                                "if_true": {
-                                  "type": "minecraft:noise_threshold",
-                                  "noise": "minecraft:surface",
-                                  "min_threshold": 0.21212121212121213,
-                                  "max_threshold": 1.7976931348623157e+308
-                                },
-                                "then_run": {
-                                  "type": "minecraft:block",
-                                  "result_state": {
-                                    "Name": "minecraft:coarse_dirt"
-                                  }
-                                }
-                              },
                               {
                                 "type": "minecraft:condition",
                                 "if_true": {
@@ -4171,7 +4097,7 @@
                               "then_run": {
                                 "type": "minecraft:block",
                                 "result_state": {
-                                  "Name": "minecraft:grass_block",
+                                  "Name": "urushi:kakuriyo_grass_block",
                                   "Properties": {
                                     "snowy": "false"
                                   }
@@ -4181,7 +4107,7 @@
                             {
                               "type": "minecraft:block",
                               "result_state": {
-                                "Name": "minecraft:dirt"
+                                "Name": "urushi:kakuriyo_dirt"
                               }
                             }
                           ]
@@ -4439,7 +4365,7 @@
                               {
                                 "type": "minecraft:block",
                                 "result_state": {
-                                  "Name": "minecraft:dirt"
+                                  "Name": "urushi:kakuriyo_dirt"
                                 }
                               }
                             ]
@@ -4751,7 +4677,7 @@
                                 "then_run": {
                                   "type": "minecraft:block",
                                   "result_state": {
-                                    "Name": "minecraft:dirt"
+                                    "Name": "urushi:kakuriyo_dirt"
                                   }
                                 }
                               },
@@ -4788,7 +4714,7 @@
                         {
                           "type": "minecraft:block",
                           "result_state": {
-                            "Name": "minecraft:dirt"
+                            "Name": "urushi:kakuriyo_dirt"
                           }
                         }
                       ]

@@ -58,6 +58,8 @@
     "urushi:iron_giboshi",
     "urushi:gold_giboshi",
     "urushi:sliding_glass_door",
+    "urushi:magma_slab",
+    "urushi:magma_stairs",
     "urushi:rice_cauldron",
     "urushi:normal_iron_ingot_9",
     "urushi:normal_iron_ingot_8",
@@ -95,6 +97,23 @@
     "urushi:yomi_iron_ore",
     "urushi:yomi_gold_ore",
     "urushi:quartz_cluster",
-    "urushi:ghost_stone"
+    "urushi:ghost_stone",
+    "urushi:jadeite_block",
+    "urushi:jadeite_slab",
+    "urushi:jadeite_stairs",
+    "urushi:jadeite_brick",
+    "urushi:jadeite_brick_slab",
+    "urushi:jadeite_brick_stairs",
+    "urushi:smooth_jadeite_block",
+    "urushi:smooth_jadeite_slab",
+    "urushi:smooth_jadeite_stairs",
+    "urushi:jadeite_pillar",
+    "urushi:petrified_log",
+    "urushi:petrified_log_with_wood_amber",
+    "urushi:petrified_log_with_fire_amber",
+    "urushi:petrified_log_with_earth_amber",
+    "urushi:petrified_log_with_metal_amber",
+    "urushi:petrified_log_with_water_amber",
+    "urushi:petrified_planks"
   ]
 }

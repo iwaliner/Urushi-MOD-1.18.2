@@ -1,6 +1,8 @@
 package com.iwaliner.urushi.block;
 
 import com.google.common.collect.Maps;
+import com.iwaliner.urushi.ClientSetUp;
+import com.iwaliner.urushi.util.ElementUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -173,14 +175,21 @@ public class FramedPaneBlock extends HorizonalRotateBlock{
                 .setValue(EAST, Boolean.valueOf(this.connectsTo(thisState, eState)))
                 .setValue(UP, Boolean.valueOf(this.connectsTo(thisState, aState)))
                 .setValue(DOWN, Boolean.valueOf(this.connectsTo(thisState, bState)))
-                .setValue(VARIANT, Boolean.valueOf(p_196258_1_.getPlayer().isSuppressingBounce()))
+                .setValue(VARIANT, ClientSetUp.connectionKey.isDown())
                 ;
     }
 
     @Override
     public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
         list.add((new TranslatableComponent("info.urushi.framed_block1" )).withStyle(ChatFormatting.GRAY));
-        list.add((new TranslatableComponent("info.urushi.framed_block2" )).withStyle(ChatFormatting.GRAY));
+        String keyString=ClientSetUp.connectionKey.getKey().getName();
+        String begin=".";
+        int beginIndex = keyString.indexOf(begin);
+        String preExtractedKey = keyString.substring(beginIndex+1);
+        int beginIndex2 = preExtractedKey.indexOf(begin);
+        String extractedKey = preExtractedKey.substring(beginIndex2+1);
+        list.add((new TranslatableComponent("info.urushi.framed_block2").append(" '"+extractedKey+"' ").append(new TranslatableComponent("info.urushi.framed_block3"))).withStyle(ChatFormatting.GRAY));
+
 
     }
 

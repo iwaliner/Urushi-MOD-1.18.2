@@ -1,6 +1,7 @@
 package com.iwaliner.urushi.block;
 
 
+import com.iwaliner.urushi.ItemAndBlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
@@ -35,5 +36,14 @@ public class BarsBlock extends HorizonalRotateBlock{
         }else{
             return SHAPEA;
         }
+    }
+    @Override
+    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return state.getBlock()!= ItemAndBlockRegister.sikkui_bars.get();
+    }
+
+    @Override
+    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return state.getBlock()!= ItemAndBlockRegister.sikkui_bars.get()?60:0;
     }
 }

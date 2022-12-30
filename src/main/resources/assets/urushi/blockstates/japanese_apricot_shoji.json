@@ -1,69 +1,137 @@
 {
   "variants": {
-    "facing=north,half=lower,open=false": {
-      "model": "urushi:block/shouji_apricot_under_close"
+    "facing=north,half=lower,open=false,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_under_close"
     },
-    "facing=north,half=lower,open=true": {
-      "model": "urushi:block/shouji_apricot_under_open"
-    },
-    
-    "facing=north,half=upper,open=false": {
-      "model": "urushi:block/shouji_apricot_upper_close"
-    },
-    "facing=north,half=upper,open=true": {
-      "model": "urushi:block/shouji_apricot_upper_open"
-    },
-    "facing=west,half=lower,open=false": {
-      "model": "urushi:block/shouji_apricot_under_close",
-      "y": 270
-    },
-    "facing=west,half=lower,open=true": {
-      "model": "urushi:block/shouji_apricot_under_open",
-      "y": 270
-    },
-    "facing=west,half=upper,open=false": {
-      "model": "urushi:block/shouji_apricot_upper_close",
-      "y": 270
-    },
-    "facing=west,half=upper,open=true": {
-      "model": "urushi:block/shouji_apricot_upper_open",
-      "y": 270
+    "facing=north,half=lower,open=true,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_under_open"
     },
     
-    "facing=east,half=lower,open=false": {
-      "model": "urushi:block/shouji_apricot_under_close",
-      "y": 90
+    "facing=north,half=upper,open=false,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_close"
     },
-    "facing=east,half=lower,open=true": {
-      "model": "urushi:block/shouji_apricot_under_open",
-      "y": 90
+    "facing=north,half=upper,open=true,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_open"
+    },
+    "facing=west,half=lower,open=false,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_under_close",
+      "y": 270
+    },
+    "facing=west,half=lower,open=true,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_under_open",
+      "y": 270
+    },
+    "facing=west,half=upper,open=false,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_close",
+      "y": 270
+    },
+    "facing=west,half=upper,open=true,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_open",
+      "y": 270
     },
     
-    "facing=east,half=upper,open=false": {
-      "model": "urushi:block/shouji_apricot_upper_close",
+    "facing=east,half=lower,open=false,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_under_close",
       "y": 90
     },
-    "facing=east,half=upper,open=true": {
-      "model": "urushi:block/shouji_apricot_upper_open",
+    "facing=east,half=lower,open=true,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_under_open",
       "y": 90
     },
     
-    "facing=south,half=lower,open=false": {
-      "model": "urushi:block/shouji_apricot_under_close",
+    "facing=east,half=upper,open=false,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_close",
+      "y": 90
+    },
+    "facing=east,half=upper,open=true,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_open",
+      "y": 90
+    },
+    
+    "facing=south,half=lower,open=false,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_under_close",
       "y": 180
     },
-    "facing=south,half=lower,open=true": {
-      "model": "urushi:block/shouji_apricot_under_open",
+    "facing=south,half=lower,open=true,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_under_open",
       "y": 180
     },
     
-    "facing=south,half=upper,open=false": {
-      "model": "urushi:block/shouji_apricot_upper_close",
+    "facing=south,half=upper,open=false,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_close",
       "y": 180
     },
-    "facing=south,half=upper,open=true": {
-      "model": "urushi:block/shouji_apricot_upper_open",
+    "facing=south,half=upper,open=true,inverted=false": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_open",
       "y": 180
+    },
+    
+    
+    
+    "facing=north,half=lower,open=false,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_under_close_inverted",
+        "y": 180
+    },
+    "facing=north,half=lower,open=true,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_under_open_inverted",
+       "y": 180
+    },
+    
+    "facing=north,half=upper,open=false,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_close_inverted",
+       "y": 180
+    },
+    "facing=north,half=upper,open=true,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_open_inverted",
+       "y": 180
+    },
+    "facing=west,half=lower,open=false,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_under_close_inverted",
+      "y": 90
+    },
+    "facing=west,half=lower,open=true,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_under_open_inverted",
+      "y": 90
+    },
+    "facing=west,half=upper,open=false,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_close_inverted",
+      "y": 90
+    },
+    "facing=west,half=upper,open=true,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_open_inverted",
+      "y": 90
+    },
+    
+    "facing=east,half=lower,open=false,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_under_close_inverted",
+      "y": 270
+    },
+    "facing=east,half=lower,open=true,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_under_open_inverted",
+      "y": 270
+    },
+    
+    "facing=east,half=upper,open=false,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_close_inverted",
+      "y": 270
+    },
+    "facing=east,half=upper,open=true,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_open_inverted",
+      "y": 270
+    },
+    
+    "facing=south,half=lower,open=false,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_under_close_inverted"
+    },
+    "facing=south,half=lower,open=true,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_under_open_inverted"
+    },
+    
+    "facing=south,half=upper,open=false,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_close_inverted"
+    },
+    "facing=south,half=upper,open=true,inverted=true": {
+      "model": "urushi:block/shoji_japanese_apricot_upper_open_inverted"
     }
   }
 }

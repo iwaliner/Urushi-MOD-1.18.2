@@ -129,5 +129,13 @@ public class KakejikuBlock extends HorizonalRotateBlock{
     public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
         list.add((new TranslatableComponent("info.urushi.kakejiku" )).withStyle(ChatFormatting.GRAY));
     }
+    @Override
+    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return true;
+    }
 
+    @Override
+    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return 60;
+    }
 }

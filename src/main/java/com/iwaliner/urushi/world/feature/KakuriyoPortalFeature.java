@@ -22,17 +22,18 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import java.util.Random;
 
 public class KakuriyoPortalFeature extends Feature<KakuriyoPortalFeature.Configuration> {
-    private static final BlockState Portal = ItemAndBlockRegister.kakuriyo_portal.get().defaultBlockState();
-    private static final BlockState RedFrame = ItemAndBlockRegister.ghost_red_kakuriyo_portal_frame.get().defaultBlockState();
-    private static final BlockState RedFrameHorizontal = ItemAndBlockRegister.ghost_red_kakuriyo_portal_frame.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.X);
-    private static final BlockState BlackFrame = ItemAndBlockRegister.ghost_black_kakuriyo_portal_frame.get().defaultBlockState();
-    private static final BlockState Core = ItemAndBlockRegister.ghost_kakuriyo_portal_core.get().defaultBlockState();
 
     public KakuriyoPortalFeature(Codec<KakuriyoPortalFeature.Configuration> p_65137_) {
         super(p_65137_);
     }
 
     public boolean place(FeaturePlaceContext<KakuriyoPortalFeature.Configuration> p_159438_) {
+         BlockState Portal = ItemAndBlockRegister.kakuriyo_portal.get().defaultBlockState();
+         BlockState RedFrame = ItemAndBlockRegister.ghost_red_kakuriyo_portal_frame.get().defaultBlockState();
+         BlockState RedFrameHorizontal = ItemAndBlockRegister.ghost_red_kakuriyo_portal_frame.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.X);
+         BlockState BlackFrame = ItemAndBlockRegister.ghost_black_kakuriyo_portal_frame.get().defaultBlockState();
+         BlockState Core = ItemAndBlockRegister.ghost_kakuriyo_portal_core.get().defaultBlockState();
+
         Random random = p_159438_.random();
         if(random.nextInt(20)!=0){
             return false;

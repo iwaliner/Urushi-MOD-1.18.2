@@ -14,6 +14,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -53,9 +54,9 @@ public class KitsunebiItem extends Item {
 
    @Override
    public void inventoryTick(ItemStack stack, Level world, Entity entity, int a, boolean b) {
-     if(entity instanceof Player){
+     if(entity instanceof LivingEntity){
         int range=15;
-        Player player= (Player) entity;
+        LivingEntity player= (LivingEntity) entity;
         BlockPos pos=new BlockPos(Math.floor(entity.getX()),Math.floor(entity.getY()),Math.floor(entity.getZ()));
         if (player.getOffhandItem() == stack || player.getMainHandItem() == stack) {
            for(int i=-range; i<range+1;i++) {

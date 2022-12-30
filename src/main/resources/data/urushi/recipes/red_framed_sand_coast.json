@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+   
+    {
+      "item": "urushi:sand_coast"
+    },
+    {
+      "item": "urushi:smooth_red_urushi_slab"
+    }
+  ],
+  "result": {
+    "item": "urushi:red_urushi_framed_sand_coast",
+    "count": 2
+  }
+}

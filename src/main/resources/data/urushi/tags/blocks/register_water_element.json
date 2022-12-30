@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+  "minecraft:dried_kelp_block",
+  "minecraft:clay",
+  "minecraft:conduit",
+  "minecraft:turtle_egg",
+  "minecraft:prismarine",
+  "minecraft:prismarine_slab",
+  "minecraft:prismarine_stairs",
+  "minecraft:prismarine_wall",
+  "minecraft:prismarine_bricks",
+  "minecraft:prismarine_brick_slab",
+  "minecraft:prismarine_brick_stairs",
+  "minecraft:dark_prismarine",
+  "minecraft:dark_prismarine_slab",
+  "minecraft:dark_prismarine_stairs"
+  ]
+}

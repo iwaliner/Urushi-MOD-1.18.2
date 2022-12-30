@@ -1,0 +1,11 @@
+{
+  "type": "urushi:polishing",
+  "ingredients": [
+  {
+     "item": "minecraft:andesite"
+    }
+  ],
+  "result": {
+  "item":"minecraft:polished_andesite"
+  }
+}

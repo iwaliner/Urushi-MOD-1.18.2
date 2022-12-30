@@ -1,5 +1,7 @@
 package com.iwaliner.urushi.block;
 
+import com.iwaliner.urushi.ParticleRegister;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -43,8 +45,10 @@ public class AriakeAndonBlock extends HorizonalRotateBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player p_60506_, InteractionHand p_60507_, BlockHitResult result) {
-       if(state.getValue(OPEN)){
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+       // level.addParticle(ParticleRegister.Test.get(), pos.getX(), pos.getY()+2, pos.getZ(), 0.0D, 0D, 0.0D);
+       // Minecraft.getInstance().gameRenderer.displayItemActivation(player.getItemInHand(hand));
+        if(state.getValue(OPEN)){
            level.setBlockAndUpdate(pos,state.setValue(OPEN,Boolean.valueOf(false)));
            level.playSound((Player) null,pos, SoundEvents.BARREL_CLOSE, SoundSource.BLOCKS,1F,1F);
 
@@ -54,7 +58,15 @@ public class AriakeAndonBlock extends HorizonalRotateBlock {
        }
         return InteractionResult.SUCCESS;
     }
+    @Override
+    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return true;
+    }
 
+    @Override
+    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return 60;
+    }
 
 
 }

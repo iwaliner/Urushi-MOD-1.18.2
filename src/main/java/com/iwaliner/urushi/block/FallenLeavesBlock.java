@@ -3,8 +3,10 @@ package com.iwaliner.urushi.block;
 import com.iwaliner.urushi.ItemAndBlockRegister;
 import com.iwaliner.urushi.TagUrushi;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
@@ -55,9 +57,30 @@ public class FallenLeavesBlock extends CarpetBlock {
             } else if (state.getBlock() == ItemAndBlockRegister.fallen_sakura_leaves.get()) {
                 level.setBlockAndUpdate(pos.below(), ItemAndBlockRegister.grass_block_with_fallen_sakura_leaves.get().defaultBlockState());
             }
+        }else if (level.getBlockState(pos.below()).getBlock()==ItemAndBlockRegister.kakuriyo_grass_block.get()) {
+            if (state.getBlock() == ItemAndBlockRegister.fallen_red_leaves.get()) {
+                level.setBlockAndUpdate(pos.below(), ItemAndBlockRegister.kakuriyo_grass_block_with_fallen_red_leaves.get().defaultBlockState());
+            } else if (state.getBlock() == ItemAndBlockRegister.fallen_orange_leaves.get()) {
+                level.setBlockAndUpdate(pos.below(), ItemAndBlockRegister.kakuriyo_grass_block_with_fallen_orange_leaves.get().defaultBlockState());
+            } else if (state.getBlock() == ItemAndBlockRegister.fallen_yellow_leaves.get()) {
+                level.setBlockAndUpdate(pos.below(), ItemAndBlockRegister.kakuriyo_grass_block_with_fallen_yellow_leaves.get().defaultBlockState());
+            } else if (state.getBlock() == ItemAndBlockRegister.fallen_japanese_apricot_leaves.get()) {
+                level.setBlockAndUpdate(pos.below(), ItemAndBlockRegister.kakuriyo_grass_block_with_fallen_japanese_apricot_leaves.get().defaultBlockState());
+            } else if (state.getBlock() == ItemAndBlockRegister.fallen_sakura_leaves.get()) {
+                level.setBlockAndUpdate(pos.below(), ItemAndBlockRegister.kakuriyo_grass_block_with_fallen_sakura_leaves.get().defaultBlockState());
+            }
         }
+
         return true;
     }
 
+    @Override
+    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return true;
+    }
 
+    @Override
+    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return 60;
+    }
 }

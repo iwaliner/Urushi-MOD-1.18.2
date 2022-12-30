@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+  "minecraft:redstone_wire",
+  "minecraft:redstone_torch",
+  "minecraft:light_weighted_pressure_plate",
+  "minecraft:heavy_weighted_pressure_plate",
+  "minecraft:coal_block",
+  "minecraft:coal_ore",
+  "minecraft:deepslate_coal_ore",
+  "minecraft:end_rod"
+  ]
+}

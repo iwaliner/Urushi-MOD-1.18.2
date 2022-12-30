@@ -6,8 +6,6 @@ import com.iwaliner.urushi.RecipeTypeRegister;
 import com.iwaliner.urushi.recipe.*;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.constants.ModIds;
-import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
@@ -16,9 +14,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
 import java.util.Objects;
@@ -41,6 +37,8 @@ public class JEIUrushiPlugin implements IModPlugin {
         registration.addRecipeCategories(new ThrowingInRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new SenbakokiRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new FoxEatingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new SandpaperPolishingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ChiseledLacquerLogRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -62,6 +60,10 @@ public class JEIUrushiPlugin implements IModPlugin {
         registration.addRecipes(new RecipeType<>(SenbakokiRecipeCategory.location,SenbakokiRecipe.class),SenbakokiRecipes);
         List<FoxEatingRecipe> FoxEatingRecipes=recipeManager.getAllRecipesFor(RecipeTypeRegister.FoxEatingRecipe);
         registration.addRecipes(new RecipeType<>(FoxEatingRecipeCategory.location,FoxEatingRecipe.class),FoxEatingRecipes);
+        List<SandpaperPolishingRecipe> SandpaperPolishingRecipes=recipeManager.getAllRecipesFor(RecipeTypeRegister.SandpaperPolishingRecipe);
+        registration.addRecipes(new RecipeType<>(SandpaperPolishingRecipeCategory.location,SandpaperPolishingRecipe.class),SandpaperPolishingRecipes);
+        List<ChiseledLacquerLogRecipe> ChiseledLacquerLogRecipes=recipeManager.getAllRecipesFor(RecipeTypeRegister.ChiseledLacquerLogRecipe);
+        registration.addRecipes(new RecipeType<>(ChiseledLacquerLogRecipeCategory.location,ChiseledLacquerLogRecipe.class),ChiseledLacquerLogRecipes);
     }
 
     @Override
@@ -71,6 +73,8 @@ public class JEIUrushiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.oil_extractor.get()), RecipeType.create(ModCoreUrushi.ModID, "oil_extracting", OilExtractingRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(Items.WATER_BUCKET), RecipeType.create(ModCoreUrushi.ModID, "throwing_in", ThrowingInRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.senbakoki.get()), RecipeType.create(ModCoreUrushi.ModID, "senbakoki", SenbakokiRecipe.class));
+        registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.sandpaper_block.get()), RecipeType.create(ModCoreUrushi.ModID, "polishing", SandpaperPolishingRecipe.class));
+        registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.chiseled_lacquer_log.get()), RecipeType.create(ModCoreUrushi.ModID, "chiseled_lacquer_log", ChiseledLacquerLogRecipe.class));
 
     }
 }
