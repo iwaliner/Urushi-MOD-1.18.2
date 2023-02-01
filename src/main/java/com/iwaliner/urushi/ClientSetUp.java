@@ -1,5 +1,7 @@
 package com.iwaliner.urushi;
 
+import com.iwaliner.urushi.blockentity.renderer.SanboRenderer;
+import com.iwaliner.urushi.blockentity.renderer.ShichirinRenderer;
 import com.iwaliner.urushi.blockentity.screen.DoubledWoodenCabinetryScreen;
 import com.iwaliner.urushi.blockentity.screen.FryerScreen;
 import com.iwaliner.urushi.entiity.food.model.*;
@@ -8,7 +10,7 @@ import com.iwaliner.urushi.entiity.model.CushionModel;
 import com.iwaliner.urushi.entiity.renderer.CushionRenderer;
 import com.iwaliner.urushi.entiity.renderer.GhostRenderer;
 import com.iwaliner.urushi.json.*;
-import com.iwaliner.urushi.particle.TestParticle;
+import com.iwaliner.urushi.particle.*;
 import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.ToggleKeyMappingPlus;
 import com.iwaliner.urushi.util.UrushiUtils;
@@ -18,6 +20,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.ToggleKeyMapping;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
@@ -25,6 +29,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ClientRegistry;
@@ -40,6 +45,7 @@ import javax.annotation.Nullable;
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import java.io.File;
+import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = ModCoreUrushi.ModID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -53,7 +59,8 @@ public class ClientSetUp {
     public static final ModelLayerLocation ROASTED_RICE_CAKE = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "roasted_rice_cake_food"), "roasted_rice_cake_food");
     public static final ModelLayerLocation CUSHION = new ModelLayerLocation(new ResourceLocation(ModCoreUrushi.ModID, "cushion"), "cushion");
 
-    public static final KeyMapping connectionKey = new ToggleKeyMappingPlus("Apart Block Connections", InputConstants.KEY_C, "Urushi");
+
+    public static final KeyMapping connectionKey = new ToggleKeyMappingPlus("Apart Block Connections (single play only)", InputConstants.KEY_C, "Urushi");
 
 
     /**エンティティの見た目を登録*/
@@ -94,10 +101,19 @@ public class ClientSetUp {
         event.registerLayerDefinition(CUSHION, CushionModel::createBodyLayer);
     }
 
-    /*パーティクルの見た目を指定*/
+    /**パーティクルの見た目を指定*/
     @SubscribeEvent
     public static void registerParticlesEvent(ParticleFactoryRegisterEvent event) {
-        //Minecraft.getInstance().particleEngine.register(ParticleRegister.Test.get(),TestParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.FireElement.get(), FireElementParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.WoodElement.get(), WoodElementParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.EarthElement.get(), EarthElementParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.MetalElement.get(), MetalElementParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.WaterElement.get(), WaterElementParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.FallingRedLeaves.get(), FallingRedLeavesParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.FallingOrangeLeaves.get(), FallingOrangeLeavesParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.FallingYellowLeaves.get(), FallingYellowLeavesParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.FallingSakuraLeaves.get(), FallingSakuraLeavesParticle.Provider::new);
+
     }
 
     @Nullable
@@ -134,9 +150,9 @@ public class ClientSetUp {
         MenuScreens.register(MenuRegister.FryerMenu.get(), FryerScreen::new);
         MenuScreens.register(MenuRegister.DoubledWoodenCabinetryMenu.get(), DoubledWoodenCabinetryScreen::new);
 
-
-
-
+       /**見た目が特殊なBlockEntityの見た目を登録*/
+        BlockEntityRenderers.register(BlockEntityRegister.Sanbo.get(), SanboRenderer::new);
+        BlockEntityRenderers.register(BlockEntityRegister.Shichirin.get(), ShichirinRenderer::new);
 
 
         /**jsonファイルを自動生成するために開発環境のパスを登録*/
@@ -146,6 +162,75 @@ public class ClientSetUp {
         ModCoreUrushi.assetsInBuildDirectory = new File(FMLPaths.GAMEDIR.get().getParent().toString() + "/build/resources/main/assets/urushi/");
         ModCoreUrushi.dataDirectory = new File(FMLPaths.GAMEDIR.get().getParent().toString() + "/src/main/resources/data/");
         ModCoreUrushi.dataInBuildDirectory = new File(FMLPaths.GAMEDIR.get().getParent().toString() + "/build/resources/main/data/");
+
+
+
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.goldfish_bowl.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_0.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_1.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_2.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_3.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_4.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_5.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_6.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_7.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_8.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_9.get()));
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_1.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_2.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_3.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_4.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_5.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_6.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_7.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_8.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_9.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_10.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_1.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_2.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_3.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_4.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_5.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_6.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_7.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_8.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_9.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_10.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_1.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_2.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_3.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_4.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_5.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_6.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_7.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_8.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_9.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_10.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.hammer.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.enhanced_jadeite.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.wood_element_magatama.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.fire_element_magatama.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.earth_element_magatama.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.metal_element_magatama.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.water_element_magatama.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.wood_amber.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.fire_amber.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.earth_amber.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.metal_amber.get());
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.water_amber.get());
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier1.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier2.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier3.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.shichirin.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log_with_wood_amber.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log_with_fire_amber.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log_with_earth_amber.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log_with_metal_amber.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log_with_water_amber.get()));
+
+
+
 
 
 
@@ -214,8 +299,33 @@ public class ClientSetUp {
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.invisible_button_item.get(),"invisible_button_inventory");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.invisible_pressure_plate_item.get(),"invisible_pressure_plate");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.kakuriyo_dirt.get()),"kakuriyo_dirt");
-
-
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.sanbo_tier1.get()),"thatched_sanbo");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.sanbo_tier2.get()),"wooden_sanbo");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.sanbo_tier3.get()),"red_urushi_sanbo");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.oak_shitamiita.get()),"oak_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.spruce_shitamiita.get()),"spruce_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.birch_shitamiita.get()),"birch_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.jungle_shitamiita.get()),"jungle_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.acacia_shitamiita.get()),"acacia_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.dark_oak_shitamiita.get()),"dark_oak_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.japanese_apricot_shitamiita.get()),"japanese_apricot_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.sakura_shitamiita.get()),"sakura_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.cypress_shitamiita.get()),"cypress_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.japanese_cedar_shitamiita.get()),"japanese_cedar_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.red_urushi_shitamiita.get()),"red_urushi_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.black_urushi_shitamiita.get()),"black_urushi_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.oak_shitamiita_slab.get()),"half_slab_oak_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.spruce_shitamiita_slab.get()),"half_slab_spruce_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.birch_shitamiita_slab.get()),"half_slab_birch_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.jungle_shitamiita_slab.get()),"half_slab_jungle_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.acacia_shitamiita_slab.get()),"half_slab_acacia_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.dark_oak_shitamiita_slab.get()),"half_slab_dark_oak_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.japanese_apricot_shitamiita_slab.get()),"half_slab_japanese_apricot_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.sakura_shitamiita_slab.get()),"half_slab_sakura_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.cypress_shitamiita_slab.get()),"half_slab_cypress_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.japanese_cedar_shitamiita_slab.get()),"half_slab_japanese_cedar_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.red_urushi_shitamiita_slab.get()),"half_slab_red_urushi_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.black_urushi_shitamiita_slab.get()),"half_slab_black_urushi_shitamiita");
 
             CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.yomi_stone.get(),"yomi_stone");
             CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.yomi_copper_ore.get(),"copper_ore_yomi");

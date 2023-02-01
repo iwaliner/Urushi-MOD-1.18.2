@@ -4,8 +4,8 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"1": "urushi:block/planks_smooth_japanese_cedar",
-		"2": "urushi:block/syoji_japanese_cedar_upper",
-		"particle": "urushi:block/syoji_japanese_cedar_upper"
+		"2": "urushi:block/shoji_japanese_cedar_upper",
+		"particle": "urushi:block/shoji_japanese_cedar_upper"
 	},
 	"elements": [
 		{

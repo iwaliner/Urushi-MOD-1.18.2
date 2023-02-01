@@ -5,6 +5,7 @@ package com.iwaliner.urushi.block;
 import com.iwaliner.urushi.util.UrushiUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -27,27 +28,30 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Random;
 
 public class SlideDoorBlock extends Block {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
+    public static final IntegerProperty OPEN = IntegerProperty.create("open",0,13);
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty INVERTED = BlockStateProperties.INVERTED;
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
-    protected static final VoxelShape SOUTH_CLOSED = Block.box(0.0D, 0.0D, 8D, 16.0D, 16.0D, 10D);
-    protected static final VoxelShape NORTH_CLOSED = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 8.0D);
-    protected static final VoxelShape WEST_CLOSED = Block.box(6.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
-    protected static final VoxelShape EAST_CLOSED = Block.box(8.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
-    protected static final VoxelShape NORTH_CLOSED_INV = Block.box(0.0D, 0.0D, 6D, 16.0D, 16.0D, 8D);
-    protected static final VoxelShape SOUTH_CLOSED_INV = Block.box(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 10.0D);
-    protected static final VoxelShape EAST_CLOSED_INV = Block.box(8.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
-    protected static final VoxelShape WEST_CLOSED_INV = Block.box(6.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
+    public static final BooleanProperty IS_OPENING = BooleanProperty.create("is_opening");
+    protected static final VoxelShape SOUTH_CLOSE = Block.box(0.0D, 0.0D, 8D, 16.0D, 16.0D, 10D);
+    protected static final VoxelShape NORTH_CLOSE = Block.box(0.0D, 0.0D, 6.0D, 16.0D, 16.0D, 8.0D);
+    protected static final VoxelShape WEST_CLOSE = Block.box(6.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
+    protected static final VoxelShape EAST_CLOSE = Block.box(8.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
+    protected static final VoxelShape NORTH_CLOSE_INV = Block.box(0.0D, 0.0D, 6D, 16.0D, 16.0D, 8D);
+    protected static final VoxelShape SOUTH_CLOSE_INV = Block.box(0.0D, 0.0D, 8.0D, 16.0D, 16.0D, 10.0D);
+    protected static final VoxelShape EAST_CLOSE_INV = Block.box(8.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
+    protected static final VoxelShape WEST_CLOSE_INV = Block.box(6.0D, 0.0D, 0.0D, 8.0D, 16.0D, 16.0D);
     protected static final VoxelShape NORTH_OPEN = Block.box(-13D, 0.0D, 6D, 3.0D, 16.0D, 8D);
     protected static final VoxelShape SOUTH_OPEN = Block.box(13.0D, 0.0D, 8.0D, 29D, 16.0D, 10.0D);
     protected static final VoxelShape EAST_OPEN = Block.box(8.0D, 0.0D, -13D, 10.0D, 16.0D, 3.0D);
@@ -56,28 +60,81 @@ public class SlideDoorBlock extends Block {
     protected static final VoxelShape NORTH_OPEN_INV = Block.box(13.0D, 0.0D, 6.0D, 29D, 16.0D, 8.0D);
     protected static final VoxelShape WEST_OPEN_INV = Block.box(6.0D, 0.0D, -13D, 8.0D, 16.0D, 3.0D);
     protected static final VoxelShape EAST_OPEN_INV = Block.box(8.0D, 0.0D, 13.0D, 10.0D, 16.0D, 29D);
-    public SlideDoorBlock(Properties p_i48440_1_) {
+
+      public SlideDoorBlock(Properties p_i48440_1_) {
         super(p_i48440_1_);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(OPEN, Boolean.valueOf(false)).setValue(POWERED, Boolean.valueOf(false)).setValue(HALF, DoubleBlockHalf.LOWER).setValue(INVERTED, Boolean.valueOf(false)));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(OPEN, Integer.valueOf(0)).setValue(POWERED, Boolean.valueOf(false)).setValue(HALF, DoubleBlockHalf.LOWER).setValue(INVERTED, Boolean.valueOf(false)).setValue(IS_OPENING,Boolean.valueOf(false)));
 
     }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
+        /*VoxelShape NORTH[]= new VoxelShape[14];
+        VoxelShape SOUTH[]= new VoxelShape[14];
+        VoxelShape EAST[]= new VoxelShape[14];
+        VoxelShape WEST[]= new VoxelShape[14];
+        VoxelShape NORTH_INV[]= new VoxelShape[14];
+        VoxelShape SOUTH_INV[]= new VoxelShape[14];
+        VoxelShape EAST_INV[]= new VoxelShape[14];
+        VoxelShape WEST_INV[]= new VoxelShape[14];
+        for(int i=0;i<14;i++){
+            NORTH[i] = Block.box(0D-(double) i, 0.0D, 6D, 16D-(double) i, 16.0D, 8D);
+            SOUTH[i] = Block.box(0D+(double) i, 0.0D, 8D, 16D+(double) i, 16.0D, 10D);
+            EAST[i] = Block.box(8D, 0.0D, 0D-(double) i, 10D, 16.0D, 16D-(double) i);
+            WEST[i] = Block.box(6D, 0D, 0D+(double) i, 8D, 16.0D, 16D+(double) i);
+            NORTH_INV[i] = Block.box(0D+(double) i, 0.0D, 6D, 16D+(double) i, 16.0D, 8D);
+            SOUTH_INV[i] = Block.box(0D-(double) i, 0.0D, 8D, 16D-(double) i, 16.0D, 10D);
+            EAST_INV[i] = Block.box(8D, 0.0D, 0D+(double) i, 10D, 16.0D, 16D+(double) i);
+            WEST_INV[i] = Block.box(6D, 0D, 0D-(double) i, 8D, 16.0D, 16D-(double) i);
+
+        }
+
         Direction direction = state.getValue(FACING);
-        boolean flag = !state.getValue(OPEN);
-        boolean invert = !state.getValue(INVERTED);
+       boolean invert = !state.getValue(INVERTED);
+        int open=state.getValue(OPEN);
         switch(direction) {
             case EAST:
             default:
-                return flag ? invert? EAST_CLOSED_INV:EAST_CLOSED : invert? EAST_OPEN_INV:EAST_OPEN;
+                return  invert? EAST_INV[open]:EAST[open];
             case SOUTH:
-                return flag ? invert? SOUTH_CLOSED_INV:SOUTH_CLOSED : invert? SOUTH_OPEN_INV:SOUTH_OPEN;
+                return  invert? SOUTH_INV[open]:SOUTH[open];
             case WEST:
-                return flag ? invert? WEST_CLOSED_INV:WEST_CLOSED : invert? WEST_OPEN_INV:WEST_OPEN;
+                return  invert? WEST_INV[open]:WEST[open];
             case NORTH:
-                return flag ? invert? NORTH_CLOSED_INV:NORTH_CLOSED : invert? NORTH_OPEN_INV:NORTH_OPEN;
-        }
+                return  invert? NORTH_INV[open]:NORTH[open];
+        }*/
+
+        Direction direction = state.getValue(FACING);
+        boolean invert = !state.getValue(INVERTED);
+        int open=state.getValue(OPEN);
+        boolean isOpening=state.getValue(IS_OPENING);
+        boolean isMoving=isMoving(state);
+
+
+            if(!isMoving&&open==0){
+                switch(direction) {
+                    case EAST:
+                        return  invert? EAST_CLOSE_INV:EAST_CLOSE;
+                    case SOUTH:
+                        return  invert? SOUTH_CLOSE_INV:SOUTH_CLOSE;
+                    case WEST:
+                        return  invert? WEST_CLOSE_INV:WEST_CLOSE;
+                    case NORTH:
+                        return  invert? NORTH_CLOSE_INV:NORTH_CLOSE;
+                }
+            }else if((!isMoving&&open==13)||isMoving){
+                switch(direction) {
+                    case EAST:
+                        return  invert? EAST_OPEN_INV:EAST_OPEN;
+                    case SOUTH:
+                        return  invert? SOUTH_OPEN_INV:SOUTH_OPEN;
+                    case WEST:
+                        return  invert? WEST_OPEN_INV:WEST_OPEN;
+                    case NORTH:
+                        return  invert? NORTH_OPEN_INV:NORTH_OPEN;
+                }
+            }
+            return Shapes.block();
     }
 
     @Override
@@ -115,11 +172,11 @@ public class SlideDoorBlock extends Block {
     public boolean isPathfindable(BlockState state, BlockGetter p_60476_, BlockPos p_60477_, PathComputationType type) {
         switch(type) {
             case LAND:
-                return state.getValue(OPEN);
+                return isOpen(state);
             case WATER:
                 return false;
             case AIR:
-                return state.getValue(OPEN);
+                return isOpen(state);
             default:
                 return false;
         }
@@ -155,7 +212,7 @@ public class SlideDoorBlock extends Block {
                         direction = facing;
                     }
                 }
-                return this.defaultBlockState().setValue(FACING,  direction).setValue(POWERED, Boolean.valueOf(flag)).setValue(OPEN, Boolean.valueOf(flag)).setValue(HALF, DoubleBlockHalf.LOWER).setValue(INVERTED, Boolean.valueOf(invert));
+                return this.defaultBlockState().setValue(FACING,  direction).setValue(POWERED, Boolean.valueOf(flag)).setValue(OPEN, Integer.valueOf(0)).setValue(HALF, DoubleBlockHalf.LOWER).setValue(INVERTED, Boolean.valueOf(invert));
             }
 
             return this.defaultBlockState();
@@ -167,37 +224,50 @@ public class SlideDoorBlock extends Block {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        state = state.cycle(OPEN);
-        world.setBlock(pos, state, 10);
-        world.playSound(player, pos,  SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
-
-        return InteractionResult.sidedSuccess(world.isClientSide);
-    }
-
-    public boolean isOpen(BlockState state) {
-        return state.getValue(OPEN);
-    }
-    public void setOpen(@javax.annotation.Nullable Entity p_153166_, Level world, BlockState state, BlockPos pos, boolean boo) {
-        if (state.is(this) && state.getValue(OPEN) != boo) {
-            world.setBlock(pos, state.setValue(OPEN, Boolean.valueOf(boo)), 10);
-            world.playSound((Player) null, pos, SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
-
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
+        int openProcess=state.getValue(OPEN);
+        boolean isOpening=state.getValue(IS_OPENING);
+        if(openProcess!=0&&openProcess!=13){
+            int nextProcess= isOpening? ++openProcess : --openProcess;
+           level.setBlockAndUpdate(pos,state.setValue(OPEN,nextProcess));
+           level.scheduleTick(new BlockPos(pos), this, 1);
         }
     }
+
+    @Override
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+        if(state.getValue(OPEN)==0||state.getValue(OPEN)==13) {
+            world.setBlock(pos, state.setValue(OPEN, Integer.valueOf(state.getValue(OPEN) == 0 ? 1 : 12)).setValue(IS_OPENING, state.getValue(OPEN)==0), 10);
+            world.playSound(player, pos, SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
+
+            world.scheduleTick(new BlockPos(pos), this, 1);
+
+
+            return InteractionResult.sidedSuccess(world.isClientSide);
+        }else{
+            return InteractionResult.FAIL;
+        }
+    }
+
+
+
 
 
     @Override
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos pos2, boolean boo) {
         boolean flag = world.hasNeighborSignal(pos) || world.hasNeighborSignal(pos.relative(state.getValue(HALF) == DoubleBlockHalf.LOWER ? Direction.UP : Direction.DOWN));
         if (block != this && flag != state.getValue(POWERED)) {
-            if (flag != state.getValue(OPEN)) {
-                world.playSound((Player) null, pos, SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
+            if (state.getValue(OPEN) == 0 || state.getValue(OPEN) == 13) {
+                if (flag == isClose(state)) {
+                    world.playSound((Player) null, pos, SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
 
+                }
+
+                world.setBlock(pos, state.setValue(POWERED, Boolean.valueOf(flag)).setValue(OPEN, state.getValue(OPEN)==0 ? 1 : 12).setValue(IS_OPENING,state.getValue(OPEN)==0), 2);
+                world.scheduleTick(new BlockPos(pos), this, 1);
             }
-
-            world.setBlock(pos, state.setValue(POWERED, Boolean.valueOf(flag)).setValue(OPEN, Boolean.valueOf(flag)), 2);
-        }  }
+        }
+    }
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos2) {
@@ -225,11 +295,29 @@ public class SlideDoorBlock extends Block {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(HALF, FACING, OPEN, POWERED,INVERTED);
+        builder.add(HALF, FACING, OPEN, POWERED,INVERTED,IS_OPENING);
     }
 
     public boolean useShapeForLightOcclusion(BlockState p_220074_1_) {
         return true;
     }
+    private boolean classicalOpenFlag(BlockState state){
+        if(isOpen(state)){
+            return true;
+        }else if(isClose(state)){
+            return false;
+        }
+        return false;
+    }
+    private boolean isOpen(BlockState state){
+        return state.getValue(OPEN)==13;
+    }
+    private boolean isClose(BlockState state){
+        return state.getValue(OPEN)==0;
+    }
+    private boolean isMoving(BlockState state){
+        return state.getValue(OPEN)!=0&&state.getValue(OPEN)!=13;
+    }
+
 
 }

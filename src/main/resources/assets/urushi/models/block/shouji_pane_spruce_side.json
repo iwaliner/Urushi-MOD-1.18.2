@@ -2,6 +2,6 @@
     "parent": "block/template_glass_pane_side",
     "textures": {
        "edge": "urushi:block/planks_smooth_spruce",
-        "pane": "urushi:block/syoji_spruce_pane"
+        "pane": "urushi:block/shoji_spruce_pane"
     }
 }

@@ -79,7 +79,7 @@ public class BlockRenderTypeRegister {
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.connectable_glass_pane.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.metal_framed_glass.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.metal_framed_glass_pane.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.goldfish_bowl.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.goldfish_bowl.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.japanese_apricot_sapling.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.japanese_apricot_leaves.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.glowing_japanese_apricot_leaves.get(), RenderType.cutout());
@@ -170,7 +170,15 @@ public class BlockRenderTypeRegister {
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.kakuriyo_grass_block_with_fallen_yellow_leaves.get(), RenderType.cutoutMipped());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.kakuriyo_grass_block_with_fallen_japanese_apricot_leaves.get(), RenderType.cutoutMipped());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.kakuriyo_grass_block_with_fallen_sakura_leaves.get(), RenderType.cutoutMipped());
-
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.petrified_log_with_fire_amber.get(), RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.petrified_log_with_wood_amber.get(), RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.petrified_log_with_earth_amber.get(), RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.petrified_log_with_metal_amber.get(), RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.petrified_log_with_water_amber.get(), RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.sanbo_tier1.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.sanbo_tier2.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.sanbo_tier3.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.wind_bell.get(), RenderType.cutout());
 
     }
 }

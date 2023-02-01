@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=west": {
+      "model": "urushi:block/wooden_sanbo",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "urushi:block/wooden_sanbo",
+      "y": 180
+    },
+    "facing=north": {
+      "model": "urushi:block/wooden_sanbo"
+    },
+    "facing=east": {
+      "model": "urushi:block/wooden_sanbo",
+      "y": 90
+    }
+  }
+}

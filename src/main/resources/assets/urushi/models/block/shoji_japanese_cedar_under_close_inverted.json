@@ -3,9 +3,9 @@
 	"parent": "block/block",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "urushi:block/syoji_japanese_cedar_under",
+		"0": "urushi:block/shoji_japanese_cedar_under",
 		"1": "urushi:block/planks_smooth_japanese_cedar",
-		"particle": "urushi:block/syoji_japanese_cedar_under"
+		"particle": "urushi:block/shoji_japanese_cedar_under"
 	},
 	"elements": [
 		{

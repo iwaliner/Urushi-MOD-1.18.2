@@ -42,14 +42,8 @@ public class HotSpringWaterBlock extends LiquidBlock {
     public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
         super.entityInside(state, world, pos, entity);
         if (entity instanceof LivingEntity) {
-               int preLevel = ((LivingEntity) entity).getEffect(MobEffects.ABSORPTION) == null ? 0 : ((LivingEntity) entity).getEffect(MobEffects.ABSORPTION).getAmplifier();
-               if (((LivingEntity) entity).getRandom().nextInt(Mth.floor(Math.exp(preLevel+4))) == 0&&preLevel<20) {
-
-                   ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 60 * 20, preLevel + 1), entity);
-               }else{
-                   ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 60 * 20, preLevel), entity);
-               }
-            ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.REGENERATION, 180 * 20, 3), entity);
+                   ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 20 * 20, 1), entity);
+            ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60 * 20, 2), entity);
 
         }
 

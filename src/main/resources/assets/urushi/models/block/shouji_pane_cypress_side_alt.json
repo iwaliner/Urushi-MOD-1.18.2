@@ -2,6 +2,6 @@
     "parent": "block/template_glass_pane_side_alt",
     "textures": {
        "edge": "urushi:block/planks_smooth_cypress",
-        "pane": "urushi:block/syoji_cypress_pane"
+        "pane": "urushi:block/shoji_cypress_pane"
     }
 }

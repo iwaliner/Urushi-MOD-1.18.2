@@ -1,0 +1,406 @@
+package com.iwaliner.urushi.blockentity;
+
+
+
+import com.iwaliner.urushi.BlockEntityRegister;
+import com.iwaliner.urushi.ParticleRegister;
+import com.iwaliner.urushi.block.ShichirinBlock;
+import com.iwaliner.urushi.recipe.FryingRecipe;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.RecipeHolder;
+import net.minecraft.world.inventory.StackedContentsCompatible;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.CampfireCookingRecipe;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Objects;
+
+public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, StackedContentsCompatible, RecipeHolder {
+    private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
+
+    protected final RecipeType<? extends CampfireCookingRecipe> recipeType=RecipeType.CAMPFIRE_COOKING;
+    private static final int[] SLOTS_FOR_UP_AND_SIDES = new int[]{1};
+    private static final int[] SLOTS_FOR_UP = new int[]{0};
+    private int processingTime;
+    private int fire;
+    private int differ;
+    private NonNullList<ItemStack> items = NonNullList.withSize(2, ItemStack.EMPTY);
+
+    public ShichirinBlockEntity(BlockPos p_155052_, BlockState p_155053_) {
+        super(BlockEntityRegister.Shichirin.get(), p_155052_, p_155053_);
+    }
+    public void load(CompoundTag p_155025_) {
+        super.load(p_155025_);
+        this.items.clear();
+        ContainerHelper.loadAllItems(p_155025_, this.items);
+        this.processingTime = p_155025_.getInt("processTime");
+        this.fire = p_155025_.getInt("fire");
+        this.differ = p_155025_.getInt("differ");
+
+
+    }
+
+    protected void saveAdditional(CompoundTag p_187452_) {
+        super.saveAdditional(p_187452_);
+        p_187452_.putInt("processTime", this.processingTime);
+        p_187452_.putInt("fire", this.fire);
+        p_187452_.putInt("differ", this.differ);
+        ContainerHelper.saveAllItems(p_187452_, this.items,true);
+    }
+    public CompoundTag getUpdateTag() {
+        CompoundTag compoundtag = new CompoundTag();
+        compoundtag.putInt("processTime", this.processingTime);
+        compoundtag.putInt("fire", this.fire);
+        compoundtag.putInt("differ", this.differ);
+        ContainerHelper.saveAllItems(compoundtag, this.items, true);
+        return compoundtag;
+    }
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    public ItemStack getDisplayingStack() {
+        this.markUpdated();
+        return this.getItem(1)==ItemStack.EMPTY? this.getItem(0) : this.getItem(1);
+    }
+    @Override
+    public int getMaxStackSize() {
+        return 64;
+    }
+
+    protected Component getDefaultName() {
+        return new TranslatableComponent("container.shichirin");
+    }
+
+
+    @Override
+    protected AbstractContainerMenu createMenu(int p_58627_, Inventory p_58628_) {
+        return null;
+    }
+
+
+    public int getContainerSize() {
+        return 2;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        for(ItemStack itemstack : this.items) {
+            if (!itemstack.isEmpty()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void moveItemToExportSlot() {
+        ItemStack stack=this.getItem(0);
+        if(!stack.isEmpty()) {
+            this.setItem(1, stack);
+            this.setItem(0, ItemStack.EMPTY);
+        }
+        this.markUpdated();
+    }
+    public ItemStack pickItem() {
+        this.markUpdated();
+        boolean slot0IsEmpty=this.getItem(0).isEmpty();
+        ItemStack stack=slot0IsEmpty? this.getItem(1).copy() : this.getItem(0).copy();
+        this.setItem(slot0IsEmpty? 1 : 0,ItemStack.EMPTY);
+        return stack;
+    }
+    @Override
+    public ItemStack getItem(int slot) {
+        return this.items.get(slot);
+    }
+
+    @Override
+    public ItemStack removeItem(int i, int j) {
+        return ContainerHelper.removeItem(this.items, i, j);
+    }
+
+    @Override
+    public ItemStack removeItemNoUpdate(int i) {
+        return ContainerHelper.takeItem(this.items, i);
+    }
+
+    @Override
+    public void setItem(int slot, ItemStack stack) {
+        this.markUpdated();
+        ItemStack itemstack = this.items.get(slot);
+        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
+        this.items.set(slot, stack);
+        if (stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
+        }
+
+
+
+
+    }
+
+    @Override
+    public boolean stillValid(Player player) {
+        assert this.level != null;
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
+            return false;
+        } else {
+            return player.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
+        }
+    }
+
+
+    public void setItems(NonNullList<ItemStack> p_199721_1_) {
+        this.items = p_199721_1_;
+    }
+
+
+    public static void tick(Level level, BlockPos pos, BlockState bs, ShichirinBlockEntity blockEntity) {
+        if (!level.isClientSide) {
+            Recipe<?> recipe = level.getRecipeManager().getRecipeFor((RecipeType<CampfireCookingRecipe>) blockEntity.recipeType, blockEntity, level).orElse(null);
+            AbstractCookingRecipe campfireCookingRecipe= (AbstractCookingRecipe) recipe;
+            ItemStack slot0Stack = blockEntity.items.get(0);
+            Item slot0Item = slot0Stack.getItem();
+            ItemStack slot1Stack = blockEntity.items.get(1);
+            Item slot1Item = slot1Stack.getItem();
+            BlockState state = level.getBlockState(pos);
+            if (!slot0Stack.isEmpty()) {
+                level.addParticle(ParticleRegister.EarthElement.get(), pos.getX(), pos.getY() + 1, pos.getZ(), 0.0D, 0.0D, 0.0D);
+            }
+            if (!slot1Stack.isEmpty()) {
+                level.addParticle(ParticleRegister.WaterElement.get(), pos.getX() + 1, pos.getY() + 1, pos.getZ(), 0.0D, 0.0D, 0.0D);
+            }
+
+
+            if (blockEntity.fire > 0) {
+                --blockEntity.fire;
+            } else {
+                blockEntity.fire = 0;
+            }
+            if (blockEntity.canWork() && blockEntity.canBurn(recipe,blockEntity.items,blockEntity.getMaxStackSize())) {
+                blockEntity.processingTime++;
+                if (blockEntity.processingTime > 20 * 5) {
+                    blockEntity.differ += blockEntity.fire - blockEntity.getPerfectFire(campfireCookingRecipe);
+                }
+            } else {
+                blockEntity.processingTime = 0;
+            }
+            if(!blockEntity.canBurn(recipe,blockEntity.items,blockEntity.getMaxStackSize())){
+                blockEntity.moveItemToExportSlot();
+            }
+            if (blockEntity.processingTime >= blockEntity.getMaxProcessTime(campfireCookingRecipe)&& blockEntity.canBurn(recipe,blockEntity.items,blockEntity.getMaxStackSize())) {
+
+                ItemStack resultStack = ((Recipe<WorldlyContainer>) recipe).assemble(blockEntity);
+                resultStack.grow(slot0Stack.getCount()-1);
+                if (resultStack.getTag() == null) {
+                    resultStack.setTag(new CompoundTag());
+                }
+                CompoundTag tag = resultStack.getTag();
+
+                blockEntity.setCookingNBT(tag, blockEntity.differ);
+                blockEntity.items.set(0,resultStack.copy());
+                blockEntity.moveItemToExportSlot();
+                blockEntity.processingTime = 0;
+                blockEntity.differ = 0;
+            }
+            if (blockEntity.processingTime == 0 && state.getValue(ShichirinBlock.LIT)) {
+                state.setValue(ShichirinBlock.LIT, false);
+            }
+
+            List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(4D));
+            if (!list.isEmpty()) {
+                for (LivingEntity entity : list) {
+                    if (entity instanceof Player) {
+                        Player player = (Player) entity;
+                        player.displayClientMessage(new TranslatableComponent("info.urushi.shichirin.message").append("  fire: " + blockEntity.fire + "/" + blockEntity.getPerfectFire(campfireCookingRecipe) + " ,time: " + blockEntity.processingTime + "/" + blockEntity.getMaxProcessTime(campfireCookingRecipe)), true);
+                    }
+                }
+            }
+        }
+
+    }
+    public int getMaxProcessTime(AbstractCookingRecipe campfireCookingRecipe){
+        if(campfireCookingRecipe==null){
+            return 600;
+        }
+        return campfireCookingRecipe.getCookingTime();
+    }
+    public int getPerfectFire(AbstractCookingRecipe campfireCookingRecipe){
+        if(campfireCookingRecipe==null){
+            return 200;
+        }
+        return Mth.floor(campfireCookingRecipe.getExperience()*1000);
+    }
+    public int addFire(int i){
+        return this.fire+=i;
+    }
+    public boolean canWork(){
+        if (getItem(0).isEmpty()) return false;
+        assert level != null;
+        return level.getBlockState(getBlockPos()).getBlock() instanceof ShichirinBlock && level.getBlockState(getBlockPos()).getValue(ShichirinBlock.LIT);
+    }
+    public void markUpdated() {
+        this.setChanged();
+        Objects.requireNonNull(this.getLevel()).sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
+    }
+
+    public boolean canPlaceItem(int slot, ItemStack stack) {
+        if (slot == 1) {
+            return false;
+        }  else {
+            return this.items.get(0).getCount()==0&&this.items.get(1).getCount()==0;
+        }
+    }
+
+    @Override
+    public boolean canPlaceItemThroughFace(int i, ItemStack itemStack, @org.jetbrains.annotations.Nullable Direction p_19237_) {
+        return this.canPlaceItem(i, itemStack);
+    }
+
+
+    public boolean canTakeItemThroughFace(int i, ItemStack stack, Direction direction) {
+        if ( direction==Direction.UP) {
+            return false;
+        }
+        return true;
+
+    }
+
+    public int[] getSlotsForFace(Direction direction) {
+        if(direction==Direction.UP){
+            return SLOTS_FOR_UP;
+        }else{
+            return SLOTS_FOR_UP_AND_SIDES;
+        }
+    }
+    net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =
+            net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
+    @Override
+    public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
+        if (!this.remove && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            if (facing == Direction.UP)
+                return handlers[0].cast();
+            else
+                return handlers[1].cast();
+        }
+        return super.getCapability(capability, facing);
+    }
+
+    @Override
+    public void clearContent() {
+        this.items.clear();
+    }
+
+    @Override
+    public void fillStackedContents(StackedContents contents) {
+        for(ItemStack itemstack : this.items) {
+            contents.accountStack(itemstack);
+        }
+    }
+    public boolean canBurn(@Nullable Recipe<?> recipe, NonNullList<ItemStack> stacks, int count) {
+        if (!stacks.get(0).isEmpty() && recipe != null) {
+            ItemStack itemstack = ((Recipe<WorldlyContainer>) recipe).assemble(this);
+            if (itemstack.isEmpty()) {
+                return false;
+            } else {
+                ItemStack itemstack1 = stacks.get(1);
+                if (itemstack1.isEmpty()) {
+                    return true;
+                } else if (!itemstack1.sameItem(itemstack)) {
+                    return false;
+                } else if (itemstack1.getCount() + itemstack.getCount() <= count && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) {
+                    return true;
+                } else {
+                    return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize();
+                }
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void setRecipeUsed(@org.jetbrains.annotations.Nullable Recipe<?> recipe) {
+        if (recipe != null) {
+            ResourceLocation resourcelocation = recipe.getId();
+            this.recipesUsed.addTo(resourcelocation, 1);
+        }
+    }
+
+    @org.jetbrains.annotations.Nullable
+    @Override
+    public Recipe<?> getRecipeUsed() {
+        return null;
+    }
+    private CompoundTag setCookingNBT(CompoundTag tag,int differ){
+        if(differ<-8000){
+            tag.putInt("undercooked", 5);
+        }else if(differ<-7000){
+            tag.putInt("undercooked", 4);
+        }else if(differ<-6000){
+            tag.putInt("undercooked", 3);
+        } else if(differ<-5000){
+            tag.putInt("undercooked", 2);
+        }else if(differ<-4000){
+            tag.putInt("undercooked", 1);
+        }else if(differ<-3000){
+            tag.putInt("wellcooked", 1);
+        }else if(differ<-2000){
+            tag.putInt("wellcooked", 2);
+        }else if(differ<-1000){
+            tag.putInt("wellcooked", 3);
+        }else if(differ<-100){
+            tag.putInt("wellcooked", 4);
+        }else if(differ<100){
+            tag.putInt("wellcooked", 5);
+        }else if(differ<1000){
+            tag.putInt("wellcooked", 4);
+        } else if(differ<2000){
+            tag.putInt("wellcooked", 3);
+        }else if(differ<3000){
+            tag.putInt("wellcooked", 2);
+        }else if(differ<4000){
+            tag.putInt("wellcooked", 1);
+        }else if(differ<5000){
+            tag.putInt("overcooked", 1);
+        }else if(differ<6000){
+            tag.putInt("overcooked", 2);
+        }else if(differ<7000){
+            tag.putInt("overcooked", 3);
+        }else if(differ<8000){
+            tag.putInt("overcooked", 4);
+        }else {
+            tag.putInt("overcooked", 5);
+        }
+        return tag;
+    }
+}

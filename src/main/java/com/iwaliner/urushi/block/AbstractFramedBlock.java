@@ -3,9 +3,15 @@ package com.iwaliner.urushi.block;
 import com.google.common.collect.Maps;
 
 import com.iwaliner.urushi.ClientSetUp;
+import com.iwaliner.urushi.ConfigUrushi;
+import com.iwaliner.urushi.packet.ClientKeyPressPacket;
+import com.iwaliner.urushi.packet.ServerKeyPressPacket;
 import com.iwaliner.urushi.util.UrushiUtils;
+import com.mojang.blaze3d.platform.InputConstants;
+import mcjty.theoneprobe.network.PacketHandler;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -24,6 +30,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.network.PacketDistributor;
 
 
 import java.util.List;
@@ -129,7 +138,6 @@ public class AbstractFramedBlock extends Block {
         p_49915_.add(NORTH, EAST, WEST, SOUTH,UP,DOWN,VARIANT);
     }
 
-    @org.jetbrains.annotations.Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Level iblockreader =context.getLevel();
@@ -148,28 +156,34 @@ public class AbstractFramedBlock extends Block {
         BlockState aState = iblockreader.getBlockState(blockpos5);
         BlockState bState = iblockreader.getBlockState(blockpos6);
 
-        return super.getStateForPlacement(context).setValue(NORTH, Boolean.valueOf(this.connectsTo(thisState, nState)))
-                .setValue(SOUTH, Boolean.valueOf(this.connectsTo(thisState, sState)))
-                .setValue(WEST, Boolean.valueOf(this.connectsTo(thisState, wState)))
-                .setValue(EAST, Boolean.valueOf(this.connectsTo(thisState, eState)))
-                .setValue(UP, Boolean.valueOf(this.connectsTo(thisState, aState)))
-                .setValue(DOWN, Boolean.valueOf(this.connectsTo(thisState, bState)))
-                //.setValue(VARIANT, Boolean.valueOf(context.getPlayer().isSuppressingBounce()))
-                .setValue(VARIANT, ClientSetUp.connectionKey.isDown())
-                ;
+try {
+    BlockState newState=this.defaultBlockState().setValue(NORTH, Boolean.valueOf(this.connectsTo(thisState, nState)))
+            .setValue(SOUTH, Boolean.valueOf(this.connectsTo(thisState, sState)))
+            .setValue(WEST, Boolean.valueOf(this.connectsTo(thisState, wState)))
+            .setValue(EAST, Boolean.valueOf(this.connectsTo(thisState, eState)))
+            .setValue(UP, Boolean.valueOf(this.connectsTo(thisState, aState)))
+            .setValue(DOWN, Boolean.valueOf(this.connectsTo(thisState, bState)))
+            .setValue(VARIANT,
+                    ClientSetUp.connectionKey.isDown() )
+            ;
+
+    return newState;
+}catch (Exception e){
+    BlockState newState=this.defaultBlockState().setValue(NORTH, Boolean.valueOf(this.connectsTo(thisState, nState)))
+            .setValue(SOUTH, Boolean.valueOf(this.connectsTo(thisState, sState)))
+            .setValue(WEST, Boolean.valueOf(this.connectsTo(thisState, wState)))
+            .setValue(EAST, Boolean.valueOf(this.connectsTo(thisState, eState)))
+            .setValue(UP, Boolean.valueOf(this.connectsTo(thisState, aState)))
+            .setValue(DOWN, Boolean.valueOf(this.connectsTo(thisState, bState)))
+            .setValue(VARIANT, context.getPlayer().isSuppressingBounce())
+            ;
+
+    return newState;
+}
+
+
+
     }
 
-    @Override
-    public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
-        UrushiUtils.setInfo(list,"framed_block1");
-        String keyString=ClientSetUp.connectionKey.getKey().getName();
-        String begin=".";
-        int beginIndex = keyString.indexOf(begin);
-        String preExtractedKey = keyString.substring(beginIndex+1);
-        int beginIndex2 = preExtractedKey.indexOf(begin);
-        String extractedKey = preExtractedKey.substring(beginIndex2+1);
-        list.add((new TranslatableComponent("info.urushi.framed_block2").append(" '"+extractedKey+"' ").append(new TranslatableComponent("info.urushi.framed_block3"))).withStyle(ChatFormatting.GRAY));
-
-    }
 
 }

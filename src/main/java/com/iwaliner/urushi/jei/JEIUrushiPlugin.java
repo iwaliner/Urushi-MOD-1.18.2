@@ -6,6 +6,7 @@ import com.iwaliner.urushi.RecipeTypeRegister;
 import com.iwaliner.urushi.recipe.*;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
@@ -14,6 +15,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CampfireCookingRecipe;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.List;
@@ -75,6 +77,7 @@ public class JEIUrushiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.senbakoki.get()), RecipeType.create(ModCoreUrushi.ModID, "senbakoki", SenbakokiRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.sandpaper_block.get()), RecipeType.create(ModCoreUrushi.ModID, "polishing", SandpaperPolishingRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.chiseled_lacquer_log.get()), RecipeType.create(ModCoreUrushi.ModID, "chiseled_lacquer_log", ChiseledLacquerLogRecipe.class));
+        //registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.shichirin.get()), RecipeType.create( RecipeTypes.CAMPFIRE_COOKING.getUid().getNamespace(), RecipeTypes.CAMPFIRE_COOKING.getUid().getPath(), CampfireCookingRecipe.class));
 
     }
 }

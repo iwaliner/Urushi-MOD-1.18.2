@@ -1,30 +1,37 @@
 package com.iwaliner.urushi;
 
-import com.iwaliner.urushi.block.ChiseledLacquerLogBlock;
-import com.iwaliner.urushi.block.IronIngotBlock;
-import com.iwaliner.urushi.block.SenbakokiBlock;
+import com.iwaliner.urushi.block.*;
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.world.feature.PlacementFeatures;
+import mcjty.theoneprobe.network.PacketHandler;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.core.*;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.Fox;
+import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
@@ -37,10 +44,20 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.client.event.DrawSelectionEvent;
+import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -49,6 +66,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.PistonEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -81,6 +99,7 @@ public class ModCoreUrushi {
     public static List<String> goldenToolList=new ArrayList<>();
     public static List<String> diamondToolList=new ArrayList<>();
     public static List<String> netheriteToolList=new ArrayList<>();
+    public static List<Item> underDevelopmentList=new ArrayList<>();
 
     public static boolean isDebug=FMLPaths.GAMEDIR.get().toString().contains("イワライナー(メインドライブ)")&&FMLPaths.GAMEDIR.get().toString().contains("run");
     public static Logger logger = LogManager.getLogger("urushi");
@@ -135,6 +154,9 @@ public class ModCoreUrushi {
 
         /**パーティクルを登録*/
         ParticleRegister.register(modEventBus);
+
+        /**サウンドを登録*/
+        SoundRegister.register(modEventBus);
 
 
         FeatureRegister.register(modEventBus);
@@ -407,8 +429,8 @@ public class ModCoreUrushi {
     @SubscribeEvent
     public void PlayerSpeedEvent(EntityEvent.EnteringSection event) {
         if(ConfigUrushi.TurnOnSpeedUp.get()) {
-            if (event.getEntity() instanceof LivingEntity) {
-                LivingEntity entityPlayer = (LivingEntity) event.getEntity();
+            if (event.getEntity() instanceof Player) {
+                Player entityPlayer = (Player) event.getEntity();
                 entityPlayer.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.116D);
                 entityPlayer.getAttributes().save();
             }
@@ -448,6 +470,17 @@ public class ModCoreUrushi {
                     }
                 }
             }
+        }
+
+        if(isDebug){
+            LevelAccessor level=event.getWorld();
+            BlockPos pos=event.getPos();
+            BlockState currentState=event.getWorld().getBlockState(pos);
+            BlockState sojoState=ElementUtils.getSojoBlock(ElementUtils.getSojoBlock(event.getWorld().getBlockState(event.getPos())));
+            if(sojoState!=null){
+                event.getWorld().setBlockAndUpdate(event.getPos(),sojoState);
+            }
+
         }
     }
 
@@ -503,8 +536,24 @@ public class ModCoreUrushi {
                     }
                 }
 
-            } else if (event.getState().getBlock() == Blocks.SAND) {
+            }
+            else if (event.getState().getBlock() == Blocks.SAND) {
                 UrushiUtils.BlockChangeNeighborMaterialSurvey((Level) event.getWorld(),event.getPos(),Material.WATER,ItemAndBlockRegister.salt_and_sand.get().defaultBlockState(), SoundEvents.SAND_BREAK);
+            }
+        }
+
+        if(ModCoreUrushi.isDebug){
+            LevelAccessor level=event.getWorld();
+            BlockPos pos=event.getPos();
+            BlockState currentState=level.getBlockState(pos);
+
+            for (int i = 2; i < 6; i++) {
+                if (ElementUtils.isSoukokuBlock(level,pos.relative(UrushiUtils.getDirectionFromInt(i)),currentState)) {
+                    level.setBlock(pos.relative(UrushiUtils.getDirectionFromInt(i)),Blocks.AIR.defaultBlockState(), 2);
+                    level.setBlock(pos.relative(UrushiUtils.getDirectionFromInt(i)).above(200),ElementUtils.getRandomElementBlock(level), 2);
+
+                    event.getWorld().playSound((Player) null, event.getPos().relative(UrushiUtils.getDirectionFromInt(i)), SoundEvents.SAND_BREAK, SoundSource.BLOCKS, 1.0F, 1F);
+                }
             }
         }
     }
@@ -520,6 +569,8 @@ public class ModCoreUrushi {
     /**アイテムに説明書きを追加*/
     @SubscribeEvent
     public void ItemTooltipEvent(ItemTooltipEvent event) {
+
+        ItemStack stack=event.getItemStack();
         Item item=event.getItemStack().getItem();
         if(Block.byItem(event.getItemStack().getItem())!= Blocks.AIR){
             BlockState state=Block.byItem(event.getItemStack().getItem()).defaultBlockState();
@@ -557,6 +608,34 @@ public class ModCoreUrushi {
                 ElementUtils.setBreakSpeedInfo(event.getToolTip(),ElementUtils.getExtraMiningPercent(item,ElementType.WaterElement),ElementType.WaterElement);
             }
         }
+        if(stack.getTag()!=null){
+            CompoundTag tag=stack.getTag();
+            if(tag.contains("undercooked")){
+                int level=tag.getInt("undercooked");
+                event.getToolTip().add((new TranslatableComponent("info.urushi.undercooked" ).append(" "+level)).withStyle(ChatFormatting.DARK_RED));
+            }else if(tag.contains("overcooked")){
+                int level=tag.getInt("overcooked");
+                event.getToolTip().add((new TranslatableComponent("info.urushi.overcooked" ).append(" "+level)).withStyle(ChatFormatting.GRAY));
+            }else if(tag.contains("wellcooked")){
+                int level=tag.getInt("wellcooked");
+                event.getToolTip().add((new TranslatableComponent("info.urushi.wellcooked" ).append(" "+level)).withStyle(ChatFormatting.GOLD));
+            }
+        }
+        if(underDevelopmentList.contains(stack.getItem())){
+            UrushiUtils.setInfoWithColor(event.getToolTip(),"under_development",ChatFormatting.YELLOW);
+        }
+        if(Block.byItem(item) instanceof AbstractFramedBlock||Block.byItem(item) instanceof FramedPaneBlock){
+            event.getToolTip().add((new TranslatableComponent("info.urushi.framed_block1" )).withStyle(ChatFormatting.GRAY));
+            String keyString=  ClientSetUp.connectionKey.getKey().getName();
+            String begin=".";
+            int beginIndex = keyString.indexOf(begin);
+            String preExtractedKey = keyString.substring(beginIndex+1);
+            int beginIndex2 = preExtractedKey.indexOf(begin);
+            String extractedKey = preExtractedKey.substring(beginIndex2+1);
+            event.getToolTip().add((new TranslatableComponent("info.urushi.framed_block2").append(" '"+extractedKey+"' ").append(new TranslatableComponent("info.urushi.framed_block3"))).withStyle(ChatFormatting.GRAY));
+            event.getToolTip().add((new TranslatableComponent("info.urushi.framed_block4")).withStyle(ChatFormatting.GRAY));
+
+        }
     }
     /**ブロックの破壊速度を変更*/
     @SubscribeEvent
@@ -582,6 +661,34 @@ public class ModCoreUrushi {
 
     }
 
+    /**食べた後の処理*/
+    @SubscribeEvent
+    public void FoodEatEvent(LivingEntityUseItemEvent.Finish event) {
+        LivingEntity livingEntity=event.getEntityLiving();
+        ItemStack stack=event.getResultStack();
+        CompoundTag tag=stack.getTag();
+        if(tag==null){
+            return;
+        }
+        if(tag.contains("undercooked")){
+            int level=tag.getInt("undercooked");
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.HUNGER,100+60*level,level+10));
+        }else if(tag.contains("overcooked")){
+            int level=tag.getInt("overcooked");
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON,10+10*level,1));
+        }else if(tag.contains("wellcooked")){
+            int level=tag.getInt("wellcooked");
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION,100+10*level,level));
+        }
 
+    }
+
+    /**バニラのルートテーブルに内容を追加*/
+    @SubscribeEvent
+    public void LoottableEvent(LootTableLoadEvent event) {
+        if(event.getName().equals(BuiltInLootTables.FISHING_FISH)){
+            event.getTable().addPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemAndBlockRegister.sweetfish.get()).setWeight(25)).add(LootItem.lootTableItem(ItemAndBlockRegister.carp.get()).setWeight(25)).add(LootItem.lootTableItem(ItemAndBlockRegister.goldfish.get()).setWeight(25)).build());
+        }
+    }
 
 }

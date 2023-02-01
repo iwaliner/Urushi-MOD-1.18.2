@@ -3,6 +3,7 @@ package com.iwaliner.urushi.util;
 import com.iwaliner.urushi.TagUrushi;
 import com.iwaliner.urushi.util.interfaces.*;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -16,6 +17,8 @@ import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.piston.PistonBaseBlock;
 import net.minecraft.world.level.block.piston.PistonHeadBlock;
@@ -23,6 +26,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags;
 
 import java.util.List;
+import java.util.Random;
 
 public class ElementUtils {
 
@@ -349,4 +353,53 @@ public class ElementUtils {
     }
 
 
+
+    public static boolean isSoukokuBlock(LevelAccessor level, BlockPos pos, BlockState currentState){
+        BlockState neighborState=level.getBlockState(pos);
+        if(currentState.getBlock()==Blocks.CYAN_CONCRETE_POWDER){
+            return neighborState.getBlock()==Blocks.YELLOW_CONCRETE_POWDER;
+        }else if(currentState.getBlock()==Blocks.RED_CONCRETE_POWDER){
+            return neighborState.getBlock()==Blocks.WHITE_CONCRETE_POWDER;
+        }else if(currentState.getBlock()==Blocks.YELLOW_CONCRETE_POWDER){
+            return neighborState.getBlock()==Blocks.PURPLE_CONCRETE_POWDER;
+        }else if(currentState.getBlock()==Blocks.WHITE_CONCRETE_POWDER){
+            return neighborState.getBlock()==Blocks.CYAN_CONCRETE_POWDER;
+        }else if(currentState.getBlock()==Blocks.PURPLE_CONCRETE_POWDER){
+            return neighborState.getBlock()==Blocks.RED_CONCRETE_POWDER;
+        }
+        return false;
+
+    }
+    public static BlockState getSojoBlock(BlockState currentState){
+        if(currentState==null){
+            return null;
+        }
+        if(currentState.getBlock()==Blocks.RED_CONCRETE_POWDER){ //C
+            return Blocks.CYAN_CONCRETE_POWDER.defaultBlockState(); //R
+        }else if(currentState.getBlock()==Blocks.YELLOW_CONCRETE_POWDER){ //R
+            return Blocks.RED_CONCRETE_POWDER.defaultBlockState(); //Y
+        }else if(currentState.getBlock()==Blocks.WHITE_CONCRETE_POWDER){ //Y
+            return Blocks.YELLOW_CONCRETE_POWDER.defaultBlockState(); //W
+        }else if(currentState.getBlock()==Blocks.PURPLE_CONCRETE_POWDER){ //W
+            return Blocks.WHITE_CONCRETE_POWDER.defaultBlockState(); //P
+        }else if(currentState.getBlock()==Blocks.CYAN_CONCRETE_POWDER){ //P
+            return Blocks.PURPLE_CONCRETE_POWDER.defaultBlockState(); //C
+        }
+        return null;
+
+    }
+    public static BlockState getRandomElementBlock(LevelAccessor level){
+        int random=level.getRandom().nextInt(5);
+        if(random==0){
+            return Blocks.CYAN_CONCRETE_POWDER.defaultBlockState();
+        }else if(random==1){
+            return Blocks.RED_CONCRETE_POWDER.defaultBlockState();
+        }else if(random==2){
+            return Blocks.YELLOW_CONCRETE_POWDER.defaultBlockState();
+        }else if(random==3){
+            return Blocks.WHITE_CONCRETE_POWDER.defaultBlockState();
+        }else {
+            return Blocks.PURPLE_CONCRETE_POWDER.defaultBlockState();
+        }
+    }
 }

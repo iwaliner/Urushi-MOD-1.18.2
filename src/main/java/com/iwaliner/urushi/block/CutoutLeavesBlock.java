@@ -1,7 +1,11 @@
 package com.iwaliner.urushi.block;
 
+import com.iwaliner.urushi.ConfigUrushi;
+import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.iwaliner.urushi.ParticleRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
@@ -16,6 +20,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -88,17 +93,39 @@ public class CutoutLeavesBlock extends Block implements net.minecraftforge.commo
         }
     }
 
-    public void animateTick(BlockState p_54431_, Level p_54432_, BlockPos p_54433_, Random p_54434_) {
-        if (p_54432_.isRainingAt(p_54433_.above())) {
-            if (p_54434_.nextInt(15) == 1) {
-                BlockPos blockpos = p_54433_.below();
-                BlockState blockstate = p_54432_.getBlockState(blockpos);
-                if (!blockstate.canOcclude() || !blockstate.isFaceSturdy(p_54432_, blockpos, Direction.UP)) {
-                    double d0 = (double)p_54433_.getX() + p_54434_.nextDouble();
-                    double d1 = (double)p_54433_.getY() - 0.05D;
-                    double d2 = (double)p_54433_.getZ() + p_54434_.nextDouble();
-                    p_54432_.addParticle(ParticleTypes.DRIPPING_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+    public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
+        if (level.isRainingAt(pos.above())) {
+            if (random.nextInt(15) == 1) {
+                BlockPos blockpos = pos.below();
+                BlockState blockstate = level.getBlockState(blockpos);
+                if (!blockstate.canOcclude() || !blockstate.isFaceSturdy(level, blockpos, Direction.UP)) {
+                    double d0 = (double)pos.getX() + random.nextDouble();
+                    double d1 = (double)pos.getY() - 0.05D;
+                    double d2 = (double)pos.getZ() + random.nextDouble();
+                    level.addParticle(ParticleTypes.DRIPPING_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D);
                 }
+            }
+        }
+        if(level.getBlockState(pos.below()).getMaterial()== Material.AIR) {
+            boolean isLeaf=(state.getBlock()!=ItemAndBlockRegister.sakura_leaves.get()&&state.getBlock()!=ItemAndBlockRegister.glowing_sakura_leaves.get());
+            int amount=101-(isLeaf? ConfigUrushi.fallingLeafParticleAmount.get() : ConfigUrushi.fallingSakuraParticleAmount.get());
+            if(random.nextInt(amount)==0) {
+                ParticleOptions particle=null;
+                if (state.getBlock() == ItemAndBlockRegister.red_leaves.get()) {
+                    particle=ParticleRegister.FallingRedLeaves.get();
+                }else if (state.getBlock() == ItemAndBlockRegister.orange_leaves.get()) {
+                    particle=ParticleRegister.FallingOrangeLeaves.get();
+                }else if (state.getBlock() == ItemAndBlockRegister.yellow_leaves.get()) {
+                    particle=ParticleRegister.FallingYellowLeaves.get();
+                }else if (state.getBlock() == ItemAndBlockRegister.sakura_leaves.get()||state.getBlock() == ItemAndBlockRegister.glowing_sakura_leaves.get()) {
+                    particle=ParticleRegister.FallingSakuraLeaves.get();
+                }
+                double d0 = (double)pos.getX() + random.nextDouble();
+                double d1 = (double)pos.getY() - 0.05D;
+                double d2 = (double)pos.getZ() + random.nextDouble();
+                if(particle!=null)
+                level.addParticle(particle, d0, d1, d2, 0D, 0.0D, 0D);
+
             }
         }
     }
@@ -109,6 +136,15 @@ public class CutoutLeavesBlock extends Block implements net.minecraftforge.commo
 
     public BlockState getStateForPlacement(BlockPlaceContext p_54424_) {
         return updateDistance(this.defaultBlockState().setValue(PERSISTENT, Boolean.valueOf(true)), p_54424_.getLevel(), p_54424_.getClickedPos());
+    }
+    @Override
+    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return true;
+    }
+
+    @Override
+    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return 60;
     }
 
 }

@@ -1,9 +1,12 @@
 package com.iwaliner.urushi.block;
 
+import com.iwaliner.urushi.ConfigUrushi;
 import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.iwaliner.urushi.ParticleRegister;
 import com.iwaliner.urushi.TagUrushi;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -14,6 +17,8 @@ import net.minecraft.world.level.block.CarpetBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Material;
+
+import java.util.Random;
 
 public class FallenLeavesBlock extends CarpetBlock {
     public FallenLeavesBlock(Properties p_152915_) {
@@ -72,6 +77,32 @@ public class FallenLeavesBlock extends CarpetBlock {
         }
 
         return true;
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
+        if(level.getBlockState(pos.below()).getMaterial()== Material.AIR) {
+            boolean isLeaf=state.getBlock()!=ItemAndBlockRegister.fallen_sakura_leaves.get();
+            int amount=101-(isLeaf? ConfigUrushi.fallingLeafParticleAmount.get() : ConfigUrushi.fallingSakuraParticleAmount.get());
+            if(random.nextInt(amount)==0) {
+                ParticleOptions particle=null;
+                if (state.getBlock() == ItemAndBlockRegister.fallen_red_leaves.get()) {
+                    particle= ParticleRegister.FallingRedLeaves.get();
+                }else if (state.getBlock() == ItemAndBlockRegister.fallen_orange_leaves.get()) {
+                    particle=ParticleRegister.FallingOrangeLeaves.get();
+                }else if (state.getBlock() == ItemAndBlockRegister.fallen_yellow_leaves.get()) {
+                    particle=ParticleRegister.FallingYellowLeaves.get();
+                }else if (state.getBlock() == ItemAndBlockRegister.fallen_sakura_leaves.get()) {
+                    particle=ParticleRegister.FallingSakuraLeaves.get();
+                }
+                double d0 = (double)pos.getX() + random.nextDouble();
+                double d1 = (double)pos.getY() - 0.05D;
+                double d2 = (double)pos.getZ() + random.nextDouble();
+                if(particle!=null)
+                    level.addParticle(particle, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+
+            }
+        }
     }
 
     @Override

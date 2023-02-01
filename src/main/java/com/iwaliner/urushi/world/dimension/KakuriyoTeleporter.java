@@ -132,61 +132,62 @@ public class KakuriyoTeleporter implements ITeleporter {
             }
         }
         //階段の繰り返し
-        int toSurface=0;
-        for(int s=0;s<370;s++) {
-            if (level.getBlockState(pos.offset(0, -s, -s * 2)).is(BlockTags.DIRT) || level.getBlockState(pos.offset(0, -s, -s * 2)).is(TagUrushi.YOMI_STONE)) {
-                toSurface = s;
-                break;
-            }
-        }
-        for(int n=0;n<toSurface;n++) {
-            int toSurfaceEach=0;
-            for(int s=0;s<370;s++) {
-                if (level.getBlockState(pos.offset(0,-s,-5 - n * 2)).is(BlockTags.DIRT) || level.getBlockState(pos.offset(0,-s,-5 - n * 2)).is(TagUrushi.YOMI_STONE)) {
-                    toSurfaceEach = s;
+        if(level.getBlockState(pos.offset(0, -1, -5)).getBlock()!=ItemAndBlockRegister.rough_stone.get()) {
+            int toSurface = 0;
+            for (int s = 0; s < 370; s++) {
+                if (level.getBlockState(pos.offset(0, -s, -s * 2)).is(BlockTags.DIRT) || level.getBlockState(pos.offset(0, -s, -s * 2)).is(TagUrushi.YOMI_STONE)) {
+                    toSurface = s;
                     break;
                 }
             }
-            for (int k = 1 + n; k <= toSurfaceEach; k++) {
-                for (int i = -2; i < 3; i++) {
-                    level.setBlockAndUpdate(pos.offset(i, -k, -5 - n * 2), ItemAndBlockRegister.rough_stone.get().defaultBlockState());
-                    level.setBlockAndUpdate(pos.offset(i, -k, -6 - n * 2), ItemAndBlockRegister.rough_stone.get().defaultBlockState());
+            for (int n = 0; n < toSurface; n++) {
+                int toSurfaceEach = 0;
+                for (int s = 0; s < 370; s++) {
+                    if (level.getBlockState(pos.offset(0, -s, -5 - n * 2)).is(BlockTags.DIRT) || level.getBlockState(pos.offset(0, -s, -5 - n * 2)).is(TagUrushi.YOMI_STONE)) {
+                        toSurfaceEach = s;
+                        break;
+                    }
                 }
+                for (int k = 1 + n; k <= toSurfaceEach; k++) {
+                    for (int i = -2; i < 3; i++) {
+                        level.setBlockAndUpdate(pos.offset(i, -k, -5 - n * 2), ItemAndBlockRegister.rough_stone.get().defaultBlockState());
+                        level.setBlockAndUpdate(pos.offset(i, -k, -6 - n * 2), ItemAndBlockRegister.rough_stone.get().defaultBlockState());
+                    }
+                }
+                for (int i = -1; i < 2; i++) {
+                    destroyBlock(level, pos.offset(i, -1 - n + 1, -5 - n * 2));
+                    destroyBlock(level, pos.offset(i, -1 - n + 2, -5 - n * 2));
+                    destroyBlock(level, pos.offset(i, -1 - n + 3, -5 - n * 2));
+                    destroyBlock(level, pos.offset(i, -1 - n + 1, -6 - n * 2));
+                    destroyBlock(level, pos.offset(i, -1 - n + 2, -6 - n * 2));
+                    destroyBlock(level, pos.offset(i, -1 - n + 3, -6 - n * 2));
+
+
+                    //階段本体
+                    level.setBlockAndUpdate(pos.offset(i, -1 - n, -5 - n * 2), ItemAndBlockRegister.rough_stone.get().defaultBlockState());
+                    placeRoughStoneSlab(level, pos.offset(i, -1 - n, -6 - n * 2));
+                    if (n + 1 == toSurface) {
+                        level.setBlockAndUpdate(pos.offset(i, -1 - n, -6 - n * 2), ItemAndBlockRegister.rough_stone.get().defaultBlockState());
+                    }
+                }
+                //階段脇
+                placeRoughStoneSlab(level, pos.offset(-2, -1 - n + 1, -5 - n * 2));
+                placeRoughStoneSlab(level, pos.offset(2, -1 - n + 1, -5 - n * 2));
+                level.setBlockAndUpdate(pos.offset(-2, -1 - n, -6 - n * 2), ItemAndBlockRegister.rough_stone.get().defaultBlockState());
+                level.setBlockAndUpdate(pos.offset(2, -1 - n, -6 - n * 2), ItemAndBlockRegister.rough_stone.get().defaultBlockState());
+                level.setBlockAndUpdate(pos.offset(-2, -1 - n + 1, -6 - n * 2), ItemAndBlockRegister.red_urushi_fence.get().defaultBlockState());
+                level.setBlockAndUpdate(pos.offset(2, -1 - n + 1, -6 - n * 2), ItemAndBlockRegister.red_urushi_fence.get().defaultBlockState());
+                level.setBlockAndUpdate(pos.offset(-2, -1 - n + 2, -6 - n * 2), ItemAndBlockRegister.red_urushi_fence.get().defaultBlockState());
+                level.setBlockAndUpdate(pos.offset(2, -1 - n + 2, -6 - n * 2), ItemAndBlockRegister.red_urushi_fence.get().defaultBlockState());
+                placeKasugaLantern(level, pos.offset(-2, -1 - n + 3, -6 - n * 2));
+                placeKasugaLantern(level, pos.offset(2, -1 - n + 3, -6 - n * 2));
+
+                destroyBlock(level, pos.offset(-2, -1 - n + 2, -5 - n * 2));
+                destroyBlock(level, pos.offset(2, -1 - n + 2, -5 - n * 2));
+                destroyBlock(level, pos.offset(-2, -1 - n + 3, -5 - n * 2));
+                destroyBlock(level, pos.offset(2, -1 - n + 3, -5 - n * 2));
+
             }
-            for (int i = -1; i < 2; i++) {
-                destroyBlock(level,pos.offset(i, -1 - n + 1, -5 - n * 2));
-                destroyBlock(level,pos.offset(i, -1 - n + 2, -5 - n * 2));
-                destroyBlock(level,pos.offset(i, -1 - n + 3, -5 - n * 2));
-                destroyBlock(level,pos.offset(i, -1 - n + 1, -6 - n * 2));
-                destroyBlock(level,pos.offset(i, -1 - n + 2, -6 - n * 2));
-                destroyBlock(level,pos.offset(i, -1 - n + 3, -6 - n * 2));
-
-
-
-                //階段本体
-                level.setBlockAndUpdate(pos.offset(i, -1 - n, -5 - n * 2), ItemAndBlockRegister.rough_stone.get().defaultBlockState());
-                placeRoughStoneSlab(level,pos.offset(i,-1-n,-6-n*2));
-           if(n+1==toSurface){
-                level.setBlockAndUpdate(pos.offset(i, -1 - n, -6 - n * 2), ItemAndBlockRegister.rough_stone.get().defaultBlockState());
-            }
-            }
-            //階段脇
-            placeRoughStoneSlab(level,pos.offset(-2, -1 - n + 1, -5 - n * 2));
-            placeRoughStoneSlab(level,pos.offset(2, -1 - n + 1, -5 - n * 2));
-            level.setBlockAndUpdate(pos.offset(-2, -1 - n, -6 - n * 2), ItemAndBlockRegister.rough_stone.get().defaultBlockState());
-            level.setBlockAndUpdate(pos.offset(2, -1 - n, -6 - n * 2), ItemAndBlockRegister.rough_stone.get().defaultBlockState());
-            level.setBlockAndUpdate(pos.offset(-2, -1 - n + 1, -6 - n * 2), ItemAndBlockRegister.red_urushi_fence.get().defaultBlockState());
-            level.setBlockAndUpdate(pos.offset(2, -1 - n + 1, -6 - n * 2), ItemAndBlockRegister.red_urushi_fence.get().defaultBlockState());
-            level.setBlockAndUpdate(pos.offset(-2, -1 - n + 2, -6 - n * 2), ItemAndBlockRegister.red_urushi_fence.get().defaultBlockState());
-            level.setBlockAndUpdate(pos.offset(2, -1 - n + 2, -6 - n * 2), ItemAndBlockRegister.red_urushi_fence.get().defaultBlockState());
-            placeKasugaLantern(level,pos.offset(-2, -1 - n + 3, -6 - n * 2));
-            placeKasugaLantern(level,pos.offset(2, -1 - n + 3, -6 - n * 2));
-
-            destroyBlock(level,pos.offset(-2, -1 - n + 2, -5 - n * 2));
-            destroyBlock(level,pos.offset(2, -1 - n + 2, -5 - n * 2));
-            destroyBlock(level,pos.offset(-2, -1 - n + 3, -5 - n * 2));
-            destroyBlock(level,pos.offset(2, -1 - n + 3, -5 - n * 2));
-
         }
 
     }

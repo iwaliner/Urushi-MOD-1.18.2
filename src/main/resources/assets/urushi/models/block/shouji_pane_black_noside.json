@@ -1,6 +1,6 @@
 {
     "parent": "block/template_glass_pane_noside",
     "textures": {
-        "pane": "urushi:block/syoji_black_pane"
+        "pane": "urushi:block/shoji_black_pane"
     }
 }

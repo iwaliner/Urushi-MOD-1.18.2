@@ -24,6 +24,8 @@ public class BlockEntityRegister {
     public static final RegistryObject<BlockEntityType<InvisibleButtonBlockEntity>> InvisibleButton=Tiles.register("invisible_button", () -> BlockEntityType.Builder.of(InvisibleButtonBlockEntity::new, ItemAndBlockRegister.invisible_button.get()).build(null));
     public static final RegistryObject<BlockEntityType<InvisibleLeverBlockEntity>> InvisibleLever=Tiles.register("invisible_lever", () -> BlockEntityType.Builder.of(InvisibleLeverBlockEntity::new, ItemAndBlockRegister.invisible_lever.get()).build(null));
     public static final RegistryObject<BlockEntityType<InvisiblePressurePlateBlockEntity>> InvisiblePressurePlate=Tiles.register("invisible_pressure_plate", () -> BlockEntityType.Builder.of(InvisiblePressurePlateBlockEntity::new, ItemAndBlockRegister.invisible_pressure_plate.get()).build(null));
+    public static final RegistryObject<BlockEntityType<SanboBlockEntity>> Sanbo=Tiles.register("sanbo", () -> BlockEntityType.Builder.of(SanboBlockEntity::new, ItemAndBlockRegister.sanbo_tier1.get(), ItemAndBlockRegister.sanbo_tier2.get(), ItemAndBlockRegister.sanbo_tier3.get()).build(null));
+    public static final RegistryObject<BlockEntityType<ShichirinBlockEntity>> Shichirin=Tiles.register("shichirin", () -> BlockEntityType.Builder.of(ShichirinBlockEntity::new, ItemAndBlockRegister.shichirin.get()).build(null));
     public static void register(IEventBus eventBus) {
         Tiles.register(eventBus);
     }

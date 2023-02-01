@@ -2,6 +2,6 @@
     "parent": "block/template_glass_pane_post",
     "textures": {
         "edge": "urushi:block/smooth_planks_black_urushi_stained",
-        "pane": "urushi:block/syoji_black_pane"
+        "pane": "urushi:block/shoji_black_pane"
     }
 }
