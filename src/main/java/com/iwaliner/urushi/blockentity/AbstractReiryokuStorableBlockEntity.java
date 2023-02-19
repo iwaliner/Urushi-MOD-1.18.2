@@ -16,8 +16,9 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public abstract class AbstractReiryokuStorableBlockEntity extends BlockEntity implements ReiryokuStorable{
         protected int storedReiryoku;
-        private final int capacity;
+       private final int capacity;
         protected int[] receiveWaitingTime;
+        private final int listSize=100;
         public AbstractReiryokuStorableBlockEntity(BlockEntityType<?> blockEntity,int capacity, BlockPos p_155550_, BlockState p_155551_) {
             super(blockEntity, p_155550_, p_155551_);
             this.capacity=capacity;
@@ -26,12 +27,15 @@ public abstract class AbstractReiryokuStorableBlockEntity extends BlockEntity im
         super.load(tag);
         this.storedReiryoku = tag.getInt("storedReiryoku");
         this.receiveWaitingTime = tag.getIntArray("receiveWaitingTime");
+
     }
 
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.putInt("storedReiryoku", this.storedReiryoku);
-        tag.putIntArray("receiveWaitingTime", this.receiveWaitingTime);
+            tag.putIntArray("receiveWaitingTime", this.receiveWaitingTime);
+
+
     }
 
 
@@ -45,16 +49,18 @@ public abstract class AbstractReiryokuStorableBlockEntity extends BlockEntity im
 
         @Override
         public int getStoredReiryoku() {
-            return storedReiryoku;
+           return storedReiryoku;
         }
 
         @Override
         public void addStoredReiryoku(int i) {
             if(getStoredReiryoku()+i<=getReiryokuCapacity()){
-                storedReiryoku+=i;
+                    storedReiryoku+=i;
+
             }else{
                 int j=getReiryokuCapacity()-getStoredReiryoku();
-                storedReiryoku=getReiryokuCapacity();
+                    storedReiryoku=getReiryokuCapacity();
+
             }
         }
         @Override
@@ -69,10 +75,12 @@ public abstract class AbstractReiryokuStorableBlockEntity extends BlockEntity im
         @Override
         public void decreaseStoredReiryoku(int i) {
             if(getStoredReiryoku()-i>=0){
-                storedReiryoku-=i;
+                    storedReiryoku-=i;
+
             }else{
                 int j=i-getStoredReiryoku();
-                storedReiryoku=0;
+                    storedReiryoku=0;
+
             }
         }
         @Override
@@ -96,11 +104,16 @@ public abstract class AbstractReiryokuStorableBlockEntity extends BlockEntity im
 
     @Override
     public int[] getReceiveWaitingTime() {
-            if(this.receiveWaitingTime==null){
-                this.receiveWaitingTime=new int[1000];
-            }
-        return this.receiveWaitingTime;
+
+       if (this.receiveWaitingTime== null) {
+                this.receiveWaitingTime = new int[listSize];
+                return this.receiveWaitingTime;
+            }else{
+           return this. receiveWaitingTime;
+        }
+
     }
+
 
     @Override
         public void recieveReiryoku(Level level, BlockPos pos) {

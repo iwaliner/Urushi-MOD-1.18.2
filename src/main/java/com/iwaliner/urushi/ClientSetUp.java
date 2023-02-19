@@ -1,6 +1,6 @@
 package com.iwaliner.urushi;
 
-import com.iwaliner.urushi.blockentity.renderer.MirrorRenderer;
+
 import com.iwaliner.urushi.blockentity.renderer.SanboRenderer;
 import com.iwaliner.urushi.blockentity.renderer.ShichirinRenderer;
 import com.iwaliner.urushi.blockentity.screen.DoubledWoodenCabinetryScreen;

@@ -1,6 +1,7 @@
 package com.iwaliner.urushi.block;
 
 import com.iwaliner.urushi.BlockEntityRegister;
+import com.iwaliner.urushi.blockentity.AbstractReiryokuStorableBlockEntity;
 import com.iwaliner.urushi.blockentity.TankBlockEntity;
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.UrushiUtils;
@@ -9,6 +10,7 @@ import com.iwaliner.urushi.util.interfaces.Tiered;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -31,6 +33,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Random;
 
 public class TankBlock extends BaseEntityBlock implements Tiered, ElementBlock {
     private static final VoxelShape BASE = Block.box(6D, 0.0D, 6D, 10D, 1D, 10D);
@@ -93,4 +96,15 @@ public class TankBlock extends BaseEntityBlock implements Tiered, ElementBlock {
         }
         return InteractionResult.FAIL;
     }
+
+    /*@Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
+        if(level.getBlockEntity(pos) instanceof AbstractReiryokuStorableBlockEntity){
+            AbstractReiryokuStorableBlockEntity blockEntity= (AbstractReiryokuStorableBlockEntity) level.getBlockEntity(pos);
+            if(blockEntity.canAddReiryoku(1)){
+                blockEntity.addStoredReiryoku(1);
+            }
+        }
+    }*/
+
 }

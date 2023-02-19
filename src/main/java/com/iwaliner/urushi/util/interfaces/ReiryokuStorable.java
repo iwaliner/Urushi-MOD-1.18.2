@@ -30,9 +30,9 @@ public interface ReiryokuStorable {
 
 
 
-    default int[] getReceiveWaitingTime() {
-        return new int[1000];
-    }
+     int[] getReceiveWaitingTime();
+
+
     void markUpdated();
 
 }

@@ -644,7 +644,7 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> wood_element_sacred_rock =B("wood_element_sacred_rock","p",-1,() -> {return new SacredRockBlock(ElementType.WoodElement,BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> wood_element_emitter_tier1 =B("wood_element_emitter_tier1","p",-1,() -> {return new EmitterBlock(1,ElementType.WoodElement,BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> wood_element_tank_tier1 =B("wood_element_tank_tier1","a",-1,() -> {return new TankBlock(1,ElementType.WoodElement,BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).sound(SoundType.WOOD).strength(1.0F, 10.0F));});
-    public static final RegistryObject<Block> mirror_tier1 =B("mirror_tier1","p",-1,() -> {return new MirrorBlock(1,ElementType.WoodElement,BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).strength(1.0F, 10.0F).noOcclusion());});
+    public static final RegistryObject<Block> mirror_tier1 =B("mirror_tier1","a",-1,() -> {return new MirrorBlock(1,BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).sound(SoundType.GLASS).strength(1.0F, 10.0F));});
 
     private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos blockPos) {
         return false;

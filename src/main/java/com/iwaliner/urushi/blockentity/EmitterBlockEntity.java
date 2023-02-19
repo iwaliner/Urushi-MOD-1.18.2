@@ -23,6 +23,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.ticks.TickPriority;
 
 public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity implements ReiryokuImportable,ReiryokuExportable {
    private  final double particleSpeed=0.2D;
@@ -92,6 +93,7 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
     private int sendDistance(Level level,BlockPos emitterPos){
       BlockState emitterState=level.getBlockState(emitterPos);
       Direction direction=emitterState.getValue(EmitterBlock.FACING);
+      EmitterBlockEntity emitterBlockEntity= (EmitterBlockEntity) level.getBlockEntity(emitterPos);
       int j=0;
       int range=Mth.floor(this.particleSpeed*80+0.6D);
       for(int i=1;i<range;i++){
@@ -107,7 +109,7 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
 
                   }else {
                       ReiryokuStorable reiryokuStorable = (ReiryokuStorable) blockEntity;
-                      if (reiryokuStorable.canAddReiryoku(1)) {
+                      if (reiryokuStorable.canAddReiryoku(1)&&reiryokuStorable.getStoredElementType()==emitterBlockEntity.getStoredElementType()) {
                           j = i;
                           break;
                       }
@@ -160,4 +162,24 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
     public ElementType getImportElementType() {
         return this.getStoredElementType();
     }
+    /*
+    private void send(Level level,BlockPos emitterPos){
+        BlockState emitterState=level.getBlockState(emitterPos);
+        Direction direction=emitterState.getValue(EmitterBlock.FACING);
+        int distance=sendDistance(level,emitterPos);
+        BlockPos goalPos=emitterPos.relative(direction,distance);
+        EmitterBlockEntity emitterBlockEnitity= (EmitterBlockEntity) level.getBlockEntity(emitterPos);
+        ReiryokuStorable goalBlockEntity= (ReiryokuStorable) level.getBlockEntity(goalPos);
+        BlockState goalState=level.getBlockState(goalPos);
+        int arriveTick=Mth.floor ((distance-1)/particleSpeed);
+        if(emitterBlockEnitity!=null&&goalBlockEntity!=null&&emitterBlockEnitity.canDecreaseReiryoku(1)&&goalBlockEntity.canAddReiryoku(1)) {
+            if(!level.getBlockTicks().willTickThisTick(goalPos, goalState.getBlock())) {
+                emitterBlockEnitity.decreaseStoredReiryoku(1);
+                emitterBlockEnitity.markUpdated();
+
+                level.scheduleTick(goalPos, goalState.getBlock(), 2, TickPriority.EXTREMELY_LOW);
+
+            }
+        }
+    }*/
 }
