@@ -7,6 +7,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class NorenBlock extends HorizonalRotateBlock{
@@ -31,6 +32,12 @@ public class NorenBlock extends HorizonalRotateBlock{
             return SHAPEA;
         }
     }
+
+    @Override
+    public VoxelShape getCollisionShape(BlockState p_60572_, BlockGetter p_60573_, BlockPos p_60574_, CollisionContext p_60575_) {
+        return Shapes.empty();
+    }
+
     @Override
     public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
         return true;

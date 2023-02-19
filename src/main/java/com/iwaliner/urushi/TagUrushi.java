@@ -41,5 +41,7 @@ public class TagUrushi {
     public static final TagKey<Item> EARTH_ELEMENT_ITEM =TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(ModCoreUrushi.ModID,"earth_element"));
     public static final TagKey<Item> METAL_ELEMENT_ITEM =TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(ModCoreUrushi.ModID,"metal_element"));
     public static final TagKey<Item> WATER_ELEMENT_ITEM =TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(ModCoreUrushi.ModID,"water_element"));
+    public static final TagKey<Item> SHICHIRIN_FUEL =TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(ModCoreUrushi.ModID,"shichirin_fuel"));
+    public static final TagKey<Item> IGNITER =TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(ModCoreUrushi.ModID,"igniter"));
 
 }

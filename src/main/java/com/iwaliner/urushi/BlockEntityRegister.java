@@ -26,6 +26,10 @@ public class BlockEntityRegister {
     public static final RegistryObject<BlockEntityType<InvisiblePressurePlateBlockEntity>> InvisiblePressurePlate=Tiles.register("invisible_pressure_plate", () -> BlockEntityType.Builder.of(InvisiblePressurePlateBlockEntity::new, ItemAndBlockRegister.invisible_pressure_plate.get()).build(null));
     public static final RegistryObject<BlockEntityType<SanboBlockEntity>> Sanbo=Tiles.register("sanbo", () -> BlockEntityType.Builder.of(SanboBlockEntity::new, ItemAndBlockRegister.sanbo_tier1.get(), ItemAndBlockRegister.sanbo_tier2.get(), ItemAndBlockRegister.sanbo_tier3.get()).build(null));
     public static final RegistryObject<BlockEntityType<ShichirinBlockEntity>> Shichirin=Tiles.register("shichirin", () -> BlockEntityType.Builder.of(ShichirinBlockEntity::new, ItemAndBlockRegister.shichirin.get()).build(null));
+    public static final RegistryObject<BlockEntityType<SacredRockBlockEntity>> SacredRock=Tiles.register("sacred_rock", () -> BlockEntityType.Builder.of(SacredRockBlockEntity::new, ItemAndBlockRegister.wood_element_sacred_rock.get()).build(null));
+    public static final RegistryObject<BlockEntityType<EmitterBlockEntity>> Emitter=Tiles.register("emitter", () -> BlockEntityType.Builder.of(EmitterBlockEntity::new, ItemAndBlockRegister.wood_element_emitter_tier1.get()).build(null));
+    public static final RegistryObject<BlockEntityType<TankBlockEntity>> Tank=Tiles.register("tank", () -> BlockEntityType.Builder.of(TankBlockEntity::new, ItemAndBlockRegister.wood_element_tank_tier1.get()).build(null));
+    public static final RegistryObject<BlockEntityType<MirrorBlockEntity>> Mirror=Tiles.register("mirror", () -> BlockEntityType.Builder.of(MirrorBlockEntity::new, ItemAndBlockRegister.mirror_tier1.get()).build(null));
     public static void register(IEventBus eventBus) {
         Tiles.register(eventBus);
     }

@@ -3,6 +3,7 @@ package com.iwaliner.urushi.particle;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.client.particle.PlayerCloudParticle;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -19,8 +20,10 @@ public class WoodElementParticle extends AbstractElementParticle{
             this.sprites = p_108366_;
         }
 
-        public Particle createParticle(SimpleParticleType p_108377_, ClientLevel p_108378_, double p_108379_, double p_108380_, double p_108381_, double p_108382_, double p_108383_, double p_108384_) {
-            return new WoodElementParticle(p_108378_, p_108379_, p_108380_, p_108381_, p_108382_, p_108383_, p_108384_, this.sprites);
+        public Particle createParticle(SimpleParticleType particleType, ClientLevel level, double x, double y, double z, double xd, double yd, double zd) {
+            Particle particle = new WoodElementParticle(level, x, y, z, xd, yd, zd, this.sprites);
+          //  particle.setParticleSpeed(xd,yd,zd);
+            return particle;
         }
     }
 }

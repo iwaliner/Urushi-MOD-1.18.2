@@ -1,9 +1,20 @@
 package com.iwaliner.urushi.util;
 
-public final class ElementType {
-    public static final ElementType WoodElement=new ElementType();
-    public static final ElementType FireElement=new ElementType();
-    public static final ElementType EarthElement=new ElementType();
-    public static final ElementType MetalElement=new ElementType();
-    public static final ElementType WaterElement=new ElementType();
-}
+public  enum ElementType {
+    WoodElement(0),
+    FireElement(1),
+    EarthElement(2),
+    MetalElement(3),
+    WaterElement(4);
+
+        private int id;
+
+        private ElementType(int id) {
+            this.id = id;
+        }
+        public int getID()
+        {
+            return this.id;
+        }
+    }
+

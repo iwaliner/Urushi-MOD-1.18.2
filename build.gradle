@@ -16,8 +16,8 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 
 
-version = '1.18.2-4.8'
-group = 'com.yourname.modid' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = '1.18.2-4.9'
+group = 'com.iwaliner.urushi' 
 archivesBaseName = 'Urushi'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
@@ -154,6 +154,8 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+
+
 }
 //このdependenciesはminecraftの指定のみデフォルトでされている。今回はここでほかのMODを指定していく。
 dependencies {
@@ -170,6 +172,7 @@ dependencies {
      implementation  fg.deobf("curse.maven:mysterious-mountain-lib-368098:3857113")
      implementation  fg.deobf("curse.maven:sakura-333079:3954611")
      implementation  fg.deobf("curse.maven:tofucraftreload-317469:3940352")
+    implementation  fg.deobf("curse.maven:the-twilight-forest-227639:4337390")
 
 
      compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.1.255:api")

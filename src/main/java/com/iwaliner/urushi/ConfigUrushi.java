@@ -12,15 +12,24 @@ public final class ConfigUrushi {
     public static final ForgeConfigSpec.ConfigValue<Integer> fallingLeafParticleAmount;
     public static final ForgeConfigSpec.ConfigValue<Integer> fallingSakuraParticleAmount;
     public static final ForgeConfigSpec.ConfigValue<Boolean> WindBellSound;
+    public static final ForgeConfigSpec.ConfigValue<Integer> shichirinIconAmount;
+    public static final ForgeConfigSpec.ConfigValue<Integer> shichirincookingDifficlutly;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> instantlySlidingDoor;
+
 
     static {
         builder.push("block settings");
         maxHightBamboo=builder.comment("max height of Japanese Timber Bamboo").define("max height(1～2147483647)",10);
         ShojisAreTranslucent=builder.comment("Shoji Pane and Shoji are translucent").define("translucent(true/false)",false);
+        instantlySlidingDoor=builder.comment("open and close Shojis, Fusumas, and Glass Sliding Door instantly").define("instantry open and close sliding doors(true/false)",false);
         WindBellSound=builder.comment("Play the sound of Wind Bell").define("play wind bell sound(true/false)",true);
         builder.pop();
         builder.push("item settings");
         reiryokuCapacityOfMagatama=builder.comment("max Reiryoku amount of Magatama").define("magatama(1～2147483647)",5600);
+        builder.pop();
+        builder.push("blockentity settings");
+        shichirinIconAmount=builder.comment("half number of square icons of Shichirin").define("Shichirin icon(1～2147483647)",6);
+        shichirincookingDifficlutly=builder.comment("cooking difficulty by using Shichirin (small number : severe)").define("Shichirin cooking difficulty(1～2147483647)",2000);
         builder.pop();
         builder.push("entity settings");
         TurnOnSpeedUp=builder.comment("increase the player walking spped by 16% so that you can place blocks comfortably").define("walking speed(true/false)",true);

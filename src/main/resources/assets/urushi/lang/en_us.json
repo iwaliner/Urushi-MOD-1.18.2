@@ -685,7 +685,35 @@
    "block.urushi.red_urushi_shitamiita_slab": "Red Urushi Shitamiita Slab",
    "block.urushi.black_urushi_shitamiita_slab": "Black Urushi Shitamiita Slab",
    "gui.jei.category.urushi.polishing": "Polishing",
-   "gui.jei.category.urushi.polishing.text": "Move with Piston"
+   "gui.jei.category.urushi.polishing.text": "Move with Piston",
+    "info.urushi.dimension.kakuriyo": "Kakuriyo",
+    "info.urushi.shichirin.message": "intensity of the fire :  ",
+    "info.urushi.undercooked": "UNDERCOOKED LEVEL",
+    "info.urushi.wellcooked": "WELL-COOKED LEVEL",
+    "info.urushi.overcooked": "OVERCOOKED LEVEL",
+    "info.urushi.shichirin1": "Ignite, put fuels into, and right-click with Uchiwa!",
+    "info.urushi.shichirin2": "For the first 5 seconds, the intensity of the fire does not affect the cooking result.",
+    "info.urushi.shichirin3": "Make the duration of ☆ and the duration of ★ as equal as possible!",
+    "info.urushi.uchiwa": "Sweep grass, flowers, and leaves!",
+    "block.urushi.unfired_shichirin": "Unfired Shichirin",
+    "block.urushi.unfinished_shichirin": "Unfinished Shichirin",
+    "block.urushi.shichirin": "Shichirin",
+    "block.urushi.long_chochin": "Chochin",
+    "block.urushi.izakaya_long_chochin": "Izakaya Chochin",
+    "block.urushi.eigyouchu_long_chochin": "EIgyouchu Chochin",
+    "block.urushi.oden_long_chochin": "Oden Chochin",
+    "block.urushi.ramen_long_chochin": "Ramen Chochin",
+    "block.urushi.shokujidokoro_long_chochin": "Shokujidokoro Chochin",
+    "item.urushi.uchiwa": "Uchiwa"
+   
+   
+   
+   
+   
+   
+   
+   
+    
    
    
     

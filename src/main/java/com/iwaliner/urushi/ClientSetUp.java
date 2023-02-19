@@ -1,5 +1,6 @@
 package com.iwaliner.urushi;
 
+import com.iwaliner.urushi.blockentity.renderer.MirrorRenderer;
 import com.iwaliner.urushi.blockentity.renderer.SanboRenderer;
 import com.iwaliner.urushi.blockentity.renderer.ShichirinRenderer;
 import com.iwaliner.urushi.blockentity.screen.DoubledWoodenCabinetryScreen;
@@ -17,10 +18,8 @@ import com.iwaliner.urushi.util.UrushiUtils;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.ToggleKeyMapping;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -28,22 +27,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ClientRegistry;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
-import net.minecraftforge.client.settings.KeyConflictContext;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.loading.FMLPaths;
 
 import javax.annotation.Nullable;
-import javax.swing.*;
-import javax.swing.text.JTextComponent;
 import java.io.File;
 import java.util.Map;
 
@@ -115,6 +108,9 @@ public class ClientSetUp {
         Minecraft.getInstance().particleEngine.register(ParticleRegister.FallingSakuraLeaves.get(), FallingSakuraLeavesParticle.Provider::new);
 
     }
+
+
+
 
     @Nullable
     @SubscribeEvent
@@ -221,13 +217,22 @@ public class ClientSetUp {
             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier1.get()));
             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier2.get()));
             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier3.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.shichirin.get()));
             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log.get()));
             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log_with_wood_amber.get()));
             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log_with_fire_amber.get()));
             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log_with_earth_amber.get()));
             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log_with_metal_amber.get()));
             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log_with_water_amber.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.senryoubako.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.fire_element_hokora.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.shichirin.get()));
+            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.uchiwa.get());
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.wood_element_sacred_rock.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.wood_element_emitter_tier1.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.wood_element_tank_tier1.get()));
+
+
+
 
 
 
@@ -326,6 +331,17 @@ public class ClientSetUp {
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.japanese_cedar_shitamiita_slab.get()),"half_slab_japanese_cedar_shitamiita");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.red_urushi_shitamiita_slab.get()),"half_slab_red_urushi_shitamiita");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.black_urushi_shitamiita_slab.get()),"half_slab_black_urushi_shitamiita");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.long_chochin.get()),"long_chochin");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.izakaya_long_chochin.get()),"izakaya_long_chochin");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.eigyouchu_long_chochin.get()),"eigyouchu_long_chochin");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.ramen_long_chochin.get()),"ramen_long_chochin");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.oden_long_chochin.get()),"oden_long_chochin");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.shokujidokoro_long_chochin.get()),"shokujidokoro_long_chochin");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.shichirin.get()),"shichirin_filled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.unfired_shichirin.get()),"shichirin_unfired");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.unfinished_shichirin.get()),"shichirin_unfinished");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.wood_element_tank_tier1.get()),"wood_element_tank_tier1");
+
 
             CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.yomi_stone.get(),"yomi_stone");
             CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.yomi_copper_ore.get(),"copper_ore_yomi");

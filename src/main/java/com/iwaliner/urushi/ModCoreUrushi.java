@@ -1,6 +1,7 @@
 package com.iwaliner.urushi;
 
 import com.iwaliner.urushi.block.*;
+import com.iwaliner.urushi.blockentity.ShichirinBlockEntity;
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.UrushiUtils;
@@ -17,6 +18,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -180,10 +182,12 @@ public class ModCoreUrushi {
             List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
             base.add(PlacementFeatures.SAKURA_PLACE);
         }
-        if(type.contains(BiomeDictionary.Type.FOREST)){
+      //  if(type.contains(BiomeDictionary.Type.FOREST)){
+        if(biome==Biomes.FOREST||biome==Biomes.BIRCH_FOREST||biome==Biomes.TAIGA||biome==Biomes.FLOWER_FOREST||biome==Biomes.PLAINS||biome==Biomes.JUNGLE){
 
             List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
             base.add(PlacementFeatures.LACQUER_PLACE);
+
             List<Holder<PlacedFeature>> topBase=event.getGeneration().getFeatures(GenerationStep.Decoration.TOP_LAYER_MODIFICATION);
             topBase.add(PlacementFeatures.KAKURIYO_PORTAL);
         }
@@ -199,7 +203,8 @@ public class ModCoreUrushi {
             base.add(PlacementFeatures.CEDAR_PLACE);
         }
 
-        if(type.contains(BiomeDictionary.Type.MOUNTAIN)&&biome!=Biomes.MEADOW&&biome!=Biomes.GROVE){
+        //if(type.contains(BiomeDictionary.Type.MOUNTAIN)&&biome!=Biomes.MEADOW&&biome!=Biomes.GROVE){
+        if(biome==Biomes.JAGGED_PEAKS||biome==Biomes.FROZEN_PEAKS||biome==Biomes.ICE_SPIKES||biome==Biomes.STONY_PEAKS||biome==Biomes.WINDSWEPT_HILLS){
 
                 List<Holder<PlacedFeature>> lakeBase = event.getGeneration().getFeatures(GenerationStep.Decoration.LAKES);
             lakeBase.add(PlacementFeatures.HOT_SPRING_PLACE);
@@ -430,9 +435,12 @@ public class ModCoreUrushi {
     public void PlayerSpeedEvent(EntityEvent.EnteringSection event) {
         if(ConfigUrushi.TurnOnSpeedUp.get()) {
             if (event.getEntity() instanceof Player) {
+
                 Player entityPlayer = (Player) event.getEntity();
-                entityPlayer.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.116D);
-                entityPlayer.getAttributes().save();
+                if(!entityPlayer.isPassenger()) {
+                    Objects.requireNonNull(entityPlayer.getAttribute(Attributes.MOVEMENT_SPEED)).setBaseValue(0.116D);
+                    entityPlayer.getAttributes().save();
+                }
             }
         }
 
@@ -610,15 +618,40 @@ public class ModCoreUrushi {
         }
         if(stack.getTag()!=null){
             CompoundTag tag=stack.getTag();
-            if(tag.contains("undercooked")){
-                int level=tag.getInt("undercooked");
-                event.getToolTip().add((new TranslatableComponent("info.urushi.undercooked" ).append(" "+level)).withStyle(ChatFormatting.DARK_RED));
-            }else if(tag.contains("overcooked")){
-                int level=tag.getInt("overcooked");
-                event.getToolTip().add((new TranslatableComponent("info.urushi.overcooked" ).append(" "+level)).withStyle(ChatFormatting.GRAY));
-            }else if(tag.contains("wellcooked")){
-                int level=tag.getInt("wellcooked");
-                event.getToolTip().add((new TranslatableComponent("info.urushi.wellcooked" ).append(" "+level)).withStyle(ChatFormatting.GOLD));
+            if(tag.contains("cookingEnum")){
+                int i=tag.getInt("cookingEnum");
+                int level=ShichirinBlockEntity.getCookingLevel(i);
+                ChatFormatting color=ChatFormatting.WHITE;
+                if(i==0){
+                    color= ChatFormatting.AQUA;
+                }else if(i<3){
+                    color= ChatFormatting.AQUA;
+                }else if(i<5){
+                    color= ChatFormatting.AQUA;
+                }else if(i<7){
+                    color= ChatFormatting.YELLOW;
+                }else if(i<9){
+                    color= ChatFormatting.YELLOW;
+                }else if(i==9){
+                    color= ChatFormatting.YELLOW;
+                }else if(i<12){
+                    color= ChatFormatting.YELLOW;
+                }else if(i<14){
+                    color= ChatFormatting.YELLOW;
+                }else if(i<16){
+                    color= ChatFormatting.RED;
+                }else if(i<18){
+                    color= ChatFormatting.RED;
+                }else{
+                    color= ChatFormatting.RED;
+                }
+                if(ShichirinBlockEntity.getCookingType(i).equals("undercooked")){
+                    event.getToolTip().add((new TranslatableComponent("info.urushi.undercooked" ).append(" "+level)).withStyle(color));
+                }else if(ShichirinBlockEntity.getCookingType(i).equals("wellcooked")){
+                    event.getToolTip().add((new TranslatableComponent("info.urushi.wellcooked" ).append(" "+level)).withStyle(color));
+                }else{
+                    event.getToolTip().add((new TranslatableComponent("info.urushi.overcooked" ).append(" "+level)).withStyle(color));
+                }
             }
         }
         if(underDevelopmentList.contains(stack.getItem())){
@@ -670,16 +703,20 @@ public class ModCoreUrushi {
         if(tag==null){
             return;
         }
-        if(tag.contains("undercooked")){
-            int level=tag.getInt("undercooked");
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.HUNGER,100+60*level,level+10));
-        }else if(tag.contains("overcooked")){
-            int level=tag.getInt("overcooked");
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON,10+10*level,1));
-        }else if(tag.contains("wellcooked")){
-            int level=tag.getInt("wellcooked");
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION,100+10*level,level));
-        }
+        if(tag.contains("cookingEnum")){
+            int ID=tag.getInt("cookingEnum");
+            int level=ShichirinBlockEntity.getCookingLevel(ID);
+            if(ShichirinBlockEntity.getCookingType(ID).equals("undercooked")){
+                livingEntity.addEffect(new MobEffectInstance(MobEffects.HUNGER,300+60*level,level+15));
+            }else if(ShichirinBlockEntity.getCookingType(ID).equals("wellcooked")){
+                livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION,40+level*10, 1));
+                if(ID==9){
+                    livingEntity.addEffect(new MobEffectInstance(MobEffects.ABSORPTION,200,0));
+                }
+            }else{
+                livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON,10+10*level,1));
+            }
+          }
 
     }
 

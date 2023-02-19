@@ -1,5 +1,6 @@
 package com.iwaliner.urushi.util;
 
+import com.iwaliner.urushi.ItemAndBlockRegister;
 import com.iwaliner.urushi.TagUrushi;
 import com.iwaliner.urushi.util.interfaces.*;
 import net.minecraft.ChatFormatting;
@@ -189,6 +190,21 @@ public class ElementUtils {
         }
 
         return false;
+    }
+    public  static boolean isSpecificElement(ElementType type,BlockState state){
+        if(type==ElementType.WoodElement){
+            return ElementUtils.isWoodElement(state);
+        }else if(type==ElementType.FireElement){
+            return ElementUtils.isFireElement(state);
+        }else if(type==ElementType.EarthElement){
+            return ElementUtils.isEarthElement(state);
+        }else if(type==ElementType.MetalElement){
+            return ElementUtils.isMetalElement(state);
+        }else if(type==ElementType.WaterElement){
+            return ElementUtils.isWaterElement(state);
+        }else{
+            return false;
+        }
     }
 
     public static float countMiningPercentByInventory(Player player, ElementType type)
@@ -400,6 +416,21 @@ public class ElementUtils {
             return Blocks.WHITE_CONCRETE_POWDER.defaultBlockState();
         }else {
             return Blocks.PURPLE_CONCRETE_POWDER.defaultBlockState();
+        }
+    }
+    public static ItemStack getOverflowStack(ElementType type){
+        if(type==ElementType.WoodElement){
+            return new ItemStack(ItemAndBlockRegister.wood_amber.get());
+        }else if(type==ElementType.FireElement){
+            return new ItemStack(ItemAndBlockRegister.fire_amber.get());
+        }else if(type==ElementType.EarthElement){
+            return new ItemStack(ItemAndBlockRegister.earth_amber.get());
+        }else if(type==ElementType.MetalElement){
+            return new ItemStack(ItemAndBlockRegister.metal_amber.get());
+        }else if(type==ElementType.WaterElement){
+            return new ItemStack(ItemAndBlockRegister.water_amber.get());
+        }else{
+            return ItemStack.EMPTY;
         }
     }
 }

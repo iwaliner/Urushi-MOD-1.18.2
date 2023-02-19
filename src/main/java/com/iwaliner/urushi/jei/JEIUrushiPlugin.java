@@ -77,7 +77,7 @@ public class JEIUrushiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.senbakoki.get()), RecipeType.create(ModCoreUrushi.ModID, "senbakoki", SenbakokiRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.sandpaper_block.get()), RecipeType.create(ModCoreUrushi.ModID, "polishing", SandpaperPolishingRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.chiseled_lacquer_log.get()), RecipeType.create(ModCoreUrushi.ModID, "chiseled_lacquer_log", ChiseledLacquerLogRecipe.class));
-        //registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.shichirin.get()), RecipeType.create( RecipeTypes.CAMPFIRE_COOKING.getUid().getNamespace(), RecipeTypes.CAMPFIRE_COOKING.getUid().getPath(), CampfireCookingRecipe.class));
+        registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.shichirin.get()), RecipeType.create( RecipeTypes.CAMPFIRE_COOKING.getUid().getNamespace(), RecipeTypes.CAMPFIRE_COOKING.getUid().getPath(), CampfireCookingRecipe.class));
 
     }
 }

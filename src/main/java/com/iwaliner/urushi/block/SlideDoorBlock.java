@@ -2,6 +2,7 @@ package com.iwaliner.urushi.block;
 
 
 
+import com.iwaliner.urushi.ConfigUrushi;
 import com.iwaliner.urushi.util.UrushiUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -236,16 +237,30 @@ public class SlideDoorBlock extends Block {
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        if(state.getValue(OPEN)==0||state.getValue(OPEN)==13) {
-            world.setBlock(pos, state.setValue(OPEN, Integer.valueOf(state.getValue(OPEN) == 0 ? 1 : 12)).setValue(IS_OPENING, state.getValue(OPEN)==0), 10);
-            world.playSound(player, pos, SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
+        if (ConfigUrushi.instantlySlidingDoor.get()) {
+            if (state.getValue(OPEN) == 0 ) {
+                world.setBlock(pos, state.setValue(OPEN, 13).setValue(IS_OPENING, state.getValue(OPEN) == 0), 10);
+                world.playSound(player, pos, SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
+                return InteractionResult.sidedSuccess(world.isClientSide);
+            }else if (state.getValue(OPEN) == 13) {
+                world.setBlock(pos, state.setValue(OPEN, 0).setValue(IS_OPENING, state.getValue(OPEN) == 0), 10);
+                world.playSound(player, pos, SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
+                return InteractionResult.sidedSuccess(world.isClientSide);
+            }else{
+                return InteractionResult.FAIL;
+            }
+        } else {
+            if (state.getValue(OPEN) == 0 || state.getValue(OPEN) == 13) {
+                world.setBlock(pos, state.setValue(OPEN, Integer.valueOf(state.getValue(OPEN) == 0 ? 1 : 12)).setValue(IS_OPENING, state.getValue(OPEN) == 0), 10);
+                world.playSound(player, pos, SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
 
-            world.scheduleTick(new BlockPos(pos), this, 1);
+                world.scheduleTick(new BlockPos(pos), this, 1);
 
 
-            return InteractionResult.sidedSuccess(world.isClientSide);
-        }else{
-            return InteractionResult.FAIL;
+                return InteractionResult.sidedSuccess(world.isClientSide);
+            } else {
+                return InteractionResult.FAIL;
+            }
         }
     }
 
@@ -257,14 +272,26 @@ public class SlideDoorBlock extends Block {
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos pos2, boolean boo) {
         boolean flag = world.hasNeighborSignal(pos) || world.hasNeighborSignal(pos.relative(state.getValue(HALF) == DoubleBlockHalf.LOWER ? Direction.UP : Direction.DOWN));
         if (block != this && flag != state.getValue(POWERED)) {
-            if (state.getValue(OPEN) == 0 || state.getValue(OPEN) == 13) {
-                if (flag == isClose(state)) {
-                    world.playSound((Player) null, pos, SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
+            if(ConfigUrushi.instantlySlidingDoor.get()){
+                if (state.getValue(OPEN) == 0 || state.getValue(OPEN) == 13) {
+                    if (flag == isClose(state)) {
+                        world.playSound((Player) null, pos, SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
 
+                    }
+
+                    world.setBlock(pos, state.setValue(POWERED, Boolean.valueOf(flag)).setValue(OPEN, state.getValue(OPEN) == 0 ? 13 : 0).setValue(IS_OPENING, state.getValue(OPEN) == 0), 2);
+                    world.scheduleTick(new BlockPos(pos), this, 1);
                 }
+            }else {
+                if (state.getValue(OPEN) == 0 || state.getValue(OPEN) == 13) {
+                    if (flag == isClose(state)) {
+                        world.playSound((Player) null, pos, SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
 
-                world.setBlock(pos, state.setValue(POWERED, Boolean.valueOf(flag)).setValue(OPEN, state.getValue(OPEN)==0 ? 1 : 12).setValue(IS_OPENING,state.getValue(OPEN)==0), 2);
-                world.scheduleTick(new BlockPos(pos), this, 1);
+                    }
+
+                    world.setBlock(pos, state.setValue(POWERED, Boolean.valueOf(flag)).setValue(OPEN, state.getValue(OPEN) == 0 ? 1 : 12).setValue(IS_OPENING, state.getValue(OPEN) == 0), 2);
+                    world.scheduleTick(new BlockPos(pos), this, 1);
+                }
             }
         }
     }

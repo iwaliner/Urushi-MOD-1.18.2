@@ -62,6 +62,7 @@
     "urushi:magma_stairs",
     "urushi:rice_cauldron",
     "urushi:fryer",
+    "urushi:unfinished_shichirin",
     "urushi:shichirin",
     "urushi:normal_iron_ingot_9",
     "urushi:normal_iron_ingot_8",
@@ -115,6 +116,9 @@
     "urushi:petrified_log_with_earth_amber",
     "urushi:petrified_log_with_metal_amber",
     "urushi:petrified_log_with_water_amber",
-    "urushi:petrified_planks"
+    "urushi:petrified_planks",
+    "urushi:wood_element_sacred_rock",
+    "urushi:wood_element_emitter_tier1",
+    "urushi:wood_element_mirror_tier1"
   ]
 }

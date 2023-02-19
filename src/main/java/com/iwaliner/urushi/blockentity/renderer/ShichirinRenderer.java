@@ -12,7 +12,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -31,8 +30,8 @@ public class ShichirinRenderer implements BlockEntityRenderer<ShichirinBlockEnti
 
             if (!itemstack.isEmpty()) {
                 poseStack.pushPose();
-                poseStack.translate(0.5D, 0.0625D*18, 0.5D);
-                Direction direction1 = Direction.from2DDataValue((direction.get2DDataValue()) % 4);
+                poseStack.translate(0.5D, 0.0625D*15.8D, 0.5D);
+                Direction direction1 = Direction.from2DDataValue((direction.get2DDataValue()) % 4).getOpposite();
                 float f = -direction1.toYRot();
                 poseStack.mulPose(Vector3f.YP.rotationDegrees(f));
                 poseStack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
@@ -44,7 +43,7 @@ public class ShichirinRenderer implements BlockEntityRenderer<ShichirinBlockEnti
 
         /**特定のブロックの見た目をかぶせるテスト*/
        // poseStack.translate(0.5D, 3D, 0.5D);
-       // Minecraft.getInstance().getBlockRenderer().renderSingleBlock(Blocks.YELLOW_WOOL.defaultBlockState(),poseStack,bufferSource,255,0);
+      //  Minecraft.getInstance().getBlockRenderer().renderSingleBlock(Blocks.YELLOW_WOOL.defaultBlockState(),poseStack,bufferSource,255,0);
 
             /**以下、バニラのビーコンビームを使った実験の跡。*/
 /*

@@ -7,12 +7,16 @@ import com.iwaliner.urushi.block.KakuriyoPortalBlock;
 import com.iwaliner.urushi.block.KasugaLanternBlock;
 import com.iwaliner.urushi.block.ParapetBlock;
 import com.iwaliner.urushi.block.SimpleShapedBlock;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.SlabType;
@@ -46,8 +50,9 @@ public class KakuriyoTeleporter implements ITeleporter {
             entity.teleportTo(center.getX()+0.5D,center.getY()+0.5D,center.getZ()-2.5D);
         if(level==level.getServer().getLevel( DimensionRegister.KakuriyoKey )){
             createPortalInKakuriyo(level,center);
-        }else{
+
         }
+
         return new PortalInfo(entity.position(), Vec3.ZERO, -180f, entity.getXRot());
     }
 

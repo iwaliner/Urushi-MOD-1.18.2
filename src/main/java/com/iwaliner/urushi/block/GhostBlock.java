@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class GhostBlock extends Block implements IGhostBlock {
 
-    public static final BooleanProperty POWERED = BooleanProperty.create("powered");
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public GhostBlock(Properties p_49795_) {
         super(p_49795_);
         this.registerDefaultState(this.defaultBlockState().setValue(POWERED, Boolean.valueOf(false)));

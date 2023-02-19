@@ -179,6 +179,9 @@ public class BlockRenderTypeRegister {
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.sanbo_tier2.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.sanbo_tier3.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.wind_bell.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.shichirin.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.wood_element_sacred_rock.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.wood_element_tank_tier1.get(), RenderType.cutout());
 
     }
 }

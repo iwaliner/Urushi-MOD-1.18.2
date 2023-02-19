@@ -3,10 +3,15 @@ package com.iwaliner.urushi.blockentity;
 
 
 import com.iwaliner.urushi.BlockEntityRegister;
+import com.iwaliner.urushi.ConfigUrushi;
 import com.iwaliner.urushi.ParticleRegister;
+import com.iwaliner.urushi.TagUrushi;
 import com.iwaliner.urushi.block.ShichirinBlock;
 import com.iwaliner.urushi.recipe.FryingRecipe;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -47,13 +52,16 @@ import java.util.Objects;
 public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, StackedContentsCompatible, RecipeHolder {
     private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
 
-    protected final RecipeType<? extends CampfireCookingRecipe> recipeType=RecipeType.CAMPFIRE_COOKING;
-    private static final int[] SLOTS_FOR_UP_AND_SIDES = new int[]{1};
+    public final RecipeType<? extends CampfireCookingRecipe> recipeType=RecipeType.CAMPFIRE_COOKING;
+    private static final int[] SLOTS_FOR_DOWN = new int[]{1};
     private static final int[] SLOTS_FOR_UP = new int[]{0};
+    private static final int[] SLOTS_FOR_SIDES = new int[]{2};
     private int processingTime;
-    private int fire;
+    public int prePerfectFire;
+    public int fire;
     private int differ;
-    private NonNullList<ItemStack> items = NonNullList.withSize(2, ItemStack.EMPTY);
+    private final int iconAmount=ConfigUrushi.shichirinIconAmount.get();
+    private NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
 
     public ShichirinBlockEntity(BlockPos p_155052_, BlockState p_155053_) {
         super(BlockEntityRegister.Shichirin.get(), p_155052_, p_155053_);
@@ -65,6 +73,7 @@ public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements W
         this.processingTime = p_155025_.getInt("processTime");
         this.fire = p_155025_.getInt("fire");
         this.differ = p_155025_.getInt("differ");
+        this.prePerfectFire = p_155025_.getInt("prePerfectFire");
 
 
     }
@@ -74,6 +83,7 @@ public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements W
         p_187452_.putInt("processTime", this.processingTime);
         p_187452_.putInt("fire", this.fire);
         p_187452_.putInt("differ", this.differ);
+        p_187452_.putInt("prePerfectFire", this.prePerfectFire);
         ContainerHelper.saveAllItems(p_187452_, this.items,true);
     }
     public CompoundTag getUpdateTag() {
@@ -81,6 +91,8 @@ public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements W
         compoundtag.putInt("processTime", this.processingTime);
         compoundtag.putInt("fire", this.fire);
         compoundtag.putInt("differ", this.differ);
+        compoundtag.putInt("prePerfectFire", this.prePerfectFire);
+
         ContainerHelper.saveAllItems(compoundtag, this.items, true);
         return compoundtag;
     }
@@ -109,7 +121,7 @@ public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements W
 
 
     public int getContainerSize() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -168,6 +180,7 @@ public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements W
 
     }
 
+
     @Override
     public boolean stillValid(Player player) {
         assert this.level != null;
@@ -187,61 +200,96 @@ public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements W
     public static void tick(Level level, BlockPos pos, BlockState bs, ShichirinBlockEntity blockEntity) {
         if (!level.isClientSide) {
             Recipe<?> recipe = level.getRecipeManager().getRecipeFor((RecipeType<CampfireCookingRecipe>) blockEntity.recipeType, blockEntity, level).orElse(null);
-            AbstractCookingRecipe campfireCookingRecipe= (AbstractCookingRecipe) recipe;
+            AbstractCookingRecipe campfireCookingRecipe = (AbstractCookingRecipe) recipe;
             ItemStack slot0Stack = blockEntity.items.get(0);
-            Item slot0Item = slot0Stack.getItem();
             ItemStack slot1Stack = blockEntity.items.get(1);
-            Item slot1Item = slot1Stack.getItem();
+            ItemStack fuelStack = blockEntity.items.get(2);
             BlockState state = level.getBlockState(pos);
-            if (!slot0Stack.isEmpty()) {
-                level.addParticle(ParticleRegister.EarthElement.get(), pos.getX(), pos.getY() + 1, pos.getZ(), 0.0D, 0.0D, 0.0D);
-            }
-            if (!slot1Stack.isEmpty()) {
-                level.addParticle(ParticleRegister.WaterElement.get(), pos.getX() + 1, pos.getY() + 1, pos.getZ(), 0.0D, 0.0D, 0.0D);
-            }
 
 
-            if (blockEntity.fire > 0) {
-                --blockEntity.fire;
-            } else {
-                blockEntity.fire = 0;
+            if (fuelStack.isEmpty() && state.getValue(ShichirinBlock.SHICHIRIN) != 0) {
+                level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 0), 2);
             }
-            if (blockEntity.canWork() && blockEntity.canBurn(recipe,blockEntity.items,blockEntity.getMaxStackSize())) {
-                blockEntity.processingTime++;
-                if (blockEntity.processingTime > 20 * 5) {
-                    blockEntity.differ += blockEntity.fire - blockEntity.getPerfectFire(campfireCookingRecipe);
+            if (state.getValue(ShichirinBlock.SHICHIRIN) == 0 && !fuelStack.isEmpty()) {
+                if(blockEntity.prePerfectFire==0){
+                    blockEntity.prePerfectFire=350;
                 }
-            } else {
-                blockEntity.processingTime = 0;
+                level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 1), 2);
             }
-            if(!blockEntity.canBurn(recipe,blockEntity.items,blockEntity.getMaxStackSize())){
-                blockEntity.moveItemToExportSlot();
-            }
-            if (blockEntity.processingTime >= blockEntity.getMaxProcessTime(campfireCookingRecipe)&& blockEntity.canBurn(recipe,blockEntity.items,blockEntity.getMaxStackSize())) {
+            if (state.getValue(ShichirinBlock.SHICHIRIN) != 0) {
 
-                ItemStack resultStack = ((Recipe<WorldlyContainer>) recipe).assemble(blockEntity);
-                resultStack.grow(slot0Stack.getCount()-1);
-                if (resultStack.getTag() == null) {
-                    resultStack.setTag(new CompoundTag());
+                if (blockEntity.fire > 0) {
+                    --blockEntity.fire;
+                } else {
+                    blockEntity.fire = 0;
                 }
-                CompoundTag tag = resultStack.getTag();
+                if (blockEntity.canWork() && blockEntity.canBurn(recipe, blockEntity.items, blockEntity.getMaxStackSize())) {
+                    blockEntity.processingTime++;
+                    if (blockEntity.processingTime > 20 * 5) {
+                        blockEntity.differ += blockEntity.fire - blockEntity.getPerfectFire(campfireCookingRecipe);
+                    }
+                } else {
+                    blockEntity.processingTime = 0;
+                }
+                if (!blockEntity.canBurn(recipe, blockEntity.items, blockEntity.getMaxStackSize())) {
+                    blockEntity.moveItemToExportSlot();
+                }
+                if (blockEntity.processingTime >= blockEntity.getMaxProcessTime(campfireCookingRecipe) && blockEntity.canBurn(recipe, blockEntity.items, blockEntity.getMaxStackSize())) {
+                    blockEntity.prePerfectFire=blockEntity.getPerfectFire(campfireCookingRecipe);
+                    ItemStack resultStack = ((Recipe<WorldlyContainer>) recipe).assemble(blockEntity);
+                    resultStack.grow(slot0Stack.getCount() - 1);
+                    if (resultStack.getTag() == null) {
+                        resultStack.setTag(new CompoundTag());
+                    }
+                    CompoundTag tag = resultStack.getTag();
 
-                blockEntity.setCookingNBT(tag, blockEntity.differ);
-                blockEntity.items.set(0,resultStack.copy());
-                blockEntity.moveItemToExportSlot();
-                blockEntity.processingTime = 0;
-                blockEntity.differ = 0;
-            }
-            if (blockEntity.processingTime == 0 && state.getValue(ShichirinBlock.LIT)) {
-                state.setValue(ShichirinBlock.LIT, false);
-            }
+                    blockEntity.setCookingNBT(tag, blockEntity.differ);
+                    blockEntity.items.set(0, resultStack.copy());
+                    blockEntity.processingTime = 0;
+                    blockEntity.differ = 0;
+                    blockEntity.moveItemToExportSlot();
 
-            List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(4D));
-            if (!list.isEmpty()) {
-                for (LivingEntity entity : list) {
-                    if (entity instanceof Player) {
-                        Player player = (Player) entity;
-                        player.displayClientMessage(new TranslatableComponent("info.urushi.shichirin.message").append("  fire: " + blockEntity.fire + "/" + blockEntity.getPerfectFire(campfireCookingRecipe) + " ,time: " + blockEntity.processingTime + "/" + blockEntity.getMaxProcessTime(campfireCookingRecipe)), true);
+                    if (level.random.nextInt(5) == 0) {
+                        fuelStack.shrink(1);
+                    }
+                    level.playSound((Player) null,pos,SoundEvents.FIRE_EXTINGUISH,SoundSource.BLOCKS,1F,1F);
+                }
+                if (blockEntity.fire == 0 && state.getValue(ShichirinBlock.SHICHIRIN) != 0 && state.getValue(ShichirinBlock.SHICHIRIN) != 1) {
+                    //火を消す
+                    level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 1), 2);
+                    level.playSound((Player) null,pos,SoundEvents.FIRE_EXTINGUISH,SoundSource.BLOCKS,1F,1F);
+                } else if (blockEntity.getCookingTypeByFire(campfireCookingRecipe) == 0 && state.getValue(ShichirinBlock.SHICHIRIN) != 2) {
+                    level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 2), 2);
+                    level.playSound((Player) null,pos,SoundEvents.FIRE_AMBIENT,SoundSource.BLOCKS,1F,1F);
+                } else if (blockEntity.getCookingTypeByFire(campfireCookingRecipe) == 1 && state.getValue(ShichirinBlock.SHICHIRIN) != 3) {
+                    level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 3), 2);
+                    level.playSound((Player) null,pos,SoundEvents.FIRE_AMBIENT,SoundSource.BLOCKS,1F,1F);
+                } else if (blockEntity.getCookingTypeByFire(campfireCookingRecipe) == 2 && state.getValue(ShichirinBlock.SHICHIRIN) != 4) {
+                    level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 4), 2);
+                    level.playSound((Player) null,pos,SoundEvents.FIRE_AMBIENT,SoundSource.BLOCKS,1F,1F);
+                }
+
+
+                List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(1D));
+                if (!list.isEmpty()) {
+                    for (LivingEntity entity : list) {
+                        if (entity instanceof Player) {
+                            Player player = (Player) entity;
+                             TranslatableComponent component = new TranslatableComponent("info.urushi.shichirin.message");
+                            String filled = "█";
+                            String empty = "▒";
+                            String center_filled = "★";
+                            String center_empty = "☆";
+                             int iconAmount= blockEntity.iconAmount;
+
+                            int j1=Mth.floor(iconAmount*(double) blockEntity.fire/(double) blockEntity.getPerfectFire(campfireCookingRecipe));
+                             int j2= j1>iconAmount-1? iconAmount : blockEntity.fire==0? 0 : j1+1;
+                            int j3= j1<iconAmount+1? 0 : j1>iconAmount*2? iconAmount : j1-iconAmount;
+                            int j4= j1>iconAmount-1? 1 : 0;
+                            int j5= j1>iconAmount-1? 0 : 1;
+                            player.displayClientMessage(component.append(filled.repeat(j2)).append(empty.repeat(iconAmount - j2)).append(center_filled.repeat(j4)).append(center_empty.repeat(j5)).append(filled.repeat(j3)).append(empty.repeat(iconAmount-j3)).withStyle(ChatFormatting.YELLOW).withStyle(ChatFormatting.UNDERLINE), true);
+
+                        }
                     }
                 }
             }
@@ -256,7 +304,7 @@ public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements W
     }
     public int getPerfectFire(AbstractCookingRecipe campfireCookingRecipe){
         if(campfireCookingRecipe==null){
-            return 200;
+            return prePerfectFire;
         }
         return Mth.floor(campfireCookingRecipe.getExperience()*1000);
     }
@@ -266,7 +314,7 @@ public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements W
     public boolean canWork(){
         if (getItem(0).isEmpty()) return false;
         assert level != null;
-        return level.getBlockState(getBlockPos()).getBlock() instanceof ShichirinBlock && level.getBlockState(getBlockPos()).getValue(ShichirinBlock.LIT);
+        return level.getBlockState(getBlockPos()).getBlock() instanceof ShichirinBlock && level.getBlockState(getBlockPos()).getValue(ShichirinBlock.SHICHIRIN)!=0;
     }
     public void markUpdated() {
         this.setChanged();
@@ -276,10 +324,14 @@ public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements W
     public boolean canPlaceItem(int slot, ItemStack stack) {
         if (slot == 1) {
             return false;
+        }else if (slot == 2) {
+            return stack.is(TagUrushi.SHICHIRIN_FUEL);
         }  else {
             return this.items.get(0).getCount()==0&&this.items.get(1).getCount()==0;
         }
     }
+
+
 
     @Override
     public boolean canPlaceItemThroughFace(int i, ItemStack itemStack, @org.jetbrains.annotations.Nullable Direction p_19237_) {
@@ -298,8 +350,10 @@ public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements W
     public int[] getSlotsForFace(Direction direction) {
         if(direction==Direction.UP){
             return SLOTS_FOR_UP;
+        }else if(direction==Direction.DOWN){
+            return SLOTS_FOR_DOWN;
         }else{
-            return SLOTS_FOR_UP_AND_SIDES;
+            return SLOTS_FOR_SIDES;
         }
     }
     net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =
@@ -309,8 +363,10 @@ public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements W
         if (!this.remove && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if (facing == Direction.UP)
                 return handlers[0].cast();
-            else
+            else if (facing == Direction.DOWN)
                 return handlers[1].cast();
+            else
+                return handlers[2].cast();
         }
         return super.getCapability(capability, facing);
     }
@@ -327,24 +383,28 @@ public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements W
         }
     }
     public boolean canBurn(@Nullable Recipe<?> recipe, NonNullList<ItemStack> stacks, int count) {
-        if (!stacks.get(0).isEmpty() && recipe != null) {
-            ItemStack itemstack = ((Recipe<WorldlyContainer>) recipe).assemble(this);
-            if (itemstack.isEmpty()) {
-                return false;
-            } else {
-                ItemStack itemstack1 = stacks.get(1);
-                if (itemstack1.isEmpty()) {
-                    return true;
-                } else if (!itemstack1.sameItem(itemstack)) {
-                    return false;
-                } else if (itemstack1.getCount() + itemstack.getCount() <= count && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) {
-                    return true;
-                } else {
-                    return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize();
-                }
-            }
-        } else {
+        if(stacks.get(2).isEmpty()){
             return false;
+        }else {
+            if (!stacks.get(0).isEmpty() && recipe != null) {
+                ItemStack itemstack = ((Recipe<WorldlyContainer>) recipe).assemble(this);
+                if (itemstack.isEmpty()) {
+                    return false;
+                } else {
+                    ItemStack itemstack1 = stacks.get(1);
+                    if (itemstack1.isEmpty()) {
+                        return true;
+                    } else if (!itemstack1.sameItem(itemstack)) {
+                        return false;
+                    } else if (itemstack1.getCount() + itemstack.getCount() <= count && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) {
+                        return true;
+                    } else {
+                        return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize();
+                    }
+                }
+            } else {
+                return false;
+            }
         }
     }
 
@@ -359,48 +419,127 @@ public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements W
     @org.jetbrains.annotations.Nullable
     @Override
     public Recipe<?> getRecipeUsed() {
-        return null;
+        return (Recipe<?>) this.recipeType;
     }
     private CompoundTag setCookingNBT(CompoundTag tag,int differ){
-        if(differ<-8000){
-            tag.putInt("undercooked", 5);
-        }else if(differ<-7000){
-            tag.putInt("undercooked", 4);
-        }else if(differ<-6000){
-            tag.putInt("undercooked", 3);
-        } else if(differ<-5000){
-            tag.putInt("undercooked", 2);
-        }else if(differ<-4000){
-            tag.putInt("undercooked", 1);
-        }else if(differ<-3000){
-            tag.putInt("wellcooked", 1);
-        }else if(differ<-2000){
-            tag.putInt("wellcooked", 2);
-        }else if(differ<-1000){
-            tag.putInt("wellcooked", 3);
-        }else if(differ<-100){
-            tag.putInt("wellcooked", 4);
-        }else if(differ<100){
-            tag.putInt("wellcooked", 5);
-        }else if(differ<1000){
-            tag.putInt("wellcooked", 4);
-        } else if(differ<2000){
-            tag.putInt("wellcooked", 3);
-        }else if(differ<3000){
-            tag.putInt("wellcooked", 2);
-        }else if(differ<4000){
-            tag.putInt("wellcooked", 1);
-        }else if(differ<5000){
-            tag.putInt("overcooked", 1);
-        }else if(differ<6000){
-            tag.putInt("overcooked", 2);
-        }else if(differ<7000){
-            tag.putInt("overcooked", 3);
-        }else if(differ<8000){
-            tag.putInt("overcooked", 4);
-        }else {
-            tag.putInt("overcooked", 5);
-        }
+        ShichirinEnum enumType=getEnum();
+        tag.putInt("cookingEnum", enumType.getID());
         return tag;
+    }
+    public  enum ShichirinEnum {
+        undercookedLevel5(0),
+        undercookedLevel4(1),
+        undercookedLevel3(2),
+        undercookedLevel2(3),
+        undercookedLevel1(4),
+        wellcookedLevel1A(5),
+        wellcookedLevel2A(6),
+        wellcookedLevel3A(7),
+        wellcookedLevel4A(8),
+        wellcookedLevel5(9),
+        wellcookedLevel4B(10),
+        wellcookedLevel3B(11),
+        wellcookedLevel2B(12),
+        wellcookedLevel1B(13),
+        overcookedLevel1(14),
+        overcookedLevel2(15),
+        overcookedLevel3(16),
+        overcookedLevel4(17),
+        overcookedLevel5(18);
+
+        private int id;
+
+        private ShichirinEnum(int id) {
+            this.id = id;
+        }
+        public int getID()
+        {
+            return this.id;
+        }
+    }
+    public ShichirinEnum getEnum(){
+        int i=ConfigUrushi.shichirincookingDifficlutly.get();
+       // int i=2000;
+        if(differ<-i/2-i*8){
+           return ShichirinEnum.undercookedLevel5;
+        }else if(differ<-i/2-i*7){
+          return  ShichirinEnum.undercookedLevel4;
+        }else if(differ<-i/2-i*6){
+            return  ShichirinEnum.undercookedLevel3;
+        } else if(differ<-i/2-i*5){
+            return  ShichirinEnum.undercookedLevel2;
+        }else if(differ<-i/2-i*4){
+            return  ShichirinEnum.undercookedLevel1;
+        }else if(differ<-i/2-i*3){
+            return  ShichirinEnum.wellcookedLevel1A;
+        }else if(differ<-i/2-i*2){
+            return  ShichirinEnum.wellcookedLevel2A;
+        }else if(differ<-i/2-i){
+            return  ShichirinEnum.wellcookedLevel3A;
+        }else if(differ<-i/2){
+            return  ShichirinEnum.wellcookedLevel4A;
+        }else if(differ<i/2){
+            return  ShichirinEnum.wellcookedLevel5;
+        }else if(differ<i/2+i){
+            return  ShichirinEnum.wellcookedLevel4B;
+        } else if(differ<i/2+i*2){
+            return  ShichirinEnum.wellcookedLevel3B;
+        }else if(differ<i/2+i*3){
+            return  ShichirinEnum.wellcookedLevel2B;
+        }else if(differ<i/2+i*4){
+            return  ShichirinEnum.wellcookedLevel1B;
+        }else if(differ<i/2+i*5){
+            return  ShichirinEnum.overcookedLevel1;
+        }else if(differ<i/2+i*6){
+            return  ShichirinEnum.overcookedLevel2;
+        }else if(differ<i/2+i*7){
+            return  ShichirinEnum.overcookedLevel3;
+        }else if(differ<i/2+i*8){
+            return  ShichirinEnum.overcookedLevel4;
+        }else {
+            return  ShichirinEnum.overcookedLevel5;
+        }
+    }
+
+
+    public static int getCookingLevel(int ID){
+        int level;
+       if(ID<5){
+            level=-ID+5;
+        }else if(ID<14){
+            if(ID<9){
+                level=ID-4;
+            }else{
+                level=-ID+14;
+            }
+          }else{
+           level=ID-13;
+        }
+       return level;
+    }
+    public static String getCookingType(int ID){
+        if(ID<5){
+            return "undercooked";
+        }else if(ID<14){
+            return "wellcooked";
+        }else{
+            return "overcooked";
+        }
+    }
+    public int getCookingTypeByFire(AbstractCookingRecipe recipe){
+        double i=this.iconAmount*(double) fire/(double) getPerfectFire(recipe);
+        if(fire==0){
+            return 5000;
+        }
+        if(i<(this.iconAmount*2+1D)/3D){
+            //炎が弱すぎ
+            return 0;
+        }else if(i<(this.iconAmount*2+1D)*2/3D){
+            //炎がちょうどよい
+            return 1;
+        }else{
+            //炎が強すぎ
+            return 2;
+        }
     }
 }

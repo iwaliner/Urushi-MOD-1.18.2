@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "urushi:item/kakejiku_6"
+        "layer0": "urushi:item/kakejiku_5"
     }
 }
