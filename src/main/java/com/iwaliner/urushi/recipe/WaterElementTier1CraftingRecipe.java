@@ -70,13 +70,14 @@ public class WaterElementTier1CraftingRecipe extends AbstractElementCraftingReci
 
         @Override
         public void toNetwork(FriendlyByteBuf buffer, WaterElementTier1CraftingRecipe recipe) {
-            buffer.writeUtf(recipe.getGroup());
-            buffer.writeVarInt(recipe.getReiryoku());
             for(Ingredient ingredient : recipe.getIngredients()) {
                 ingredient.toNetwork(buffer);
             }
 
             buffer.writeItem(recipe.getResultItem());
+          //  buffer.writeUtf(recipe.getGroup());
+            buffer.writeVarInt(recipe.getReiryoku());
+
         }
     }
 }

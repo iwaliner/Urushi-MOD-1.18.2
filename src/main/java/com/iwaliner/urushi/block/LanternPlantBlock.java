@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Random;
@@ -45,14 +46,14 @@ public class LanternPlantBlock extends BushBlock {
 
     @Override
     public void tick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
-       if(random.nextInt(5)==0){
+       if(random.nextInt(10)==0){
            if(state.getValue(AGE)==Integer.valueOf(0)){
                level.setBlockAndUpdate(pos,state.setValue(AGE,Integer.valueOf(1)));
            }
-       }else if(random.nextInt(3)==0){
+       }else if(random.nextInt(10)==0){
            if(level.getBlockState(pos.below()).getBlock() instanceof LanternPlantBlock||level.getBlockState(pos.above()).getBlock() instanceof LanternPlantBlock){
 
-           }else{
+           }else if(level.getBlockState(pos.above()).getMaterial()== Material.AIR){
                level.setBlockAndUpdate(pos.above(),this.defaultBlockState());
            }
        }

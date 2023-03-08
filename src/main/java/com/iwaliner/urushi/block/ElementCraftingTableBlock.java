@@ -73,6 +73,7 @@ public class ElementCraftingTableBlock extends BaseEntityBlock implements Tiered
     @Override
     public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
         UrushiUtils.setInfo(list, "element_crafting_table1");
+        UrushiUtils.setInfo(list, "element_crafting_table2");
     }
 
     @Override

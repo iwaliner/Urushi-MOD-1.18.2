@@ -101,7 +101,9 @@ public class ElementUtils {
         return 0;
     }
     public  static boolean isWoodElement(BlockState state){
-        if(state.is(TagUrushi.DISABLE_WOOD_ELEMENT)){
+        if(state.getBlock().defaultDestroyTime()<0){
+            return false;
+        }else if(state.is(TagUrushi.DISABLE_WOOD_ELEMENT)){
             return false;
         }else if(state.is(TagUrushi.REGISTER_WOOD_ELEMENT)){
             return true;
@@ -119,7 +121,9 @@ public class ElementUtils {
         return false;
     }
     public  static boolean isFireElement(BlockState state){
-        if(state.is(TagUrushi.DISABLE_FIRE_ELEMENT)){
+        if(state.getBlock().defaultDestroyTime()<0){
+            return false;
+        }else if(state.is(TagUrushi.DISABLE_FIRE_ELEMENT)){
             return false;
         }else if(state.is(TagUrushi.REGISTER_FIRE_ELEMENT)){
             return true;
@@ -134,7 +138,9 @@ public class ElementUtils {
         return false;
     }
     public  static boolean isEarthElement(BlockState state){
-        if(state.is(TagUrushi.DISABLE_EARTH_ELEMENT)){
+        if(state.getBlock().defaultDestroyTime()<0){
+            return false;
+        }else if(state.is(TagUrushi.DISABLE_EARTH_ELEMENT)){
             return false;
         }else if(state.is(TagUrushi.REGISTER_EARTH_ELEMENT)){
             return true;
@@ -164,7 +170,9 @@ public class ElementUtils {
         return false;
     }
     public  static boolean isMetalElement(BlockState state){
-        if(state.is(TagUrushi.DISABLE_METAL_ELEMENT)){
+        if(state.getBlock().defaultDestroyTime()<0){
+            return false;
+        }else if(state.is(TagUrushi.DISABLE_METAL_ELEMENT)){
             return false;
         }else if(state.is(TagUrushi.REGISTER_METAL_ELEMENT)){
             return true;
@@ -184,7 +192,9 @@ public class ElementUtils {
         return false;
     }
     public  static boolean isWaterElement(BlockState state){
-        if(state.is(TagUrushi.DISABLE_WATER_ELEMENT)){
+        if(state.getBlock().defaultDestroyTime()<0){
+            return false;
+        }else if(state.is(TagUrushi.DISABLE_WATER_ELEMENT)){
             return false;
         }else if(state.is(TagUrushi.REGISTER_WATER_ELEMENT)){
             return true;

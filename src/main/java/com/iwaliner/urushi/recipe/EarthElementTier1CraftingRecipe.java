@@ -49,7 +49,6 @@ public class EarthElementTier1CraftingRecipe extends AbstractElementCraftingReci
         @Override
         public EarthElementTier1CraftingRecipe fromJson(ResourceLocation location, JsonObject json) {
             NonNullList<Ingredient> nonnulllist = itemsFromJson(GsonHelper.getAsJsonArray(json, "ingredients"));
-
                 ItemStack itemstack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
                 int i = GsonHelper.getAsInt(json, "reiryoku");
                 return new EarthElementTier1CraftingRecipe(nonnulllist,itemstack,location,i);
@@ -70,13 +69,13 @@ public class EarthElementTier1CraftingRecipe extends AbstractElementCraftingReci
 
         @Override
         public void toNetwork(FriendlyByteBuf buffer, EarthElementTier1CraftingRecipe recipe) {
-            buffer.writeUtf(recipe.getGroup());
-            buffer.writeVarInt(recipe.getReiryoku());
             for(Ingredient ingredient : recipe.getIngredients()) {
                 ingredient.toNetwork(buffer);
             }
-
             buffer.writeItem(recipe.getResultItem());
+           // buffer.writeUtf(recipe.getGroup());
+            buffer.writeVarInt(recipe.getReiryoku());
+
         }
     }
 }

@@ -65,7 +65,8 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
            BlockEntity importBlockEntity=level.getBlockEntity(importPos);
            if(importBlockEntity instanceof ReiryokuStorable) {
                ReiryokuStorable reiryokuStorable = (ReiryokuStorable) importBlockEntity;
-               if (reiryokuStorable.canDecreaseReiryoku(i)&&emitterBlockEntity.canAddReiryoku(i)) {
+               ElementType elementType=reiryokuStorable.getStoredElementType();
+               if (reiryokuStorable.canDecreaseReiryoku(i)&&emitterBlockEntity.canAddReiryoku(i)&&emitterBlockEntity.getStoredElementType()==elementType) {
                    reiryokuStorable.decreaseStoredReiryoku(i);
                    emitterBlockEntity.addStoredReiryoku(i);
                    reiryokuStorable.markUpdated();
