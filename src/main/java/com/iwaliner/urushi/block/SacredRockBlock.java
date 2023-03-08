@@ -3,6 +3,7 @@ import com.iwaliner.urushi.BlockEntityRegister;
 import com.iwaliner.urushi.blockentity.SacredRockBlockEntity;
 import com.iwaliner.urushi.blockentity.ShichirinBlockEntity;
 import com.iwaliner.urushi.util.ElementType;
+import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.util.interfaces.ElementBlock;
 import com.iwaliner.urushi.util.interfaces.Tiered;
@@ -36,7 +37,10 @@ import java.util.List;
 
 public class SacredRockBlock extends BaseEntityBlock implements Tiered, ElementBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    private static final VoxelShape BOX = Block.box(2D, 0.0D, 2D, 14D, 5D, 14D);
+    private static final VoxelShape NORTH_BOX = Block.box(1D, 0.0D, 1D, 14D, 16D, 14D);
+    private static final VoxelShape SOUTH_BOX = Block.box(2D, 0.0D, 2D, 15D, 16D, 15D);
+    private static final VoxelShape EAST_BOX = Block.box(2D, 0.0D, 1D, 15D, 16D, 14D);
+    private static final VoxelShape WEST_BOX = Block.box(1D, 0.0D, 2D, 14D, 16D, 15D);
     private ElementType elementType;
     public SacredRockBlock(ElementType type,Properties p_i48377_1_) {
         super(p_i48377_1_);
@@ -50,8 +54,16 @@ public class SacredRockBlock extends BaseEntityBlock implements Tiered, ElementB
         return 1;    }
 
     @Override
-    public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
-        return BOX;
+    public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
+        if(state.getValue(FACING)==Direction.EAST){
+            return EAST_BOX;
+        }else if(state.getValue(FACING)==Direction.WEST){
+            return WEST_BOX;
+        }else if(state.getValue(FACING)==Direction.SOUTH){
+            return SOUTH_BOX;
+        }else {
+            return NORTH_BOX;
+        }
     }
 
     @org.jetbrains.annotations.Nullable
@@ -87,7 +99,9 @@ public class SacredRockBlock extends BaseEntityBlock implements Tiered, ElementB
 
     @Override
     public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
-        UrushiUtils.setInfo(list,"scared_rock");
+        UrushiUtils.setInfo(list,"sacred_rock1");
+        UrushiUtils.setInfo(list,"sacred_rock2");
+        UrushiUtils.setInfo(list,"sacred_rock3");
     }
 
     @Override
@@ -101,10 +115,12 @@ public class SacredRockBlock extends BaseEntityBlock implements Tiered, ElementB
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        if(level.getBlockEntity(pos) instanceof SacredRockBlockEntity){
+        if(level.getBlockEntity(pos) instanceof SacredRockBlockEntity&&!player.isSuppressingBounce()){
             SacredRockBlockEntity blockEntity= (SacredRockBlockEntity) level.getBlockEntity(pos);
-            player.displayClientMessage(new TranslatableComponent("info.urushi.sacred_rock.message").append("  "+blockEntity.getStoredReiryoku()).append(level.isClientSide()? " client":" server"),false);
-        return InteractionResult.SUCCESS;
+            if(!level.isClientSide()) {
+                player.displayClientMessage(ElementUtils.getStoredReiryokuDisplayMessage(blockEntity.getStoredReiryoku(), blockEntity.getReiryokuCapacity(), blockEntity.getStoredElementType()), true);
+            }
+            return InteractionResult.SUCCESS;
         }
         return InteractionResult.FAIL;
     }

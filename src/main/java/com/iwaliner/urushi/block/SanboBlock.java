@@ -3,6 +3,7 @@ package com.iwaliner.urushi.block;
 
 import com.iwaliner.urushi.BlockEntityRegister;
 import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.iwaliner.urushi.blockentity.AbstractFryerBlockEntity;
 import com.iwaliner.urushi.blockentity.RiceCauldronBlockEntity;
 import com.iwaliner.urushi.blockentity.SanboBlockEntity;
 import com.iwaliner.urushi.util.UrushiUtils;
@@ -11,8 +12,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -33,6 +36,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -148,5 +152,19 @@ public class SanboBlock extends BaseEntityBlock implements Tiered {
     @Override
     public int getTier() {
         return this.tier;
+    }
+    public void onRemove(BlockState p_48713_, Level p_48714_, BlockPos p_48715_, BlockState p_48716_, boolean p_48717_) {
+        if (!p_48713_.is(p_48716_.getBlock())) {
+            BlockEntity blockentity = p_48714_.getBlockEntity(p_48715_);
+            if (blockentity instanceof SanboBlockEntity) {
+                if (p_48714_ instanceof ServerLevel) {
+                    Containers.dropContents(p_48714_, p_48715_, (SanboBlockEntity)blockentity);
+                 }
+
+                p_48714_.updateNeighbourForOutputSignal(p_48715_, this);
+            }
+
+            super.onRemove(p_48713_, p_48714_, p_48715_, p_48716_, p_48717_);
+        }
     }
 }

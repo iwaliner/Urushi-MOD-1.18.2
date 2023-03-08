@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "urushi:petrified_log_with_fire_amber"
+          "name": "urushi:fire_amber"
         }
       ],
       "conditions": [

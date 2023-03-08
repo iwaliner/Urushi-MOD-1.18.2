@@ -36,15 +36,16 @@ public class HotSpringWaterBlock extends LiquidBlock {
             double d0 = (double) pos.above().getX() + random.nextInt(10) * 0.1D;
             double d1 = (double) pos.above().getY() + random.nextInt(5) * 0.1D;
             double d2 = (double) pos.above().getZ() + random.nextInt(10) * 0.1D;
-            level.addParticle(ParticleTypes.CLOUD, d0, d1, d2, 0.0D, 0.05D, 0.0D);
+            level.addParticle(ParticleTypes.CLOUD, d0, d1, d2, 0.0D, 0.1D, 0.0D);
         }
     }
     public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
         super.entityInside(state, world, pos, entity);
         if (entity instanceof LivingEntity) {
-                   ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 20 * 20, 1), entity);
-            ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.REGENERATION, 60 * 20, 2), entity);
-
+            if (((LivingEntity) entity).getEffect(MobEffects.REGENERATION)==null) {
+            //      ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 3 * 20, 0), entity);
+            ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.REGENERATION, 10 * 20, 0), entity);
+        }
         }
 
     }

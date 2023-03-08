@@ -181,6 +181,14 @@ public class BlockRenderTypeRegister {
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.wind_bell.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.shichirin.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.wood_element_sacred_rock.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.fire_element_sacred_rock.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.earth_element_sacred_rock.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.metal_element_sacred_rock.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.water_element_sacred_rock.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.fire_element_tank_tier1.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.earth_element_tank_tier1.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.metal_element_tank_tier1.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.water_element_tank_tier1.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.wood_element_tank_tier1.get(), RenderType.cutout());
 
     }

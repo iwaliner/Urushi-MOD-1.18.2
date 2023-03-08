@@ -1,10 +1,13 @@
 package com.iwaliner.urushi.util;
 
 import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.iwaliner.urushi.ParticleRegister;
 import com.iwaliner.urushi.TagUrushi;
+import com.iwaliner.urushi.item.AbstractMagatamaItem;
 import com.iwaliner.urushi.util.interfaces.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -24,6 +27,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.piston.PistonBaseBlock;
 import net.minecraft.world.level.block.piston.PistonHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.Tags;
 
 import java.util.List;
@@ -134,7 +138,10 @@ public class ElementUtils {
             return false;
         }else if(state.is(TagUrushi.REGISTER_EARTH_ELEMENT)){
             return true;
-        }else if(state.is(Tags.Blocks.NEEDS_GOLD_TOOL)||state.is(Tags.Blocks.NEEDS_NETHERITE_TOOL)||state.is(BlockTags.NEEDS_DIAMOND_TOOL)||state.is(BlockTags.NEEDS_IRON_TOOL)||state.is(BlockTags.NEEDS_STONE_TOOL)){
+        }else if(state.getMaterial()== Material.AIR){
+            return false;
+        }
+        else if(state.is(Tags.Blocks.NEEDS_GOLD_TOOL)||state.is(Tags.Blocks.NEEDS_NETHERITE_TOOL)||state.is(BlockTags.NEEDS_DIAMOND_TOOL)||state.is(BlockTags.NEEDS_IRON_TOOL)||state.is(BlockTags.NEEDS_STONE_TOOL)){
             return false;
         }else if(state.getBlock() instanceof LeavesBlock||state.getBlock() instanceof SaplingBlock||state.getBlock() instanceof DispenserBlock||state.getBlock() instanceof PistonBaseBlock
                 ||state.getBlock() instanceof TntBlock||state.getBlock() instanceof AbstractFurnaceBlock||state.getBlock() instanceof CauldronBlock||state.getBlock() instanceof ShulkerBoxBlock
@@ -368,6 +375,27 @@ public class ElementUtils {
         }
     }
 
+    /**インベントリ内の勾玉を探す*/
+    public static ItemStack getMagatamaInInventory(Player player,ElementType elementType){
+        ItemStack result=ItemStack.EMPTY;
+        for (int i = 0; i < player.getInventory().getContainerSize(); ++i)
+        {
+            ItemStack itemstack = player.getInventory().getItem(i);
+            if (itemstack.getItem() instanceof AbstractMagatamaItem)
+            {
+                AbstractMagatamaItem magatamaItem= (AbstractMagatamaItem) itemstack.getItem();
+                if(magatamaItem.getElementType()==elementType){
+                    result= itemstack;
+                    break;
+                }else{
+                    continue;
+                }
+            }else{
+                continue;
+            }
+        }
+        return result;
+    }
 
 
     public static boolean isSoukokuBlock(LevelAccessor level, BlockPos pos, BlockState currentState){
@@ -432,5 +460,39 @@ public class ElementUtils {
         }else{
             return ItemStack.EMPTY;
         }
+    }
+    public static ParticleOptions getMediumElementParticle(ElementType type){
+        if(type==ElementType.WoodElement){
+            return ParticleRegister.WoodElementMedium.get();
+        }else if(type==ElementType.FireElement){
+            return ParticleRegister.FireElementMedium.get();
+        }else if(type==ElementType.EarthElement){
+            return ParticleRegister.EarthElementMedium.get();
+        }else if(type==ElementType.MetalElement){
+            return ParticleRegister.MetalElementMedium.get();
+        }else{
+            return ParticleRegister.WaterElementMedium.get();
+        }
+    }
+    public static Component getStoredReiryokuDisplayMessage(int current,int max,ElementType elementType){
+        ChatFormatting color=ChatFormatting.RESET;
+        String string="error";
+        if(elementType==ElementType.WoodElement){
+            color=ChatFormatting.GREEN;
+            string="info.urushi.stored_wood_reiryoku.message";
+        }else if(elementType==ElementType.FireElement){
+            color=ChatFormatting.RED;
+            string="info.urushi.stored_fire_reiryoku.message";
+        }else if(elementType==ElementType.EarthElement){
+            color=ChatFormatting.GOLD;
+            string="info.urushi.stored_earth_reiryoku.message";
+        }else if(elementType==ElementType.MetalElement){
+            color=ChatFormatting.WHITE;
+            string="info.urushi.stored_metal_reiryoku.message";
+        }else if(elementType==ElementType.WaterElement){
+            color=ChatFormatting.LIGHT_PURPLE;
+            string="info.urushi.stored_water_reiryoku.message";
+        }
+        return new TranslatableComponent(string).append(" "+current+" / "+max).withStyle(color);
     }
 }

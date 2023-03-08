@@ -6,6 +6,9 @@ import com.iwaliner.urushi.ConfigUrushi;
 import com.iwaliner.urushi.ItemAndBlockRegister;
 import com.iwaliner.urushi.TagUrushi;
 import com.iwaliner.urushi.blockentity.ShichirinBlockEntity;
+import com.iwaliner.urushi.item.AmberIgniterItem;
+import com.iwaliner.urushi.util.ElementType;
+import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.UrushiUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -92,22 +95,22 @@ public class ShichirinBlock extends BaseEntityBlock  {
             }
             ItemStack heldStack=player.getItemInHand(hand);
             ItemStack insertStack=heldStack.copy();
-            if(player.getItemInHand(hand).getItem() instanceof FlintAndSteelItem&&state.getValue(SHICHIRIN)==1){
-                    world.playSound((Player) null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, world.random.nextFloat() * 0.4F + 0.8F);
-                    tileEntity.addFire(100);
-                    world.setBlockAndUpdate(pos,state.setValue(SHICHIRIN,2));
+                if(player.getItemInHand(hand).getItem() instanceof AmberIgniterItem &&state.getValue(SHICHIRIN)==1){
+                    ItemStack magatama= ElementUtils.getMagatamaInInventory(player, ElementType.FireElement);
+                    if(magatama!=ItemStack.EMPTY&&ElementUtils.willBeInDomain(magatama,-10)){
+                     world.playSound((Player) null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, world.random.nextFloat() * 0.4F + 0.8F);
+                      tileEntity.addFire(100);
+                      world.setBlockAndUpdate(pos,state.setValue(SHICHIRIN,2));
+                        ElementUtils.increaseStoredReiryokuAmount(magatama,-10);
+                        player.getItemInHand(hand).hurtAndBreak(1, player, (x) -> {
+                            x.broadcastBreakEvent(hand);
+                        });
                     return InteractionResult.SUCCESS;
+                    }
                 }
             else if(player.getItemInHand(hand).isEmpty()&&tileEntity.getItem(0).isEmpty()&&tileEntity.getItem(1).isEmpty()){
 
                 return InteractionResult.FAIL;
-            }
-            else if(player.getItemInHand(hand).is(TagUrushi.IGNITER)&&state.getValue(SHICHIRIN)==1){
-                world.playSound((Player) null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, world.random.nextFloat() * 0.4F + 0.8F);
-                tileEntity.addFire(100);
-                world.setBlockAndUpdate(pos,state.setValue(SHICHIRIN,2));
-                player.getItemInHand(hand).shrink(1);
-                return InteractionResult.SUCCESS;
             }
             else if(heldStack.is(TagUrushi.SHICHIRIN_FUEL)){
                 tileEntity.setItem(2,heldStack.copy());
@@ -115,12 +118,16 @@ public class ShichirinBlock extends BaseEntityBlock  {
                 return InteractionResult.SUCCESS;
             }
             else if(heldStack.getItem()== ItemAndBlockRegister.uchiwa.get()&&state.getValue(SHICHIRIN)!=0&&state.getValue(SHICHIRIN)!=1){
-                tileEntity.addFire(30);
-                player.getItemInHand(hand).hurtAndBreak(1, player, (x) -> {
-                    x.broadcastBreakEvent(hand);
-                });
-                world.playSound((Player) null,pos, SoundEvents.ENDER_DRAGON_FLAP, SoundSource.BLOCKS,0.5F,1F);
-                return InteractionResult.SUCCESS;
+                    ItemStack magatama= ElementUtils.getMagatamaInInventory(player, ElementType.WoodElement);
+                    if(magatama!=ItemStack.EMPTY&&ElementUtils.willBeInDomain(magatama,-10)) {
+                        tileEntity.addFire(30);
+                        ElementUtils.increaseStoredReiryokuAmount(magatama,-10);
+                        player.getItemInHand(hand).hurtAndBreak(1, player, (x) -> {
+                            x.broadcastBreakEvent(hand);
+                        });
+                        world.playSound((Player) null, pos, SoundEvents.ENDER_DRAGON_FLAP, SoundSource.BLOCKS, 0.5F, 1F);
+                        return InteractionResult.SUCCESS;
+                    }
             }
             if(tileEntity.canPlaceItem(0,insertStack)){
                 tileEntity.setItem(0,insertStack);

@@ -1,0 +1,21 @@
+{
+  "type": "urushi:earth_element_tier1_crafting",
+  "ingredients": [
+  {
+    "item": "urushi:earth_amber"
+    },
+    {
+    "item": "minecraft:paper"
+    },
+    {
+    "item": "minecraft:diamond_block"
+    },
+    {
+    "item": "urushi:smooth_birch_planks"
+    }
+  ],
+  "result": {
+  "item":"urushi:earth_element_tank_tier1"
+  },
+  "reiryoku": 50
+}

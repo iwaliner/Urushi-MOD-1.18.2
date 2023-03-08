@@ -54,7 +54,7 @@ public class DoubledWoodenCabinetryMenu extends AbstractContainerMenu {
         if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
-            if (p_82846_2_ < this.containerRows * SLOTS_PER_ROW) {
+            if (p_82846_2_ < this.containerRows * SLOTS_PER_ROW+4) {
                 if (!this.moveItemStackTo(itemstack1, this.containerRows *SLOTS_PER_ROW+4, this.slots.size(), true)) {
                     return ItemStack.EMPTY;
                 }

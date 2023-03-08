@@ -6,7 +6,7 @@
 		"1": "urushi:block/tansu_front_red_double",
 		"2": "urushi:block/tansu_back_red",
 		"3": "urushi:block/tansu_top_red_double",
-		"particle": "urushi:block/tansu_back_double"
+		"particle": "urushi:block/tansu_back_red_double"
 	},
 	"elements": [
 		{

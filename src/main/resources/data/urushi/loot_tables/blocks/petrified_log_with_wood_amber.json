@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "urushi:petrified_log_with_wood_amber"
+          "name": "urushi:wood_amber"
         }
       ],
       "conditions": [

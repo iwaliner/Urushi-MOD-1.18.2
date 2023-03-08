@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "jjj",
+    "pcp",
+    "jaj"
+  ],
+  "key": {
+  "j": {
+     "item": "urushi:jadeite"
+    },
+   "a": {
+     "item": "urushi:wood_amber"
+    },
+    "c": {
+     "item": "minecraft:crafting_table"
+    },
+    "p": {
+     "item": "minecraft:prismarine_crystals"
+    }
+  },
+  "result": {
+    "item": "urushi:wood_element_crafting_table_tier1",
+    "count": 1
+  }
+}

@@ -14,8 +14,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 public abstract class AbstractFallingLeavesParticle extends SimpleAnimatedParticle {
-    private java.util.function.Supplier<? extends Block> fallenLeaves;
-    AbstractFallingLeavesParticle(int R,int G,int B,boolean isSakura,java.util.function.Supplier<? extends Block> fallenBlock,ClientLevel p_108346_, double p_108347_, double p_108348_, double p_108349_, double p_108350_, double p_108351_, double p_108352_, SpriteSet p_108353_) {
+
+    AbstractFallingLeavesParticle(int R,int G,int B,boolean isSakura,ClientLevel p_108346_, double p_108347_, double p_108348_, double p_108349_, double p_108350_, double p_108351_, double p_108352_, SpriteSet p_108353_) {
         super(p_108346_, p_108347_, p_108348_, p_108349_, p_108353_, 1.25F);
         this.friction = 0F;
         this.xd = p_108350_;
@@ -29,7 +29,6 @@ public abstract class AbstractFallingLeavesParticle extends SimpleAnimatedPartic
         }
         this.lifetime = 240 + this.random.nextInt(12);
         this.setSpriteFromAge(p_108353_);
-        fallenLeaves=fallenBlock;
     }
     @Override
     public ParticleRenderType getRenderType() {
@@ -41,16 +40,5 @@ public abstract class AbstractFallingLeavesParticle extends SimpleAnimatedPartic
         super.tick();
         int r=random.nextInt(8);
         this.setParticleSpeed(0.001D*(10+r),0D,-0.001D*(10+r));
-
-        boolean placeFallenLeavesBlock=true;
-        if(placeFallenLeavesBlock) {
-          /*  if(random.nextInt(16)==0) {
-                BlockPos pos = new BlockPos(Mth.floor(this.x), Mth.floor(this.y), Mth.floor(this.z));
-                if (level.getBlockState(pos.below()).is(BlockTags.DIRT)) {
-                    level.setBlockAndUpdate(pos, fallenLeaves.get().defaultBlockState());
-                    this.remove();
-                }
-            }*/
-        }
     }
 }

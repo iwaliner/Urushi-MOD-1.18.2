@@ -2,8 +2,11 @@ package com.iwaliner.urushi.item;
 
 
 import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.iwaliner.urushi.util.ElementType;
+import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.entiity.KitsunebiEntity;
+import com.iwaliner.urushi.util.interfaces.ElementItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -25,29 +28,36 @@ import net.minecraft.world.level.block.FireBlock;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
-public class KitsunebiItem extends Item {
+public class KitsunebiItem extends Item implements ElementItem {
    public KitsunebiItem(Properties p_i48466_1_) {
       super(p_i48466_1_);
    }
 
    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
       ItemStack itemstack = player.getItemInHand(hand);
-      world.playSound((Player) null, player.getX(), player.getY(), player.getZ(), SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 0.5F, 1F);
-      if (!world.isClientSide) {
-         KitsunebiEntity entity = new KitsunebiEntity(world, player);
-         entity.setItem(new ItemStack(ItemAndBlockRegister.kitsunebiItem.get()));
-         entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
-         world.addFreshEntity(entity);
-      }
+      ItemStack magatama= ElementUtils.getMagatamaInInventory(player, ElementType.FireElement);
+      if(magatama!=ItemStack.EMPTY&&ElementUtils.willBeInDomain(magatama,-100)) {
 
-      player.awardStat(Stats.ITEM_USED.get(this));
-      if (!player.getAbilities().instabuild) {
-         itemstack.shrink(1);
-      }
+         world.playSound((Player) null, player.getX(), player.getY(), player.getZ(), SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 0.5F, 1F);
+         if (!world.isClientSide) {
+            KitsunebiEntity entity = new KitsunebiEntity(world, player);
+            entity.setItem(new ItemStack(ItemAndBlockRegister.kitsunebiItem.get()));
+            entity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, 1.5F, 1.0F);
+            world.addFreshEntity(entity);
+         }
 
-      return InteractionResultHolder.sidedSuccess(itemstack, world.isClientSide());
+         player.awardStat(Stats.ITEM_USED.get(this));
+         if (!player.getAbilities().instabuild) {
+            itemstack.shrink(1);
+            ElementUtils.increaseStoredReiryokuAmount(magatama,-100);
+         }
+
+         return InteractionResultHolder.sidedSuccess(itemstack, world.isClientSide());
+      }
+      return InteractionResultHolder.fail(itemstack);
    }
 
 
@@ -88,9 +98,11 @@ public class KitsunebiItem extends Item {
       Level world = context.getLevel();
       BlockPos blockpos = context.getClickedPos();
       blockpos = blockpos.relative(context.getClickedFace());
-      if (FireBlock.canBePlacedAt(world, blockpos, context.getHorizontalDirection())) {
+      ItemStack magatama= ElementUtils.getMagatamaInInventory(Objects.requireNonNull(context.getPlayer()), ElementType.FireElement);
+      if (FireBlock.canBePlacedAt(world, blockpos, context.getHorizontalDirection())&&magatama!=ItemStack.EMPTY&&ElementUtils.willBeInDomain(magatama,-100)) {
          world.playSound((Player) null, context.getPlayer().getX(), context.getPlayer().getY(), context.getPlayer().getZ(), SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 0.5F, 1F);
          world.setBlockAndUpdate(blockpos, ItemAndBlockRegister.kitsunebiBlock.get().defaultBlockState());
+         ElementUtils.increaseStoredReiryokuAmount(magatama,-100);
          context.getItemInHand().shrink(1);
        return  InteractionResult.SUCCESS;
       }else{
@@ -101,9 +113,15 @@ public class KitsunebiItem extends Item {
    public void appendHoverText(ItemStack p_41421_, @Nullable Level p_41422_, List<Component> list, TooltipFlag p_41424_) {
       UrushiUtils.setInfo(list,"kitsunebi");
       UrushiUtils.setInfo(list,"kitsunebi2");
+      UrushiUtils.setInfo(list,"kitsunebi3");
    }
 
    public boolean isFoil(ItemStack p_77636_1_) {
       return true;
+   }
+
+   @Override
+   public ElementType getElementType() {
+      return ElementType.FireElement;
    }
 }

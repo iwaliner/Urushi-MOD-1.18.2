@@ -3,6 +3,7 @@ package com.iwaliner.urushi.block;
 import com.iwaliner.urushi.BlockEntityRegister;
 import com.iwaliner.urushi.blockentity.MirrorBlockEntity;
 import com.iwaliner.urushi.blockentity.TankBlockEntity;
+import com.iwaliner.urushi.util.ComplexDirection;
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.util.interfaces.ElementBlock;
@@ -75,7 +76,7 @@ public class MirrorBlock extends BaseEntityBlock implements Tiered {
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction facing = context.getHorizontalDirection().getOpposite();
         if(facing==Direction.NORTH){
-            return this.defaultBlockState().setValue(DIRECTION,ComplexDirection.N.getID());
+            return this.defaultBlockState().setValue(DIRECTION, ComplexDirection.N.getID());
         }else if(facing==Direction.EAST){
             return this.defaultBlockState().setValue(DIRECTION,ComplexDirection.E.getID());
         }else if(facing==Direction.SOUTH){
@@ -96,7 +97,10 @@ public class MirrorBlock extends BaseEntityBlock implements Tiered {
     }
     @Override
     public void appendHoverText(ItemStack p_49816_, @Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
-        UrushiUtils.setInfo(list, "mirror");
+        UrushiUtils.setInfo(list, "mirror1");
+        UrushiUtils.setInfo(list, "mirror2");
+        UrushiUtils.setInfo(list, "mirror3");
+        UrushiUtils.setInfo(list, "mirror4");
     }
 
 
@@ -107,39 +111,14 @@ public class MirrorBlock extends BaseEntityBlock implements Tiered {
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
         if (level.getBlockEntity(pos) instanceof MirrorBlockEntity) {
-            if(player.getItemInHand(hand)==ItemStack.EMPTY){
-              level.setBlockAndUpdate(pos,  state.setValue(DIRECTION,state.getValue(DIRECTION)>14? 0 : state.getValue(DIRECTION)+1));
-                return InteractionResult.SUCCESS;
-            }
+
+                if(!player.isSuppressingBounce()){
+                    level.setBlockAndUpdate(pos, state.setValue(DIRECTION, state.getValue(DIRECTION) > 14 ? 0 : state.getValue(DIRECTION) + 1));
+                    return InteractionResult.SUCCESS;
+                }
+
         }
         return InteractionResult.FAIL;
     }
-    public  enum ComplexDirection {
-        N(0),
-        N_NE(1),
-        NE(2),
-        E_NE(3),
-        E(4),
-        E_SE(5),
-        SE(6),
-        S_SE(7),
-        S(8),
-        S_SW(9),
-        SW(10),
-        W_SW(11),
-        W(12),
-        W_NW(13),
-        NW(14),
-        N_NW(15);
 
-        private int id;
-
-        private ComplexDirection(int id) {
-            this.id = id;
-        }
-        public int getID()
-        {
-            return this.id;
-        }
-    }
 }

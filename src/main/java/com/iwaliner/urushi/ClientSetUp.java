@@ -97,16 +97,20 @@ public class ClientSetUp {
     /**パーティクルの見た目を指定*/
     @SubscribeEvent
     public static void registerParticlesEvent(ParticleFactoryRegisterEvent event) {
-        Minecraft.getInstance().particleEngine.register(ParticleRegister.FireElement.get(), FireElementParticle.Provider::new);
-        Minecraft.getInstance().particleEngine.register(ParticleRegister.WoodElement.get(), WoodElementParticle.Provider::new);
-        Minecraft.getInstance().particleEngine.register(ParticleRegister.EarthElement.get(), EarthElementParticle.Provider::new);
-        Minecraft.getInstance().particleEngine.register(ParticleRegister.MetalElement.get(), MetalElementParticle.Provider::new);
-        Minecraft.getInstance().particleEngine.register(ParticleRegister.WaterElement.get(), WaterElementParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.FireElement.get(), ElementParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.WoodElement.get(), ElementParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.EarthElement.get(), ElementParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.MetalElement.get(), ElementParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.WaterElement.get(), ElementParticle.Provider::new);
         Minecraft.getInstance().particleEngine.register(ParticleRegister.FallingRedLeaves.get(), FallingRedLeavesParticle.Provider::new);
         Minecraft.getInstance().particleEngine.register(ParticleRegister.FallingOrangeLeaves.get(), FallingOrangeLeavesParticle.Provider::new);
         Minecraft.getInstance().particleEngine.register(ParticleRegister.FallingYellowLeaves.get(), FallingYellowLeavesParticle.Provider::new);
         Minecraft.getInstance().particleEngine.register(ParticleRegister.FallingSakuraLeaves.get(), FallingSakuraLeavesParticle.Provider::new);
-
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.WoodElementMedium.get(), MediumParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.FireElementMedium.get(), MediumParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.EarthElementMedium.get(), MediumParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.MetalElementMedium.get(), MediumParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegister.WaterElementMedium.get(), MediumParticle.Provider::new);
     }
 
 
@@ -204,32 +208,9 @@ public class ClientSetUp {
             ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_10.get());
             ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.hammer.get());
             ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.enhanced_jadeite.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.wood_element_magatama.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.fire_element_magatama.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.earth_element_magatama.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.metal_element_magatama.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.water_element_magatama.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.wood_amber.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.fire_amber.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.earth_amber.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.metal_amber.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.water_amber.get());
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier1.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier2.get()));
+             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier2.get()));
             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier3.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log_with_wood_amber.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log_with_fire_amber.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log_with_earth_amber.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log_with_metal_amber.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.petrified_log_with_water_amber.get()));
             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.senryoubako.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.fire_element_hokora.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.shichirin.get()));
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.uchiwa.get());
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.wood_element_sacred_rock.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.wood_element_emitter_tier1.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.wood_element_tank_tier1.get()));
 
 
 
@@ -304,9 +285,6 @@ public class ClientSetUp {
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.invisible_button_item.get(),"invisible_button_inventory");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.invisible_pressure_plate_item.get(),"invisible_pressure_plate");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.kakuriyo_dirt.get()),"kakuriyo_dirt");
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.sanbo_tier1.get()),"thatched_sanbo");
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.sanbo_tier2.get()),"wooden_sanbo");
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.sanbo_tier3.get()),"red_urushi_sanbo");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.oak_shitamiita.get()),"oak_shitamiita");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.spruce_shitamiita.get()),"spruce_shitamiita");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.birch_shitamiita.get()),"birch_shitamiita");
@@ -341,6 +319,74 @@ public class ClientSetUp {
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.unfired_shichirin.get()),"shichirin_unfired");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.unfinished_shichirin.get()),"shichirin_unfinished");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.wood_element_tank_tier1.get()),"wood_element_tank_tier1");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.fire_element_tank_tier1.get()),"fire_element_tank_tier1");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.earth_element_tank_tier1.get()),"earth_element_tank_tier1");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.metal_element_tank_tier1.get()),"metal_element_tank_tier1");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.water_element_tank_tier1.get()),"water_element_tank_tier1");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.white_stained_wooden_cabinetry_slab.get()),"white_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.orange_stained_wooden_cabinetry_slab.get()),"orange_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.magenta_stained_wooden_cabinetry_slab.get()),"magenta_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.light_blue_stained_wooden_cabinetry_slab.get()),"light_blue_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.yellow_stained_wooden_cabinetry_slab.get()),"yellow_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.lime_stained_wooden_cabinetry_slab.get()),"lime_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.pink_stained_wooden_cabinetry_slab.get()),"pink_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.gray_stained_wooden_cabinetry_slab.get()),"gray_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.light_gray_stained_wooden_cabinetry_slab.get()),"light_gray_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.cyan_stained_wooden_cabinetry_slab.get()),"cyan_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.purple_stained_wooden_cabinetry_slab.get()),"purple_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.blue_stained_wooden_cabinetry_slab.get()),"blue_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.brown_stained_wooden_cabinetry_slab.get()),"brown_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.green_stained_wooden_cabinetry_slab.get()),"green_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.red_stained_wooden_cabinetry_slab.get()),"red_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.black_stained_wooden_cabinetry_slab.get()),"black_stained_wooden_cabinetry_under_slab");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.white_stained_wooden_cabinetry.get()),"white_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.orange_stained_wooden_cabinetry.get()),"orange_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.magenta_stained_wooden_cabinetry.get()),"magenta_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.light_blue_stained_wooden_cabinetry.get()),"light_blue_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.yellow_stained_wooden_cabinetry.get()),"yellow_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.lime_stained_wooden_cabinetry.get()),"lime_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.pink_stained_wooden_cabinetry.get()),"pink_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.gray_stained_wooden_cabinetry.get()),"gray_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.light_gray_stained_wooden_cabinetry.get()),"light_gray_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.cyan_stained_wooden_cabinetry.get()),"cyan_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.purple_stained_wooden_cabinetry.get()),"purple_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.blue_stained_wooden_cabinetry.get()),"blue_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.brown_stained_wooden_cabinetry.get()),"brown_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.green_stained_wooden_cabinetry.get()),"green_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.red_stained_wooden_cabinetry.get()),"red_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.black_stained_wooden_cabinetry.get()),"black_stained_wooden_cabinetry");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_white_stained_wooden_cabinetry.get()),"white_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_orange_stained_wooden_cabinetry.get()),"orange_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_magenta_stained_wooden_cabinetry.get()),"magenta_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_light_blue_stained_wooden_cabinetry.get()),"light_blue_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_yellow_stained_wooden_cabinetry.get()),"yellow_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_lime_stained_wooden_cabinetry.get()),"lime_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_pink_stained_wooden_cabinetry.get()),"pink_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_gray_stained_wooden_cabinetry.get()),"gray_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_light_gray_stained_wooden_cabinetry.get()),"light_gray_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_cyan_stained_wooden_cabinetry.get()),"cyan_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_purple_stained_wooden_cabinetry.get()),"purple_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_blue_stained_wooden_cabinetry.get()),"blue_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_brown_stained_wooden_cabinetry.get()),"brown_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_green_stained_wooden_cabinetry.get()),"green_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_red_stained_wooden_cabinetry.get()),"red_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.doubled_black_stained_wooden_cabinetry.get()),"black_stained_wooden_cabinetry_doubled");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.wood_element_crafting_table_tier1.get()),"wood_element_crafting_table_tier1_lit");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.fire_element_crafting_table_tier1.get()),"fire_element_crafting_table_tier1_lit");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.earth_element_crafting_table_tier1.get()),"earth_element_crafting_table_tier1_lit");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.metal_element_crafting_table_tier1.get()),"metal_element_crafting_table_tier1_lit");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.water_element_crafting_table_tier1.get()),"water_element_crafting_table_tier1_lit");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.wood_element_sacred_rock.get()),"wood_element_sacred_rock");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.fire_element_sacred_rock.get()),"fire_element_sacred_rock");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.earth_element_sacred_rock.get()),"earth_element_sacred_rock");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.metal_element_sacred_rock.get()),"metal_element_sacred_rock");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.water_element_sacred_rock.get()),"water_element_sacred_rock");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.wood_element_emitter_tier1.get()),"wood_element_emitter_tier1");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.fire_element_emitter_tier1.get()),"fire_element_emitter_tier1");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.earth_element_emitter_tier1.get()),"earth_element_emitter_tier1");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.metal_element_emitter_tier1.get()),"metal_element_emitter_tier1");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.water_element_emitter_tier1.get()),"water_element_emitter_tier1");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.mirror_tier1.get()),"mirror_tier1_n");
 
 
             CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.yomi_stone.get(),"yomi_stone");
@@ -387,8 +433,6 @@ public class ClientSetUp {
             GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.earth_element_magatama.get(),"magatama_earth");
             GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.metal_element_magatama.get(),"magatama_metal");
             GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.water_element_magatama.get(),"magatama_water");
-
-
 
         }
     }

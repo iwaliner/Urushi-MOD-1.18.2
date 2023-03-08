@@ -5,10 +5,7 @@ import com.iwaliner.urushi.FeatureRegister;
 import com.iwaliner.urushi.ItemAndBlockRegister;
 import com.iwaliner.urushi.block.LanternPlantBlock;
 import com.iwaliner.urushi.block.WallShiitakeBlock;
-import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
-import net.minecraft.core.HolderSet;
-import net.minecraft.core.Registry;
+import net.minecraft.core.*;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.util.random.SimpleWeightedRandomList;
@@ -65,6 +62,7 @@ public class FeatureGenerator {
     private static final RandomizedIntStateProvider YOMI_VINES_HEAD_PROVIDER = new RandomizedIntStateProvider(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ItemAndBlockRegister.yomi_vines.get().defaultBlockState(), 4).add(ItemAndBlockRegister.yomi_vines.get().defaultBlockState().setValue(CaveVines.BERRIES, Boolean.valueOf(true)), 1)), CaveVinesBlock.AGE, UniformInt.of(23, 25));
 
      public static final Holder<ConfiguredFeature<BlockColumnConfiguration, ?>> YOMI_VINES = FeatureUtils.register("yomi_vines", Feature.BLOCK_COLUMN, new BlockColumnConfiguration(List.of(BlockColumnConfiguration.layer(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder().add(UniformInt.of(800, 1000), 2).add(UniformInt.of(1, 2), 3).add(UniformInt.of(1, 6), 30).build()), YOMI_VINES_BODY_PROVIDER), BlockColumnConfiguration.layer(ConstantInt.of(1), YOMI_VINES_HEAD_PROVIDER)), Direction.DOWN, BlockPredicate.ONLY_IN_AIR_PREDICATE, true));
+    public static final Holder<ConfiguredFeature<TreeConfiguration, ?>> KAKURIYO_MEGA_CEDAR = FeatureUtils.register("kakuriyo_mega_cedar", Feature.TREE, (new KakuriyoTreeConfigration.KakuriyoTreeConfigurationBuilder(BlockStateProvider.simple(ItemAndBlockRegister.japanese_cedar_log.get()), new GiantTrunkPlacer(13, 2, 14), BlockStateProvider.simple(ItemAndBlockRegister.japanese_cedar_leaves.get()), new MegaPineFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), UniformInt.of(13, 17)), new TwoLayersFeatureSize(1, 1, 2))).build());
 
 
     public static final Holder<PlacedFeature> APRICOT_CHECKED = PlacementUtils.register("apricot_check", APRICOT, PlacementUtils.filteredByBlockSurvival(ItemAndBlockRegister.japanese_apricot_sapling.get()));
@@ -82,6 +80,7 @@ public class FeatureGenerator {
     public static final Holder<PlacedFeature> FANCY_SAKURA_CHECKED = PlacementUtils.register("fancy_sakura_check", FANCY_SAKURA, PlacementUtils.filteredByBlockSurvival(ItemAndBlockRegister.big_sakura_sapling.get()));
     public static final Holder<PlacedFeature> YOMI_VINES_CHECKED = PlacementUtils.register("yomi_vines_check", YOMI_VINES, PlacementUtils.filteredByBlockSurvival(ItemAndBlockRegister.yomi_vines.get()));
     public static final Holder<PlacedFeature> KAKURIYO_PORTAL_CHECKED = PlacementUtils.register("kakuriyo_portal_check", KAKURIYO_PORTAL, PlacementUtils.filteredByBlockSurvival(ItemAndBlockRegister.lantern_plant.get()));
+    public static final Holder<PlacedFeature> KAKURIYO_MEGA_CEDAR_CHECKED = PlacementUtils.register("kakuriyo_mega_cedar_check", KAKURIYO_MEGA_CEDAR, PlacementUtils.filteredByBlockSurvival(ItemAndBlockRegister.japanese_cedar_sapling.get()));
 
     public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> APRICOT_SPAWN = FeatureUtils.register("apricot_spawn", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(APRICOT_CHECKED, 0.2F)),APRICOT_CHECKED));
     public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> SAKURA_SPAWN = FeatureUtils.register("sakura_spawn", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(SAKURA_CHECKED, 0.2F)),SAKURA_CHECKED));
@@ -97,6 +96,7 @@ public class FeatureGenerator {
     public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> HOT_SPRING_SPAWN = FeatureUtils.register("hot_spring_spawn", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(HOT_SPRING_CHECKED, 0.2F)),HOT_SPRING_CHECKED));
 
     public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> FANCY_SAKURA_SPAWN = FeatureUtils.register("fancy_sakura_spawn", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(FANCY_SAKURA_CHECKED, 0.2F)),FANCY_SAKURA_CHECKED));
+    public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> KAKURIYO_MEGA_CEDAR_SPAWN = FeatureUtils.register("kakuriyo_mega_cedar_spawn", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(KAKURIYO_MEGA_CEDAR_CHECKED, 0.2F)),KAKURIYO_MEGA_CEDAR_CHECKED));
     public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> SHIITAKE = FeatureUtils.register("shiitake_spawn", Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(ItemAndBlockRegister.shiitake.get()), 300));
     public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> WALL_SHIITAKE_N = FeatureUtils.register("wall_shiitake_spawn_n", Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(ItemAndBlockRegister.wall_shiitake.get().defaultBlockState().setValue(WallShiitakeBlock.FACING,Direction.NORTH)), 1000));
     public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> WALL_SHIITAKE_S = FeatureUtils.register("wall_shiitake_spawn_s", Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(ItemAndBlockRegister.wall_shiitake.get().defaultBlockState().setValue(WallShiitakeBlock.FACING,Direction.SOUTH)), 1000));
@@ -113,13 +113,18 @@ public class FeatureGenerator {
     public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> FALLEN_YELLOW_LEAVES = FeatureUtils.register("fallen_yellow_leaves_spawn", Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(ItemAndBlockRegister.fallen_yellow_leaves.get()), 30));
     public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> YOMI_VINES_SPAWN = FeatureUtils.register("yomi_vines_spawn", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(YOMI_VINES_CHECKED, 0.2F)),YOMI_VINES_CHECKED));
     public static final Holder<ConfiguredFeature<RandomFeatureConfiguration, ?>> KAKURIYO_PORTAL_SPAWN = FeatureUtils.register("kakuriyo_portal_spawn", Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(KAKURIYO_PORTAL_CHECKED, 0.2F)),KAKURIYO_PORTAL_CHECKED));
-
+    public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> WOOD_ELEMENT_SACRED_ROCK = FeatureUtils.register("wood_element_sacred_rock", Feature.RANDOM_PATCH, new RandomPatchConfiguration(1, 40, 10, PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ItemAndBlockRegister.wood_element_sacred_rock.get())), BlockPredicate.allOf(BlockPredicate.replaceable(), BlockPredicate.matchesBlock(ItemAndBlockRegister.kakuriyo_grass_block.get(), new BlockPos(0, -1, 0))))));
+    public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> FIRE_ELEMENT_SACRED_ROCK = FeatureUtils.register("fire_element_sacred_rock", Feature.RANDOM_PATCH, new RandomPatchConfiguration(1, 40, 10, PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ItemAndBlockRegister.fire_element_sacred_rock.get())), BlockPredicate.allOf(BlockPredicate.replaceable(), BlockPredicate.matchesBlock(ItemAndBlockRegister.kakuriyo_grass_block.get(), new BlockPos(0, -1, 0))))));
+    public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> EARTH_ELEMENT_SACRED_ROCK = FeatureUtils.register("earth_element_sacred_rock", Feature.RANDOM_PATCH, new RandomPatchConfiguration(1, 40, 10, PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ItemAndBlockRegister.earth_element_sacred_rock.get())), BlockPredicate.allOf(BlockPredicate.replaceable(), BlockPredicate.matchesBlock(ItemAndBlockRegister.kakuriyo_grass_block.get(), new BlockPos(0, -1, 0))))));
+    public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> METAL_ELEMENT_SACRED_ROCK = FeatureUtils.register("metal_element_sacred_rock", Feature.RANDOM_PATCH, new RandomPatchConfiguration(1, 40, 10, PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ItemAndBlockRegister.metal_element_sacred_rock.get())), BlockPredicate.allOf(BlockPredicate.replaceable(), BlockPredicate.matchesBlock(ItemAndBlockRegister.kakuriyo_grass_block.get(), new BlockPos(0, -1, 0))))));
+    public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> WATER_ELEMENT_SACRED_ROCK = FeatureUtils.register("water_element_sacred_rock", Feature.RANDOM_PATCH, new RandomPatchConfiguration(1, 40, 10, PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ItemAndBlockRegister.water_element_sacred_rock.get())), BlockPredicate.allOf(BlockPredicate.replaceable(), BlockPredicate.matchesBlock(ItemAndBlockRegister.kakuriyo_grass_block.get(), new BlockPos(0, -1, 0))))));
     private static TreeConfiguration.TreeConfigurationBuilder createStraightBlobTree(Block p_195147_, Block p_195148_, int p_195149_, int p_195150_, int p_195151_, int p_195152_) {
         return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(p_195147_), new StraightTrunkPlacer(p_195149_, p_195150_, p_195151_), BlockStateProvider.simple(p_195148_), new BlobFoliagePlacer(ConstantInt.of(p_195152_), ConstantInt.of(0), 3), new TwoLayersFeatureSize(1, 0, 1));
     }
     private static TreeConfiguration.TreeConfigurationBuilder createFancySakura() {
         return (new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ItemAndBlockRegister.sakura_log.get()), new FancyTrunkPlacer(3, 11, 0), BlockStateProvider.simple(ItemAndBlockRegister.sakura_leaves.get()), new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)))).ignoreVines();
     }
+
     private static TreeConfiguration.TreeConfigurationBuilder createGlowingFancySakura() {
         return (new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ItemAndBlockRegister.sakura_log.get()), new FancyTrunkPlacer(3, 11, 0), BlockStateProvider.simple(ItemAndBlockRegister.glowing_sakura_leaves.get()), new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)))).ignoreVines();
     }

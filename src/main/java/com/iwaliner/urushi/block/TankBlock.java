@@ -3,7 +3,9 @@ package com.iwaliner.urushi.block;
 import com.iwaliner.urushi.BlockEntityRegister;
 import com.iwaliner.urushi.blockentity.AbstractReiryokuStorableBlockEntity;
 import com.iwaliner.urushi.blockentity.TankBlockEntity;
+import com.iwaliner.urushi.item.AbstractMagatamaItem;
 import com.iwaliner.urushi.util.ElementType;
+import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.util.interfaces.ElementBlock;
 import com.iwaliner.urushi.util.interfaces.Tiered;
@@ -36,9 +38,9 @@ import java.util.List;
 import java.util.Random;
 
 public class TankBlock extends BaseEntityBlock implements Tiered, ElementBlock {
-    private static final VoxelShape BASE = Block.box(6D, 0.0D, 6D, 10D, 1D, 10D);
+    private static final VoxelShape BASE = Block.box(4D, 0.0D, 4D, 12D, 2D, 12D);
     private static final VoxelShape PILLAR = Block.box(7D, 1.0D, 7D, 9D, 16D, 9D);
-    private static final VoxelShape OUTER_BOX = Block.box(1D, 0.0D, 1D, 15D, 16D, 15D);
+    private static final VoxelShape OUTER_BOX = Block.box(4D, 0.0D, 4D, 12D, 16D, 12D);
 
     private ElementType elementType;
     private int tier;
@@ -74,7 +76,8 @@ public class TankBlock extends BaseEntityBlock implements Tiered, ElementBlock {
     }
     @Override
     public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
-        UrushiUtils.setInfo(list, "tank");
+        UrushiUtils.setInfo(list, "tank1");
+        UrushiUtils.setInfo(list, "tank2");
     }
 
     @Override
@@ -88,11 +91,34 @@ public class TankBlock extends BaseEntityBlock implements Tiered, ElementBlock {
     }
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        if (level.getBlockEntity(pos) instanceof TankBlockEntity) {
+        if (level.getBlockEntity(pos) instanceof TankBlockEntity&&!player.isSuppressingBounce()) {
             TankBlockEntity blockEntity = (TankBlockEntity) level.getBlockEntity(pos);
+            ItemStack stack=player.getItemInHand(hand);
+            if(stack.getItem() instanceof AbstractMagatamaItem){
+                int blockEntityStoredReiryoku=blockEntity.getStoredReiryoku();
+                int magatamaStoredReiryoku=ElementUtils.getStoredReiryokuAmount(stack);
+                int magatamaCapacity=ElementUtils.getReiryokuCapacity(stack);
+                int i1=magatamaCapacity-magatamaStoredReiryoku;
+                ElementType magatamaElementType=((AbstractMagatamaItem) stack.getItem()).getElementType();
+                ElementType tankElementType=blockEntity.getStoredElementType();
+                if(magatamaElementType==tankElementType) {
+                    if (blockEntityStoredReiryoku >= i1) {
+                        ElementUtils.increaseStoredReiryokuAmount(stack, i1);
+                        blockEntity.decreaseStoredReiryoku(i1);
+                        return InteractionResult.SUCCESS;
+                    } else {
+                        ElementUtils.increaseStoredReiryokuAmount(stack, blockEntityStoredReiryoku);
+                        blockEntity.decreaseStoredReiryoku(blockEntityStoredReiryoku);
+                        return InteractionResult.SUCCESS;
+                    }
+                }
+            }else {
 
-            player.displayClientMessage(new TranslatableComponent("info.urushi.tank.message").append("  " + blockEntity.getStoredReiryoku()).append(level.isClientSide()? " client":" server"), false);
-            return InteractionResult.SUCCESS;
+                if (!level.isClientSide()) {
+                    player.displayClientMessage(ElementUtils.getStoredReiryokuDisplayMessage(blockEntity.getStoredReiryoku(), blockEntity.getReiryokuCapacity(), blockEntity.getStoredElementType()), true);
+                }
+                return InteractionResult.SUCCESS;
+            }
         }
         return InteractionResult.FAIL;
     }

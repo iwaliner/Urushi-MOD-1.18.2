@@ -11,7 +11,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class FallingOrangeLeavesParticle extends AbstractFallingLeavesParticle{
     FallingOrangeLeavesParticle(ClientLevel p_108346_, double p_108347_, double p_108348_, double p_108349_, double p_108350_, double p_108351_, double p_108352_, SpriteSet p_108353_) {
-        super(239,121,23,false,()-> ItemAndBlockRegister.fallen_orange_leaves.get(),p_108346_, p_108347_, p_108348_, p_108349_, p_108350_, p_108351_, p_108352_, p_108353_);
+        super(239,121,23,false,p_108346_, p_108347_, p_108348_, p_108349_, p_108350_, p_108351_, p_108352_, p_108353_);
     }
     @OnlyIn(Dist.CLIENT)
     public static class Provider implements ParticleProvider<SimpleParticleType> {

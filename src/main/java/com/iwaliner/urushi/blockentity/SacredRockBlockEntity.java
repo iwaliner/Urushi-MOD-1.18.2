@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public class SacredRockBlockEntity extends AbstractReiryokuStorableBlockEntity implements ReiryokuExportable {
     public int coolTime;
     public SacredRockBlockEntity(BlockPos p_155550_, BlockState p_155551_) {
-        super(BlockEntityRegister.SacredRock.get(),1000, p_155550_, p_155551_);
+        super(BlockEntityRegister.SacredRock.get(),100, p_155550_, p_155551_);
     }
 
     public void load(CompoundTag tag) {
@@ -28,19 +28,14 @@ public class SacredRockBlockEntity extends AbstractReiryokuStorableBlockEntity i
         tag.putInt("coolTime", this.coolTime);
 
     }
-
     @Override
     public CompoundTag getUpdateTag() {
         CompoundTag compoundtag = new CompoundTag();
         compoundtag.putInt("coolTime", this.coolTime);
-        compoundtag.putIntArray("receiveWaitingTime", this.receiveWaitingTime);
+       this.putBaseTag(compoundtag);
         return compoundtag;
     }
-
-
-
-
-    @Override
+   @Override
     public  ElementType getExportElementType() {
       return this.getStoredElementType();
     }

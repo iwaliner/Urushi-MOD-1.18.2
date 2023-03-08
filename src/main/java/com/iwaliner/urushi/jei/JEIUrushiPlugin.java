@@ -41,6 +41,11 @@ public class JEIUrushiPlugin implements IModPlugin {
         registration.addRecipeCategories(new FoxEatingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new SandpaperPolishingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ChiseledLacquerLogRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new WoodElementTier1CraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new FireElementTier1CraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new EarthElementTier1CraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new MetalElementTier1CraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new WaterElementTier1CraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -66,6 +71,16 @@ public class JEIUrushiPlugin implements IModPlugin {
         registration.addRecipes(new RecipeType<>(SandpaperPolishingRecipeCategory.location,SandpaperPolishingRecipe.class),SandpaperPolishingRecipes);
         List<ChiseledLacquerLogRecipe> ChiseledLacquerLogRecipes=recipeManager.getAllRecipesFor(RecipeTypeRegister.ChiseledLacquerLogRecipe);
         registration.addRecipes(new RecipeType<>(ChiseledLacquerLogRecipeCategory.location,ChiseledLacquerLogRecipe.class),ChiseledLacquerLogRecipes);
+        List<WoodElementTier1CraftingRecipe> WoodElementTier1CraftingRecipes=recipeManager.getAllRecipesFor(RecipeTypeRegister.WoodElementTier1CraftingRecipe);
+        registration.addRecipes(new RecipeType<>(WoodElementTier1CraftingRecipeCategory.location,WoodElementTier1CraftingRecipe.class),WoodElementTier1CraftingRecipes);
+        List<FireElementTier1CraftingRecipe> FireElementTier1CraftingRecipes=recipeManager.getAllRecipesFor(RecipeTypeRegister.FireElementTier1CraftingRecipe);
+        registration.addRecipes(new RecipeType<>(FireElementTier1CraftingRecipeCategory.location,FireElementTier1CraftingRecipe.class),FireElementTier1CraftingRecipes);
+        List<EarthElementTier1CraftingRecipe> EarthElementTier1CraftingRecipes=recipeManager.getAllRecipesFor(RecipeTypeRegister.EarthElementTier1CraftingRecipe);
+        registration.addRecipes(new RecipeType<>(EarthElementTier1CraftingRecipeCategory.location,EarthElementTier1CraftingRecipe.class),EarthElementTier1CraftingRecipes);
+        List<MetalElementTier1CraftingRecipe> MetalElementTier1CraftingRecipes=recipeManager.getAllRecipesFor(RecipeTypeRegister.MetalElementTier1CraftingRecipe);
+        registration.addRecipes(new RecipeType<>(MetalElementTier1CraftingRecipeCategory.location,MetalElementTier1CraftingRecipe.class),MetalElementTier1CraftingRecipes);
+        List<WaterElementTier1CraftingRecipe> WaterElementTier1CraftingRecipes=recipeManager.getAllRecipesFor(RecipeTypeRegister.WaterElementTier1CraftingRecipe);
+        registration.addRecipes(new RecipeType<>(WaterElementTier1CraftingRecipeCategory.location,WaterElementTier1CraftingRecipe.class),WaterElementTier1CraftingRecipes);
     }
 
     @Override
@@ -78,6 +93,11 @@ public class JEIUrushiPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.sandpaper_block.get()), RecipeType.create(ModCoreUrushi.ModID, "polishing", SandpaperPolishingRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.chiseled_lacquer_log.get()), RecipeType.create(ModCoreUrushi.ModID, "chiseled_lacquer_log", ChiseledLacquerLogRecipe.class));
         registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.shichirin.get()), RecipeType.create( RecipeTypes.CAMPFIRE_COOKING.getUid().getNamespace(), RecipeTypes.CAMPFIRE_COOKING.getUid().getPath(), CampfireCookingRecipe.class));
+        registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.wood_element_crafting_table_tier1.get()), RecipeType.create(ModCoreUrushi.ModID, "wood_element_tier1_crafting", WoodElementTier1CraftingRecipe.class));
+        registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.fire_element_crafting_table_tier1.get()), RecipeType.create(ModCoreUrushi.ModID, "fire_element_tier1_crafting", FireElementTier1CraftingRecipe.class));
+        registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.earth_element_crafting_table_tier1.get()), RecipeType.create(ModCoreUrushi.ModID, "earth_element_tier1_crafting", EarthElementTier1CraftingRecipe.class));
+        registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.metal_element_crafting_table_tier1.get()), RecipeType.create(ModCoreUrushi.ModID, "metal_element_tier1_crafting", MetalElementTier1CraftingRecipe.class));
+        registration.addRecipeCatalyst(new ItemStack(ItemAndBlockRegister.water_element_crafting_table_tier1.get()), RecipeType.create(ModCoreUrushi.ModID, "water_element_tier1_crafting", WaterElementTier1CraftingRecipe.class));
 
     }
 }

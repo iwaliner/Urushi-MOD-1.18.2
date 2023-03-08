@@ -1,0 +1,21 @@
+{
+  "type": "urushi:fire_element_tier1_crafting",
+  "ingredients": [
+  {
+    "item": "urushi:fire_amber"
+    },
+    {
+    "item": "minecraft:paper"
+    },
+    {
+    "item": "minecraft:diamond_block"
+    },
+    {
+    "item": "urushi:smooth_birch_planks"
+    }
+  ],
+  "result": {
+  "item":"urushi:fire_element_tank_tier1"
+  },
+  "reiryoku": 50
+}

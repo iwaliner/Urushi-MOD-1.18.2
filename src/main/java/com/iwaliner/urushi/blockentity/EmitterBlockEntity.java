@@ -6,6 +6,7 @@ import com.iwaliner.urushi.block.EmitterBlock;
 import com.iwaliner.urushi.block.SacredRockBlock;
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.ElementUtils;
+import com.iwaliner.urushi.util.interfaces.Mirror;
 import com.iwaliner.urushi.util.interfaces.ReiryokuExportable;
 import com.iwaliner.urushi.util.interfaces.ReiryokuImportable;
 import com.iwaliner.urushi.util.interfaces.ReiryokuStorable;
@@ -25,77 +26,95 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.ticks.TickPriority;
 
-public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity implements ReiryokuImportable,ReiryokuExportable {
-   private  final double particleSpeed=0.2D;
+public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity implements ReiryokuExportable {
+   public static   final double particleSpeed=0.2D;
     public EmitterBlockEntity(BlockPos p_155550_, BlockState p_155551_) {
-        super(BlockEntityRegister.Emitter.get(),1000, p_155550_, p_155551_);
+        super(BlockEntityRegister.Emitter.get(),100, p_155550_, p_155551_);
     }
 
 
     @Override
     public CompoundTag getUpdateTag() {
         CompoundTag compoundtag = new CompoundTag();
-        compoundtag.putInt("storedReiryoku", this.storedReiryoku);
-        compoundtag.putIntArray("receiveWaitingTime", this.receiveWaitingTime);
+        this.putBaseTag(compoundtag);
         return compoundtag;
+    }
+
+    /**一度に送信する霊力の量*/
+    private int getSendAmount(){
+        int i=1;
+        if(this.getStoredReiryoku()-i<0){
+            return getStoredReiryoku();
+        }else{
+            return i;
+        }
     }
 
 
 
-    public static void tick(Level level, BlockPos pos, BlockState state, EmitterBlockEntity blockEntity) {
-      //  if(!level.isClientSide()){
-        blockEntity.recieveReiryoku(level,pos);
+    /**tick毎の処理*/
+    public static void tick(Level level, BlockPos pos, BlockState state, EmitterBlockEntity emitterBlockEntity) {
+
+        /**送られた霊力を受け取る処理*/
+        emitterBlockEntity.recieveReiryoku(level,pos);
+
+        /**後ろにあるブロックから霊力を吸いだす処理　開始*/
        int i=1;
           BlockPos importPos=pos.relative(state.getValue(SacredRockBlock.FACING).getOpposite());
            BlockState importState=level.getBlockState(importPos);
            BlockEntity importBlockEntity=level.getBlockEntity(importPos);
            if(importBlockEntity instanceof ReiryokuStorable) {
                ReiryokuStorable reiryokuStorable = (ReiryokuStorable) importBlockEntity;
-               if (reiryokuStorable.canDecreaseReiryoku(i)&&blockEntity.canAddReiryoku(i)) {
+               if (reiryokuStorable.canDecreaseReiryoku(i)&&emitterBlockEntity.canAddReiryoku(i)) {
                    reiryokuStorable.decreaseStoredReiryoku(i);
-                   blockEntity.addStoredReiryoku(i);
+                   emitterBlockEntity.addStoredReiryoku(i);
                    reiryokuStorable.markUpdated();
-                   blockEntity.markUpdated();
+                   emitterBlockEntity.markUpdated();
                }
            }
-        if(state.getValue(EmitterBlock.POWERED)){
-            if(blockEntity.sendDistance(level,pos)!=0&&blockEntity.getStoredReiryoku()>0) {
+        /**後ろにあるブロックから霊力を吸いだす処理　終了*/
+
+
+        if(!state.getValue(EmitterBlock.POWERED)){
+            if(emitterBlockEntity.sendDistance(level,pos)!=0&&emitterBlockEntity.getStoredReiryoku()>0) {
                double vX = 0D, vY = 0D, vZ = 0D;
-               double v0 = blockEntity.particleSpeed;
+               double v0 = emitterBlockEntity.particleSpeed;
                Direction direction = state.getValue(EmitterBlock.FACING);
                double dx=0D,dy=0D,dz=0D;
                if (direction == Direction.UP) {
                    vY = v0;
-                  dy=0.6D;
+                  dy=-0.25D;
                } else if (direction == Direction.DOWN) {
                    vY = -v0;
-                   dy=-0.6D;
+                   dy=0.25D;
                } else if (direction == Direction.NORTH) {
                    vZ = -v0;
-                   dz=-0.6D;
+                   dz=0.25D;
                } else if (direction == Direction.SOUTH) {
                    vZ = v0;
-                   dz=0.6D;
+                   dz=-0.25D;
                } else if (direction == Direction.EAST) {
                    vX = v0;
-                   dx=0.6D;
+                   dx=-0.25D;
                } else if (direction == Direction.WEST) {
                    vX = -v0;
-                   dx=-0.6D;
+                   dx=0.25D;
                }
-               level.addParticle(ParticleRegister.WoodElement.get(), pos.getX() + 0.5D+dx, pos.getY() + 0.5D+dy, pos.getZ() + 0.5D+dz, vX, vY, vZ);
-               blockEntity.send(level,pos);
+                emitterBlockEntity.send(level,pos,pos.getX() + 0.5D+dx,pos.getY() + 0.5D+dy,pos.getZ() + 0.5D+dz,vX,vY,vZ);
 
-         //  }
-       }}
+
+       }
+        }
 
     }
+
+    /**送信先のブロックが何ブロック離れているか*/
     private int sendDistance(Level level,BlockPos emitterPos){
       BlockState emitterState=level.getBlockState(emitterPos);
       Direction direction=emitterState.getValue(EmitterBlock.FACING);
       EmitterBlockEntity emitterBlockEntity= (EmitterBlockEntity) level.getBlockEntity(emitterPos);
       int j=0;
-      int range=Mth.floor(this.particleSpeed*80+0.6D);
+      int range=Mth.floor(this.particleSpeed*80-0.25D);
       for(int i=1;i<range;i++){
           BlockEntity blockEntity=level.getBlockEntity(emitterPos.relative(direction,i));
           BlockState state=level.getBlockState(emitterPos.relative(direction,i));
@@ -103,20 +122,22 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
           double corner=6D;
           VoxelShape particleShape= Block.box(corner,corner,corner,16D-corner,16D-corner,16D-corner);
 
-          if(blockEntity!=null){
-              if(blockEntity instanceof ReiryokuImportable){
+          if(blockEntity!=null&&emitterBlockEntity!=null){
+              if(blockEntity instanceof ReiryokuImportable||blockEntity instanceof MirrorBlockEntity){
                   if(blockEntity instanceof EmitterBlockEntity){
-
+                      break;
                   }else {
                       ReiryokuStorable reiryokuStorable = (ReiryokuStorable) blockEntity;
-                      if (reiryokuStorable.canAddReiryoku(1)&&reiryokuStorable.getStoredElementType()==emitterBlockEntity.getStoredElementType()) {
-                          j = i;
-                          break;
+                      if (reiryokuStorable.canAddReiryoku(emitterBlockEntity.getSendAmount())) {
+                          if(blockEntity instanceof Mirror||reiryokuStorable.getStoredElementType()==emitterBlockEntity.getStoredElementType()) {
+                              j = i;
+                              break;
+                          }
                       }
+                      break;
                   }
               }
-       //   }else if (!state.isAir()&&state.isSolidRender(level, emitterPos.relative(direction,i))) {
-       //       break;
+
           } else if(Shapes.joinIsNotEmpty(shape,particleShape, BooleanOp.AND)){
               break;
           }
@@ -124,62 +145,44 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
       }
       return j;
     }
-    private void send(Level level,BlockPos emitterPos){
+
+    /**霊力を輸送*/
+    private void send(Level level,BlockPos emitterPos, double dX, double dY, double dZ,double vX,double vY,double vZ){
         BlockState emitterState=level.getBlockState(emitterPos);
         Direction direction=emitterState.getValue(EmitterBlock.FACING);
         int distance=sendDistance(level,emitterPos);
         BlockPos goalPos=emitterPos.relative(direction,distance);
         EmitterBlockEntity emitterBlockEnitity= (EmitterBlockEntity) level.getBlockEntity(emitterPos);
         ReiryokuStorable goalBlockEntity= (ReiryokuStorable) level.getBlockEntity(goalPos);
-        int arriveTick=Mth.floor ((distance-1)/particleSpeed);
-        if(emitterBlockEnitity!=null&&goalBlockEntity!=null&&emitterBlockEnitity.canDecreaseReiryoku(1)&&goalBlockEntity.canAddReiryoku(1)) {
-             emitterBlockEnitity.decreaseStoredReiryoku(1);
-             emitterBlockEnitity.markUpdated();
-            int[] receiveWaitingTime = goalBlockEntity.getReceiveWaitingTime();
-            boolean flag=false;
-            for(int i=0;i<receiveWaitingTime.length;i++){
-                if(receiveWaitingTime[i]==0){
-                    receiveWaitingTime[i]=arriveTick;
-                    emitterBlockEnitity.markUpdated();
+        int arriveTick= Mth.floor ((distance-1)/particleSpeed)<=0? 1:Mth.floor ((distance-1)/particleSpeed);
+        if(emitterBlockEnitity!=null&&goalBlockEntity!=null&&emitterBlockEnitity.canDecreaseReiryoku(emitterBlockEnitity.getSendAmount())&&goalBlockEntity.canAddReiryoku(emitterBlockEnitity.getSendAmount())) {
+            int receiveWaitingTime = goalBlockEntity.getReceiveWaitingTime();
+            int receiveAmount=goalBlockEntity.getReceiveAmount();
+            ElementType receiveElementType=goalBlockEntity.getReceiveElementType();
+              if(goalBlockEntity.isIdle()){
+                  goalBlockEntity.setReceiveWaitingTime(arriveTick);
+                  goalBlockEntity.setReceiveAmount(emitterBlockEnitity.getSendAmount());
+                  goalBlockEntity.setReceiveElementType(emitterBlockEnitity.getExportElementType());
+                  if(goalBlockEntity instanceof Mirror) {
+                      Mirror mirror= (Mirror) goalBlockEntity;
+                      mirror.setIncidentDirection(direction.getOpposite());
+                  }
                     goalBlockEntity.markUpdated();
-                    flag=true;
-                    break;
-                }
-            }
-            if(!flag){
-                ItemEntity itemEntity=new ItemEntity(level,goalPos.getX()+0.5D,goalPos.getY()+1.5D,goalPos.getZ(),ElementUtils.getOverflowStack(this.getStoredElementType()));
-                level.addFreshEntity(itemEntity);
-            }
+                  emitterBlockEnitity.decreaseStoredReiryoku(emitterBlockEnitity.getSendAmount());
+                  emitterBlockEnitity.markUpdated();
+                  level.addParticle(ElementUtils.getMediumElementParticle(this.getExportElementType()), dX, dY, dZ, vX, vY, vZ);
+
+              }
+
         }
     }
 
+    /**搬出時の元素*/
     @Override
     public ElementType getExportElementType() {
         return this.getStoredElementType();
     }
 
-    @Override
-    public ElementType getImportElementType() {
-        return this.getStoredElementType();
-    }
-    /*
-    private void send(Level level,BlockPos emitterPos){
-        BlockState emitterState=level.getBlockState(emitterPos);
-        Direction direction=emitterState.getValue(EmitterBlock.FACING);
-        int distance=sendDistance(level,emitterPos);
-        BlockPos goalPos=emitterPos.relative(direction,distance);
-        EmitterBlockEntity emitterBlockEnitity= (EmitterBlockEntity) level.getBlockEntity(emitterPos);
-        ReiryokuStorable goalBlockEntity= (ReiryokuStorable) level.getBlockEntity(goalPos);
-        BlockState goalState=level.getBlockState(goalPos);
-        int arriveTick=Mth.floor ((distance-1)/particleSpeed);
-        if(emitterBlockEnitity!=null&&goalBlockEntity!=null&&emitterBlockEnitity.canDecreaseReiryoku(1)&&goalBlockEntity.canAddReiryoku(1)) {
-            if(!level.getBlockTicks().willTickThisTick(goalPos, goalState.getBlock())) {
-                emitterBlockEnitity.decreaseStoredReiryoku(1);
-                emitterBlockEnitity.markUpdated();
 
-                level.scheduleTick(goalPos, goalState.getBlock(), 2, TickPriority.EXTREMELY_LOW);
 
-            }
-        }
-    }*/
 }

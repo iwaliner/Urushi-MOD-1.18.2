@@ -38,11 +38,11 @@ public class SanboRenderer implements BlockEntityRenderer<SanboBlockEntity> {
 
             if (!itemstack.isEmpty()) {
                 poseStack.pushPose();
-                poseStack.translate(0.5D, 0.0625D*10, 0.5D);
+                poseStack.translate(0.5D, 0.0625D*14, 0.5D);
                 Direction direction1 = Direction.from2DDataValue((direction.get2DDataValue()) % 4);
                 float f = -direction1.toYRot();
                 poseStack.mulPose(Vector3f.YP.rotationDegrees(f));
-                poseStack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
+                //poseStack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
                 poseStack.scale(0.5F, 0.5F, 0.5F);
                 Minecraft.getInstance().getItemRenderer().renderStatic(itemstack, ItemTransforms.TransformType.FIXED, i1, i2, poseStack, bufferSource, i);
                 poseStack.popPose();

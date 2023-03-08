@@ -2,6 +2,7 @@ package com.iwaliner.urushi.block;
 
 
 import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.iwaliner.urushi.TagUrushi;
 import com.iwaliner.urushi.util.UrushiUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -59,7 +60,7 @@ public class DirtFurnaceBlock extends HorizonalRotateBlock {
             world.playSound((Player) null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1F);
             return InteractionResult.SUCCESS;
         }else{
-            if(player.getItemInHand(hand).getItem() instanceof FlintAndSteelItem){
+            if(player.getItemInHand(hand).is(TagUrushi.IGNITER)){
                 world.playSound((Player) null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, world.random.nextFloat() * 0.4F + 0.8F);
                 world.setBlockAndUpdate(pos,state.setValue(LIT,Boolean.valueOf(true)));
                 return InteractionResult.SUCCESS;

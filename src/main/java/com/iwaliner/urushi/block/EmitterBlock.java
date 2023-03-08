@@ -4,6 +4,7 @@ import com.iwaliner.urushi.BlockEntityRegister;
 import com.iwaliner.urushi.blockentity.EmitterBlockEntity;
 import com.iwaliner.urushi.blockentity.SacredRockBlockEntity;
 import com.iwaliner.urushi.util.ElementType;
+import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.util.interfaces.ElementBlock;
 import com.iwaliner.urushi.util.interfaces.ReiryokuImportable;
@@ -45,9 +46,12 @@ import java.util.Random;
 public class EmitterBlock extends BaseEntityBlock implements Tiered, ElementBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-    private static final VoxelShape BOX = Block.box(2D, 0.0D, 2D, 14D, 14D, 14D);
-    private ElementType elementType;
-    private int tier;
+    private static final VoxelShape NORTH_BOX = Block.box(2D, 2.0D, 13D, 14D, 14D, 16D);
+    private static final VoxelShape SOUTH_BOX = Block.box(2D, 2.0D, 0D, 14D, 14D, 3D);
+    private static final VoxelShape EAST_BOX = Block.box(0D, 2.0D, 2D, 3D, 14D, 14D);
+    private static final VoxelShape WEST_BOX = Block.box(13D, 2.0D, 2D, 16D, 14D, 14D);
+    private final ElementType elementType;
+    private final int tier;
 
     public EmitterBlock(int tier, ElementType type, Properties p_i48377_1_) {
         super(p_i48377_1_);
@@ -63,8 +67,16 @@ public class EmitterBlock extends BaseEntityBlock implements Tiered, ElementBloc
     }
 
     @Override
-    public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
-        return BOX;
+    public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
+        if(state.getValue(FACING)==Direction.EAST){
+            return EAST_BOX;
+        }else if(state.getValue(FACING)==Direction.WEST){
+            return WEST_BOX;
+        }else if(state.getValue(FACING)==Direction.SOUTH){
+            return SOUTH_BOX;
+        }else {
+            return NORTH_BOX;
+        }
     }
 
     @org.jetbrains.annotations.Nullable
@@ -101,7 +113,10 @@ public class EmitterBlock extends BaseEntityBlock implements Tiered, ElementBloc
 
     @Override
     public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
-        UrushiUtils.setInfo(list, "emitter");
+        UrushiUtils.setInfo(list, "emitter1");
+        UrushiUtils.setInfo(list, "emitter2");
+        UrushiUtils.setInfo(list, "emitter3");
+        UrushiUtils.setInfo(list, "emitter4");
     }
 
     @Override
@@ -124,30 +139,19 @@ public class EmitterBlock extends BaseEntityBlock implements Tiered, ElementBloc
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        if (level.getBlockEntity(pos) instanceof EmitterBlockEntity) {
+        if (level.getBlockEntity(pos) instanceof EmitterBlockEntity&&!player.isSuppressingBounce()) {
             EmitterBlockEntity blockEntity = (EmitterBlockEntity) level.getBlockEntity(pos);
             if(player.getItemInHand(hand).getItem()==Items.BARRIER){
                 blockEntity.addStoredReiryoku(100);
             }
-
-            player.displayClientMessage(new TranslatableComponent("info.urushi.emitter.message").append("  " + blockEntity.getStoredReiryoku()).append(level.isClientSide()? " client":" server"), false);
+            if(!level.isClientSide()) {
+                player.displayClientMessage(ElementUtils.getStoredReiryokuDisplayMessage(blockEntity.getStoredReiryoku(), blockEntity.getReiryokuCapacity(), blockEntity.getStoredElementType()), true);
+            }
             return InteractionResult.SUCCESS;
+
         }
         return InteractionResult.FAIL;
     }
 
-   /* @Override
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
-     //   if(!level.isClientSide()) {
-            if (level.getBlockEntity(pos) instanceof ReiryokuStorable && level.getBlockEntity(pos) instanceof ReiryokuImportable) {
-                ReiryokuStorable blockEntity = (ReiryokuStorable) level.getBlockEntity(pos);
-                if (blockEntity.canAddReiryoku(1)) {
-                    blockEntity.addStoredReiryoku(1);
-                } else {
-                    ItemEntity itemEntity = new ItemEntity(level, pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, new ItemStack(Items.APPLE));
-                    level.addFreshEntity(itemEntity);
-                }
-       //     }
-        }
-    }*/
+
 }

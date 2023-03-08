@@ -24,15 +24,14 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class TankBlockEntity extends AbstractReiryokuStorableBlockEntity implements ReiryokuImportable,ReiryokuExportable {
     public TankBlockEntity(BlockPos p_155550_, BlockState p_155551_) {
-        super(BlockEntityRegister.Tank.get(),5000, p_155550_, p_155551_);
+        super(BlockEntityRegister.Tank.get(),1000, p_155550_, p_155551_);
     }
 
 
     @Override
     public CompoundTag getUpdateTag() {
         CompoundTag compoundtag = new CompoundTag();
-        compoundtag.putInt("storedReiryoku", this.storedReiryoku);
-        compoundtag.putIntArray("receiveWaitingTime", this.receiveWaitingTime);
+        this.putBaseTag(compoundtag);
         return compoundtag;
     }
 

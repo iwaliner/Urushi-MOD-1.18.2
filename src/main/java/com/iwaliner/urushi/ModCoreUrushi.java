@@ -5,6 +5,8 @@ import com.iwaliner.urushi.blockentity.ShichirinBlockEntity;
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.UrushiUtils;
+import com.iwaliner.urushi.util.interfaces.ElementItem;
+import com.iwaliner.urushi.util.interfaces.Tiered;
 import com.iwaliner.urushi.world.feature.PlacementFeatures;
 import mcjty.theoneprobe.network.PacketHandler;
 import net.minecraft.ChatFormatting;
@@ -125,6 +127,12 @@ public class ModCoreUrushi {
             return new ItemStack(ItemAndBlockRegister.color_dango.get());
         }
     };
+    public static final CreativeModeTab UrushiMagicTab = new CreativeModeTab("urushi_magic") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(ItemAndBlockRegister.earth_element_magatama.get());
+        }
+    };
     public ModCoreUrushi() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         /**コンフィグを登録*/
@@ -183,7 +191,7 @@ public class ModCoreUrushi {
             base.add(PlacementFeatures.SAKURA_PLACE);
         }
       //  if(type.contains(BiomeDictionary.Type.FOREST)){
-        if(biome==Biomes.FOREST||biome==Biomes.BIRCH_FOREST||biome==Biomes.TAIGA||biome==Biomes.FLOWER_FOREST||biome==Biomes.PLAINS||biome==Biomes.JUNGLE){
+        if(biome==Biomes.FOREST||biome==Biomes.BIRCH_FOREST||biome==Biomes.TAIGA||biome==Biomes.FLOWER_FOREST||biome==Biomes.JUNGLE){
 
             List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
             base.add(PlacementFeatures.LACQUER_PLACE);
@@ -226,6 +234,13 @@ public class ModCoreUrushi {
             undergroundBase.add(PlacementFeatures.LANTERN_PLANT);
             undergroundBase.add(PlacementFeatures.QUARTZ_CLUSTER);
             undergroundBase.add(PlacementFeatures.YOMI_VINE_PLACE);
+            List<Holder<PlacedFeature>> surfaceBase=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
+            surfaceBase.add(PlacementFeatures.WOOD_ELEMENT_SACRED_ROCK);
+            surfaceBase.add(PlacementFeatures.FIRE_ELEMENT_SACRED_ROCK);
+            surfaceBase.add(PlacementFeatures.EARTH_ELEMENT_SACRED_ROCK);
+            surfaceBase.add(PlacementFeatures.METAL_ELEMENT_SACRED_ROCK);
+            surfaceBase.add(PlacementFeatures.WATER_ELEMENT_SACRED_ROCK);
+
         }
         if(biome.equals(BiomeRegister.SakuraForest)){
             List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
@@ -236,7 +251,7 @@ public class ModCoreUrushi {
         if(biome.equals(BiomeRegister.CedarForest)){
             List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
             base.add(PlacementFeatures.LYCORIS_FLOWERS);
-            base.add(PlacementFeatures.CEDAR_FOREST_CEDAR_PLACE);
+            base.add(PlacementFeatures.KAKURIYO_CEDAR_FOREST_CEDAR_PLACE);
         }
         if(biome.equals(BiomeRegister.AutumnForest)){
             List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
@@ -580,6 +595,32 @@ public class ModCoreUrushi {
 
         ItemStack stack=event.getItemStack();
         Item item=event.getItemStack().getItem();
+        if(item instanceof ElementItem){
+            ElementItem elementItem= (ElementItem) item;
+            ElementType elementType=elementItem.getElementType();
+            if(elementType==ElementType.WoodElement){
+                event.getToolTip().add((new TranslatableComponent("info.urushi.wood_element_item" )).withStyle(ChatFormatting.DARK_GREEN));
+            }else if(elementType==ElementType.FireElement){
+                event.getToolTip().add((new TranslatableComponent("info.urushi.fire_element_item" )).withStyle(ChatFormatting.DARK_RED));
+            }else if(elementType==ElementType.EarthElement){
+                event.getToolTip().add((new TranslatableComponent("info.urushi.earth_element_item" )).withStyle(ChatFormatting.GOLD));
+            }else if(elementType==ElementType.MetalElement){
+                event.getToolTip().add((new TranslatableComponent("info.urushi.metal_element_item" )).withStyle(ChatFormatting.GRAY));
+            }else if(elementType==ElementType.WaterElement){
+                event.getToolTip().add((new TranslatableComponent("info.urushi.water_element_item" )).withStyle(ChatFormatting.DARK_PURPLE));
+            }
+        }
+        if(Block.byItem(event.getItemStack().getItem()) instanceof Tiered){
+            Tiered tiered= (Tiered) Block.byItem(event.getItemStack().getItem());
+            int tier=tiered.getTier();
+            if(tier==1){
+                event.getToolTip().add((new TranslatableComponent("info.urushi.tier1" )).withStyle(ChatFormatting.GRAY));
+            }else if(tier==2){
+                event.getToolTip().add((new TranslatableComponent("info.urushi.tier2" )).withStyle(ChatFormatting.GRAY));
+            }else if(tier==3){
+                event.getToolTip().add((new TranslatableComponent("info.urushi.tier3" )).withStyle(ChatFormatting.GRAY));
+            }
+        }
         if(Block.byItem(event.getItemStack().getItem())!= Blocks.AIR){
             BlockState state=Block.byItem(event.getItemStack().getItem()).defaultBlockState();
             if(ElementUtils.isWoodElement(state)){
@@ -725,6 +766,8 @@ public class ModCoreUrushi {
     public void LoottableEvent(LootTableLoadEvent event) {
         if(event.getName().equals(BuiltInLootTables.FISHING_FISH)){
             event.getTable().addPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemAndBlockRegister.sweetfish.get()).setWeight(25)).add(LootItem.lootTableItem(ItemAndBlockRegister.carp.get()).setWeight(25)).add(LootItem.lootTableItem(ItemAndBlockRegister.goldfish.get()).setWeight(25)).build());
+        }else if(event.getName().equals(BuiltInLootTables.SIMPLE_DUNGEON)||event.getName().equals(BuiltInLootTables.SPAWN_BONUS_CHEST)||event.getName().equals(BuiltInLootTables.VILLAGE_PLAINS_HOUSE)){
+            event.getTable().addPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemAndBlockRegister.lacquer_sapling.get()).setWeight(30)).build());
         }
     }
 

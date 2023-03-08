@@ -1,6 +1,7 @@
 package com.iwaliner.urushi.block;
 
 
+import com.iwaliner.urushi.FluidRegister;
 import com.iwaliner.urushi.ItemAndBlockRegister;
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.ElementUtils;
@@ -146,7 +147,7 @@ public class ChiseledLacquerLogBlock extends HorizonalRotateBlock{
         //level.scheduleTick(logPos, level.getBlockState(logPos).getBlock(), 5, TickPriority.VERY_HIGH);
     }*/
     private static boolean isPressured(Level level, BlockPos pos){
-        return level.getBlockState(pos.above()).getBlock()==ItemAndBlockRegister.yomi_stone.get();
+        return level.getBlockState(pos.above()).getBlock()==ItemAndBlockRegister.yomi_stone.get()||level.getBlockState(pos.above()).getBlock()==ItemAndBlockRegister.cobbled_yomi_stone.get();
     }
 
 

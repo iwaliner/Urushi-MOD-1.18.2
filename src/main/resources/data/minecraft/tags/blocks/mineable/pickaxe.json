@@ -117,7 +117,16 @@
     "urushi:petrified_log_with_metal_amber",
     "urushi:petrified_log_with_water_amber",
     "urushi:petrified_planks",
+    "urushi:sanbo_tier3",
     "urushi:wood_element_sacred_rock",
-    "urushi:wood_element_emitter_tier1"
+    "urushi:fire_element_sacred_rock",
+    "urushi:earth_element_sacred_rock",
+    "urushi:metal_element_sacred_rock",
+    "urushi:water_element_sacred_rock",
+    "urushi:wood_element_emitter_tier1",
+    "urushi:fire_element_emitter_tier1",
+    "urushi:earth_element_emitter_tier1",
+    "urushi:metal_element_emitter_tier1",
+    "urushi:water_element_emitter_tier1"
   ]
 }

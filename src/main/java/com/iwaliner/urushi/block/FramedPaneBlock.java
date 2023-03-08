@@ -175,15 +175,43 @@ public class FramedPaneBlock extends HorizonalRotateBlock{
         BlockState aState = iblockreader.getBlockState(blockpos5);
         BlockState bState = iblockreader.getBlockState(blockpos6);
 
-        return super.getStateForPlacement(p_196258_1_).setValue(NORTH, Boolean.valueOf(this.connectsTo(thisState, nState)))
+    /*    return super.getStateForPlacement(p_196258_1_).setValue(NORTH, Boolean.valueOf(this.connectsTo(thisState, nState)))
                 .setValue(SOUTH, Boolean.valueOf(this.connectsTo(thisState, sState)))
                 .setValue(WEST, Boolean.valueOf(this.connectsTo(thisState, wState)))
                 .setValue(EAST, Boolean.valueOf(this.connectsTo(thisState, eState)))
                 .setValue(UP, Boolean.valueOf(this.connectsTo(thisState, aState)))
                 .setValue(DOWN, Boolean.valueOf(this.connectsTo(thisState, bState)))
-                .setValue(VARIANT, p_196258_1_.getLevel().getServer().isSingleplayer() ?
+                .setValue(VARIANT,p_196258_1_.getLevel().getServer()==null? p_196258_1_.getPlayer().isSuppressingBounce() : p_196258_1_.getLevel().getServer().isSingleplayer() ?
                         ClientSetUp.connectionKey.isDown() :
                         p_196258_1_.getPlayer().isSuppressingBounce());
+
+*/
+        try {
+            BlockState newState=this.defaultBlockState().setValue(NORTH, Boolean.valueOf(this.connectsTo(thisState, nState)))
+                    .setValue(SOUTH, Boolean.valueOf(this.connectsTo(thisState, sState)))
+                    .setValue(WEST, Boolean.valueOf(this.connectsTo(thisState, wState)))
+                    .setValue(EAST, Boolean.valueOf(this.connectsTo(thisState, eState)))
+                    .setValue(UP, Boolean.valueOf(this.connectsTo(thisState, aState)))
+                    .setValue(DOWN, Boolean.valueOf(this.connectsTo(thisState, bState)))
+                    .setValue(FACING, p_196258_1_.getHorizontalDirection().getOpposite())
+                    .setValue(VARIANT,
+                            ClientSetUp.connectionKey.isDown() )
+                    ;
+
+            return newState;
+        }catch (Exception e){
+            BlockState newState=this.defaultBlockState().setValue(NORTH, Boolean.valueOf(this.connectsTo(thisState, nState)))
+                    .setValue(SOUTH, Boolean.valueOf(this.connectsTo(thisState, sState)))
+                    .setValue(WEST, Boolean.valueOf(this.connectsTo(thisState, wState)))
+                    .setValue(EAST, Boolean.valueOf(this.connectsTo(thisState, eState)))
+                    .setValue(UP, Boolean.valueOf(this.connectsTo(thisState, aState)))
+                    .setValue(DOWN, Boolean.valueOf(this.connectsTo(thisState, bState)))
+                    .setValue(FACING, p_196258_1_.getHorizontalDirection().getOpposite())
+                    .setValue(VARIANT, p_196258_1_.getPlayer().isSuppressingBounce())
+                    ;
+
+            return newState;
+        }
 
     }
 
