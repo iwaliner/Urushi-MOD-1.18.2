@@ -4,7 +4,7 @@
       "model": "urushi:block/half_slab_large_yomi_stone_brick"
     },
     "type\u003ddouble": {
-      "model": "urushi:block/large_yomi_stone_bricks"
+      "model": "urushi:block/large_yomi_stone_brick"
     },
     "type\u003dtop": {
       "model": "urushi:block/upper_slab_large_yomi_stone_brick"

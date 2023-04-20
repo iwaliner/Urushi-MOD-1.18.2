@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class ToolchipItem extends Item {
-    private String string;
+    private final String string;
     public ToolchipItem(String s,Properties p_41383_) {
         super(p_41383_);
         string=s;

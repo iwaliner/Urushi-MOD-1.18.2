@@ -1,19 +1,48 @@
 {
-  "variants": {
-    "facing=east": {
-      "model": "urushi:block/spruce_bars",
-      "y": 270
+  "multipart": [
+    {
+      "apply": {
+        "model": "urushi:block/spruce_bars_center"
+      }
     },
-    "facing=north": {
-      "model": "urushi:block/spruce_bars",
-      "y": 180
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": {
+        "model": "urushi:block/spruce_bars_edge",
+        "uvlock": true
+      }
     },
-    "facing=south": {
-      "model": "urushi:block/spruce_bars"
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "urushi:block/spruce_bars_edge",
+        "y": 90,
+        "uvlock": true
+      }
     },
-    "facing=west": {
-      "model": "urushi:block/spruce_bars",
-      "y": 90
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
+        "model": "urushi:block/spruce_bars_edge",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "urushi:block/spruce_bars_edge",
+        "y": 270,
+        "uvlock": true
+      }
     }
-  }
+  ]
 }

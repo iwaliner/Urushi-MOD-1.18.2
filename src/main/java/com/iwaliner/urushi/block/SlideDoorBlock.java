@@ -271,16 +271,26 @@ public class SlideDoorBlock extends Block {
     @Override
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos pos2, boolean boo) {
         boolean flag = world.hasNeighborSignal(pos) || world.hasNeighborSignal(pos.relative(state.getValue(HALF) == DoubleBlockHalf.LOWER ? Direction.UP : Direction.DOWN));
-        if (block != this && flag != state.getValue(POWERED)) {
+        BlockPos anotherPos = state.getValue(HALF) == DoubleBlockHalf.LOWER ? pos.above() : pos.below();
+        BlockState anotherState=world.getBlockState(anotherPos);
+        if (block != this/*&& flag != state.getValue(POWERED)*/) {
             if(ConfigUrushi.instantlySlidingDoor.get()){
                 if (state.getValue(OPEN) == 0 || state.getValue(OPEN) == 13) {
                     if (flag == isClose(state)) {
                         world.playSound((Player) null, pos, SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
 
                     }
-
-                    world.setBlock(pos, state.setValue(POWERED, Boolean.valueOf(flag)).setValue(OPEN, state.getValue(OPEN) == 0 ? 13 : 0).setValue(IS_OPENING, state.getValue(OPEN) == 0), 2);
-                    world.scheduleTick(new BlockPos(pos), this, 1);
+                    if(flag&&state.getValue(OPEN) == 0){
+                        world.setBlock(pos, state.setValue(POWERED, false).setValue(OPEN, 13).setValue(IS_OPENING, flag), 2);
+                       // world.setBlock(anotherPos, anotherState.setValue(POWERED, flag).setValue(OPEN, 13).setValue(IS_OPENING, flag), 2);
+                        world.scheduleTick(new BlockPos(pos), this, 1);
+                    //    world.scheduleTick(new BlockPos(anotherPos), this, 1);
+                    }else if(!flag&&state.getValue(OPEN) == 13) {
+                        world.setBlock(pos, state.setValue(POWERED, false).setValue(OPEN, 0).setValue(IS_OPENING, flag), 2);
+                  //      world.setBlock(anotherPos, anotherState.setValue(POWERED, flag).setValue(OPEN, 0).setValue(IS_OPENING, flag), 2);
+                        world.scheduleTick(new BlockPos(pos), this, 1);
+                      //  world.scheduleTick(new BlockPos(anotherPos), this, 1);
+                    }
                 }
             }else {
                 if (state.getValue(OPEN) == 0 || state.getValue(OPEN) == 13) {
@@ -288,9 +298,19 @@ public class SlideDoorBlock extends Block {
                         world.playSound((Player) null, pos, SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 1.0F, 1.0F);
 
                     }
-
-                    world.setBlock(pos, state.setValue(POWERED, Boolean.valueOf(flag)).setValue(OPEN, state.getValue(OPEN) == 0 ? 1 : 12).setValue(IS_OPENING, state.getValue(OPEN) == 0), 2);
-                    world.scheduleTick(new BlockPos(pos), this, 1);
+                    if(flag&&state.getValue(OPEN) == 0){
+                        world.setBlock(pos, state.setValue(POWERED, false).setValue(OPEN, 1).setValue(IS_OPENING, flag), 2);
+                       // world.setBlock(anotherPos, anotherState.setValue(POWERED, flag).setValue(OPEN, 1).setValue(IS_OPENING, flag), 2);
+                        world.scheduleTick(new BlockPos(pos), this, 1);
+                      //  world.scheduleTick(new BlockPos(anotherPos), this, 1);
+                    }else if(!flag&&state.getValue(OPEN) == 13) {
+                        world.setBlock(pos, state.setValue(POWERED, false).setValue(OPEN, 12).setValue(IS_OPENING, flag), 2);
+                       // world.setBlock(anotherPos, anotherState.setValue(POWERED, flag).setValue(OPEN, 12).setValue(IS_OPENING, flag), 2);
+                        world.scheduleTick(new BlockPos(pos), this, 1);
+                      //  world.scheduleTick(new BlockPos(anotherPos), this, 1);
+                    }
+                   // world.setBlock(pos, state.setValue(POWERED, Boolean.valueOf(flag)).setValue(OPEN, state.getValue(OPEN) == 0 ? 1 : 12).setValue(IS_OPENING, state.getValue(OPEN) == 0), 2);
+                   // world.scheduleTick(new BlockPos(pos), this, 1);
                 }
             }
         }

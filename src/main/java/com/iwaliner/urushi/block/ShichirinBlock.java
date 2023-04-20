@@ -119,9 +119,9 @@ public class ShichirinBlock extends BaseEntityBlock  {
             }
             else if(heldStack.getItem()== ItemAndBlockRegister.uchiwa.get()&&state.getValue(SHICHIRIN)!=0&&state.getValue(SHICHIRIN)!=1){
                     ItemStack magatama= ElementUtils.getMagatamaInInventory(player, ElementType.WoodElement);
-                    if(magatama!=ItemStack.EMPTY&&ElementUtils.willBeInDomain(magatama,-10)) {
+                    if(magatama!=ItemStack.EMPTY&&ElementUtils.willBeInDomain(magatama,-1)) {
                         tileEntity.addFire(30);
-                        ElementUtils.increaseStoredReiryokuAmount(magatama,-10);
+                        ElementUtils.increaseStoredReiryokuAmount(magatama,-1);
                         player.getItemInHand(hand).hurtAndBreak(1, player, (x) -> {
                             x.broadcastBreakEvent(hand);
                         });

@@ -16,7 +16,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 
 
-version = '1.18.2-alpha4.10.1'
+version = '1.18.2-alpha4.11.0'
 group = 'com.iwaliner.urushi' 
 archivesBaseName = 'Urushi'
 

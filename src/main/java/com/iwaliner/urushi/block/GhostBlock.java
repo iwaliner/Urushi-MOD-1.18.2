@@ -56,16 +56,27 @@ public class GhostBlock extends Block implements IGhostBlock {
     public BlockState getStateForPlacement(BlockPlaceContext p_55659_) {
         return this.defaultBlockState().setValue(POWERED, Boolean.valueOf(p_55659_.getLevel().hasNeighborSignal(p_55659_.getClickedPos())));
     }
-    public void neighborChanged(BlockState p_55666_, Level p_55667_, BlockPos p_55668_, Block p_55669_, BlockPos p_55670_, boolean p_55671_) {
-        if (!p_55667_.isClientSide) {
-            boolean flag = p_55666_.getValue(POWERED);
-            if (flag != p_55667_.hasNeighborSignal(p_55668_)) {
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos p_55670_, boolean p_55671_) {
+        if (!level.isClientSide) {
+            boolean flag = state.getValue(POWERED);
+        /*    boolean northFlag=level.getBlockState(pos.north()).getValue(POWERED);
+            boolean eastFlag=level.getBlockState(pos.east()).getValue(POWERED);
+            boolean southFlag=level.getBlockState(pos.south()).getValue(POWERED);
+            boolean westFlag=level.getBlockState(pos.west()).getValue(POWERED);
+            boolean aboveFlag=level.getBlockState(pos.above()).getValue(POWERED);
+            boolean belowFlag=level.getBlockState(pos.below()).getValue(POWERED);
+*/
+            if (flag != level.hasNeighborSignal(pos)) {
              //   if (flag) {
              //       p_55667_.scheduleTick(p_55668_, this, 4);
              //   } else {
-                    p_55667_.setBlock(p_55668_, p_55666_.cycle(POWERED), 2);
+                    level.setBlock(pos, state.cycle(POWERED), 2);
                // }
             }
+
+            /*if(level.getBlockState(pos.north()).getBlock()==state.getBlock()&&flag!=level.getBlockState(pos.north()).getValue(POWERED)){
+                level.setBlock(pos.north(), level.getBlockState(pos.north()).setValue(POWERED,flag), 2);
+            }*/
         }
     }
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_55673_) {

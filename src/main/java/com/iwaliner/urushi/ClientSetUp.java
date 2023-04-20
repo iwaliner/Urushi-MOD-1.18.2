@@ -387,6 +387,30 @@ public class ClientSetUp {
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.metal_element_emitter_tier1.get()),"metal_element_emitter_tier1");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.water_element_emitter_tier1.get()),"water_element_emitter_tier1");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.mirror_tier1.get()),"mirror_tier1_n");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.orange_plaster.get()),"orange_plaster");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.magenta_plaster.get()),"magenta_plaster");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.light_blue_plaster.get()),"light_blue_plaster");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.yellow_plaster.get()),"yellow_plaster");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.lime_plaster.get()),"lime_plaster");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.pink_plaster.get()),"pink_plaster");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.light_gray_plaster.get()),"light_gray_plaster");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.gray_plaster.get()),"gray_plaster");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.cyan_plaster.get()),"cyan_plaster");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.purple_plaster.get()),"purple_plaster");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.blue_plaster.get()),"blue_plaster");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.brown_plaster.get()),"brown_plaster");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.green_plaster.get()),"green_plaster");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.red_plaster.get()),"red_plaster");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.black_plaster.get()),"black_plaster");
+           NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.ghost_plaster.get()),"ghost_plaster");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.ghost_sand_coast.get()),"ghost_sand_coast");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.ghost_wattle_and_daub.get()),"ghost_wattle_and_daub");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.ghost_concrete.get()),"ghost_concrete");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.copper_giboshi.get()),"giboshi_copper");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.lantern_plant_block.get()),"lantern_plant_block");
+
+
+
 
 
             CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.yomi_stone.get(),"yomi_stone");
@@ -401,6 +425,22 @@ public class ClientSetUp {
             CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.jadeite_brick.get(),"jadeite_block_brick");
             CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.petrified_planks.get(),"petrified_planks");
             CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.kakuriyo_dirt.get(),"kakuriyo_dirt");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.orange_plaster.get(),"plaster_orange");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.magenta_plaster.get(),"plaster_magenta");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.light_blue_plaster.get(),"plaster_light_blue");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.yellow_plaster.get(),"plaster_yellow");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.lime_plaster.get(),"plaster_lime");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.pink_plaster.get(),"plaster_pink");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.light_gray_plaster.get(),"plaster_light_gray");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.gray_plaster.get(),"plaster_gray");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.cyan_plaster.get(),"plaster_cyan");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.purple_plaster.get(),"plaster_purple");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.blue_plaster.get(),"plaster_blue");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.brown_plaster.get(),"plaster_brown");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.green_plaster.get(),"plaster_green");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.red_plaster.get(),"plaster_red");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.black_plaster.get(),"plaster_black");
+            CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.lantern_plant_block.get(),"lantern_plant_block");
 
 
             SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.yomi_stone_slab.get(),"half_slab_yomi_stone",ItemAndBlockRegister.yomi_stone.get(),"upper_slab_yomi_stone","yomi_stone");
@@ -410,6 +450,22 @@ public class ClientSetUp {
             SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.jadeite_slab.get(),"half_slab_jadeite",ItemAndBlockRegister.jadeite_block.get(),"upper_slab_jadeite","jadeite_block_polished");
             SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.jadeite_brick_slab.get(),"half_slab_jadeite_brick",ItemAndBlockRegister.jadeite_brick.get(),"upper_slab_jadeite_brick","jadeite_block_brick");
             SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.smooth_jadeite_slab.get(),"half_slab_smooth_jadeite",ItemAndBlockRegister.smooth_jadeite_block.get(),"upper_slab_smooth_jadeite","jadeite_block_smooth");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.orange_plaster_slab.get(),"half_slab_orange_plaster",ItemAndBlockRegister.orange_plaster.get(),"upper_slab_orange_plaster","plaster_orange");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.magenta_plaster_slab.get(),"half_slab_magenta_plaster",ItemAndBlockRegister.magenta_plaster.get(),"upper_slab_magenta_plaster","plaster_magenta");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.light_blue_plaster_slab.get(),"half_slab_light_blue_plaster",ItemAndBlockRegister.light_blue_plaster.get(),"upper_slab_light_blue_plaster","plaster_light_blue");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.yellow_plaster_slab.get(),"half_slab_yellow_plaster",ItemAndBlockRegister.yellow_plaster.get(),"upper_slab_yellow_plaster","plaster_yellow");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.lime_plaster_slab.get(),"half_slab_lime_plaster",ItemAndBlockRegister.lime_plaster.get(),"upper_slab_lime_plaster","plaster_lime");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.pink_plaster_slab.get(),"half_slab_pink_plaster",ItemAndBlockRegister.pink_plaster.get(),"upper_slab_pink_plaster","plaster_pink");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.light_gray_plaster_slab.get(),"half_slab_light_gray_plaster",ItemAndBlockRegister.light_gray_plaster.get(),"upper_slab_light_gray_plaster","plaster_light_gray");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.gray_plaster_slab.get(),"half_slab_gray_plaster",ItemAndBlockRegister.gray_plaster.get(),"upper_slab_gray_plaster","plaster_gray");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.cyan_plaster_slab.get(),"half_slab_cyan_plaster",ItemAndBlockRegister.cyan_plaster.get(),"upper_slab_cyan_plaster","plaster_cyan");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.purple_plaster_slab.get(),"half_slab_purple_plaster",ItemAndBlockRegister.purple_plaster.get(),"upper_slab_purple_plaster","plaster_purple");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.blue_plaster_slab.get(),"half_slab_blue_plaster",ItemAndBlockRegister.blue_plaster.get(),"upper_slab_blue_plaster","plaster_blue");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.brown_plaster_slab.get(),"half_slab_brown_plaster",ItemAndBlockRegister.brown_plaster.get(),"upper_slab_brown_plaster","plaster_brown");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.green_plaster_slab.get(),"half_slab_green_plaster",ItemAndBlockRegister.green_plaster.get(),"upper_slab_green_plaster","plaster_green");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.red_plaster_slab.get(),"half_slab_red_plaster",ItemAndBlockRegister.red_plaster.get(),"upper_slab_red_plaster","plaster_red");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.black_plaster_slab.get(),"half_slab_black_plaster",ItemAndBlockRegister.black_plaster.get(),"upper_slab_black_plaster","plaster_black");
+
 
             StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("yomi_stone","yomi_stone");
             StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("cobbled_yomi_stone","yomi_stone_cobbled");
@@ -419,6 +475,22 @@ public class ClientSetUp {
             StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("jadeite","jadeite_block_polished");
             StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("jadeite_brick","jadeite_block_brick");
             StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("smooth_jadeite","jadeite_block_smooth");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("orange_plaster","plaster_orange");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("magenta_plaster","plaster_magenta");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("light_blue_plaster","plaster_light_blue");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("yellow_plaster","plaster_yellow");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("lime_plaster","plaster_lime");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("pink_plaster","plaster_pink");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("light_gray_plaster","plaster_light_gray");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("gray_plaster","plaster_gray");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("cyan_plaster","plaster_cyan");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("purple_plaster","plaster_purple");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("blue_plaster","plaster_blue");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("brown_plaster","plaster_brown");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("green_plaster","plaster_green");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("red_plaster","plaster_red");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("black_plaster","plaster_black");
+
 
             GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.jadeite.get(),"jadeite");
             GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.yomotsuhegui_fruit.get(),"yomotsuhegui");
@@ -433,6 +505,13 @@ public class ClientSetUp {
             GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.earth_element_magatama.get(),"magatama_earth");
             GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.metal_element_magatama.get(),"magatama_metal");
             GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.water_element_magatama.get(),"magatama_water");
+            GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.roasted_shiitake.get(),"shiitake_roasted");
+            GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.shiitake_goggles.get(),"shiitake_goggles");
+            GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.so.get(),"so");
+            GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.cheese_gyudon.get(),"rice_beef_cheese");
+            GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.cheese_gyudon_with_onsen_egg.get(),"rice_beef_cheese_onsen_egg");
+
+
 
         }
     }

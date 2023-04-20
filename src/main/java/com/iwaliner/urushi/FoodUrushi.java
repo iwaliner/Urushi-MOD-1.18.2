@@ -26,5 +26,7 @@ public class FoodUrushi {
     public static final FoodProperties CookedFish = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.6F).build();
     public static final FoodProperties RawFishWithSalt = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.5F).build();
     public static final FoodProperties CookedFishWithSalt = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.7F).build();
+    public static final FoodProperties Shiitake = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.3F).build();
+    public static final FoodProperties So = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
 
 }

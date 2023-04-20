@@ -86,15 +86,15 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
         }else if(direction==Direction.WEST){
             this.incidentDirection= ComplexDirection.W.getID();
         }else if(direction==Direction.UP){
-            this.incidentDirection= 0;
+            this.incidentDirection= ComplexDirection.A1.getID();
         }else if(direction==Direction.DOWN){
-            this.incidentDirection= 0;
+            this.incidentDirection= ComplexDirection.B1.getID();
         }
     }
 
 
 
-    public ComplexDirection getDirectionFromID(int i){
+    public static ComplexDirection getDirectionFromID(int i){
         ComplexDirection complexDirection=ComplexDirection.FAIL;
         for ( ComplexDirection f :ComplexDirection.values()) {
             if (f.getID() == i) {
@@ -107,19 +107,27 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
 
     /**180度の方角を返す*/
     public ComplexDirection getOppositeDirection(ComplexDirection direction){
-        if(direction.getID()<8){
-           return this.getDirectionFromID(direction.getID()+8);
-        }else if(direction.getID()<16){
-            return this.getDirectionFromID(direction.getID()-8);
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction.getID()<9){
+           return getDirectionFromID(direction.getID()+8);
+        }else if(direction.getID()<17){
+            return getDirectionFromID(direction.getID()-8);
+        }else if(direction.getID()<31){
+            return getDirectionFromID(direction.getID()+20);
+        }else if(direction.getID()<45){
+            return getDirectionFromID(direction.getID()-20);
         }
         return ComplexDirection.FAIL;
     }
 
     /**右回りに90度の方角を返す*/
     private ComplexDirection getClockwise90DegreesDirection(ComplexDirection direction){
-        if(direction.getID()<12){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction.getID()<13){
             return this.getDirectionFromID(direction.getID()+4);
-        }else if(direction.getID()<16){
+        }else if(direction.getID()<17){
             return this.getDirectionFromID(direction.getID()-12);
         }
         return ComplexDirection.FAIL;
@@ -127,9 +135,11 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
 
     /**左回りに90度の方角を返す*/
     private ComplexDirection getCounterClockwise90DegreesDirection(ComplexDirection direction){
-        if(direction.getID()<4){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction.getID()<5){
             return this.getDirectionFromID(direction.getID()+12);
-        }else if(direction.getID()<16){
+        }else if(direction.getID()<17){
             return this.getDirectionFromID(direction.getID()-4);
         }
         return ComplexDirection.FAIL;
@@ -137,9 +147,11 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
 
     /**右回りに22.5度の方角を返す*/
     private ComplexDirection getClockwiseNeighborDirection(ComplexDirection direction){
-        if(direction.getID()<15){
-            return this.getDirectionFromID(direction.getID()+1);
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
         }else if(direction.getID()<16){
+            return this.getDirectionFromID(direction.getID()+1);
+        }else if(direction.getID()<17){
             return this.getDirectionFromID(direction.getID()-15);
         }
         return ComplexDirection.FAIL;
@@ -147,27 +159,33 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
 
     /**右回りに45度の方角を返す*/
     private ComplexDirection getClockwise45DegreesDirection(ComplexDirection direction){
-        if(direction.getID()<14){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction.getID()<15){
             return this.getDirectionFromID(direction.getID()+2);
-        }else if(direction.getID()<16){
+        }else if(direction.getID()<17){
             return this.getDirectionFromID(direction.getID()-14);
         }
         return ComplexDirection.FAIL;
     }
     /**右回りに67.5度の方角を返す*/
     private ComplexDirection getClockwiseDistantDirection(ComplexDirection direction){
-        if(direction.getID()<13){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction.getID()<14){
             return this.getDirectionFromID(direction.getID()+3);
-        }else if(direction.getID()<16){
+        }else if(direction.getID()<17){
             return this.getDirectionFromID(direction.getID()-13);
         }
         return ComplexDirection.FAIL;
     }
     /**右回りに135度の方角を返す*/
     private ComplexDirection getClockwise135DegreesDirection(ComplexDirection direction){
-        if(direction.getID()<10){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction.getID()<11){
             return this.getDirectionFromID(direction.getID()+6);
-        }else if(direction.getID()<16){
+        }else if(direction.getID()<17){
             return this.getDirectionFromID(direction.getID()-10);
         }
         return ComplexDirection.FAIL;
@@ -175,9 +193,11 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
 
     /**左回りに22.5度の方角を返す*/
     private ComplexDirection getCounterClockwiseNeighborDirection(ComplexDirection direction){
-        if(direction.getID()<1){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction.getID()<2){
             return this.getDirectionFromID(direction.getID()+15);
-        }else if(direction.getID()<16){
+        }else if(direction.getID()<17){
             return this.getDirectionFromID(direction.getID()-1);
         }
         return ComplexDirection.FAIL;
@@ -185,9 +205,11 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
 
     /**左回りに45度の方角を返す*/
     private ComplexDirection getCounterClockwise45DegreesDirection(ComplexDirection direction){
-        if(direction.getID()<2){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction.getID()<3){
             return this.getDirectionFromID(direction.getID()+14);
-        }else if(direction.getID()<16){
+        }else if(direction.getID()<17){
             return this.getDirectionFromID(direction.getID()-2);
         }
         return ComplexDirection.FAIL;
@@ -195,9 +217,11 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
 
     /**左回りに67.5度の方角を返す*/
     private ComplexDirection getCounterClockwiseDistantDirection(ComplexDirection direction){
-        if(direction.getID()<3){
-            return this.getDirectionFromID(direction.getID()+13);
-        }else if(direction.getID()<16){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction.getID()<4){
+            return getDirectionFromID(direction.getID()+13);
+        }else if(direction.getID()<17){
             return this.getDirectionFromID(direction.getID()-3);
         }
         return ComplexDirection.FAIL;
@@ -205,14 +229,583 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
 
     /**左回りに135度の方角を返す*/
     private ComplexDirection getCounterClockwise135DegreesDirection(ComplexDirection direction){
-        if(direction.getID()<6){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction.getID()<7){
             return this.getDirectionFromID(direction.getID()+10);
-        }else if(direction.getID()<16){
+        }else if(direction.getID()<17){
             return this.getDirectionFromID(direction.getID()-6);
         }
         return ComplexDirection.FAIL;
     }
-
+    /**手前を西かつ左を北にしたとき、または手前を北かつ左を東にしたときの右回りに90度の方角を返す*/
+    private ComplexDirection getVerticalClockwise90DegreesDirection(ComplexDirection direction){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction==ComplexDirection.N){
+            return ComplexDirection.A1;
+        }else if(direction==ComplexDirection.A1){
+            return ComplexDirection.S;
+        }else if(direction==ComplexDirection.S){
+            return ComplexDirection.B1;
+        }else if(direction==ComplexDirection.B1){
+            return ComplexDirection.N;
+        }else if(direction==ComplexDirection.E){
+            return ComplexDirection.A2;
+        }else if(direction==ComplexDirection.A2){
+            return ComplexDirection.W;
+        }else if(direction==ComplexDirection.W){
+            return ComplexDirection.B2;
+        }else if(direction==ComplexDirection.B2){
+            return ComplexDirection.E;
+        }else if(direction==ComplexDirection.N_AN){
+            return ComplexDirection.A_AS;
+        }else if(direction==ComplexDirection.AN){
+            return ComplexDirection.AS;
+        }else if(direction==ComplexDirection.A_AN){
+            return ComplexDirection.S_AS;
+        }else if(direction==ComplexDirection.A_AS){
+            return ComplexDirection.S_BS;
+        }else if(direction==ComplexDirection.AS){
+            return ComplexDirection.BS;
+        }else if(direction==ComplexDirection.S_AS){
+            return ComplexDirection.B_BS;
+        }else if(direction==ComplexDirection.S_BS){
+            return ComplexDirection.B_BN;
+        }else if(direction==ComplexDirection.BS){
+            return ComplexDirection.BN;
+        }else if(direction==ComplexDirection.B_BS){
+            return ComplexDirection.N_BN;
+        }else if(direction==ComplexDirection.B_BN){
+            return ComplexDirection.N_AN;
+        }else if(direction==ComplexDirection.BN){
+            return ComplexDirection.AN;
+        }else if(direction==ComplexDirection.N_BN){
+            return ComplexDirection.A_AN;
+        }else if(direction==ComplexDirection.E_AE){
+            return ComplexDirection.A_AW;
+        }else if(direction==ComplexDirection.AE){
+            return ComplexDirection.AW;
+        }else if(direction==ComplexDirection.A_AE){
+            return ComplexDirection.W_AW;
+        }else if(direction==ComplexDirection.A_AW){
+            return ComplexDirection.W_BW;
+        }else if(direction==ComplexDirection.AW){
+            return ComplexDirection.BW;
+        }else if(direction==ComplexDirection.W_AW){
+            return ComplexDirection.B_BW;
+        }else if(direction==ComplexDirection.W_BW){
+            return ComplexDirection.B_BE;
+        }else if(direction==ComplexDirection.BW){
+            return ComplexDirection.BE;
+        }else if(direction==ComplexDirection.B_BW){
+            return ComplexDirection.E_BE;
+        }else if(direction==ComplexDirection.B_BE){
+            return ComplexDirection.E_AE;
+        }else if(direction==ComplexDirection.BE){
+            return ComplexDirection.AE;
+        }else if(direction==ComplexDirection.E_BE){
+            return ComplexDirection.A_AE;
+        }
+        return ComplexDirection.FAIL;
+    }
+    /**手前を西かつ左を北にしたとき、または手前を北かつ左を東にしたときの左回りに90度の方角を返す*/
+    private ComplexDirection getVerticalCounterClockwise90DegreesDirection(ComplexDirection direction){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction==ComplexDirection.N){
+            return ComplexDirection.B1;
+        }else if(direction==ComplexDirection.B1){
+            return ComplexDirection.S;
+        }else if(direction==ComplexDirection.S){
+            return ComplexDirection.A1;
+        }else if(direction==ComplexDirection.A1){
+            return ComplexDirection.N;
+        }else if(direction==ComplexDirection.E){
+            return ComplexDirection.B2;
+        }else if(direction==ComplexDirection.B2){
+            return ComplexDirection.W;
+        }else if(direction==ComplexDirection.W){
+            return ComplexDirection.A2;
+        }else if(direction==ComplexDirection.A2){
+            return ComplexDirection.E;
+        }else if(direction==ComplexDirection.N_AN){
+            return ComplexDirection.B_BN;
+        }else if(direction==ComplexDirection.AN){
+            return ComplexDirection.BN;
+        }else if(direction==ComplexDirection.A_AN){
+            return ComplexDirection.N_BN;
+        }else if(direction==ComplexDirection.A_AS){
+            return ComplexDirection.N_AN;
+        }else if(direction==ComplexDirection.AS){
+            return ComplexDirection.AN;
+        }else if(direction==ComplexDirection.S_AS){
+            return ComplexDirection.A_AN;
+        }else if(direction==ComplexDirection.S_BS){
+            return ComplexDirection.A_AS;
+        }else if(direction==ComplexDirection.BS){
+            return ComplexDirection.AS;
+        }else if(direction==ComplexDirection.B_BS){
+            return ComplexDirection.S_AS;
+        }else if(direction==ComplexDirection.B_BN){
+            return ComplexDirection.S_BS;
+        }else if(direction==ComplexDirection.BN){
+            return ComplexDirection.BS;
+        }else if(direction==ComplexDirection.N_BN){
+            return ComplexDirection.B_BS;
+        }else if(direction==ComplexDirection.E_AE){
+            return ComplexDirection.B_BE;
+        }else if(direction==ComplexDirection.AE){
+            return ComplexDirection.BE;
+        }else if(direction==ComplexDirection.A_AE){
+            return ComplexDirection.E_BE;
+        }else if(direction==ComplexDirection.A_AW){
+            return ComplexDirection.E_AE;
+        }else if(direction==ComplexDirection.AW){
+            return ComplexDirection.AE;
+        }else if(direction==ComplexDirection.W_AW){
+            return ComplexDirection.A_AE;
+        }else if(direction==ComplexDirection.W_BW){
+            return ComplexDirection.A_AW;
+        }else if(direction==ComplexDirection.BW){
+            return ComplexDirection.AW;
+        }else if(direction==ComplexDirection.B_BW){
+            return ComplexDirection.W_AW;
+        }else if(direction==ComplexDirection.B_BE){
+            return ComplexDirection.W_BW;
+        }else if(direction==ComplexDirection.BE){
+            return ComplexDirection.BW;
+        }else if(direction==ComplexDirection.E_BE){
+            return ComplexDirection.B_BW;
+        }
+        return ComplexDirection.FAIL;
+    }
+    /**手前を西かつ左を北にしたとき、または手前を北かつ左を東にしたときの右回りに45度の方角を返す*/
+    private ComplexDirection getVerticalClockwise45DegreesDirection(ComplexDirection direction){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction==ComplexDirection.N){
+            return ComplexDirection.AN;
+        }else if(direction==ComplexDirection.A1){
+            return ComplexDirection.AS;
+        }else if(direction==ComplexDirection.S){
+            return ComplexDirection.BS;
+        }else if(direction==ComplexDirection.B1){
+            return ComplexDirection.BN;
+        }else if(direction==ComplexDirection.E){
+            return ComplexDirection.AE;
+        }else if(direction==ComplexDirection.A2){
+            return ComplexDirection.AW;
+        }else if(direction==ComplexDirection.W){
+            return ComplexDirection.BW;
+        }else if(direction==ComplexDirection.B2){
+            return ComplexDirection.BE;
+        }else if(direction==ComplexDirection.N_AN){
+            return ComplexDirection.A_AN;
+        }else if(direction==ComplexDirection.AN){
+            return ComplexDirection.A1;
+        }else if(direction==ComplexDirection.A_AN){
+            return ComplexDirection.A_AS;
+        }else if(direction==ComplexDirection.A_AS){
+            return ComplexDirection.S_AS;
+        }else if(direction==ComplexDirection.AS){
+            return ComplexDirection.S;
+        }else if(direction==ComplexDirection.S_AS){
+            return ComplexDirection.S_BS;
+        }else if(direction==ComplexDirection.S_BS){
+            return ComplexDirection.B_BS;
+        }else if(direction==ComplexDirection.BS){
+            return ComplexDirection.B1;
+        }else if(direction==ComplexDirection.B_BS){
+            return ComplexDirection.B_BN;
+        }else if(direction==ComplexDirection.B_BN){
+            return ComplexDirection.N_BN;
+        }else if(direction==ComplexDirection.BN){
+            return ComplexDirection.N;
+        }else if(direction==ComplexDirection.N_BN){
+            return ComplexDirection.N_AN;
+        }else if(direction==ComplexDirection.E_AE){
+            return ComplexDirection.A_AE;
+        }else if(direction==ComplexDirection.AE){
+            return ComplexDirection.A2;
+        }else if(direction==ComplexDirection.A_AE){
+            return ComplexDirection.A_AW;
+        }else if(direction==ComplexDirection.A_AW){
+            return ComplexDirection.W_AW;
+        }else if(direction==ComplexDirection.AW){
+            return ComplexDirection.W;
+        }else if(direction==ComplexDirection.W_AW){
+            return ComplexDirection.W_BW;
+        }else if(direction==ComplexDirection.W_BW){
+            return ComplexDirection.B_BW;
+        }else if(direction==ComplexDirection.BW){
+            return ComplexDirection.B2;
+        }else if(direction==ComplexDirection.B_BW){
+            return ComplexDirection.B_BE;
+        }else if(direction==ComplexDirection.B_BE){
+            return ComplexDirection.E_BE;
+        }else if(direction==ComplexDirection.BE){
+            return ComplexDirection.E;
+        }else if(direction==ComplexDirection.E_BE){
+            return ComplexDirection.E_AE;
+        }
+        return ComplexDirection.FAIL;
+    }
+    /**手前を西かつ左を北にしたとき、または手前を北かつ左を東にしたときの左回りに45度の方角を返す*/
+    private ComplexDirection getVerticalCounterClockwise45DegreesDirection(ComplexDirection direction){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction==ComplexDirection.N){
+            return ComplexDirection.BN;
+        }else if(direction==ComplexDirection.A1){
+            return ComplexDirection.AN;
+        }else if(direction==ComplexDirection.S){
+            return ComplexDirection.AS;
+        }else if(direction==ComplexDirection.B1){
+            return ComplexDirection.BS;
+        }else if(direction==ComplexDirection.E){
+            return ComplexDirection.BE;
+        }else if(direction==ComplexDirection.A2){
+            return ComplexDirection.AE;
+        }else if(direction==ComplexDirection.W){
+            return ComplexDirection.AW;
+        }else if(direction==ComplexDirection.B2){
+            return ComplexDirection.BW;
+        }else if(direction==ComplexDirection.N_AN){
+            return ComplexDirection.N_BN;
+        }else if(direction==ComplexDirection.AN){
+            return ComplexDirection.N;
+        }else if(direction==ComplexDirection.A_AN){
+            return ComplexDirection.N_AN;
+        }else if(direction==ComplexDirection.A_AS){
+            return ComplexDirection.A_AN;
+        }else if(direction==ComplexDirection.AS){
+            return ComplexDirection.A1;
+        }else if(direction==ComplexDirection.S_AS){
+            return ComplexDirection.A_AS;
+        }else if(direction==ComplexDirection.S_BS){
+            return ComplexDirection.S_AS;
+        }else if(direction==ComplexDirection.BS){
+            return ComplexDirection.S;
+        }else if(direction==ComplexDirection.B_BS){
+            return ComplexDirection.S_BS;
+        }else if(direction==ComplexDirection.B_BN){
+            return ComplexDirection.B_BS;
+        }else if(direction==ComplexDirection.BN){
+            return ComplexDirection.B1;
+        }else if(direction==ComplexDirection.N_BN){
+            return ComplexDirection.B_BN;
+        }else if(direction==ComplexDirection.E_AE){
+            return ComplexDirection.E_BE;
+        }else if(direction==ComplexDirection.AE){
+            return ComplexDirection.E;
+        }else if(direction==ComplexDirection.A_AE){
+            return ComplexDirection.E_AE;
+        }else if(direction==ComplexDirection.A_AW){
+            return ComplexDirection.A_AE;
+        }else if(direction==ComplexDirection.AW){
+            return ComplexDirection.A2;
+        }else if(direction==ComplexDirection.W_AW){
+            return ComplexDirection.A_AW;
+        }else if(direction==ComplexDirection.W_BW){
+            return ComplexDirection.W_AW;
+        }else if(direction==ComplexDirection.BW){
+            return ComplexDirection.W;
+        }else if(direction==ComplexDirection.B_BW){
+            return ComplexDirection.W_BW;
+        }else if(direction==ComplexDirection.B_BE){
+            return ComplexDirection.B_BW;
+        }else if(direction==ComplexDirection.BE){
+            return ComplexDirection.B2;
+        }else if(direction==ComplexDirection.E_BE){
+            return ComplexDirection.B_BE;
+        }
+        return ComplexDirection.FAIL;
+    }
+    /**手前を西かつ左を北にしたとき、または手前を北かつ左を東にしたときの右回りに22.5度の方角を返す*/
+    private ComplexDirection getVerticalClockwiseNeighborDirection(ComplexDirection direction){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction==ComplexDirection.N){
+                return ComplexDirection.N_AN;
+        }else if(direction==ComplexDirection.A1){
+            return ComplexDirection.A_AS;
+        }else if(direction==ComplexDirection.S){
+            return ComplexDirection.S_BS;
+        }else if(direction==ComplexDirection.B1){
+            return ComplexDirection.B_BN;
+        }else if(direction==ComplexDirection.E){
+            return ComplexDirection.E_AE;
+        }else if(direction==ComplexDirection.A2){
+            return ComplexDirection.A_AW;
+        }else if(direction==ComplexDirection.W){
+            return ComplexDirection.W_BW;
+        }else if(direction==ComplexDirection.B2){
+            return ComplexDirection.B_BE;
+        }else if(direction==ComplexDirection.N_AN){
+            return ComplexDirection.AN;
+        }else if(direction==ComplexDirection.AN){
+            return ComplexDirection.A_AN;
+        }else if(direction==ComplexDirection.A_AN){
+            return ComplexDirection.A1;
+        }else if(direction==ComplexDirection.A_AS){
+            return ComplexDirection.AS;
+        }else if(direction==ComplexDirection.AS){
+            return ComplexDirection.S_AS;
+        }else if(direction==ComplexDirection.S_AS){
+            return ComplexDirection.S;
+        }else if(direction==ComplexDirection.S_BS){
+            return ComplexDirection.BS;
+        }else if(direction==ComplexDirection.BS){
+            return ComplexDirection.B_BS;
+        }else if(direction==ComplexDirection.B_BS){
+            return ComplexDirection.B1;
+        }else if(direction==ComplexDirection.B_BN){
+            return ComplexDirection.BN;
+        }else if(direction==ComplexDirection.BN){
+            return ComplexDirection.N_BN;
+        }else if(direction==ComplexDirection.N_BN){
+            return ComplexDirection.N;
+        }else if(direction==ComplexDirection.E_AE){
+            return ComplexDirection.AE;
+        }else if(direction==ComplexDirection.AE){
+            return ComplexDirection.A_AE;
+        }else if(direction==ComplexDirection.A_AE){
+            return ComplexDirection.A2;
+        }else if(direction==ComplexDirection.A_AW){
+            return ComplexDirection.AW;
+        }else if(direction==ComplexDirection.AW){
+            return ComplexDirection.W_AW;
+        }else if(direction==ComplexDirection.W_AW){
+            return ComplexDirection.W;
+        }else if(direction==ComplexDirection.W_BW){
+            return ComplexDirection.BW;
+        }else if(direction==ComplexDirection.BW){
+            return ComplexDirection.B_BW;
+        }else if(direction==ComplexDirection.B_BW){
+            return ComplexDirection.B2;
+        }else if(direction==ComplexDirection.B_BE){
+            return ComplexDirection.BE;
+        }else if(direction==ComplexDirection.BE){
+            return ComplexDirection.E_BE;
+        }else if(direction==ComplexDirection.E_BE){
+            return ComplexDirection.E;
+        }
+        return ComplexDirection.FAIL;
+    }
+    /**手前を西かつ左を北にしたとき、または手前を北かつ左を東にしたときの左回りに22.5度の方角を返す*/
+    private ComplexDirection getVerticalCounterClockwiseNeighborDirection(ComplexDirection direction){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction==ComplexDirection.N){
+            return ComplexDirection.N_BN;
+        }else if(direction==ComplexDirection.A1){
+            return ComplexDirection.A_AN;
+        }else if(direction==ComplexDirection.S){
+            return ComplexDirection.S_AS;
+        }else if(direction==ComplexDirection.B1){
+            return ComplexDirection.B_BS;
+        }else if(direction==ComplexDirection.E){
+            return ComplexDirection.E_BE;
+        }else if(direction==ComplexDirection.A2){
+            return ComplexDirection.A_AE;
+        }else if(direction==ComplexDirection.W){
+            return ComplexDirection.W_AW;
+        }else if(direction==ComplexDirection.B2){
+            return ComplexDirection.B_BW;
+        }else if(direction==ComplexDirection.N_AN){
+            return ComplexDirection.N;
+        }else if(direction==ComplexDirection.AN){
+            return ComplexDirection.N_AN;
+        }else if(direction==ComplexDirection.A_AN){
+            return ComplexDirection.AN;
+        }else if(direction==ComplexDirection.A_AS){
+            return ComplexDirection.A1;
+        }else if(direction==ComplexDirection.AS){
+            return ComplexDirection.A_AS;
+        }else if(direction==ComplexDirection.S_AS){
+            return ComplexDirection.AS;
+        }else if(direction==ComplexDirection.S_BS){
+            return ComplexDirection.S;
+        }else if(direction==ComplexDirection.BS){
+            return ComplexDirection.S_BS;
+        }else if(direction==ComplexDirection.B_BS){
+            return ComplexDirection.BS;
+        }else if(direction==ComplexDirection.B_BN){
+            return ComplexDirection.B1;
+        }else if(direction==ComplexDirection.BN){
+            return ComplexDirection.B_BN;
+        }else if(direction==ComplexDirection.N_BN){
+            return ComplexDirection.BN;
+        }else if(direction==ComplexDirection.E_AE){
+            return ComplexDirection.E;
+        }else if(direction==ComplexDirection.AE){
+            return ComplexDirection.E_AE;
+        }else if(direction==ComplexDirection.A_AE){
+            return ComplexDirection.AE;
+        }else if(direction==ComplexDirection.A_AW){
+            return ComplexDirection.A2;
+        }else if(direction==ComplexDirection.AW){
+            return ComplexDirection.A_AW;
+        }else if(direction==ComplexDirection.W_AW){
+            return ComplexDirection.AW;
+        }else if(direction==ComplexDirection.W_BW){
+            return ComplexDirection.W;
+        }else if(direction==ComplexDirection.BW){
+            return ComplexDirection.W_BW;
+        }else if(direction==ComplexDirection.B_BW){
+            return ComplexDirection.BW;
+        }else if(direction==ComplexDirection.B_BE){
+            return ComplexDirection.B2;
+        }else if(direction==ComplexDirection.BE){
+            return ComplexDirection.B_BE;
+        }else if(direction==ComplexDirection.E_BE){
+            return ComplexDirection.BE;
+        }
+        return ComplexDirection.FAIL;
+    }
+    /**手前を西かつ左を北にしたとき、または手前を北かつ左を東にしたときの右回りに67.5度の方角を返す*/
+    private ComplexDirection getVerticalClockwiseDistantDirection(ComplexDirection direction){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction==ComplexDirection.N){
+            return ComplexDirection.A_AN;
+        }else if(direction==ComplexDirection.A1){
+            return ComplexDirection.S_AS;
+        }else if(direction==ComplexDirection.S){
+            return ComplexDirection.B_BS;
+        }else if(direction==ComplexDirection.B1){
+            return ComplexDirection.N_BN;
+        }else if(direction==ComplexDirection.E){
+            return ComplexDirection.A_AE;
+        }else if(direction==ComplexDirection.A2){
+            return ComplexDirection.W_AW;
+        }else if(direction==ComplexDirection.W){
+            return ComplexDirection.B_BW;
+        }else if(direction==ComplexDirection.B2){
+            return ComplexDirection.E_BE;
+        }else if(direction==ComplexDirection.N_AN){
+            return ComplexDirection.A1;
+        }else if(direction==ComplexDirection.AN){
+            return ComplexDirection.A_AS;
+        }else if(direction==ComplexDirection.A_AN){
+            return ComplexDirection.AS;
+        }else if(direction==ComplexDirection.A_AS){
+            return ComplexDirection.S;
+        }else if(direction==ComplexDirection.AS){
+            return ComplexDirection.S_BS;
+        }else if(direction==ComplexDirection.S_AS){
+            return ComplexDirection.BS;
+        }else if(direction==ComplexDirection.S_BS){
+            return ComplexDirection.B1;
+        }else if(direction==ComplexDirection.BS){
+            return ComplexDirection.B_BN;
+        }else if(direction==ComplexDirection.B_BS){
+            return ComplexDirection.BN;
+        }else if(direction==ComplexDirection.B_BN){
+            return ComplexDirection.N;
+        }else if(direction==ComplexDirection.BN){
+            return ComplexDirection.N_AN;
+        }else if(direction==ComplexDirection.N_BN){
+            return ComplexDirection.AN;
+        }else if(direction==ComplexDirection.E_AE){
+            return ComplexDirection.A2;
+        }else if(direction==ComplexDirection.AE){
+            return ComplexDirection.A_AW;
+        }else if(direction==ComplexDirection.A_AE){
+            return ComplexDirection.AW;
+        }else if(direction==ComplexDirection.A_AW){
+            return ComplexDirection.W;
+        }else if(direction==ComplexDirection.AW){
+            return ComplexDirection.W_BW;
+        }else if(direction==ComplexDirection.W_AW){
+            return ComplexDirection.BW;
+        }else if(direction==ComplexDirection.W_BW){
+            return ComplexDirection.B2;
+        }else if(direction==ComplexDirection.BW){
+            return ComplexDirection.B_BE;
+        }else if(direction==ComplexDirection.B_BW){
+            return ComplexDirection.BE;
+        }else if(direction==ComplexDirection.B_BE){
+            return ComplexDirection.E;
+        }else if(direction==ComplexDirection.BE){
+            return ComplexDirection.E_AE;
+        }else if(direction==ComplexDirection.E_BE){
+            return ComplexDirection.AE;
+        }
+        return ComplexDirection.FAIL;
+    }
+    /**手前を西かつ左を北にしたとき、または手前を北かつ左を東にしたときの左回りに67.5度の方角を返す*/
+    private ComplexDirection getVerticalCounterClockwiseDistantDirection(ComplexDirection direction){
+        if(direction==ComplexDirection.FAIL){
+            return ComplexDirection.FAIL;
+        }else if(direction==ComplexDirection.N){
+            return ComplexDirection.B_BN;
+        }else if(direction==ComplexDirection.A1){
+            return ComplexDirection.N_AN;
+        }else if(direction==ComplexDirection.S){
+            return ComplexDirection.A_AS;
+        }else if(direction==ComplexDirection.B1){
+            return ComplexDirection.S_BS;
+        }else if(direction==ComplexDirection.E){
+            return ComplexDirection.B_BE;
+        }else if(direction==ComplexDirection.A2){
+            return ComplexDirection.E_AE;
+        }else if(direction==ComplexDirection.W){
+            return ComplexDirection.A_AW;
+        }else if(direction==ComplexDirection.B2){
+            return ComplexDirection.W_BW;
+        }else if(direction==ComplexDirection.N_AN){
+            return ComplexDirection.BN;
+        }else if(direction==ComplexDirection.AN){
+            return ComplexDirection.N_BN;
+        }else if(direction==ComplexDirection.A_AN){
+            return ComplexDirection.N;
+        }else if(direction==ComplexDirection.A_AS){
+            return ComplexDirection.AN;
+        }else if(direction==ComplexDirection.AS){
+            return ComplexDirection.A_AN;
+        }else if(direction==ComplexDirection.S_AS){
+            return ComplexDirection.A1;
+        }else if(direction==ComplexDirection.S_BS){
+            return ComplexDirection.AS;
+        }else if(direction==ComplexDirection.BS){
+            return ComplexDirection.S_AS;
+        }else if(direction==ComplexDirection.B_BS){
+            return ComplexDirection.S;
+        }else if(direction==ComplexDirection.B_BN){
+            return ComplexDirection.BS;
+        }else if(direction==ComplexDirection.BN){
+            return ComplexDirection.B_BS;
+        }else if(direction==ComplexDirection.N_BN){
+            return ComplexDirection.B1;
+        }else if(direction==ComplexDirection.E_AE){
+            return ComplexDirection.BE;
+        }else if(direction==ComplexDirection.AE){
+            return ComplexDirection.E_BE;
+        }else if(direction==ComplexDirection.A_AE){
+            return ComplexDirection.E;
+        }else if(direction==ComplexDirection.A_AW){
+            return ComplexDirection.AE;
+        }else if(direction==ComplexDirection.AW){
+            return ComplexDirection.A_AE;
+        }else if(direction==ComplexDirection.W_AW){
+            return ComplexDirection.A2;
+        }else if(direction==ComplexDirection.W_BW){
+            return ComplexDirection.AW;
+        }else if(direction==ComplexDirection.BW){
+            return ComplexDirection.W_AW;
+        }else if(direction==ComplexDirection.B_BW){
+            return ComplexDirection.W;
+        }else if(direction==ComplexDirection.B_BE){
+            return ComplexDirection.BW;
+        }else if(direction==ComplexDirection.BE){
+            return ComplexDirection.B_BW;
+        }else if(direction==ComplexDirection.E_BE){
+            return ComplexDirection.B2;
+        }
+        return ComplexDirection.FAIL;
+    }
     /**特定の角度(パラメータ)が2つの角度の間に入っているかどうか。指定した2つの角度のいずれかとパラメータが一致する場合は含まない。そしてこの処理は45度の範囲内までしか機能していない。*/
     private boolean isIn(ComplexDirection counterclockwiseDirection,ComplexDirection clockwiseDirection,ComplexDirection parameter){
         if(counterclockwiseDirection==clockwiseDirection){
@@ -270,6 +863,34 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
         }else if(getClockwiseNeighborDirection(blockOpposite)==incident){
             reflect= getCounterClockwise45DegreesDirection(incident); //鏡面から67.5度に入射
         }
+        else if(getVerticalCounterClockwiseDistantDirection(block)==incident){
+            reflect=getVerticalClockwiseDistantDirection(block); //鏡面から縦に22.5度に入射
+        }else if(getVerticalClockwiseDistantDirection(block)==incident){
+            reflect=getVerticalCounterClockwiseDistantDirection(block); //鏡面から縦に22.5度に入射
+        }else if(getVerticalCounterClockwiseDistantDirection(blockOpposite)==incident){
+            reflect=getVerticalClockwiseDistantDirection(blockOpposite); //鏡面から縦に22.5度に入射
+        }else if(getVerticalClockwiseDistantDirection(blockOpposite)==incident){
+            reflect=getVerticalCounterClockwiseDistantDirection(blockOpposite); //鏡面から縦に22.5度に入射
+        }
+        else if(getVerticalCounterClockwise45DegreesDirection(block)==incident){
+            reflect= getVerticalClockwise90DegreesDirection(incident); //鏡面から縦に45度に入射
+        }else if(getVerticalClockwise45DegreesDirection(block)==incident){
+            reflect= getVerticalCounterClockwise90DegreesDirection(incident); //鏡面から縦に45度に入射
+        }else if(getVerticalCounterClockwise45DegreesDirection(blockOpposite)==incident){
+            reflect= getVerticalClockwise90DegreesDirection(incident); //鏡面から縦に45度に入射
+        }else if(getVerticalClockwise45DegreesDirection(blockOpposite)==incident){
+            reflect= getVerticalCounterClockwise90DegreesDirection(incident); //鏡面から縦に45度に入射
+        }
+        else if(getVerticalCounterClockwiseNeighborDirection(block)==incident){
+            reflect= getVerticalClockwise45DegreesDirection(incident); //鏡面から縦に67.5度に入射
+        }else if(getVerticalClockwiseNeighborDirection(block)==incident){
+            reflect= getVerticalCounterClockwise45DegreesDirection(incident); //鏡面から縦に67.5度に入射
+        }else if(getVerticalCounterClockwiseNeighborDirection(blockOpposite)==incident){
+            reflect= getVerticalClockwise45DegreesDirection(incident); //鏡面から縦に67.5度に入射
+        }else if(getVerticalClockwiseNeighborDirection(blockOpposite)==incident){
+            reflect= getVerticalCounterClockwise45DegreesDirection(incident); //鏡面から縦に67.5度に入射
+        }
+
         return reflect;
     }
 
@@ -292,6 +913,26 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
             return new double[]{-vectorComponent45Degrees, 0D, vectorComponent45Degrees};
         }else if(reflectedDirection==ComplexDirection.NW){
             return new double[]{-vectorComponent45Degrees, 0D,-vectorComponent45Degrees};
+        }else if(reflectedDirection==ComplexDirection.AN){
+            return new double[]{0D, vectorComponent45Degrees,-vectorComponent45Degrees};
+        }else if(reflectedDirection==ComplexDirection.AE){
+            return new double[]{vectorComponent45Degrees, vectorComponent45Degrees,0D};
+        }else if(reflectedDirection==ComplexDirection.AS){
+            return new double[]{0D, vectorComponent45Degrees,vectorComponent45Degrees};
+        }else if(reflectedDirection==ComplexDirection.AW){
+            return new double[]{-vectorComponent45Degrees, vectorComponent45Degrees,0D};
+        }else if(reflectedDirection==ComplexDirection.BN){
+            return new double[]{0D, -vectorComponent45Degrees,-vectorComponent45Degrees};
+        }else if(reflectedDirection==ComplexDirection.BE){
+            return new double[]{vectorComponent45Degrees, -vectorComponent45Degrees,0D};
+        }else if(reflectedDirection==ComplexDirection.BS){
+            return new double[]{0D, -vectorComponent45Degrees,vectorComponent45Degrees};
+        }else if(reflectedDirection==ComplexDirection.BW){
+            return new double[]{-vectorComponent45Degrees, -vectorComponent45Degrees,0D};
+        }else if(reflectedDirection==ComplexDirection.A1||reflectedDirection==ComplexDirection.A2){
+            return new double[]{0D, speed, 0D};
+        }else if(reflectedDirection==ComplexDirection.B1||reflectedDirection==ComplexDirection.B2){
+            return new double[]{0D, -speed, 0D};
         }
         return new double[]{0D, 0D, 0D};
     }
@@ -314,6 +955,30 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
             return new double[]{pos.getX()+0.5D-j,pos.getY()+0.5D, pos.getZ()+0.5D+j};
         }else if(reflectedDirection==ComplexDirection.NW){
             return new double[]{pos.getX()+0.5D-j,pos.getY()+0.5D, pos.getZ()+0.5D-j};
+        }else if(reflectedDirection==ComplexDirection.AN){
+            return new double[]{pos.getX()+0.5D,pos.getY()+0.5D+j, pos.getZ()+0.5D-j};
+        }else if(reflectedDirection==ComplexDirection.AE){
+            return new double[]{pos.getX()+0.5D+j,pos.getY()+0.5D+j, pos.getZ()+0.5D};
+        }else if(reflectedDirection==ComplexDirection.AS){
+            return new double[]{pos.getX()+0.5D,pos.getY()+0.5D+j, pos.getZ()+0.5D+j};
+        }else if(reflectedDirection==ComplexDirection.AW){
+            return new double[]{pos.getX()+0.5D-j,pos.getY()+0.5D+j, pos.getZ()+0.5D};
+        }else if(reflectedDirection==ComplexDirection.BN){
+            return new double[]{pos.getX()+0.5D,pos.getY()+0.5D-j, pos.getZ()+0.5D-j};
+        }else if(reflectedDirection==ComplexDirection.BE){
+            return new double[]{pos.getX()+0.5D+j,pos.getY()+0.5D-j, pos.getZ()+0.5D};
+        }else if(reflectedDirection==ComplexDirection.BS){
+            return new double[]{pos.getX()+0.5D,pos.getY()+0.5D-j, pos.getZ()+0.5D+j};
+        }else if(reflectedDirection==ComplexDirection.BW){
+            return new double[]{pos.getX()+0.5D-j,pos.getY()+0.5D-j, pos.getZ()+0.5D};
+        }else if(reflectedDirection==ComplexDirection.A1){
+            return new double[]{pos.getX()+0.5D,pos.getY()+0.5D+i, pos.getZ()+0.5D};
+        }else if(reflectedDirection==ComplexDirection.A2){
+            return new double[]{pos.getX()+0.5D,pos.getY()+0.5D+i, pos.getZ()+0.5D};
+        }else if(reflectedDirection==ComplexDirection.B1){
+            return new double[]{pos.getX()+0.5D,pos.getY()+0.5D-i, pos.getZ()+0.5D};
+        }else if(reflectedDirection==ComplexDirection.B2){
+            return new double[]{pos.getX()+0.5D,pos.getY()+0.5D-i, pos.getZ()+0.5D};
         }
         return new double[]{pos.getX()+0.5D,pos.getY()+0.5D, pos.getZ()+0.5D};
     }
@@ -335,6 +1000,30 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
             return new Direction[]{Direction.SOUTH,Direction.WEST};
         }else if(direction==ComplexDirection.NW){
             return new Direction[]{Direction.NORTH,Direction.WEST};
+        }else if(direction==ComplexDirection.AN){
+            return new Direction[]{Direction.UP,Direction.NORTH};
+        }else if(direction==ComplexDirection.AE){
+            return new Direction[]{Direction.UP,Direction.EAST};
+        }else if(direction==ComplexDirection.AS){
+            return new Direction[]{Direction.UP,Direction.SOUTH};
+        }else if(direction==ComplexDirection.AW){
+            return new Direction[]{Direction.UP,Direction.WEST};
+        }else if(direction==ComplexDirection.A1){
+            return new Direction[]{Direction.UP,null};
+        }else if(direction==ComplexDirection.A2){
+            return new Direction[]{Direction.UP,null};
+        }else if(direction==ComplexDirection.BN){
+            return new Direction[]{Direction.DOWN,Direction.NORTH};
+        }else if(direction==ComplexDirection.BE){
+            return new Direction[]{Direction.DOWN,Direction.EAST};
+        }else if(direction==ComplexDirection.BS){
+            return new Direction[]{Direction.DOWN,Direction.SOUTH};
+        }else if(direction==ComplexDirection.BW){
+            return new Direction[]{Direction.DOWN,Direction.WEST};
+        }else if(direction==ComplexDirection.B1){
+            return new Direction[]{Direction.DOWN,null};
+        }else if(direction==ComplexDirection.B2){
+            return new Direction[]{Direction.DOWN,null};
         }else{
             return null;
         }
@@ -358,7 +1047,7 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
         blockEntity.recieveReiryoku(level,pos);
 
         boolean canReach= blockEntity.getCanReach();
-        ComplexDirection mirrorDirection=blockEntity.getDirectionFromID(state.getValue(MirrorBlock.DIRECTION));
+        ComplexDirection mirrorDirection= getDirectionFromID(state.getValue(MirrorBlock.DIRECTION));
         ComplexDirection incidentDirection=blockEntity.getIncidentDirection();
         int storedReiryoku= blockEntity.getStoredReiryoku();
            ComplexDirection reflectedDirection=blockEntity.reflectedDirection(mirrorDirection,incidentDirection);
@@ -404,12 +1093,15 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
                             }
                         }
                         break;
-                    } else if (blockEntity instanceof Mirror) {
+                    } else if (blockEntity instanceof Mirror&&level.getBlockState(pos).getBlock() instanceof MirrorBlock) {
                         ReiryokuStorable reiryokuStorable = (ReiryokuStorable) blockEntity;
                         Mirror mirror = (Mirror) blockEntity;
                         if (reiryokuStorable.canAddReiryoku(mirrorBlockEntity.getSendAmount())) {
                             ComplexDirection blockDirection = getDirectionFromID(level.getBlockState(pos).getValue(MirrorBlock.DIRECTION));
                             if (getClockwise90DegreesDirection(blockDirection) != incidentDirection && getCounterClockwise90DegreesDirection(blockDirection) != incidentDirection) {
+                                t1 = i1;
+                                break;
+                            }else if (getVerticalClockwise90DegreesDirection(blockDirection) != incidentDirection && getVerticalCounterClockwise90DegreesDirection(blockDirection) != incidentDirection) {
                                 t1 = i1;
                                 break;
                             }
@@ -430,7 +1122,7 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
         ReiryokuStorable goalBlockEntity= (ReiryokuStorable) level.getBlockEntity(goalPos);
         int distance=Mth.floor( Math.sqrt( (Math.abs(mirrorPos.getX()-goalPos.getX()))^2+(Math.abs(mirrorPos.getY()-goalPos.getY()))^2+(Math.abs(mirrorPos.getZ()-goalPos.getZ()))^2));
 
-        int arriveTick= Mth.floor ((distance-1)/EmitterBlockEntity.particleSpeed)<=0? 1:Mth.floor ((distance-1)/EmitterBlockEntity.particleSpeed);;
+        int arriveTick= Mth.floor ((distance-1)/EmitterBlockEntity.particleSpeed)<=0? 1:Mth.floor ((distance-1)/EmitterBlockEntity.particleSpeed);
 
         if(mirrorBlockEntity!=null&&goalBlockEntity!=null&&goalBlockEntity.isIdle()&&mirrorBlockEntity.canDecreaseReiryoku(mirrorBlockEntity.getSendAmount())&&goalBlockEntity.canAddReiryoku(mirrorBlockEntity.getSendAmount())){
             if(goalBlockEntity instanceof ReiryokuImportable){

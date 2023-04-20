@@ -157,6 +157,7 @@ public class AbstractFramedBlock extends Block {
         BlockState bState = iblockreader.getBlockState(blockpos6);
 
 try {
+
     BlockState newState=this.defaultBlockState().setValue(NORTH, Boolean.valueOf(this.connectsTo(thisState, nState)))
             .setValue(SOUTH, Boolean.valueOf(this.connectsTo(thisState, sState)))
             .setValue(WEST, Boolean.valueOf(this.connectsTo(thisState, wState)))

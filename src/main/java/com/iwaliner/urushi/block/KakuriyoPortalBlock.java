@@ -72,7 +72,7 @@ public class KakuriyoPortalBlock extends Block implements SimpleWaterloggedBlock
                 }
             }
             if(center==null){
-                ModCoreUrushi.logger.warn("Center position of the gate is null value!!!");
+               // ModCoreUrushi.logger.warn("Center position of the gate is null value!!!");
                 return;
             }else {
                 entity.setDeltaMovement(Vec3.ZERO);

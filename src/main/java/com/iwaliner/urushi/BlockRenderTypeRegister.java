@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -45,6 +46,10 @@ public class BlockRenderTypeRegister {
                 ItemAndBlockRegister.kakuriyo_grass_block_with_fallen_japanese_apricot_leaves.get(),
                 ItemAndBlockRegister.kakuriyo_grass_block_with_fallen_sakura_leaves.get(),
                 ItemAndBlockRegister.kakuriyo_grass_block.get());
+        itemcolors.register((stack, i) -> {
+                    return 13886461;
+                },
+                ItemAndBlockRegister.onsen_egg.get());
 
         if(ConfigUrushi.ShojisAreTranslucent.get()){
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.oak_shoji.get(), RenderType.translucent());
@@ -190,6 +195,14 @@ public class BlockRenderTypeRegister {
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.metal_element_tank_tier1.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.water_element_tank_tier1.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.wood_element_tank_tier1.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.ghost_plaster.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.ghost_sand_coast.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.ghost_wattle_and_daub.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.ghost_concrete.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.lantern_plant_block.get(), RenderType.cutout());
+
+
+
 
     }
 }

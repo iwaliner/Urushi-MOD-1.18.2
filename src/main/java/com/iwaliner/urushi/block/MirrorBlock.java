@@ -42,14 +42,14 @@ public class MirrorBlock extends BaseEntityBlock implements Tiered {
     private static final VoxelShape BASE = Block.box(6D, 0.0D, 6D, 10D, 1D, 10D);
     private static final VoxelShape PILLAR = Block.box(7D, 1.0D, 7D, 9D, 16D, 9D);
     private static final VoxelShape OUTER_BOX = Block.box(1D, 0.0D, 1D, 15D, 16D, 15D);
-    public static final IntegerProperty DIRECTION = IntegerProperty.create("complex_facing",0,60);
+    public static final IntegerProperty DIRECTION = IntegerProperty.create("complex_facing",0,30);
 
 
     private int tier;
     public MirrorBlock(int tier, Properties p_49224_) {
         super(p_49224_);
         this.tier = tier;
-        this.registerDefaultState(this.stateDefinition.any().setValue(DIRECTION, 0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(DIRECTION, 1));
     }
     @Nullable
     @Override
@@ -110,15 +110,63 @@ public class MirrorBlock extends BaseEntityBlock implements Tiered {
     }
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+        ComplexDirection complexDirection=MirrorBlockEntity.getDirectionFromID(state.getValue(MirrorBlock.DIRECTION));
         if (level.getBlockEntity(pos) instanceof MirrorBlockEntity) {
 
                 if(!player.isSuppressingBounce()){
-                    level.setBlockAndUpdate(pos, state.setValue(DIRECTION, state.getValue(DIRECTION) > 14 ? 0 : state.getValue(DIRECTION) + 1));
+                    level.setBlockAndUpdate(pos, state.setValue(DIRECTION, state.getValue(DIRECTION) > 15 ? 1 : state.getValue(DIRECTION) + 1));
+                    return InteractionResult.SUCCESS;
+                }else if(canFaceAbove(complexDirection)){
+                    ComplexDirection newDirection=ComplexDirection.FAIL;
+                    if(complexDirection==ComplexDirection.N||complexDirection==ComplexDirection.S){
+                        newDirection=ComplexDirection.N_AN;
+                    }else if(complexDirection==ComplexDirection.N_AN){
+                        newDirection=ComplexDirection.AN;
+                    }else if(complexDirection==ComplexDirection.AN){
+                        newDirection=ComplexDirection.A_AN;
+                    }else if(complexDirection==ComplexDirection.A_AN){
+                        newDirection=ComplexDirection.A1;
+                    }else if(complexDirection==ComplexDirection.A1){
+                        newDirection=ComplexDirection.A_AS;
+                    }else if(complexDirection==ComplexDirection.A_AS){
+                        newDirection=ComplexDirection.AS;
+                    }else if(complexDirection==ComplexDirection.AS){
+                        newDirection=ComplexDirection.S_AS;
+                    }else if(complexDirection==ComplexDirection.S_AS){
+                        newDirection=ComplexDirection.N;
+                    }else if(complexDirection==ComplexDirection.E||complexDirection==ComplexDirection.W){
+                        newDirection=ComplexDirection.E_AE;
+                    }else if(complexDirection==ComplexDirection.E_AE){
+                        newDirection=ComplexDirection.AE;
+                    }else if(complexDirection==ComplexDirection.AE){
+                        newDirection=ComplexDirection.A_AE;
+                    }else if(complexDirection==ComplexDirection.A_AE){
+                        newDirection=ComplexDirection.A2;
+                    }else if(complexDirection==ComplexDirection.A2){
+                        newDirection=ComplexDirection.A_AW;
+                    }else if(complexDirection==ComplexDirection.A_AW){
+                        newDirection=ComplexDirection.AW;
+                    }else if(complexDirection==ComplexDirection.AW){
+                        newDirection=ComplexDirection.W_AW;
+                    }else if(complexDirection==ComplexDirection.W_AW){
+                        newDirection=ComplexDirection.E;
+                    }else{
+                        return InteractionResult.FAIL;
+                    }
+
+                    level.setBlockAndUpdate(pos, state.setValue(DIRECTION, newDirection.getID()));
                     return InteractionResult.SUCCESS;
                 }
 
         }
         return InteractionResult.FAIL;
+    }
+    private  boolean canFaceAbove(ComplexDirection direction){
+        return direction==ComplexDirection.N||direction==ComplexDirection.N_AN||direction==ComplexDirection.AN||direction==ComplexDirection.A_AN||
+                direction==ComplexDirection.E||direction==ComplexDirection.E_AE||direction==ComplexDirection.AE||direction==ComplexDirection.A_AE||
+                direction==ComplexDirection.S||direction==ComplexDirection.S_AS||direction==ComplexDirection.AS||direction==ComplexDirection.A_AS||
+                direction==ComplexDirection.W||direction==ComplexDirection.W_AW||direction==ComplexDirection.AW||direction==ComplexDirection.A_AW
+                ||direction==ComplexDirection.A1||direction==ComplexDirection.A2;
     }
 
 }

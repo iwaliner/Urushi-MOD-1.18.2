@@ -10,10 +10,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.PushReaction;
 
 public class KakuriyoPortalCoreBlock extends Block {
     public KakuriyoPortalCoreBlock(Properties p_49795_) {
         super(p_49795_);
+    }
+
+    @Override
+    public PushReaction getPistonPushReaction(BlockState p_60584_) {
+        return PushReaction.DESTROY;
     }
 
     @Override

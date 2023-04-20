@@ -1,18 +1,25 @@
 package com.iwaliner.urushi.particle;
 
+import com.iwaliner.urushi.blockentity.EmitterBlockEntity;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.List;
+
 public class MediumParticle extends TextureSheetParticle {
+
     MediumParticle(ClientLevel level, double x, double y, double z, double xd, double yd, double zd, SpriteSet p_108353_) {
         super(level, x, y, z, xd, yd,zd);
         this.friction = 1F;
@@ -31,12 +38,18 @@ public class MediumParticle extends TextureSheetParticle {
         super.tick();
         BlockPos pos=new BlockPos(this.x, this.y, this.z);
         BlockState state=level.getBlockState(pos);
+        BlockState frontState=level.getBlockState(pos.offset(this.xd==0D? 0 : this.xd>0D? 1 : -1,this.yd==0D? 0 : this.yd>0D? 1 : -1,this.zd==0D? 0 : this.zd>0D? 1 : -1));
         VoxelShape shape= state.getCollisionShape(level,pos).optimize();
+        VoxelShape frontShape= frontState.getCollisionShape(level,pos.offset(this.xd==0D? 0 : this.xd>0D? 1 : -1,this.yd==0D? 0 : this.yd>0D? 1 : -1,this.zd==0D? 0 : this.zd>0D? 1 : -1)).optimize();
         double corner=6D;
         VoxelShape particleShape= Block.box(corner,corner,corner,16D-corner,16D-corner,16D-corner);
         if(!this.removed && Shapes.joinIsNotEmpty(shape,particleShape, BooleanOp.AND)){
             this.remove();
         }
+        if(!this.removed && Shapes.joinIsNotEmpty(frontShape,particleShape, BooleanOp.AND)){
+            this.setLifetime(Mth.floor(1/ EmitterBlockEntity.particleSpeed)+5);
+        }
+
 
 
     }

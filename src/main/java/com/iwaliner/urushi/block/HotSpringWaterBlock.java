@@ -2,6 +2,7 @@ package com.iwaliner.urushi.block;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;
+import com.iwaliner.urushi.ItemAndBlockRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -12,7 +13,10 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -46,6 +50,11 @@ public class HotSpringWaterBlock extends LiquidBlock {
             //      ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 3 * 20, 0), entity);
             ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.REGENERATION, 10 * 20, 0), entity);
         }
+        }else if(entity instanceof ItemEntity){
+            ItemEntity itemEntity= (ItemEntity) entity;
+            if(itemEntity.getItem().getItem()== Items.EGG){
+                itemEntity.setItem(new ItemStack(ItemAndBlockRegister.onsen_egg.get(),itemEntity.getItem().getCount()));
+            }
         }
 
     }

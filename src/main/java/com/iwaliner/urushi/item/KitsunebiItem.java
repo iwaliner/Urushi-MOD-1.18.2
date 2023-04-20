@@ -39,7 +39,7 @@ public class KitsunebiItem extends Item implements ElementItem {
    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
       ItemStack itemstack = player.getItemInHand(hand);
       ItemStack magatama= ElementUtils.getMagatamaInInventory(player, ElementType.FireElement);
-      if(magatama!=ItemStack.EMPTY&&ElementUtils.willBeInDomain(magatama,-100)) {
+      if(magatama!=ItemStack.EMPTY&&ElementUtils.willBeInDomain(magatama,-10)) {
 
          world.playSound((Player) null, player.getX(), player.getY(), player.getZ(), SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 0.5F, 1F);
          if (!world.isClientSide) {
@@ -52,7 +52,7 @@ public class KitsunebiItem extends Item implements ElementItem {
          player.awardStat(Stats.ITEM_USED.get(this));
          if (!player.getAbilities().instabuild) {
             itemstack.shrink(1);
-            ElementUtils.increaseStoredReiryokuAmount(magatama,-100);
+            ElementUtils.increaseStoredReiryokuAmount(magatama,-10);
          }
 
          return InteractionResultHolder.sidedSuccess(itemstack, world.isClientSide());
@@ -99,10 +99,10 @@ public class KitsunebiItem extends Item implements ElementItem {
       BlockPos blockpos = context.getClickedPos();
       blockpos = blockpos.relative(context.getClickedFace());
       ItemStack magatama= ElementUtils.getMagatamaInInventory(Objects.requireNonNull(context.getPlayer()), ElementType.FireElement);
-      if (FireBlock.canBePlacedAt(world, blockpos, context.getHorizontalDirection())&&magatama!=ItemStack.EMPTY&&ElementUtils.willBeInDomain(magatama,-100)) {
+      if (FireBlock.canBePlacedAt(world, blockpos, context.getHorizontalDirection())&&magatama!=ItemStack.EMPTY&&ElementUtils.willBeInDomain(magatama,-10)) {
          world.playSound((Player) null, context.getPlayer().getX(), context.getPlayer().getY(), context.getPlayer().getZ(), SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 0.5F, 1F);
          world.setBlockAndUpdate(blockpos, ItemAndBlockRegister.kitsunebiBlock.get().defaultBlockState());
-         ElementUtils.increaseStoredReiryokuAmount(magatama,-100);
+         ElementUtils.increaseStoredReiryokuAmount(magatama,-10);
          context.getItemInHand().shrink(1);
        return  InteractionResult.SUCCESS;
       }else{
@@ -115,7 +115,7 @@ public class KitsunebiItem extends Item implements ElementItem {
       UrushiUtils.setInfo(list,"kitsunebi2");
       UrushiUtils.setInfo(list,"kitsunebi3");
    }
-
+     /**エンチャ金リンゴやエンチャアイテムみたいに輝く*/
    public boolean isFoil(ItemStack p_77636_1_) {
       return true;
    }
