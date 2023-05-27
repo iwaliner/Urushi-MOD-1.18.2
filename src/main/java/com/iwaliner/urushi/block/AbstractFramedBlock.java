@@ -8,7 +8,6 @@ import com.iwaliner.urushi.packet.ClientKeyPressPacket;
 import com.iwaliner.urushi.packet.ServerKeyPressPacket;
 import com.iwaliner.urushi.util.UrushiUtils;
 import com.mojang.blaze3d.platform.InputConstants;
-import mcjty.theoneprobe.network.PacketHandler;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;

@@ -2,7 +2,6 @@ package com.iwaliner.urushi.util;
 
 import com.iwaliner.urushi.packet.ClientKeyPressPacket;
 import com.mojang.blaze3d.platform.InputConstants;
-import mcjty.theoneprobe.network.PacketHandler;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.login.ServerboundKeyPacket;

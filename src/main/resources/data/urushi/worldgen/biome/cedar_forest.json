@@ -52,9 +52,9 @@
     "monster": [
       {
         "type": "urushi:ghost",
-        "weight": 50,
-        "minCount": 2,
-        "maxCount": 4
+        "weight": 5,
+        "minCount": 1,
+        "maxCount": 2
       }
     ],
     "ambient": [

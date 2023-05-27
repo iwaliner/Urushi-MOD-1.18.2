@@ -200,6 +200,7 @@ public class BlockRenderTypeRegister {
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.ghost_wattle_and_daub.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.ghost_concrete.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.lantern_plant_block.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.ajisai.get(), RenderType.cutout());
 
 
 

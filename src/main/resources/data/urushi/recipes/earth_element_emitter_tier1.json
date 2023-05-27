@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "jjj",
+    "pjp",
     "jej",
-    "jaj"
+    "pap"
   ],
   "key": {
   "j": {
@@ -13,7 +13,10 @@
      "item": "urushi:earth_amber"
     },
     "e": {
-     "item": "minecraft:ender_eye"
+     "item": "minecraft:ender_pearl"
+    },
+    "p": {
+     "item": "urushi:smooth_birch_planks"
     }
   },
   "result": {

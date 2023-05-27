@@ -8,7 +8,6 @@ import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.util.interfaces.ElementItem;
 import com.iwaliner.urushi.util.interfaces.Tiered;
 import com.iwaliner.urushi.world.feature.PlacementFeatures;
-import mcjty.theoneprobe.network.PacketHandler;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.core.*;
@@ -503,6 +502,30 @@ public class ModCoreUrushi {
 
         }
     }
+    @SubscribeEvent
+    public void ElementPaperCraftEvent(PlayerInteractEvent.RightClickBlock event) {
+
+        if (event.getEntity() instanceof LivingEntity) {
+            if(((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getItem()==Items.PAPER){
+                if(ElementUtils.isWoodElement(event.getWorld().getBlockState(event.getPos()))){
+                    ((LivingEntity) event.getEntity()).setItemInHand(event.getHand(),new ItemStack(ItemAndBlockRegister.wood_element_paper.get(),((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getCount()));
+                    event.getWorld().playSound((Player) null,event.getPos(),SoundEvents.UI_STONECUTTER_TAKE_RESULT,SoundSource.BLOCKS,1F,1F);
+                }else if(ElementUtils.isFireElement(event.getWorld().getBlockState(event.getPos()))){
+                    ((LivingEntity) event.getEntity()).setItemInHand(event.getHand(),new ItemStack(ItemAndBlockRegister.fire_element_paper.get(),((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getCount()));
+                    event.getWorld().playSound((Player) null,event.getPos(),SoundEvents.UI_STONECUTTER_TAKE_RESULT,SoundSource.BLOCKS,1F,1F);
+                }else if(ElementUtils.isEarthElement(event.getWorld().getBlockState(event.getPos()))){
+                    ((LivingEntity) event.getEntity()).setItemInHand(event.getHand(),new ItemStack(ItemAndBlockRegister.earth_element_paper.get(),((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getCount()));
+                    event.getWorld().playSound((Player) null,event.getPos(),SoundEvents.UI_STONECUTTER_TAKE_RESULT,SoundSource.BLOCKS,1F,1F);
+                }else if(ElementUtils.isMetalElement(event.getWorld().getBlockState(event.getPos()))){
+                    ((LivingEntity) event.getEntity()).setItemInHand(event.getHand(),new ItemStack(ItemAndBlockRegister.metal_element_paper.get(),((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getCount()));
+                    event.getWorld().playSound((Player) null,event.getPos(),SoundEvents.UI_STONECUTTER_TAKE_RESULT,SoundSource.BLOCKS,1F,1F);
+                }else if(ElementUtils.isWaterElement(event.getWorld().getBlockState(event.getPos()))){
+                    ((LivingEntity) event.getEntity()).setItemInHand(event.getHand(),new ItemStack(ItemAndBlockRegister.water_element_paper.get(),((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getCount()));
+                    event.getWorld().playSound((Player) null,event.getPos(),SoundEvents.UI_STONECUTTER_TAKE_RESULT,SoundSource.BLOCKS,1F,1F);
+                }
+            }
+        }
+    }
 
     /**孫の手で手の届く範囲を広げる*/
   /*  @SubscribeEvent
@@ -546,7 +569,9 @@ public class ModCoreUrushi {
     public void SaltEvent(BlockEvent.NeighborNotifyEvent event) {
         ResourceKey<Biome> biome=ResourceKey.create(Registry.BIOME_REGISTRY,event.getWorld().getBiome(event.getPos()).value().getRegistryName());
         Set<BiomeDictionary.Type> type=BiomeDictionary.getTypes(biome);
-
+        BlockState state=event.getState();
+        BlockPos pos =event.getPos();
+        LevelAccessor level=event.getWorld();
         if (type.contains(BiomeDictionary.Type.BEACH)|| type.contains(BiomeDictionary.Type.OCEAN)) {
             if (event.getState().getMaterial() == Material.WATER) {
                 for (int i = 0; i < 6; i++) {
@@ -562,10 +587,10 @@ public class ModCoreUrushi {
             }
         }
 
+
+
         if(ModCoreUrushi.isDebug){
-            LevelAccessor level=event.getWorld();
-            BlockPos pos=event.getPos();
-            BlockState currentState=level.getBlockState(pos);
+           BlockState currentState=level.getBlockState(pos);
 
             for (int i = 2; i < 6; i++) {
                 if (ElementUtils.isSoukokuBlock(level,pos.relative(UrushiUtils.getDirectionFromInt(i)),currentState)) {

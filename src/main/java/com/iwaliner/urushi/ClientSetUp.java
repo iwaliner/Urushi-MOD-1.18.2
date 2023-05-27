@@ -408,6 +408,12 @@ public class ClientSetUp {
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.ghost_concrete.get()),"ghost_concrete");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.copper_giboshi.get()),"giboshi_copper");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.lantern_plant_block.get()),"lantern_plant_block");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.ishigaki_block.get()),"ishigaki_block");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.concrete_slab_wall.get()),"concrete_slab_wall_normal");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.ajisai.get()),"ajisai");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.sazare_ishi.get()),"sazare_ishi");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.rock.get()),"rock");
+
 
 
 
@@ -441,6 +447,7 @@ public class ClientSetUp {
             CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.red_plaster.get(),"plaster_red");
             CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.black_plaster.get(),"plaster_black");
             CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.lantern_plant_block.get(),"lantern_plant_block");
+
 
 
             SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.yomi_stone_slab.get(),"half_slab_yomi_stone",ItemAndBlockRegister.yomi_stone.get(),"upper_slab_yomi_stone","yomi_stone");
@@ -510,6 +517,11 @@ public class ClientSetUp {
             GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.so.get(),"so");
             GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.cheese_gyudon.get(),"rice_beef_cheese");
             GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.cheese_gyudon_with_onsen_egg.get(),"rice_beef_cheese_onsen_egg");
+            GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.wood_element_paper.get(),"paper_wood");
+            GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.fire_element_paper.get(),"paper_fire");
+            GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.earth_element_paper.get(),"paper_earth");
+            GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.metal_element_paper.get(),"paper_metal");
+            GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.water_element_paper.get(),"paper_water");
 
 
 

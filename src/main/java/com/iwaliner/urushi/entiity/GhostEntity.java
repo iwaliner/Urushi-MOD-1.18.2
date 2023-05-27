@@ -60,6 +60,7 @@ public class GhostEntity extends Zombie {
         } else if (!(this.level instanceof ServerLevel)) {
             return false;
         } else {
+            /*
             ServerLevel serverlevel = (ServerLevel)this.level;
             LivingEntity livingentity = this.getTarget();
             if (livingentity == null && p_34288_.getEntity() instanceof LivingEntity) {
@@ -95,7 +96,7 @@ public class GhostEntity extends Zombie {
                         }
                     }
                 }
-            }
+            }*/
 
             return true;
         }
