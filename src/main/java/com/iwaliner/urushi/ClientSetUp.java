@@ -166,49 +166,48 @@ public class ClientSetUp {
 
 
             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.goldfish_bowl.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_0.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_1.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_2.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_3.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_4.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_5.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_6.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_7.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_8.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_9.get()));
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_1.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_2.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_3.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_4.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_5.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_6.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_7.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_8.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_9.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_10.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_1.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_2.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_3.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_4.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_5.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_6.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_7.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_8.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_9.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_blade_tier_10.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_1.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_2.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_3.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_4.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_5.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_6.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_7.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_8.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_9.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.normal_katana_tier_10.get());
-            ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.hammer.get());
+            ModCoreUrushi.removedItemList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_0.get()));
+            ModCoreUrushi.removedItemList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_1.get()));
+            ModCoreUrushi.removedItemList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_2.get()));
+            ModCoreUrushi.removedItemList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_3.get()));
+            ModCoreUrushi.removedItemList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_4.get()));
+            ModCoreUrushi.removedItemList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_5.get()));
+            ModCoreUrushi.removedItemList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_6.get()));
+            ModCoreUrushi.removedItemList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_7.get()));
+            ModCoreUrushi.removedItemList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_8.get()));
+            ModCoreUrushi.removedItemList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_9.get()));
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_1.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_2.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_3.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_4.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_5.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_6.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_7.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_8.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_9.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_hot_katana_blade_tier_10.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_blade_tier_1.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_blade_tier_2.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_blade_tier_3.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_blade_tier_4.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_blade_tier_5.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_blade_tier_6.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_blade_tier_7.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_blade_tier_8.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_blade_tier_9.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_blade_tier_10.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_tier_1.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_tier_2.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_tier_3.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_tier_4.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_tier_5.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_tier_6.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_tier_7.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_tier_8.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_tier_9.get());
+            ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_tier_10.get());
             ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.enhanced_jadeite.get());
-             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier2.get()));
+            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier2.get()));
             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier3.get()));
             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.senryoubako.get()));
 
@@ -409,12 +408,24 @@ public class ClientSetUp {
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.copper_giboshi.get()),"giboshi_copper");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.lantern_plant_block.get()),"lantern_plant_block");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.ishigaki_block.get()),"ishigaki_block");
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.concrete_slab_wall.get()),"concrete_slab_wall_normal");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.concrete_wall.get()),"concrete_wall_post");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.ajisai.get()),"ajisai");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.sazare_ishi.get()),"sazare_ishi");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.rock.get()),"rock");
-
-
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.pendant_light.get()),"pendant_light");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.hot_ironsand.get()),"hot_ironsand");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.hot_iron_plate.get()),"hot_iron_plate");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.quenched_iron_plate.get()),"quenched_iron_plate");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.crushed_iron.get()),"crushed_iron");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.stacked_iron.get()),"stacked_iron");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.hot_iron_ingot_1.get()),"hot_iron_ingot_1");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.hot_iron_ingot_2.get()),"hot_iron_ingot_2");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.hot_iron_ingot_3.get()),"hot_iron_ingot_3");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.hot_iron_ingot_4.get()),"hot_iron_ingot_4");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.hot_iron_ingot_5.get()),"hot_iron_ingot_5");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.hot_iron_blade_1.get()),"hot_iron_blade_1");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.hot_iron_blade_2.get()),"hot_iron_blade_2");
+            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.quenched_iron_blade.get()),"quenched_iron_blade");
 
 
 
@@ -472,6 +483,7 @@ public class ClientSetUp {
             SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.green_plaster_slab.get(),"half_slab_green_plaster",ItemAndBlockRegister.green_plaster.get(),"upper_slab_green_plaster","plaster_green");
             SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.red_plaster_slab.get(),"half_slab_red_plaster",ItemAndBlockRegister.red_plaster.get(),"upper_slab_red_plaster","plaster_red");
             SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.black_plaster_slab.get(),"half_slab_black_plaster",ItemAndBlockRegister.black_plaster.get(),"upper_slab_black_plaster","plaster_black");
+            SlabBlockJsonMaker.INSTANCE.registerSlabBlockModel(ItemAndBlockRegister.ishigaki_slab.get(),"half_slab_ishigaki",ItemAndBlockRegister.ishigaki_block.get(),"upper_slab_ishigaki","ishigaki_block");
 
 
             StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("yomi_stone","yomi_stone");
@@ -497,6 +509,7 @@ public class ClientSetUp {
             StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("green_plaster","plaster_green");
             StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("red_plaster","plaster_red");
             StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("black_plaster","plaster_black");
+            StairBlockJsonMaker.INSTANCE.registerStairsBlockModel("ishigaki","ishigaki_block");
 
 
             GeneratedItemJsonMaker.INSTANCE.registerItemModel(ItemAndBlockRegister.jadeite.get(),"jadeite");

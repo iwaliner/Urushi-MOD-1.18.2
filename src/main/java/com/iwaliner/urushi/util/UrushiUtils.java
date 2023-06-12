@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
@@ -97,6 +98,34 @@ public class UrushiUtils {
         int i = localdate.get(ChronoField.DAY_OF_MONTH);
         int j = localdate.get(ChronoField.MONTH_OF_YEAR);
         return j == 1 && i <=7;
+    }
+    public static VoxelShape rotateSimpleBoxShapeHorizontally(VoxelShape baseShape,int angle){
+        double x_min=baseShape.min(Direction.Axis.X)*16D;
+        double x_max=baseShape.max(Direction.Axis.X)*16D;
+        double y_min=baseShape.min(Direction.Axis.Y)*16D;
+        double y_max=baseShape.max(Direction.Axis.Y)*16D;
+        double z_min=baseShape.min(Direction.Axis.Z)*16D;
+        double z_max=baseShape.max(Direction.Axis.Z)*16D;
+        if(angle==90){
+            return Block.box(16D-z_max,y_min,x_min,16D-z_min,y_max,x_max);
+        }else if(angle==180){
+            return Block.box(16D-x_max,y_min,16D-z_max,16D-x_min,y_max,16D-z_min);
+        }else if(angle==270){
+            return Block.box(z_min,y_min,16D-x_max,z_max,y_max,16D-x_min);
+        }else{
+            return baseShape;
+        }
+    }
+    public static VoxelShape rotateSimpleBoxShapeHorizontally(VoxelShape baseShape,Direction direction){
+        if(direction==Direction.EAST){
+           return rotateSimpleBoxShapeHorizontally(baseShape,90);
+        }else if(direction==Direction.SOUTH){
+           return rotateSimpleBoxShapeHorizontally(baseShape,180);
+        }else if(direction==Direction.WEST){
+           return rotateSimpleBoxShapeHorizontally(baseShape,270);
+        }else{
+           return baseShape;
+        }
     }
 
 }

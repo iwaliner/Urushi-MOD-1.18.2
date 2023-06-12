@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "urushi:japanese_timber_bamboo"
+    "urushi:japanese_timber_bamboo",
+    "minecraft:bamboo"
   ]
 }

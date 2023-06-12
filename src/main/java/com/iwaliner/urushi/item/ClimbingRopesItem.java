@@ -4,6 +4,8 @@ import com.iwaliner.urushi.ItemAndBlockRegister;
 import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.block.RopeBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -14,10 +16,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Random;
 
 public class ClimbingRopesItem extends Item {
     public ClimbingRopesItem(Properties p_41383_) {
@@ -31,14 +35,14 @@ public class ClimbingRopesItem extends Item {
         blockpos = blockpos.relative(context.getClickedFace());
         if (world.getBlockState(blockpos).getMaterial()== Material.AIR||world.getBlockState(blockpos).getMaterial()== Material.WATER) {
             world.playSound((Player) null, context.getPlayer().getX(), context.getPlayer().getY(), context.getPlayer().getZ(), SoundEvents.LADDER_PLACE, SoundSource.PLAYERS, 1F, 1F);
-            world.setBlockAndUpdate(blockpos, ItemAndBlockRegister.rope.get().defaultBlockState());
+            world.setBlockAndUpdate(blockpos, ItemAndBlockRegister.rope.get().defaultBlockState().setValue(RopeBlock.GRAVITY,true));
             for(int i=1; i<512;i++){
                 if(world.getBlockState(blockpos.below(i)).getMaterial()==Material.AIR){
-                    world.setBlockAndUpdate(blockpos.below(i),ItemAndBlockRegister.rope.get().defaultBlockState());
+                    world.setBlockAndUpdate(blockpos.below(i),ItemAndBlockRegister.rope.get().defaultBlockState().setValue(RopeBlock.GRAVITY,true));
                     world.playSound((Player) null, context.getPlayer().getX(), context.getPlayer().getY(), context.getPlayer().getZ(), SoundEvents.LADDER_PLACE, SoundSource.PLAYERS, 1F, 1F);
                     continue;
                 }else if(world.getBlockState(blockpos.below(i)).getMaterial()==Material.WATER){
-                    world.setBlockAndUpdate(blockpos.below(i),ItemAndBlockRegister.rope.get().defaultBlockState().setValue(RopeBlock.WATERLOGGED,Boolean.valueOf(true)));
+                    world.setBlockAndUpdate(blockpos.below(i),ItemAndBlockRegister.rope.get().defaultBlockState().setValue(RopeBlock.WATERLOGGED,Boolean.valueOf(true)).setValue(RopeBlock.GRAVITY,true));
                     world.playSound((Player) null, context.getPlayer().getX(), context.getPlayer().getY(), context.getPlayer().getZ(), SoundEvents.LADDER_PLACE, SoundSource.PLAYERS, 1F, 1F);
                     continue;
                 }else{
@@ -55,4 +59,5 @@ public class ClimbingRopesItem extends Item {
     public void appendHoverText(ItemStack p_41421_, @Nullable Level p_41422_, List<Component> list, TooltipFlag p_41424_) {
         UrushiUtils.setInfo(list,"climbing_rope");
     }
+
 }

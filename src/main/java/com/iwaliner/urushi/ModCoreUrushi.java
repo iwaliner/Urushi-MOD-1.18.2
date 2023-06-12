@@ -100,6 +100,7 @@ public class ModCoreUrushi {
     public static List<String> diamondToolList=new ArrayList<>();
     public static List<String> netheriteToolList=new ArrayList<>();
     public static List<Item> underDevelopmentList=new ArrayList<>();
+    public static List<Item> removedItemList=new ArrayList<>();
 
     public static boolean isDebug=FMLPaths.GAMEDIR.get().toString().contains("イワライナー(メインドライブ)")&&FMLPaths.GAMEDIR.get().toString().contains("run");
     public static Logger logger = LogManager.getLogger("urushi");
@@ -176,7 +177,10 @@ public class ModCoreUrushi {
         ResourceKey<Biome> biome=ResourceKey.create(Registry.BIOME_REGISTRY,event.getName());
         Set<BiomeDictionary.Type> type=BiomeDictionary.getTypes(biome);
         List<Holder<PlacedFeature>> oreGenBase=event.getGeneration().getFeatures(GenerationStep.Decoration.UNDERGROUND_ORES);
-
+        if(biome.equals(Biomes.SWAMP)){
+            List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
+            base.add(PlacementFeatures.AJISAI_FLOWERS);
+        }
         if(biome.equals(Biomes.FOREST)){
             List<Holder<PlacedFeature>> base=event.getGeneration().getFeatures(GenerationStep.Decoration.VEGETAL_DECORATION);
             base.add(PlacementFeatures.APRICOT_PLACE);
@@ -719,6 +723,8 @@ public class ModCoreUrushi {
         }
         if(underDevelopmentList.contains(stack.getItem())){
             UrushiUtils.setInfoWithColor(event.getToolTip(),"under_development",ChatFormatting.YELLOW);
+        }else if(removedItemList.contains(stack.getItem())){
+            UrushiUtils.setInfoWithColor(event.getToolTip(),"removed",ChatFormatting.RED);
         }
         if(Block.byItem(item) instanceof AbstractFramedBlock||Block.byItem(item) instanceof FramedPaneBlock){
             event.getToolTip().add((new TranslatableComponent("info.urushi.framed_block1" )).withStyle(ChatFormatting.GRAY));

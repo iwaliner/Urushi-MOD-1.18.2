@@ -9,9 +9,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -22,6 +24,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Objects;
 import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 
 @Mod.EventBusSubscriber(modid = ModCoreUrushi.ModID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemAndBlockRegister {
@@ -160,10 +163,13 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> rough_stone_stairs =B("rough_stone_stairs","p",0,() -> {return new StairBlock(rough_stone.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> rough_stone_wall =B("rough_stone_wall","p",0,() -> {return new WallBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> ishigaki_block =B("ishigaki_block","p",0,() -> {return new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> ishigaki_slab =B("ishigaki_slab","p",0,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> ishigaki_stairs =B("ishigaki_stairs","p",0,() -> {return new StairBlock(ishigaki_block.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> ishigaki_wall =B("ishigaki_wall","p",0,() -> {return new WallBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> concrete =B("concrete","p",0,() -> {return new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> concrete_slab =B("concrete_slab","p",0,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> concrete_stairs =B("concrete_stairs","p",0,() -> {return new StairBlock(concrete.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
-    public static final RegistryObject<Block> concrete_slab_wall =B("concrete_slab_wall","p",0,() -> {return new SlabWallBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
+    public static final RegistryObject<Block> concrete_wall =B("concrete_wall","p",0,() -> {return new SimpleWallBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> dirty_concrete =B("dirty_concrete","p",0,() -> {return new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> dirty_concrete_slab =B("dirty_concrete_slab","p",0,() -> {return new SlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
     public static final RegistryObject<Block> dirty_concrete_stairs =B("dirty_concrete_stairs","p",0,() -> {return new StairBlock(dirty_concrete.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 10.0F));});
@@ -462,6 +468,7 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> oden_long_chochin =B("oden_long_chochin","n",-1,() -> {return new LongChochinBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_RED).sound(SoundType.WOOD).strength(0.2F, 10.0F).noOcclusion().lightLevel((p_235470_0_) -> {return 15;}));});
     public static final RegistryObject<Block> ramen_long_chochin =B("ramen_long_chochin","n",-1,() -> {return new LongChochinBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_RED).sound(SoundType.WOOD).strength(0.2F, 10.0F).noOcclusion().lightLevel((p_235470_0_) -> {return 15;}));});
     public static final RegistryObject<Block> shokujidokoro_long_chochin =B("shokujidokoro_long_chochin","n",-1,() -> {return new LongChochinBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_RED).sound(SoundType.WOOD).strength(0.2F, 10.0F).noOcclusion().lightLevel((p_235470_0_) -> {return 15;}));});
+    public static final RegistryObject<Block> pendant_light =B("pendant_light","a",-1,() -> {return new PendantLightBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(0.2F, 10.0F).noOcclusion().lightLevel(litBlockEmission(15)));});
     public static final RegistryObject<Block> copper_giboshi =B("copper_giboshi","p",2,() -> {return new SimpleShapedBlock(Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D),BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_CYAN).sound(SoundType.METAL).strength(0.5F, 30.0F).noOcclusion().requiresCorrectToolForDrops());});
     public static final RegistryObject<Block> iron_giboshi =B("iron_giboshi","p",2,() -> {return new SimpleShapedBlock(Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D),BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_BLACK).sound(SoundType.METAL).strength(0.5F, 30.0F).noOcclusion().requiresCorrectToolForDrops());});
     public static final RegistryObject<Block> gold_giboshi =B("gold_giboshi","p",2,() -> {return new SimpleShapedBlock(Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D),BlockBehaviour.Properties.of(Material.METAL, MaterialColor.GOLD).sound(SoundType.METAL).strength(0.5F, 30.0F).noOcclusion().requiresCorrectToolForDrops());});
@@ -494,6 +501,18 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> japanese_cedar_shoji =BW("japanese_cedar_shoji","a",-1,() -> {return new SlideDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
     public static final RegistryObject<Block> red_urushi_shoji =BW("red_urushi_shoji","a",-1,() -> {return new SlideDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_RED).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
     public static final RegistryObject<Block> black_urushi_shoji =BW("black_urushi_shoji","a",-1,() -> {return new SlideDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
+    public static final RegistryObject<Block> oak_yukimi_shoji =BW("oak_yukimi_shoji","a",-1,() -> {return new SlideDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
+    public static final RegistryObject<Block> spruce_yukimi_shoji =BW("spruce_yukimi_shoji","a",-1,() -> {return new SlideDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.PODZOL).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
+    public static final RegistryObject<Block> birch_yukimi_shoji =BW("birch_yukimi_shoji","a",-1,() -> {return new SlideDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
+    public static final RegistryObject<Block> jungle_yukimi_shoji =BW("jungle_yukimi_shoji","a",-1,() -> {return new SlideDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.DIRT).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
+    public static final RegistryObject<Block> acacia_yukimi_shoji =BW("acacia_yukimi_shoji","a",-1,() -> {return new SlideDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
+    public static final RegistryObject<Block> dark_oak_yukimi_shoji =BW("dark_oak_yukimi_shoji","a",-1,() -> {return new SlideDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
+    public static final RegistryObject<Block> japanese_apricot_yukimi_shoji =BW("japanese_apricot_yukimi_shoji","a",-1,() -> {return new SlideDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.TERRACOTTA_ORANGE).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
+    public static final RegistryObject<Block> sakura_yukimi_shoji =BW("sakura_yukimi_shoji","a",-1,() -> {return new SlideDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
+    public static final RegistryObject<Block> cypress_yukimi_shoji =BW("cypress_yukimi_shoji","a",-1,() -> {return new SlideDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
+    public static final RegistryObject<Block> japanese_cedar_yukimi_shoji =BW("japanese_cedar_yukimi_shoji","a",-1,() -> {return new SlideDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
+    public static final RegistryObject<Block> red_urushi_yukimi_shoji =BW("red_urushi_yukimi_shoji","a",-1,() -> {return new SlideDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_RED).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
+    public static final RegistryObject<Block> black_urushi_yukimi_shoji =BW("black_urushi_yukimi_shoji","a",-1,() -> {return new SlideDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BLACK).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
     public static final RegistryObject<Block> deep_blue_noren =B("deep_blue_noren","a",-1,() -> {return new NorenBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.TERRACOTTA_BLUE).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
     public static final RegistryObject<Block> red_noren =B("red_noren","a",-1,() -> {return new NorenBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_RED).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
     public static final RegistryObject<Block> cyan_noren =B("cyan_noren","a",-1,() -> {return new NorenBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_CYAN).sound(SoundType.WOOD).strength(0.2F, 3.0F).noOcclusion());});
@@ -613,6 +632,20 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> ironsand_ore =B("ironsand_ore","s",1,() -> {return new FallingBlock(BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(1F, 10.0F).sound(SoundType.SAND));});
     public static final RegistryObject<Item> ironsand =I("ironsand");
     public static final RegistryObject<Item> hammer =ITEMS.register("hammer", () -> {return new HammerItem((new Item.Properties()).tab(ModCoreUrushi.UrushiTab).durability(1024));});
+    public static final RegistryObject<Block> hot_ironsand =BWater("hot_ironsand","p",1,()->Items.RAW_IRON,() -> {return new HotIronsandBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).instabreak().sound(SoundType.ANVIL));});
+    public static final RegistryObject<Block> hot_iron_plate =BWater("hot_iron_plate","p",1,()->ItemAndBlockRegister.quenched_iron_plate.get(), ()-> {return new IronPlateBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).instabreak().sound(SoundType.ANVIL));});
+    public static final RegistryObject<Block> quenched_iron_plate =B("quenched_iron_plate","p",1,() -> {return new IronPlateBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).instabreak().sound(SoundType.ANVIL));});
+    public static final RegistryObject<Block> crushed_iron =B("crushed_iron","p",1,() -> {return new CrushedIronBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).instabreak().sound(SoundType.ANVIL));});
+    public static final RegistryObject<Block> stacked_iron =B("stacked_iron","p",1,() -> {return new StackedIronBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).instabreak().sound(SoundType.ANVIL));});
+    public static final RegistryObject<Block> hot_iron_ingot_1 =B("hot_iron_ingot_1","p",1,() -> {return new HotIronIngotBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).instabreak().sound(SoundType.ANVIL));});
+    public static final RegistryObject<Block> hot_iron_ingot_2 =B("hot_iron_ingot_2","p",1,() -> {return new HotIronIngotBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).instabreak().sound(SoundType.ANVIL));});
+    public static final RegistryObject<Block> hot_iron_ingot_3 =B("hot_iron_ingot_3","p",1,() -> {return new HotIronIngotBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).instabreak().sound(SoundType.ANVIL));});
+    public static final RegistryObject<Block> hot_iron_ingot_4 =B("hot_iron_ingot_4","p",1,() -> {return new HotIronIngotBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).instabreak().sound(SoundType.ANVIL));});
+    public static final RegistryObject<Block> hot_iron_ingot_5 =B("hot_iron_ingot_5","p",1,() -> {return new HotIronIngotBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).instabreak().sound(SoundType.ANVIL));});
+    public static final RegistryObject<Block> hot_iron_blade_1 =B("hot_iron_blade_1","p",1,() -> {return new BladeBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).instabreak().sound(SoundType.ANVIL));});
+    public static final RegistryObject<Block> hot_iron_blade_2 =BWater("hot_iron_blade_2","p",1,()->ItemAndBlockRegister.quenched_iron_blade.get(),() -> {return new BladeBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).instabreak().sound(SoundType.ANVIL));});
+    public static final RegistryObject<Block> quenched_iron_blade =B("quenched_iron_blade","p",1,() -> {return new BladeBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).instabreak().sound(SoundType.ANVIL));});
+    public static final RegistryObject<Item> iron_katana =ITEMS.register("iron_katana", () -> {return new NormalKatanaItem(Tiers.IRON,3,-2.9F,(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
     public static final RegistryObject<Block> normal_iron_ingot_9 =BIron("normal_iron_ingot_9",() -> {return new IronIngotBlock(null,BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).instabreak().sound(SoundType.ANVIL));});
     public static final RegistryObject<Block> normal_iron_ingot_8 =BIron("normal_iron_ingot_8",() -> {return new IronIngotBlock(normal_iron_ingot_9.get(),BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).instabreak().sound(SoundType.ANVIL));});
     public static final RegistryObject<Block> normal_iron_ingot_7 =BIron("normal_iron_ingot_7",() -> {return new IronIngotBlock(normal_iron_ingot_8.get(),BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).instabreak().sound(SoundType.ANVIL));});
@@ -623,36 +656,36 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> normal_iron_ingot_2 =BIron("normal_iron_ingot_2",() -> {return new IronIngotBlock(normal_iron_ingot_3.get(),BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).instabreak().sound(SoundType.ANVIL));});
     public static final RegistryObject<Block> normal_iron_ingot_1 =BIron("normal_iron_ingot_1",() -> {return new IronIngotBlock(normal_iron_ingot_2.get(),BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).instabreak().sound(SoundType.ANVIL));});
     public static final RegistryObject<Block> normal_iron_ingot_0 =BIron("normal_iron_ingot_0",() -> {return new IronIngotBlock(normal_iron_ingot_1.get(),BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_YELLOW).instabreak().sound(SoundType.ANVIL));});
-    public static final RegistryObject<Item> normal_katana_blade_tier_10 =I("normal_katana_blade_tier_10");
-    public static final RegistryObject<Item> normal_katana_blade_tier_9 =I("normal_katana_blade_tier_9");
-    public static final RegistryObject<Item> normal_katana_blade_tier_8 =I("normal_katana_blade_tier_8");
-    public static final RegistryObject<Item> normal_katana_blade_tier_7 =I("normal_katana_blade_tier_7");
-    public static final RegistryObject<Item> normal_katana_blade_tier_6 =I("normal_katana_blade_tier_6");
-    public static final RegistryObject<Item> normal_katana_blade_tier_5 =I("normal_katana_blade_tier_5");
-    public static final RegistryObject<Item> normal_katana_blade_tier_4 =I("normal_katana_blade_tier_4");
-    public static final RegistryObject<Item> normal_katana_blade_tier_3 =I("normal_katana_blade_tier_3");
-    public static final RegistryObject<Item> normal_katana_blade_tier_2 =I("normal_katana_blade_tier_2");
-    public static final RegistryObject<Item> normal_katana_blade_tier_1 =I("normal_katana_blade_tier_1");
-    public static final RegistryObject<Item> normal_hot_katana_blade_tier_10 =ITEMS.register("normal_hot_katana_blade_tier_10", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_10.get(),(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_hot_katana_blade_tier_9 =ITEMS.register("normal_hot_katana_blade_tier_9", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_9.get(),(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_hot_katana_blade_tier_8 =ITEMS.register("normal_hot_katana_blade_tier_8", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_8.get(),(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_hot_katana_blade_tier_7 =ITEMS.register("normal_hot_katana_blade_tier_7", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_7.get(),(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_hot_katana_blade_tier_6 =ITEMS.register("normal_hot_katana_blade_tier_6", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_6.get(),(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_hot_katana_blade_tier_5 =ITEMS.register("normal_hot_katana_blade_tier_5", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_5.get(),(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_hot_katana_blade_tier_4 =ITEMS.register("normal_hot_katana_blade_tier_4", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_4.get(),(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_hot_katana_blade_tier_3 =ITEMS.register("normal_hot_katana_blade_tier_3", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_3.get(),(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_hot_katana_blade_tier_2 =ITEMS.register("normal_hot_katana_blade_tier_2", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_2.get(),(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_hot_katana_blade_tier_1 =ITEMS.register("normal_hot_katana_blade_tier_1", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_1.get(),(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_katana_tier_10 =ITEMS.register("normal_katana_tier_10", () -> {return new NormalKatanaItem(Tiers.IRON,9,-2.9F,(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_katana_tier_9 =ITEMS.register("normal_katana_tier_9", () -> {return new NormalKatanaItem(Tiers.IRON,8,-2.9F,(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_katana_tier_8 =ITEMS.register("normal_katana_tier_8", () -> {return new NormalKatanaItem(Tiers.IRON,7,-2.9F,(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_katana_tier_7 =ITEMS.register("normal_katana_tier_7", () -> {return new NormalKatanaItem(Tiers.IRON,6,-2.9F,(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_katana_tier_6 =ITEMS.register("normal_katana_tier_6", () -> {return new NormalKatanaItem(Tiers.IRON,5,-2.9F,(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_katana_tier_5 =ITEMS.register("normal_katana_tier_5", () -> {return new NormalKatanaItem(Tiers.IRON,4,-2.9F,(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_katana_tier_4 =ITEMS.register("normal_katana_tier_4", () -> {return new NormalKatanaItem(Tiers.IRON,3,-2.9F,(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_katana_tier_3 =ITEMS.register("normal_katana_tier_3", () -> {return new NormalKatanaItem(Tiers.IRON,2,-2.9F,(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_katana_tier_2 =ITEMS.register("normal_katana_tier_2", () -> {return new NormalKatanaItem(Tiers.IRON,1,-2.9F,(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
-    public static final RegistryObject<Item> normal_katana_tier_1 =ITEMS.register("normal_katana_tier_1", () -> {return new NormalKatanaItem(Tiers.IRON,0,-2.9F,(new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
+    public static final RegistryObject<Item> normal_katana_blade_tier_10 =IN("normal_katana_blade_tier_10");
+    public static final RegistryObject<Item> normal_katana_blade_tier_9 =IN("normal_katana_blade_tier_9");
+    public static final RegistryObject<Item> normal_katana_blade_tier_8 =IN("normal_katana_blade_tier_8");
+    public static final RegistryObject<Item> normal_katana_blade_tier_7 =IN("normal_katana_blade_tier_7");
+    public static final RegistryObject<Item> normal_katana_blade_tier_6 =IN("normal_katana_blade_tier_6");
+    public static final RegistryObject<Item> normal_katana_blade_tier_5 =IN("normal_katana_blade_tier_5");
+    public static final RegistryObject<Item> normal_katana_blade_tier_4 =IN("normal_katana_blade_tier_4");
+    public static final RegistryObject<Item> normal_katana_blade_tier_3 =IN("normal_katana_blade_tier_3");
+    public static final RegistryObject<Item> normal_katana_blade_tier_2 =IN("normal_katana_blade_tier_2");
+    public static final RegistryObject<Item> normal_katana_blade_tier_1 =IN("normal_katana_blade_tier_1");
+    public static final RegistryObject<Item> normal_hot_katana_blade_tier_10 =ITEMS.register("normal_hot_katana_blade_tier_10", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_10.get(),(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_hot_katana_blade_tier_9 =ITEMS.register("normal_hot_katana_blade_tier_9", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_9.get(),(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_hot_katana_blade_tier_8 =ITEMS.register("normal_hot_katana_blade_tier_8", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_8.get(),(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_hot_katana_blade_tier_7 =ITEMS.register("normal_hot_katana_blade_tier_7", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_7.get(),(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_hot_katana_blade_tier_6 =ITEMS.register("normal_hot_katana_blade_tier_6", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_6.get(),(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_hot_katana_blade_tier_5 =ITEMS.register("normal_hot_katana_blade_tier_5", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_5.get(),(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_hot_katana_blade_tier_4 =ITEMS.register("normal_hot_katana_blade_tier_4", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_4.get(),(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_hot_katana_blade_tier_3 =ITEMS.register("normal_hot_katana_blade_tier_3", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_3.get(),(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_hot_katana_blade_tier_2 =ITEMS.register("normal_hot_katana_blade_tier_2", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_2.get(),(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_hot_katana_blade_tier_1 =ITEMS.register("normal_hot_katana_blade_tier_1", () -> {return new HotKatanaBladeItem(normal_katana_blade_tier_1.get(),(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_katana_tier_10 =ITEMS.register("normal_katana_tier_10", () -> {return new NormalKatanaItem(Tiers.IRON,9,-2.9F,(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_katana_tier_9 =ITEMS.register("normal_katana_tier_9", () -> {return new NormalKatanaItem(Tiers.IRON,8,-2.9F,(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_katana_tier_8 =ITEMS.register("normal_katana_tier_8", () -> {return new NormalKatanaItem(Tiers.IRON,7,-2.9F,(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_katana_tier_7 =ITEMS.register("normal_katana_tier_7", () -> {return new NormalKatanaItem(Tiers.IRON,6,-2.9F,(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_katana_tier_6 =ITEMS.register("normal_katana_tier_6", () -> {return new NormalKatanaItem(Tiers.IRON,5,-2.9F,(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_katana_tier_5 =ITEMS.register("normal_katana_tier_5", () -> {return new NormalKatanaItem(Tiers.IRON,4,-2.9F,(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_katana_tier_4 =ITEMS.register("normal_katana_tier_4", () -> {return new NormalKatanaItem(Tiers.IRON,3,-2.9F,(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_katana_tier_3 =ITEMS.register("normal_katana_tier_3", () -> {return new NormalKatanaItem(Tiers.IRON,2,-2.9F,(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_katana_tier_2 =ITEMS.register("normal_katana_tier_2", () -> {return new NormalKatanaItem(Tiers.IRON,1,-2.9F,(new Item.Properties()));});
+    public static final RegistryObject<Item> normal_katana_tier_1 =ITEMS.register("normal_katana_tier_1", () -> {return new NormalKatanaItem(Tiers.IRON,0,-2.9F,(new Item.Properties()));});
     public static final RegistryObject<Block> rope =B("rope","a",-1,() -> {return new RopeBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).sound(SoundType.LADDER).strength(0.1F, 10.0F));});
     public static final RegistryObject<Item> climbing_rope =ITEMS.register("climbing_rope", () -> {return new ClimbingRopesItem((new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
     public static final RegistryObject<Item> open_wagasa =ITEMS.register("open_wagasa", () -> {return new WagasaItem(true,(new Item.Properties()).tab(ModCoreUrushi.UrushiMagicTab).stacksTo(1));});
@@ -835,6 +868,11 @@ public static final RegistryObject<Block> sanbo_tier3 =BM("sanbo_tier3","p",-1,(
     private static CutoutLeavesBlock glowingleaves(MaterialColor color,SoundType p_152615_) {
         return new CutoutLeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES,color).strength(0.2F).randomTicks().sound(p_152615_).noOcclusion().isValidSpawn(ItemAndBlockRegister::never).isSuffocating(ItemAndBlockRegister::never).isViewBlocking(ItemAndBlockRegister::never).lightLevel((p_235470_0_) -> {return 15;}));
     }
+    private static ToIntFunction<BlockState> litBlockEmission(int p_50760_) {
+        return (p_50763_) -> {
+            return p_50763_.getValue(BlockStateProperties.LIT) ? p_50760_ : 0;
+        };
+    }
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
         BLOCKS.register(eventBus);
@@ -842,6 +880,12 @@ public static final RegistryObject<Block> sanbo_tier3 =BM("sanbo_tier3","p",-1,(
     private static <T extends Item> RegistryObject<T> I(String name) {
         RegistryObject<Item> object = ITEMS.register(name, ()-> {
             return new Item((new Item.Properties()).tab(ModCoreUrushi.UrushiTab));
+        });
+        return (RegistryObject<T>) object;
+    }
+    private static <T extends Item> RegistryObject<T> IN(String name) {
+        RegistryObject<Item> object = ITEMS.register(name, ()-> {
+            return new Item((new Item.Properties()));
         });
         return (RegistryObject<T>) object;
     }
@@ -891,6 +935,36 @@ if(ModCoreUrushi.isDebug) {
         ModCoreUrushi.netheriteToolList.add("urushi:" + name);
     }
 }
+        return object;
+    }
+    private static <T extends Block> RegistryObject<T> BWater(String name, String tool, int l, java.util.function.Supplier<? extends ItemLike> result, Supplier<T > sup) {
+        RegistryObject<T> object = BLOCKS.register(name, sup);
+        ITEMS.register(name,() -> {return new WaterCraftingItem(result, Objects.requireNonNull(object.get()), (new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
+        if(ModCoreUrushi.isDebug) {
+            if (tool == "p") {
+                ModCoreUrushi.pickaxeList.add(ModCoreUrushi.ModID + ":" + name);
+            } else if (tool == "a") {
+                ModCoreUrushi.axeList.add(ModCoreUrushi.ModID + ":" + name);
+            } else if (tool == "s") {
+                ModCoreUrushi.shovelList.add(ModCoreUrushi.ModID + ":" + name);
+            } else if (tool == "h") {
+                ModCoreUrushi.hoeList.add(ModCoreUrushi.ModID + ":" + name);
+            }
+
+            if (l == 0) {
+                ModCoreUrushi.woodenToolList.add("urushi:" + name);
+            } else if (l == 1) {
+                ModCoreUrushi.stoneToolList.add("urushi:" + name);
+            } else if (l == 2) {
+                ModCoreUrushi.ironToolList.add("urushi:" + name);
+            } else if (l == 3) {
+                ModCoreUrushi.goldenToolList.add("urushi:" + name);
+            } else if (l == 4) {
+                ModCoreUrushi.diamondToolList.add("urushi:" + name);
+            } else if (l == 5) {
+                ModCoreUrushi.netheriteToolList.add("urushi:" + name);
+            }
+        }
         return object;
     }
     private static <T extends Block> RegistryObject<T> BW(String name,String tool,int l, Supplier<T > sup) {
@@ -986,7 +1060,7 @@ if(ModCoreUrushi.isDebug) {
     }
     private static <T extends Block> RegistryObject<T> BIron(String name, Supplier<T > sup) {
         RegistryObject<T> object = BLOCKS.register(name, sup);
-        ITEMS.register(name,() -> {return new IronIngotItem( Objects.requireNonNull(object.get()), (new Item.Properties()).tab(ModCoreUrushi.UrushiTab));});
+        ITEMS.register(name,() -> {return new IronIngotItem( Objects.requireNonNull(object.get()), (new Item.Properties()));});
         if(ModCoreUrushi.isDebug) {
             ModCoreUrushi.pickaxeList.add(ModCoreUrushi.ModID + ":" + name);
         }

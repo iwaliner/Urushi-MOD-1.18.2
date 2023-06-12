@@ -16,7 +16,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 
 
-version = '1.18.2-alpha4.11.0'
+version = '1.18.2-4.12.0'
 group = 'com.iwaliner.urushi'
 archivesBaseName = 'Urushi'
 
@@ -168,12 +168,13 @@ dependencies {
     //implementation  fg.deobf("curse.maven:jei-238222:3940240")
     implementation  fg.deobf("curse.maven:mouse-tweaks-60089:3601896")
     implementation  fg.deobf("curse.maven:the-one-probe-245211:3927518")
-    implementation  fg.deobf("curse.maven:mysterious-mountain-lib-368098:3857113")
+    /*implementation  fg.deobf("curse.maven:mysterious-mountain-lib-368098:3857113")
     implementation  fg.deobf("curse.maven:sakura-333079:3954611")
     implementation  fg.deobf("curse.maven:tofucraftreload-317469:3940352")
-    implementation  fg.deobf("curse.maven:the-twilight-forest-227639:4337390")
+    implementation  fg.deobf("curse.maven:the-twilight-forest-227639:4337390")*/
 
-
+    //implementation  fg.deobf("curse.maven:inventory-profiles-next-495267:4547553")
+    //implementation  fg.deobf("curse.maven:inventory-sorter-240633:4055080")
     compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.1.255:api")
     runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.1.255")
 

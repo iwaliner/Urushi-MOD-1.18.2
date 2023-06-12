@@ -8,6 +8,7 @@ import com.iwaliner.urushi.blockentity.RiceCauldronBlockEntity;
 import com.iwaliner.urushi.blockentity.SanboBlockEntity;
 import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.util.interfaces.Tiered;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -142,6 +143,7 @@ public class SanboBlock extends BaseEntityBlock implements Tiered {
     @Override
     public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
         UrushiUtils.setInfo(list,"sanbo");
+        UrushiUtils.setInfoWithColor(list,"slot_sanbo", ChatFormatting.GREEN);
    }
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_152160_, BlockState p_152161_, BlockEntityType<T> p_152162_) {

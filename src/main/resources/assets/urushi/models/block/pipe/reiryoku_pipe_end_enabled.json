@@ -1,8 +1,0 @@
-{
-	"parent": "urushi:block/pipe/reiryoku_pipe_end",
-	"textures": {
-		"0": "urushi:block/pipe/pipe_end_enabled",
-		"1": "urushi:block/pipe/pipe_edge_end_enabled",
-		"particle": "urushi:block/pipe/pipe_end_enabled"
-	}
-}

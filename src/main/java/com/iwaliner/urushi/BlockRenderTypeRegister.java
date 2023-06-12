@@ -76,7 +76,34 @@ public class BlockRenderTypeRegister {
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.black_urushi_shoji_pane.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.japanese_cedar_shoji.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.japanese_cedar_shoji_pane.get(), RenderType.translucent());
-    }
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.oak_yukimi_shoji.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.spruce_yukimi_shoji.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.birch_yukimi_shoji.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.jungle_yukimi_shoji.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.acacia_yukimi_shoji.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.dark_oak_yukimi_shoji.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.japanese_apricot_yukimi_shoji.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.sakura_yukimi_shoji.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.cypress_yukimi_shoji.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.red_urushi_yukimi_shoji.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.black_urushi_yukimi_shoji.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.japanese_cedar_yukimi_shoji.get(), RenderType.translucent());
+
+        }else{
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.oak_yukimi_shoji.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.spruce_yukimi_shoji.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.birch_yukimi_shoji.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.jungle_yukimi_shoji.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.acacia_yukimi_shoji.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.dark_oak_yukimi_shoji.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.japanese_apricot_yukimi_shoji.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.sakura_yukimi_shoji.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.cypress_yukimi_shoji.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.red_urushi_yukimi_shoji.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.black_urushi_yukimi_shoji.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.japanese_cedar_yukimi_shoji.get(), RenderType.cutout());
+
+        }
 
 
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.mesh_groove.get(), RenderType.cutout());
@@ -201,6 +228,7 @@ public class BlockRenderTypeRegister {
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.ghost_concrete.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.lantern_plant_block.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.ajisai.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ItemAndBlockRegister.pendant_light.get(), RenderType.cutout());
 
 
 

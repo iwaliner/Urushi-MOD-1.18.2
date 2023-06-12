@@ -1,9 +1,14 @@
 package com.iwaliner.urushi.block;
 
 import com.iwaliner.urushi.ItemAndBlockRegister;
+import com.iwaliner.urushi.util.UrushiUtils;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -19,6 +24,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.List;
 import java.util.Random;
 
 public class RockBlock extends Block {
@@ -80,6 +86,14 @@ public class RockBlock extends Block {
                 }
 
             }
+        }
+    }
+    @Override
+    public void appendHoverText(ItemStack stack, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
+        if(Block.byItem(stack.getItem())==ItemAndBlockRegister.sazare_ishi.get()) {
+            UrushiUtils.setInfo(list, "sazare_ishi");
+        }else{
+            UrushiUtils.setInfo(list, "rock");
         }
     }
 }

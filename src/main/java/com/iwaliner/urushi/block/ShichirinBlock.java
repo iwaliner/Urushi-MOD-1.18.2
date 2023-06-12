@@ -10,6 +10,7 @@ import com.iwaliner.urushi.item.AmberIgniterItem;
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.UrushiUtils;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
@@ -113,9 +114,18 @@ public class ShichirinBlock extends BaseEntityBlock  {
                 return InteractionResult.FAIL;
             }
             else if(heldStack.is(TagUrushi.SHICHIRIN_FUEL)){
-                tileEntity.setItem(2,heldStack.copy());
-                heldStack.setCount(0);
-                return InteractionResult.SUCCESS;
+                ItemStack fuel=tileEntity.getItem(2);
+                if(fuel==ItemStack.EMPTY) {
+                    tileEntity.setItem(2, heldStack.copy());
+                    heldStack.setCount(0);
+                    return InteractionResult.SUCCESS;
+                }else if(fuel.getItem()==heldStack.getItem()){
+                    int count=fuel.getCount()+heldStack.getCount();
+                    ItemStack newStack=new ItemStack(fuel.getItem(), Math.min(count, 64));
+                    tileEntity.setItem(2, newStack.copy());
+                    heldStack.setCount(count>=64? count-64 : 0);
+                    return InteractionResult.SUCCESS;
+                }
             }
             else if(heldStack.getItem()== ItemAndBlockRegister.uchiwa.get()&&state.getValue(SHICHIRIN)!=0&&state.getValue(SHICHIRIN)!=1){
                     ItemStack magatama= ElementUtils.getMagatamaInInventory(player, ElementType.WoodElement);
@@ -181,6 +191,7 @@ public class ShichirinBlock extends BaseEntityBlock  {
         UrushiUtils.setInfo(list,"shichirin1");
         UrushiUtils.setInfo(list,"shichirin2");
         UrushiUtils.setInfo(list,"shichirin3");
+        UrushiUtils.setInfoWithColor(list,"slot_shichirin", ChatFormatting.GREEN);
    }
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_152160_, BlockState p_152161_, BlockEntityType<T> p_152162_) {
