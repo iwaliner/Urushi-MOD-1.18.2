@@ -1,9 +1,9 @@
 {
 	"parent": "block/block",
 	"textures": {
-		"0": "urushi:block/smooth_planks_red_urushi_stained",
-		"1": "urushi:block/sanbo_red_side",
-		"particle": "urushi:block/smooth_planks_red_urushi_stained"
+		"0": "urushi:block/jadeite_block_polished",
+		"1": "urushi:block/sanbo_jadeite_side",
+		"particle": "urushi:block/jadeite_block_polished"
 	},
 	"elements": [
 		{

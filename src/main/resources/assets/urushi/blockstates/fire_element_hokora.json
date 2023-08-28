@@ -1,17 +1,17 @@
 {
   "variants": {
-    "facing=east": {
+    "facing=west": {
       "model": "urushi:block/fire_element_hokora",
       "y": 270
     },
-    "facing=north": {
+    "facing=south": {
       "model": "urushi:block/fire_element_hokora",
       "y": 180
     },
-    "facing=south": {
+    "facing=north": {
       "model": "urushi:block/fire_element_hokora"
     },
-    "facing=west": {
+    "facing=east": {
       "model": "urushi:block/fire_element_hokora",
       "y": 90
     }

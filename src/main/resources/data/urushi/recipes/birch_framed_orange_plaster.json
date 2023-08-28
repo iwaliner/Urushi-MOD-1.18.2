@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+   
+    {
+      "item": "urushi:orange_plaster"
+    },
+    {
+      "item": "urushi:smooth_birch_slab"
+    }
+  ],
+  "result": {
+    "item": "urushi:birch_framed_orange_plaster",
+    "count": 2
+  }
+}

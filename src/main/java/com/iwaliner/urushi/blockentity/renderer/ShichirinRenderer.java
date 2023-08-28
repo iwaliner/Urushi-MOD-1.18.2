@@ -3,9 +3,12 @@ package com.iwaliner.urushi.blockentity.renderer;
 import com.iwaliner.urushi.block.ShichirinBlock;
 import com.iwaliner.urushi.blockentity.ShichirinBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -39,9 +42,18 @@ public class ShichirinRenderer implements BlockEntityRenderer<ShichirinBlockEnti
                 Minecraft.getInstance().getItemRenderer().renderStatic(itemstack, ItemTransforms.TransformType.FIXED, i1, i2, poseStack, bufferSource, i);
                 poseStack.popPose();
             }
+   /*     VertexConsumer vertexconsumer = bufferSource.getBuffer(RenderType.lines());
+            BlockPos pos=blockEntity.getBlockPos();
+            double d4=pos.getX()-3D;
+            double d5=pos.getY();
+            double d6=pos.getZ()-3D;
+            double d7=pos.getX()+4D;
+            double d8=pos.getY()+5D;
+            double d9=pos.getZ()+6D;
+        LevelRenderer.renderLineBox(poseStack, vertexconsumer, d4, d5, d6, d7, d8, d9, 0.9F, 0.9F, 0.9F, 1.0F, 0.5F, 0.5F, 0.5F);
 
-
-        /**特定のブロックの見た目をかぶせるテスト*/
+*/
+            /**特定のブロックの見た目をかぶせるテスト*/
        // poseStack.translate(0.5D, 3D, 0.5D);
       //  Minecraft.getInstance().getBlockRenderer().renderSingleBlock(Blocks.YELLOW_WOOL.defaultBlockState(),poseStack,bufferSource,255,0);
 

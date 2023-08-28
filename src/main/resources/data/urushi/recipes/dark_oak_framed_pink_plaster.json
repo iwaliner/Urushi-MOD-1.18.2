@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+   
+    {
+      "item": "urushi:pink_plaster"
+    },
+    {
+      "item": "urushi:smooth_dark_oak_slab"
+    }
+  ],
+  "result": {
+    "item": "urushi:dark_oak_framed_pink_plaster",
+    "count": 2
+  }
+}

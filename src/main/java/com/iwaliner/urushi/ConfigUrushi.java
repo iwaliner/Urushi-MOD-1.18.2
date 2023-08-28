@@ -15,7 +15,7 @@ public final class ConfigUrushi {
     public static final ForgeConfigSpec.ConfigValue<Integer> shichirinIconAmount;
     public static final ForgeConfigSpec.ConfigValue<Integer> shichirincookingDifficlutly;
     public static final ForgeConfigSpec.ConfigValue<Boolean> instantlySlidingDoor;
-    //public static final ForgeConfigSpec.ConfigValue<Boolean> katanaHurtsOnlyMonster;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> disableBlockElementDisplaying;
 
 
     static {
@@ -27,7 +27,7 @@ public final class ConfigUrushi {
         builder.pop();
         builder.push("item settings");
         reiryokuCapacityOfMagatama=builder.comment("max Reiryoku amount of Magatama").define("magatama(1～2147483647)",5600);
-        //katanaHurtsOnlyMonster=builder.comment("Katana hurts only monsters").define("only monster(true/false)",false);
+        disableBlockElementDisplaying=builder.comment("disable displaying block element on item toolchip").define("disable displaying block element(true/false)",false);
         builder.pop();
         builder.push("blockentity settings");
         shichirinIconAmount=builder.comment("half number of square icons of Shichirin").define("Shichirin icon(1～2147483647)",6);

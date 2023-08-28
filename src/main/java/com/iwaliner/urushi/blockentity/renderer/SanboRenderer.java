@@ -2,34 +2,48 @@ package com.iwaliner.urushi.blockentity.renderer;
 
 import com.iwaliner.urushi.ModCoreUrushi;
 import com.iwaliner.urushi.blockentity.SanboBlockEntity;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.math.Matrix3f;
 import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BeaconRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.TheEndPortalRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.model.data.EmptyModelData;
 
 @OnlyIn(Dist.CLIENT)
 public class SanboRenderer implements BlockEntityRenderer<SanboBlockEntity> {
 
-    public SanboRenderer(BlockEntityRendererProvider.Context p_173602_) {
+    private final BlockEntityRendererProvider.Context context;
+    public SanboRenderer(BlockEntityRendererProvider.Context context) {
+        this.context=context;
     }
 
-    public void render(SanboBlockEntity blockEntity, float f1, PoseStack poseStack, MultiBufferSource bufferSource, int i1, int i2) {
+    public void render(SanboBlockEntity blockEntity, float f1, PoseStack poseStack, MultiBufferSource bufferSource, int combinedLight, int combinedOverlay) {
         Direction direction = blockEntity.getBlockState().getValue(CampfireBlock.FACING);
         ItemStack itemstack = blockEntity.getDisplayingStack();
         int i = (int)blockEntity.getBlockPos().asLong();
@@ -44,7 +58,7 @@ public class SanboRenderer implements BlockEntityRenderer<SanboBlockEntity> {
                 poseStack.mulPose(Vector3f.YP.rotationDegrees(f));
                 //poseStack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
                 poseStack.scale(0.5F, 0.5F, 0.5F);
-                Minecraft.getInstance().getItemRenderer().renderStatic(itemstack, ItemTransforms.TransformType.FIXED, i1, i2, poseStack, bufferSource, i);
+                Minecraft.getInstance().getItemRenderer().renderStatic(itemstack, ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, poseStack, bufferSource, i);
                 poseStack.popPose();
             }
 
@@ -64,11 +78,100 @@ public class SanboRenderer implements BlockEntityRenderer<SanboBlockEntity> {
         ResourceLocation texture=new ResourceLocation(ModCoreUrushi.ModID,"textures/block/plaster_namako.png");
         renderBeam(poseStack,bufferSource,texture,f1,aspectRatio,blockEntity.getLevel().getGameTime(),i3,hight,color, innerCoreLayerSize, outerTranslucentLayerSize);
     */
+
+        /**以下、ブロック描画実験の跡。*/
+        final BlockRenderDispatcher blockRenderDispatcher=context.getBlockRenderDispatcher();
+        //blockRenderDispatcher.renderSingleBlock(Blocks.DIAMOND_BLOCK.defaultBlockState(),poseStack,bufferSource,combinedLight,combinedOverlay, EmptyModelData.INSTANCE);
+        //renderSingleBlock(Blocks.DIAMOND_BLOCK.defaultBlockState(),poseStack,bufferSource,combinedLight,combinedOverlay, EmptyModelData.INSTANCE);
+
+        ResourceLocation texture=new ResourceLocation(ModCoreUrushi.ModID,"textures/block/plaster_namako.png");
+        PoseStack.Pose pose = poseStack.last();
+        Matrix4f matrix4f = pose.pose();
+        Matrix3f matrix3f = pose.normal();
+     /*   VertexConsumer vertexConsumer=bufferSource.getBuffer(RenderType.endPortal());
+        //vertexConsumer.vertex(matrix4f, 1F, 1F, 1F).color(50, 1, 0, 1).uv(1F, 0.2F).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(15728880).normal(matrix3f, 0.0F, 1.0F, 0.0F).endVertex();
+
+        //this.renderFace( matrix4f, vertexConsumer, 0.0F, 1.0F, 0.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, Direction.SOUTH);
+        vertexConsumer.vertex(matrix4f, 0F, 0F, 1F).endVertex();
+        vertexConsumer.vertex(matrix4f, 1F, 0F, 1F).endVertex();
+        //vertexConsumer.vertex(matrix4f, 1F, 1F, 1F).endVertex();
+        vertexConsumer.vertex(matrix4f, 0F, 1F, 1F).endVertex();
+
+        vertexConsumer.vertex(matrix4f, 0F, 0F, 0F).endVertex();
+
+        vertexConsumer.vertex(matrix4f, 0F, 0F, 0F).endVertex();
+        vertexConsumer.vertex(matrix4f, 1F, 0F, 1F).endVertex();
+        vertexConsumer.vertex(matrix4f, 0F, 1F, 1F).endVertex();
+        vertexConsumer.vertex(matrix4f, 0F, 1F, 1F).endVertex();
+
+
+*/
+        BlockPos blockpos=blockEntity.getBlockPos();
+        BlockPos blockpos2=blockpos.above(3);
+        /*float f=0F;
+        double d0 = (double)((float)(blockpos2.getX() - blockpos.getX()) + 0.45F - f);
+        double d1 = (double)((float)(blockpos2.getY() - blockpos.getY()) + 0.45F - f);
+        double d2 = (double)((float)(blockpos2.getZ() - blockpos.getZ()) + 0.45F - f);
+        double d3 = (double)((float)(blockpos2.getX() - blockpos.getX()) + 0.55F + f);
+        double d4 = (double)((float)(blockpos2.getY() - blockpos.getY()) + 0.55F + f);
+        double d5 = (double)((float)(blockpos2.getZ() - blockpos.getZ()) + 0.55F + f);*/
+        double d0=0D;
+        double d1=0D;
+        double d2=0D;
+        double d3=1D;
+        double d4=1D;
+        double d5=1D;
+
+        VertexConsumer vertexConsumer=bufferSource.getBuffer(RenderType.lines());
+        LevelRenderer.renderLineBox(poseStack, vertexConsumer, d0,d1,d2,d3,d4,d5,0F,0.0F,1.0F,0.0F, 0F, 0F, 0F);
+
+
+    }
+    private void renderFace( Matrix4f p_173696_, VertexConsumer p_173697_, float p_173698_, float p_173699_, float p_173700_, float p_173701_, float p_173702_, float p_173703_, float p_173704_, float p_173705_, Direction p_173706_) {
+      //  if (shouldRenderFace(p_173706_)) {
+            p_173697_.vertex(p_173696_, p_173698_, p_173700_, p_173702_).endVertex();
+
+
+        p_173697_.vertex(p_173696_, p_173699_, p_173700_, p_173703_).endVertex();
+            p_173697_.vertex(p_173696_, p_173699_, p_173701_, p_173704_).endVertex();
+            p_173697_.vertex(p_173696_, p_173698_, p_173701_, p_173705_).endVertex();
+      //  }
+
+    }
+    public boolean shouldRenderFace(Direction p_59980_) {
+        return p_59980_.getAxis() == Direction.Axis.Y;
+    }
+    public BakedModel getBlockModel(BlockState p_110911_) {
+        final BlockRenderDispatcher blockRenderDispatcher=context.getBlockRenderDispatcher();
+        return blockRenderDispatcher.getBlockModelShaper().getBlockModel(p_110911_);
+    }
+    public void renderSingleBlock(BlockState p_110913_, PoseStack p_110914_, MultiBufferSource p_110915_, int p_110916_, int p_110917_, net.minecraftforge.client.model.data.IModelData modelData) {
+        RenderShape rendershape = p_110913_.getRenderShape();
+        final BlockRenderDispatcher blockRenderDispatcher=context.getBlockRenderDispatcher();
+        if (rendershape != RenderShape.INVISIBLE) {
+            switch(rendershape) {
+                case MODEL:
+                    BakedModel bakedmodel = this.getBlockModel(p_110913_);
+                   // int i = this.blockColors.getColor(p_110913_, (BlockAndTintGetter)null, (BlockPos)null, 0);
+                    //float f = (float)(i >> 16 & 255) / 255.0F;
+                   // float f1 = (float)(i >> 8 & 255) / 255.0F;
+                   // float f2 = (float)(i & 255) / 255.0F;
+                    float f=1F;
+                    float f1=1F;
+                    float f2=0F;
+                    blockRenderDispatcher.getModelRenderer().renderModel(p_110914_.last(), p_110915_.getBuffer(ItemBlockRenderTypes.getRenderType(p_110913_, false)), p_110913_, bakedmodel, f, f1, f2, p_110916_, p_110917_, modelData);
+                    break;
+                case ENTITYBLOCK_ANIMATED:
+                    ItemStack stack = new ItemStack(p_110913_.getBlock());
+                    net.minecraftforge.client.RenderProperties.get(stack).getItemStackRenderer().renderByItem(stack, ItemTransforms.TransformType.NONE, p_110914_, p_110915_, p_110916_, p_110917_);
+            }
+
+        }
     }
 
     /**以下、バニラのビーコンビームを使った実験の跡。*/
-/*
-    public static void renderBeam(PoseStack p_112185_, MultiBufferSource p_112186_, ResourceLocation p_112187_, float p_112188_, float p_112189_, long p_112190_, int p_112191_, int p_112192_, float[] p_112193_, float p_112194_, float p_112195_) {
+
+  /*  public static void renderBeam(PoseStack p_112185_, MultiBufferSource p_112186_, ResourceLocation p_112187_, float p_112188_, float p_112189_, long p_112190_, int p_112191_, int p_112192_, float[] p_112193_, float p_112194_, float p_112195_) {
         int i = p_112191_ + p_112192_;
         p_112185_.pushPose();
         p_112185_.translate(0.5D, 0.0D, 0.5D);
@@ -125,4 +228,6 @@ public class SanboRenderer implements BlockEntityRenderer<SanboBlockEntity> {
     private static void addVertex(Matrix4f p_112107_, Matrix3f p_112108_, VertexConsumer p_112109_, float p_112110_, float p_112111_, float p_112112_, float p_112113_, int p_112114_, float p_112115_, float p_112116_, float p_112117_, float p_112118_) {
         p_112109_.vertex(p_112107_, p_112115_, (float)p_112114_, p_112116_).color(p_112110_, p_112111_, p_112112_, p_112113_).uv(p_112117_, p_112118_).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(15728880).normal(p_112108_, 0.0F, 1.0F, 0.0F).endVertex();
     }*/
+
+
 }

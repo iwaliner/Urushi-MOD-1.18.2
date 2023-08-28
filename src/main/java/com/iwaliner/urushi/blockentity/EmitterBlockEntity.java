@@ -3,13 +3,12 @@ package com.iwaliner.urushi.blockentity;
 import com.iwaliner.urushi.BlockEntityRegister;
 import com.iwaliner.urushi.ParticleRegister;
 import com.iwaliner.urushi.block.EmitterBlock;
+import com.iwaliner.urushi.block.MirrorBlock;
 import com.iwaliner.urushi.block.SacredRockBlock;
+import com.iwaliner.urushi.util.ComplexDirection;
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.ElementUtils;
-import com.iwaliner.urushi.util.interfaces.Mirror;
-import com.iwaliner.urushi.util.interfaces.ReiryokuExportable;
-import com.iwaliner.urushi.util.interfaces.ReiryokuImportable;
-import com.iwaliner.urushi.util.interfaces.ReiryokuStorable;
+import com.iwaliner.urushi.util.interfaces.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -28,8 +27,8 @@ import net.minecraft.world.ticks.TickPriority;
 
 public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity implements ReiryokuExportable {
    public static   final double particleSpeed=0.2D;
-    public EmitterBlockEntity(BlockPos p_155550_, BlockState p_155551_) {
-        super(BlockEntityRegister.Emitter.get(),100, p_155550_, p_155551_);
+    public EmitterBlockEntity(BlockPos p_155550_, BlockState state) {
+        super(BlockEntityRegister.Emitter.get(),100, p_155550_, state);
     }
 
 
@@ -42,7 +41,15 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
 
     /**一度に送信する霊力の量*/
     private int getSendAmount(){
+        Tiered tiered= (Tiered) getBlockState().getBlock();
+        int tier=tiered.getTier();
         int i=1;
+        switch (tier){
+            case 1: i= 1;
+            case 2: i= 10;
+            case 3: i= 20;
+        }
+
         if(this.getStoredReiryoku()-i<0){
             return getStoredReiryoku();
         }else{
@@ -112,39 +119,47 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
     /**送信先のブロックが何ブロック離れているか*/
     private int sendDistance(Level level,BlockPos emitterPos){
       BlockState emitterState=level.getBlockState(emitterPos);
-      Direction direction=emitterState.getValue(EmitterBlock.FACING);
-      EmitterBlockEntity emitterBlockEntity= (EmitterBlockEntity) level.getBlockEntity(emitterPos);
-      int j=0;
-      int range=Mth.floor(this.particleSpeed*80-0.25D);
-      for(int i=1;i<range;i++){
-          BlockEntity blockEntity=level.getBlockEntity(emitterPos.relative(direction,i));
-          BlockState state=level.getBlockState(emitterPos.relative(direction,i));
-          VoxelShape shape= state.getCollisionShape(level,emitterPos.relative(direction,i)).optimize();
-          double corner=6D;
-          VoxelShape particleShape= Block.box(corner,corner,corner,16D-corner,16D-corner,16D-corner);
+        int j = 0;
+      if(emitterState.getBlock() instanceof EmitterBlock) {
+          Direction direction = emitterState.getValue(EmitterBlock.FACING);
+          EmitterBlockEntity emitterBlockEntity = (EmitterBlockEntity) level.getBlockEntity(emitterPos);
 
-          if(blockEntity!=null&&emitterBlockEntity!=null){
-              if(blockEntity instanceof ReiryokuImportable||blockEntity instanceof MirrorBlockEntity){
-                  if(blockEntity instanceof EmitterBlockEntity){
-                      break;
-                  }else {
-                      ReiryokuStorable reiryokuStorable = (ReiryokuStorable) blockEntity;
-                      if (reiryokuStorable.canAddReiryoku(emitterBlockEntity.getSendAmount())) {
-                          if(blockEntity instanceof Mirror||reiryokuStorable.getStoredElementType()==emitterBlockEntity.getStoredElementType()) {
-                              j = i;
-                              break;
+          int range = Mth.floor(this.particleSpeed * 80 - 0.25D);
+          for (int i = 1; i < range; i++) {
+              BlockEntity blockEntity = level.getBlockEntity(emitterPos.relative(direction, i));
+              BlockState state = level.getBlockState(emitterPos.relative(direction, i));
+              VoxelShape shape = state.getCollisionShape(level, emitterPos.relative(direction, i)).optimize();
+              double corner = 6D;
+              VoxelShape particleShape = Block.box(corner, corner, corner, 16D - corner, 16D - corner, 16D - corner);
+
+              if (blockEntity != null && emitterBlockEntity != null) {
+                  if (blockEntity instanceof ReiryokuImportable || blockEntity instanceof MirrorBlockEntity) {
+                      if (blockEntity instanceof EmitterBlockEntity) {
+                          break;
+                      } else {
+                          ReiryokuStorable reiryokuStorable = (ReiryokuStorable) blockEntity;
+                          if (reiryokuStorable.canAddReiryoku(emitterBlockEntity.getSendAmount())) {
+                              if (blockEntity instanceof Mirror || reiryokuStorable.getStoredElementType() == emitterBlockEntity.getStoredElementType()) {
+                                  j = i;
+                                  if (blockEntity instanceof MirrorBlockEntity) {
+                                      Mirror mirror = (Mirror) blockEntity;
+                                      mirror.setIncidentDirection(direction.getOpposite());
+                                  }
+                                  break;
+                              }
                           }
+                          break;
                       }
-                      break;
                   }
+
+              } else if (Shapes.joinIsNotEmpty(shape, particleShape, BooleanOp.AND)) {
+                  break;
               }
 
-          } else if(Shapes.joinIsNotEmpty(shape,particleShape, BooleanOp.AND)){
-              break;
           }
-
       }
-      return j;
+          return j;
+
     }
 
     /**霊力を輸送*/
@@ -184,6 +199,36 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
         return this.getStoredElementType();
     }
 
+    public int getDisplayDistance(EmitterBlockEntity emitterBlockEntity){
+        Level level=emitterBlockEntity.getLevel();
+        BlockState emitterState=level.getBlockState(emitterBlockEntity.getBlockPos());
+        Direction direction=emitterState.getValue(EmitterBlock.FACING);
+        BlockPos emitterPos=emitterBlockEntity.getBlockPos();
 
+        int range=Mth.floor(this.particleSpeed*80-0.25D);
+        int j=range;
+        for(int i=1;i<range;i++){
+            BlockEntity blockEntity=level.getBlockEntity(emitterPos.relative(direction,i));
+            BlockState state=level.getBlockState(emitterPos.relative(direction,i));
+            VoxelShape shape= state.getCollisionShape(level,emitterPos.relative(direction,i)).optimize();
+            double corner=6D;
+            VoxelShape particleShape= Block.box(corner,corner,corner,16D-corner,16D-corner,16D-corner);
+            Material material=state.getMaterial();
+            if(Shapes.joinIsNotEmpty(shape,particleShape, BooleanOp.AND)){
+                j = i;
+                break;
+            }
+
+        }
+        return j-1;
+    }
+    public BlockPos getDisplayNextPos(EmitterBlockEntity emitterBlockEntity){
+        Level level=emitterBlockEntity.getLevel();
+        BlockState emitterState=level.getBlockState(emitterBlockEntity.getBlockPos());
+        Direction direction=emitterState.getValue(EmitterBlock.FACING);
+        BlockPos emitterPos=emitterBlockEntity.getBlockPos();
+
+        return emitterPos.relative(direction,1);
+    }
 
 }

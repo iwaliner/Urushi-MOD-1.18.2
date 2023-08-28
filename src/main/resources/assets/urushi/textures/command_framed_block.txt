@@ -1,0 +1,55 @@
+
+枠付きテクスチャ15個を作る
+枠のテクスチャ：block\planks_smooth_japanese_block\planks_smooth_japanese_cedar.png
+下地のテクスチャ：block\plaster_pink.png
+出力するテクスチャ：block\connectable\framed_plaster_pink\plaster_cedar_0.png
+
+
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_0.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_0.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_1.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_1.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_2.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_2.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_3.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_3.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_4.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_4.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_5.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_5.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_6.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_6.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_7.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_7.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_8.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_8.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_9.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_9.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_10.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_10.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_11.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_11.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_12.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_12.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_13.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_13.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_14.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_14.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_15.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_pink\plaster_cedar_15.png
+
+magick composite -gravity center -compose over block\connectable\framed_plaster_pink\plaster_cedar_0.png block\plaster_pink.png block\connectable\framed_plaster_pink\plaster_cedar_0.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_pink\plaster_cedar_1.png block\plaster_pink.png block\connectable\framed_plaster_pink\plaster_cedar_1.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_pink\plaster_cedar_2.png block\plaster_pink.png block\connectable\framed_plaster_pink\plaster_cedar_2.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_pink\plaster_cedar_3.png block\plaster_pink.png block\connectable\framed_plaster_pink\plaster_cedar_3.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_pink\plaster_cedar_4.png block\plaster_pink.png block\connectable\framed_plaster_pink\plaster_cedar_4.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_pink\plaster_cedar_5.png block\plaster_pink.png block\connectable\framed_plaster_pink\plaster_cedar_5.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_pink\plaster_cedar_6.png block\plaster_pink.png block\connectable\framed_plaster_pink\plaster_cedar_6.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_pink\plaster_cedar_7.png block\plaster_pink.png block\connectable\framed_plaster_pink\plaster_cedar_7.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_pink\plaster_cedar_8.png block\plaster_pink.png block\connectable\framed_plaster_pink\plaster_cedar_8.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_pink\plaster_cedar_9.png block\plaster_pink.png block\connectable\framed_plaster_pink\plaster_cedar_9.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_pink\plaster_cedar_10.png block\plaster_pink.png block\connectable\framed_plaster_pink\plaster_cedar_10.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_pink\plaster_cedar_11.png block\plaster_pink.png block\connectable\framed_plaster_pink\plaster_cedar_11.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_pink\plaster_cedar_12.png block\plaster_pink.png block\connectable\framed_plaster_pink\plaster_cedar_12.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_pink\plaster_cedar_13.png block\plaster_pink.png block\connectable\framed_plaster_pink\plaster_cedar_13.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_pink\plaster_cedar_14.png block\plaster_pink.png block\connectable\framed_plaster_pink\plaster_cedar_14.png
+
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_0.png block\connectable\framed_plaster_pink\plaster_cedar_0.png block\connectable\framed_plaster_pink\plaster_cedar_0.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_1.png block\connectable\framed_plaster_pink\plaster_cedar_1.png block\connectable\framed_plaster_pink\plaster_cedar_1.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_2.png block\connectable\framed_plaster_pink\plaster_cedar_2.png block\connectable\framed_plaster_pink\plaster_cedar_2.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_3.png block\connectable\framed_plaster_pink\plaster_cedar_3.png block\connectable\framed_plaster_pink\plaster_cedar_3.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_4.png block\connectable\framed_plaster_pink\plaster_cedar_4.png block\connectable\framed_plaster_pink\plaster_cedar_4.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_5.png block\connectable\framed_plaster_pink\plaster_cedar_5.png block\connectable\framed_plaster_pink\plaster_cedar_5.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_6.png block\connectable\framed_plaster_pink\plaster_cedar_6.png block\connectable\framed_plaster_pink\plaster_cedar_6.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_7.png block\connectable\framed_plaster_pink\plaster_cedar_7.png block\connectable\framed_plaster_pink\plaster_cedar_7.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_8.png block\connectable\framed_plaster_pink\plaster_cedar_8.png block\connectable\framed_plaster_pink\plaster_cedar_8.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_9.png block\connectable\framed_plaster_pink\plaster_cedar_9.png block\connectable\framed_plaster_pink\plaster_cedar_9.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_10.png block\connectable\framed_plaster_pink\plaster_cedar_10.png block\connectable\framed_plaster_pink\plaster_cedar_10.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_11.png block\connectable\framed_plaster_pink\plaster_cedar_11.png block\connectable\framed_plaster_pink\plaster_cedar_11.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_12.png block\connectable\framed_plaster_pink\plaster_cedar_12.png block\connectable\framed_plaster_pink\plaster_cedar_12.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_13.png block\connectable\framed_plaster_pink\plaster_cedar_13.png block\connectable\framed_plaster_pink\plaster_cedar_13.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_14.png block\connectable\framed_plaster_pink\plaster_cedar_14.png block\connectable\framed_plaster_pink\plaster_cedar_14.png

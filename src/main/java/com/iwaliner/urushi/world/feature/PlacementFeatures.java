@@ -42,7 +42,7 @@ public class PlacementFeatures {
     public static final Holder<PlacedFeature> AUTUMN_HILLS_RED_PLACE = PlacementUtils.register("autumn_hills_red", FeatureGenerator.RED_SPAWN, VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1)));
     public static final Holder<PlacedFeature> AUTUMN_HILLS_ORANGE_PLACE = PlacementUtils.register("autumn_hills_orange", FeatureGenerator.ORANGE_SPAWN, VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1)));
     public static final Holder<PlacedFeature> AUTUMN_HILLS_YELLOW_PLACE = PlacementUtils.register("autumn_hills_yellow", FeatureGenerator.YELLOW_SPAWN, VegetationPlacements.treePlacement(PlacementUtils.countExtra(4, 0.1F, 1)));
-    public static final Holder<PlacedFeature> HOT_SPRING_PLACE = PlacementUtils.register("hot_spring_place", FeatureGenerator.HOT_SPRING_SPAWN, InSquarePlacement.spread(),HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(100),VerticalAnchor.aboveBottom(350)),BiomeFilter.biome());
+    public static final Holder<PlacedFeature> HOT_SPRING_PLACE = PlacementUtils.register("hot_spring_place", FeatureGenerator.HOT_SPRING_SPAWN, fullRangePlacement(PlacementUtils.countExtra(0, 0.1f, 1)));
 
     public static final Holder<PlacedFeature> SAKURA_FOREST_SAKURA_PLACE = PlacementUtils.register("sakura_forest_sakura", FeatureGenerator.FANCY_SAKURA_SPAWN, VegetationPlacements.treePlacement(PlacementUtils.countExtra(5, 0.1F, 1)));
     public static final Holder<PlacedFeature> CEDAR_FOREST_CEDAR_PLACE = PlacementUtils.register("cedar_forest_japanese_cedar", FeatureGenerator.MEGA_CEDAR_SPAWN, VegetationPlacements.treePlacement(PlacementUtils.countExtra(8, 0.2F, 1)));
@@ -95,6 +95,11 @@ public class PlacementFeatures {
     public static final Holder<PlacedFeature> YOMI_VINE_PLACE = PlacementUtils.register("yomi_vine", FeatureGenerator.YOMI_VINES_SPAWN,NoiseThresholdCountPlacement.of(-0.8D, 10, 20), InSquarePlacement.spread(), PlacementUtils.FULL_RANGE, BiomeFilter.biome());
 
 
-
+    private static ImmutableList.Builder<PlacementModifier> fullRangePlacementBase(PlacementModifier p_195485_) {
+        return ImmutableList.<PlacementModifier>builder().add(p_195485_).add(InSquarePlacement.spread()).add(VegetationPlacements.TREE_THRESHOLD).add(PlacementUtils.HEIGHTMAP_TOP_SOLID).add(BiomeFilter.biome());
+    }
+    public static List<PlacementModifier> fullRangePlacement(PlacementModifier p_195480_) {
+        return fullRangePlacementBase(p_195480_).build();
+    }
 
 }

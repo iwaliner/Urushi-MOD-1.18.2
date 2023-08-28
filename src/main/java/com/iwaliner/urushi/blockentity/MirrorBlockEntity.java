@@ -17,13 +17,19 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  implements Mirror {
     public boolean canReach;
-    protected int incidentDirection;
+    public int incidentDirection;
     public MirrorBlockEntity(BlockPos p_155550_, BlockState p_155551_) {
         super(BlockEntityRegister.Mirror.get(),100, p_155550_, p_155551_);
     }
@@ -983,7 +989,7 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
         return new double[]{pos.getX()+0.5D,pos.getY()+0.5D, pos.getZ()+0.5D};
     }
 
-    private Direction[] getDirectionFromComplexDirection(ComplexDirection direction){
+    public Direction[] getDirectionFromComplexDirection(ComplexDirection direction){
         if(direction==ComplexDirection.N){
             return new Direction[]{Direction.NORTH,null};
         }else if(direction==ComplexDirection.E){
@@ -1045,7 +1051,6 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
 
     public static void tick(Level level, BlockPos pos, BlockState state, MirrorBlockEntity blockEntity) {
         blockEntity.recieveReiryoku(level,pos);
-
         boolean canReach= blockEntity.getCanReach();
         ComplexDirection mirrorDirection= getDirectionFromID(state.getValue(MirrorBlock.DIRECTION));
         ComplexDirection incidentDirection=blockEntity.getIncidentDirection();
@@ -1115,6 +1120,57 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
                 return getDirectionFromComplexDirection(incidentDirection)[1] == null ? mirrorPos.relative(getDirectionFromComplexDirection(incidentDirection)[0], t1) : mirrorPos.relative(getDirectionFromComplexDirection(incidentDirection)[0], t1).relative(getDirectionFromComplexDirection(incidentDirection)[1], t1);
             }
             return mirrorPos;
+    }
+
+    public int getDisplayDistance(MirrorBlockEntity blockEntity){
+        Level level=blockEntity.getLevel();
+        BlockPos mirrorPos=blockEntity.getBlockPos();
+        ComplexDirection mirrorDirection= getDirectionFromID(blockEntity.getBlockState().getValue(MirrorBlock.DIRECTION));
+        ComplexDirection incidentDirection=blockEntity.reflectedDirection(mirrorDirection,blockEntity.getIncidentDirection());
+        boolean b1=incidentDirection==ComplexDirection.N||incidentDirection==ComplexDirection.S||incidentDirection==ComplexDirection.E||incidentDirection==ComplexDirection.W;
+        int range= b1? Mth.floor(EmitterBlockEntity.particleSpeed*80+0.6D) : Mth.floor((EmitterBlockEntity.particleSpeed*80+0.6D)/Math.sqrt(2));
+
+        int t1=range;
+
+            for (int i1 = 1; i1 < range; i1++) {
+                BlockPos pos = getDirectionFromComplexDirection(incidentDirection)[1] == null ? mirrorPos.relative(getDirectionFromComplexDirection(incidentDirection)[0], i1) : mirrorPos.relative(getDirectionFromComplexDirection(incidentDirection)[0], i1).relative(getDirectionFromComplexDirection(incidentDirection)[1], i1);
+
+                BlockState state = level.getBlockState(pos);
+                VoxelShape shape = state.getCollisionShape(level, pos).optimize();
+                double corner = 6D;
+                VoxelShape particleShape = Block.box(corner, corner, corner, 16D - corner, 16D - corner, 16D - corner);
+
+                if (Shapes.joinIsNotEmpty(shape, particleShape, BooleanOp.AND)) {
+                    t1 = i1;
+                    if(level.getBlockEntity(pos) instanceof Mirror){
+                        Mirror mirror= (Mirror) level.getBlockEntity(pos);
+                        mirror.setIncidentDirection(blockEntity.getOppositeDirection(incidentDirection));
+                    }
+                    break;
+                }
+            }
+        return  t1-1;
+    }
+    public BlockPos getDisplayNextPos(MirrorBlockEntity blockEntity){
+        Level level=blockEntity.getLevel();
+        BlockPos mirrorPos=blockEntity.getBlockPos();
+        ComplexDirection mirrorDirection= getDirectionFromID(blockEntity.getBlockState().getValue(MirrorBlock.DIRECTION));
+        ComplexDirection incidentDirection=blockEntity.reflectedDirection(mirrorDirection,blockEntity.getIncidentDirection());
+        boolean b1=incidentDirection==ComplexDirection.N||incidentDirection==ComplexDirection.S||incidentDirection==ComplexDirection.E||incidentDirection==ComplexDirection.W;
+
+        BlockPos nextPos;
+        if(getDirectionFromComplexDirection(incidentDirection)!=null) {
+            if(getDirectionFromComplexDirection(incidentDirection)[1] == null){
+                nextPos=mirrorPos.relative(getDirectionFromComplexDirection(incidentDirection)[0], 1);
+            }else{
+                nextPos=mirrorPos.relative(getDirectionFromComplexDirection(incidentDirection)[0], 1).relative(getDirectionFromComplexDirection(incidentDirection)[1], 1);
+            }
+
+
+
+            return nextPos;
+        }
+        return null;
     }
     private void send(Level level,BlockPos mirrorPos, BlockPos goalPos,ComplexDirection incidentDirection){
         boolean b1=incidentDirection==ComplexDirection.N||incidentDirection==ComplexDirection.S||incidentDirection==ComplexDirection.E||incidentDirection==ComplexDirection.W;

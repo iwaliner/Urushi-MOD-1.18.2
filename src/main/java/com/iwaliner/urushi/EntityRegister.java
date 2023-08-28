@@ -3,6 +3,7 @@ package com.iwaliner.urushi;
 import com.iwaliner.urushi.entiity.CushionEntity;
 import com.iwaliner.urushi.entiity.GhostEntity;
 import com.iwaliner.urushi.entiity.KitsunebiEntity;
+import com.iwaliner.urushi.entiity.RedOniEntity;
 import com.iwaliner.urushi.entiity.food.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -31,6 +32,7 @@ public class EntityRegister {
     public static final RegistryObject<EntityType<KitsunebiEntity>> KitsunebiEntity=Entities.register("kitsunebi", () -> EntityType.Builder.<KitsunebiEntity>of(KitsunebiEntity::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).build(new ResourceLocation(ModCoreUrushi.ModID,"kitsunebi").toString()));
     public static final RegistryObject<EntityType<GhostEntity>> Ghost=Entities.register("ghost", () -> EntityType.Builder.<GhostEntity>of(GhostEntity::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).build(new ResourceLocation(ModCoreUrushi.ModID,"ghost").toString()));
     public static final RegistryObject<EntityType<CushionEntity>> Cushion=Entities.register("cushion", () -> EntityType.Builder.<CushionEntity>of(CushionEntity::new, MobCategory.MISC).sized(0.7F, 0.2F).clientTrackingRange(8).build(new ResourceLocation(ModCoreUrushi.ModID,"butadon_food").toString()));
+    public static final RegistryObject<EntityType<RedOniEntity>> RedOni=Entities.register("red_oni", () -> EntityType.Builder.<RedOniEntity>of(RedOniEntity::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).build(new ResourceLocation(ModCoreUrushi.ModID,"red_oni").toString()));
 
     public static void register(IEventBus eventBus) {
         Entities.register(eventBus);

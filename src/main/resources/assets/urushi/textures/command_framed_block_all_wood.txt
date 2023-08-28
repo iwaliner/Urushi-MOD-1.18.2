@@ -1,0 +1,651 @@
+
+枠付きテクスチャ15個を作る
+枠のテクスチャ：block\planks_smooth_japanese_block\planks_smooth_japanese_cedar.png
+下地のテクスチャ：block\plaster_orange.png
+出力するテクスチャ：block\connectable\framed_plaster_orange\plaster_cedar_0.png
+
+
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_0.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_0.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_1.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_1.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_2.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_2.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_3.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_3.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_4.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_4.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_5.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_5.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_6.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_6.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_7.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_7.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_8.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_8.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_9.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_9.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_10.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_10.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_11.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_11.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_12.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_12.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_13.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_13.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_14.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_14.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_15.png block\planks_smooth_japanese_cedar.png -matte block\connectable\framed_plaster_orange\plaster_cedar_15.png
+
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cedar_0.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cedar_0.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cedar_1.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cedar_1.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cedar_2.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cedar_2.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cedar_3.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cedar_3.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cedar_4.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cedar_4.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cedar_5.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cedar_5.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cedar_6.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cedar_6.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cedar_7.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cedar_7.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cedar_8.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cedar_8.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cedar_9.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cedar_9.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cedar_10.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cedar_10.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cedar_11.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cedar_11.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cedar_12.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cedar_12.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cedar_13.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cedar_13.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cedar_14.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cedar_14.png
+
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_0.png block\connectable\framed_plaster_orange\plaster_cedar_0.png block\connectable\framed_plaster_orange\plaster_cedar_0.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_1.png block\connectable\framed_plaster_orange\plaster_cedar_1.png block\connectable\framed_plaster_orange\plaster_cedar_1.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_2.png block\connectable\framed_plaster_orange\plaster_cedar_2.png block\connectable\framed_plaster_orange\plaster_cedar_2.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_3.png block\connectable\framed_plaster_orange\plaster_cedar_3.png block\connectable\framed_plaster_orange\plaster_cedar_3.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_4.png block\connectable\framed_plaster_orange\plaster_cedar_4.png block\connectable\framed_plaster_orange\plaster_cedar_4.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_5.png block\connectable\framed_plaster_orange\plaster_cedar_5.png block\connectable\framed_plaster_orange\plaster_cedar_5.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_6.png block\connectable\framed_plaster_orange\plaster_cedar_6.png block\connectable\framed_plaster_orange\plaster_cedar_6.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_7.png block\connectable\framed_plaster_orange\plaster_cedar_7.png block\connectable\framed_plaster_orange\plaster_cedar_7.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_8.png block\connectable\framed_plaster_orange\plaster_cedar_8.png block\connectable\framed_plaster_orange\plaster_cedar_8.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_9.png block\connectable\framed_plaster_orange\plaster_cedar_9.png block\connectable\framed_plaster_orange\plaster_cedar_9.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_10.png block\connectable\framed_plaster_orange\plaster_cedar_10.png block\connectable\framed_plaster_orange\plaster_cedar_10.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_11.png block\connectable\framed_plaster_orange\plaster_cedar_11.png block\connectable\framed_plaster_orange\plaster_cedar_11.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_12.png block\connectable\framed_plaster_orange\plaster_cedar_12.png block\connectable\framed_plaster_orange\plaster_cedar_12.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_13.png block\connectable\framed_plaster_orange\plaster_cedar_13.png block\connectable\framed_plaster_orange\plaster_cedar_13.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_14.png block\connectable\framed_plaster_orange\plaster_cedar_14.png block\connectable\framed_plaster_orange\plaster_cedar_14.png
+
+
+
+
+
+
+
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_0.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_0.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_1.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_1.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_2.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_2.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_3.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_3.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_4.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_4.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_5.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_5.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_6.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_6.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_7.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_7.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_8.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_8.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_9.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_9.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_10.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_10.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_11.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_11.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_12.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_12.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_13.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_13.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_14.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_14.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_15.png block\planks_smooth_ume.png -matte block\connectable\framed_plaster_orange\plaster_ume_15.png
+
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_ume_0.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_ume_0.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_ume_1.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_ume_1.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_ume_2.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_ume_2.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_ume_3.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_ume_3.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_ume_4.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_ume_4.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_ume_5.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_ume_5.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_ume_6.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_ume_6.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_ume_7.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_ume_7.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_ume_8.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_ume_8.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_ume_9.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_ume_9.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_ume_10.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_ume_10.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_ume_11.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_ume_11.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_ume_12.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_ume_12.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_ume_13.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_ume_13.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_ume_14.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_ume_14.png
+
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_0.png block\connectable\framed_plaster_orange\plaster_ume_0.png block\connectable\framed_plaster_orange\plaster_ume_0.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_1.png block\connectable\framed_plaster_orange\plaster_ume_1.png block\connectable\framed_plaster_orange\plaster_ume_1.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_2.png block\connectable\framed_plaster_orange\plaster_ume_2.png block\connectable\framed_plaster_orange\plaster_ume_2.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_3.png block\connectable\framed_plaster_orange\plaster_ume_3.png block\connectable\framed_plaster_orange\plaster_ume_3.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_4.png block\connectable\framed_plaster_orange\plaster_ume_4.png block\connectable\framed_plaster_orange\plaster_ume_4.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_5.png block\connectable\framed_plaster_orange\plaster_ume_5.png block\connectable\framed_plaster_orange\plaster_ume_5.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_6.png block\connectable\framed_plaster_orange\plaster_ume_6.png block\connectable\framed_plaster_orange\plaster_ume_6.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_7.png block\connectable\framed_plaster_orange\plaster_ume_7.png block\connectable\framed_plaster_orange\plaster_ume_7.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_8.png block\connectable\framed_plaster_orange\plaster_ume_8.png block\connectable\framed_plaster_orange\plaster_ume_8.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_9.png block\connectable\framed_plaster_orange\plaster_ume_9.png block\connectable\framed_plaster_orange\plaster_ume_9.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_10.png block\connectable\framed_plaster_orange\plaster_ume_10.png block\connectable\framed_plaster_orange\plaster_ume_10.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_11.png block\connectable\framed_plaster_orange\plaster_ume_11.png block\connectable\framed_plaster_orange\plaster_ume_11.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_12.png block\connectable\framed_plaster_orange\plaster_ume_12.png block\connectable\framed_plaster_orange\plaster_ume_12.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_13.png block\connectable\framed_plaster_orange\plaster_ume_13.png block\connectable\framed_plaster_orange\plaster_ume_13.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_14.png block\connectable\framed_plaster_orange\plaster_ume_14.png block\connectable\framed_plaster_orange\plaster_ume_14.png
+
+
+
+
+
+
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_0.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_0.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_1.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_1.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_2.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_2.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_3.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_3.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_4.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_4.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_5.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_5.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_6.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_6.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_7.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_7.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_8.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_8.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_9.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_9.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_10.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_10.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_11.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_11.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_12.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_12.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_13.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_13.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_14.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_14.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_15.png block\smooth_planks_red_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_red_15.png
+
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_red_0.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_red_0.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_red_1.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_red_1.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_red_2.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_red_2.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_red_3.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_red_3.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_red_4.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_red_4.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_red_5.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_red_5.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_red_6.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_red_6.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_red_7.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_red_7.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_red_8.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_red_8.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_red_9.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_red_9.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_red_10.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_red_10.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_red_11.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_red_11.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_red_12.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_red_12.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_red_13.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_red_13.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_red_14.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_red_14.png
+
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_0.png block\connectable\framed_plaster_orange\plaster_red_0.png block\connectable\framed_plaster_orange\plaster_red_0.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_1.png block\connectable\framed_plaster_orange\plaster_red_1.png block\connectable\framed_plaster_orange\plaster_red_1.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_2.png block\connectable\framed_plaster_orange\plaster_red_2.png block\connectable\framed_plaster_orange\plaster_red_2.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_3.png block\connectable\framed_plaster_orange\plaster_red_3.png block\connectable\framed_plaster_orange\plaster_red_3.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_4.png block\connectable\framed_plaster_orange\plaster_red_4.png block\connectable\framed_plaster_orange\plaster_red_4.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_5.png block\connectable\framed_plaster_orange\plaster_red_5.png block\connectable\framed_plaster_orange\plaster_red_5.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_6.png block\connectable\framed_plaster_orange\plaster_red_6.png block\connectable\framed_plaster_orange\plaster_red_6.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_7.png block\connectable\framed_plaster_orange\plaster_red_7.png block\connectable\framed_plaster_orange\plaster_red_7.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_8.png block\connectable\framed_plaster_orange\plaster_red_8.png block\connectable\framed_plaster_orange\plaster_red_8.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_9.png block\connectable\framed_plaster_orange\plaster_red_9.png block\connectable\framed_plaster_orange\plaster_red_9.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_10.png block\connectable\framed_plaster_orange\plaster_red_10.png block\connectable\framed_plaster_orange\plaster_red_10.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_11.png block\connectable\framed_plaster_orange\plaster_red_11.png block\connectable\framed_plaster_orange\plaster_red_11.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_12.png block\connectable\framed_plaster_orange\plaster_red_12.png block\connectable\framed_plaster_orange\plaster_red_12.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_13.png block\connectable\framed_plaster_orange\plaster_red_13.png block\connectable\framed_plaster_orange\plaster_red_13.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_14.png block\connectable\framed_plaster_orange\plaster_red_14.png block\connectable\framed_plaster_orange\plaster_red_14.png
+
+
+
+
+
+
+
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_0.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_0.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_1.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_1.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_2.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_2.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_3.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_3.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_4.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_4.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_5.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_5.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_6.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_6.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_7.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_7.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_8.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_8.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_9.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_9.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_10.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_10.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_11.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_11.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_12.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_12.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_13.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_13.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_14.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_14.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_15.png block\smooth_planks_black_urushi_stained.png -matte block\connectable\framed_plaster_orange\plaster_black_15.png
+
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_black_0.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_black_0.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_black_1.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_black_1.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_black_2.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_black_2.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_black_3.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_black_3.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_black_4.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_black_4.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_black_5.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_black_5.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_black_6.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_black_6.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_black_7.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_black_7.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_black_8.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_black_8.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_black_9.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_black_9.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_black_10.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_black_10.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_black_11.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_black_11.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_black_12.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_black_12.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_black_13.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_black_13.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_black_14.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_black_14.png
+
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_0.png block\connectable\framed_plaster_orange\plaster_black_0.png block\connectable\framed_plaster_orange\plaster_black_0.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_1.png block\connectable\framed_plaster_orange\plaster_black_1.png block\connectable\framed_plaster_orange\plaster_black_1.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_2.png block\connectable\framed_plaster_orange\plaster_black_2.png block\connectable\framed_plaster_orange\plaster_black_2.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_3.png block\connectable\framed_plaster_orange\plaster_black_3.png block\connectable\framed_plaster_orange\plaster_black_3.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_4.png block\connectable\framed_plaster_orange\plaster_black_4.png block\connectable\framed_plaster_orange\plaster_black_4.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_5.png block\connectable\framed_plaster_orange\plaster_black_5.png block\connectable\framed_plaster_orange\plaster_black_5.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_6.png block\connectable\framed_plaster_orange\plaster_black_6.png block\connectable\framed_plaster_orange\plaster_black_6.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_7.png block\connectable\framed_plaster_orange\plaster_black_7.png block\connectable\framed_plaster_orange\plaster_black_7.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_8.png block\connectable\framed_plaster_orange\plaster_black_8.png block\connectable\framed_plaster_orange\plaster_black_8.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_9.png block\connectable\framed_plaster_orange\plaster_black_9.png block\connectable\framed_plaster_orange\plaster_black_9.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_10.png block\connectable\framed_plaster_orange\plaster_black_10.png block\connectable\framed_plaster_orange\plaster_black_10.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_11.png block\connectable\framed_plaster_orange\plaster_black_11.png block\connectable\framed_plaster_orange\plaster_black_11.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_12.png block\connectable\framed_plaster_orange\plaster_black_12.png block\connectable\framed_plaster_orange\plaster_black_12.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_13.png block\connectable\framed_plaster_orange\plaster_black_13.png block\connectable\framed_plaster_orange\plaster_black_13.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_14.png block\connectable\framed_plaster_orange\plaster_black_14.png block\connectable\framed_plaster_orange\plaster_black_14.png
+
+
+
+
+
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_0.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_0.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_1.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_1.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_2.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_2.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_3.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_3.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_4.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_4.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_5.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_5.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_6.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_6.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_7.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_7.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_8.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_8.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_9.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_9.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_10.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_10.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_11.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_11.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_12.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_12.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_13.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_13.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_14.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_14.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_15.png block\planks_smooth_oak.png -matte block\connectable\framed_plaster_orange\plaster_oak_15.png
+
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_oak_0.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_oak_0.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_oak_1.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_oak_1.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_oak_2.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_oak_2.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_oak_3.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_oak_3.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_oak_4.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_oak_4.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_oak_5.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_oak_5.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_oak_6.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_oak_6.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_oak_7.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_oak_7.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_oak_8.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_oak_8.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_oak_9.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_oak_9.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_oak_10.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_oak_10.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_oak_11.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_oak_11.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_oak_12.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_oak_12.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_oak_13.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_oak_13.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_oak_14.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_oak_14.png
+
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_0.png block\connectable\framed_plaster_orange\plaster_oak_0.png block\connectable\framed_plaster_orange\plaster_oak_0.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_1.png block\connectable\framed_plaster_orange\plaster_oak_1.png block\connectable\framed_plaster_orange\plaster_oak_1.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_2.png block\connectable\framed_plaster_orange\plaster_oak_2.png block\connectable\framed_plaster_orange\plaster_oak_2.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_3.png block\connectable\framed_plaster_orange\plaster_oak_3.png block\connectable\framed_plaster_orange\plaster_oak_3.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_4.png block\connectable\framed_plaster_orange\plaster_oak_4.png block\connectable\framed_plaster_orange\plaster_oak_4.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_5.png block\connectable\framed_plaster_orange\plaster_oak_5.png block\connectable\framed_plaster_orange\plaster_oak_5.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_6.png block\connectable\framed_plaster_orange\plaster_oak_6.png block\connectable\framed_plaster_orange\plaster_oak_6.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_7.png block\connectable\framed_plaster_orange\plaster_oak_7.png block\connectable\framed_plaster_orange\plaster_oak_7.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_8.png block\connectable\framed_plaster_orange\plaster_oak_8.png block\connectable\framed_plaster_orange\plaster_oak_8.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_9.png block\connectable\framed_plaster_orange\plaster_oak_9.png block\connectable\framed_plaster_orange\plaster_oak_9.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_10.png block\connectable\framed_plaster_orange\plaster_oak_10.png block\connectable\framed_plaster_orange\plaster_oak_10.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_11.png block\connectable\framed_plaster_orange\plaster_oak_11.png block\connectable\framed_plaster_orange\plaster_oak_11.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_12.png block\connectable\framed_plaster_orange\plaster_oak_12.png block\connectable\framed_plaster_orange\plaster_oak_12.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_13.png block\connectable\framed_plaster_orange\plaster_oak_13.png block\connectable\framed_plaster_orange\plaster_oak_13.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_14.png block\connectable\framed_plaster_orange\plaster_oak_14.png block\connectable\framed_plaster_orange\plaster_oak_14.png
+
+
+
+
+
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_0.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_0.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_1.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_1.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_2.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_2.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_3.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_3.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_4.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_4.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_5.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_5.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_6.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_6.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_7.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_7.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_8.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_8.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_9.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_9.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_10.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_10.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_11.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_11.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_12.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_12.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_13.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_13.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_14.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_14.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_15.png block\planks_smooth_spruce.png -matte block\connectable\framed_plaster_orange\plaster_spruce_15.png
+
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_spruce_0.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_spruce_0.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_spruce_1.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_spruce_1.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_spruce_2.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_spruce_2.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_spruce_3.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_spruce_3.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_spruce_4.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_spruce_4.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_spruce_5.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_spruce_5.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_spruce_6.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_spruce_6.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_spruce_7.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_spruce_7.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_spruce_8.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_spruce_8.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_spruce_9.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_spruce_9.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_spruce_10.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_spruce_10.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_spruce_11.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_spruce_11.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_spruce_12.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_spruce_12.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_spruce_13.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_spruce_13.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_spruce_14.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_spruce_14.png
+
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_0.png block\connectable\framed_plaster_orange\plaster_spruce_0.png block\connectable\framed_plaster_orange\plaster_spruce_0.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_1.png block\connectable\framed_plaster_orange\plaster_spruce_1.png block\connectable\framed_plaster_orange\plaster_spruce_1.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_2.png block\connectable\framed_plaster_orange\plaster_spruce_2.png block\connectable\framed_plaster_orange\plaster_spruce_2.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_3.png block\connectable\framed_plaster_orange\plaster_spruce_3.png block\connectable\framed_plaster_orange\plaster_spruce_3.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_4.png block\connectable\framed_plaster_orange\plaster_spruce_4.png block\connectable\framed_plaster_orange\plaster_spruce_4.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_5.png block\connectable\framed_plaster_orange\plaster_spruce_5.png block\connectable\framed_plaster_orange\plaster_spruce_5.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_6.png block\connectable\framed_plaster_orange\plaster_spruce_6.png block\connectable\framed_plaster_orange\plaster_spruce_6.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_7.png block\connectable\framed_plaster_orange\plaster_spruce_7.png block\connectable\framed_plaster_orange\plaster_spruce_7.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_8.png block\connectable\framed_plaster_orange\plaster_spruce_8.png block\connectable\framed_plaster_orange\plaster_spruce_8.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_9.png block\connectable\framed_plaster_orange\plaster_spruce_9.png block\connectable\framed_plaster_orange\plaster_spruce_9.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_10.png block\connectable\framed_plaster_orange\plaster_spruce_10.png block\connectable\framed_plaster_orange\plaster_spruce_10.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_11.png block\connectable\framed_plaster_orange\plaster_spruce_11.png block\connectable\framed_plaster_orange\plaster_spruce_11.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_12.png block\connectable\framed_plaster_orange\plaster_spruce_12.png block\connectable\framed_plaster_orange\plaster_spruce_12.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_13.png block\connectable\framed_plaster_orange\plaster_spruce_13.png block\connectable\framed_plaster_orange\plaster_spruce_13.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_14.png block\connectable\framed_plaster_orange\plaster_spruce_14.png block\connectable\framed_plaster_orange\plaster_spruce_14.png
+
+
+
+
+
+
+
+
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_0.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_0.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_1.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_1.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_2.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_2.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_3.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_3.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_4.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_4.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_5.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_5.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_6.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_6.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_7.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_7.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_8.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_8.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_9.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_9.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_10.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_10.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_11.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_11.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_12.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_12.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_13.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_13.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_14.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_14.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_15.png block\planks_smooth_birch.png -matte block\connectable\framed_plaster_orange\plaster_birch_15.png
+
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_birch_0.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_birch_0.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_birch_1.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_birch_1.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_birch_2.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_birch_2.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_birch_3.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_birch_3.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_birch_4.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_birch_4.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_birch_5.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_birch_5.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_birch_6.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_birch_6.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_birch_7.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_birch_7.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_birch_8.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_birch_8.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_birch_9.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_birch_9.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_birch_10.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_birch_10.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_birch_11.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_birch_11.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_birch_12.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_birch_12.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_birch_13.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_birch_13.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_birch_14.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_birch_14.png
+
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_0.png block\connectable\framed_plaster_orange\plaster_birch_0.png block\connectable\framed_plaster_orange\plaster_birch_0.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_1.png block\connectable\framed_plaster_orange\plaster_birch_1.png block\connectable\framed_plaster_orange\plaster_birch_1.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_2.png block\connectable\framed_plaster_orange\plaster_birch_2.png block\connectable\framed_plaster_orange\plaster_birch_2.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_3.png block\connectable\framed_plaster_orange\plaster_birch_3.png block\connectable\framed_plaster_orange\plaster_birch_3.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_4.png block\connectable\framed_plaster_orange\plaster_birch_4.png block\connectable\framed_plaster_orange\plaster_birch_4.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_5.png block\connectable\framed_plaster_orange\plaster_birch_5.png block\connectable\framed_plaster_orange\plaster_birch_5.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_6.png block\connectable\framed_plaster_orange\plaster_birch_6.png block\connectable\framed_plaster_orange\plaster_birch_6.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_7.png block\connectable\framed_plaster_orange\plaster_birch_7.png block\connectable\framed_plaster_orange\plaster_birch_7.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_8.png block\connectable\framed_plaster_orange\plaster_birch_8.png block\connectable\framed_plaster_orange\plaster_birch_8.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_9.png block\connectable\framed_plaster_orange\plaster_birch_9.png block\connectable\framed_plaster_orange\plaster_birch_9.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_10.png block\connectable\framed_plaster_orange\plaster_birch_10.png block\connectable\framed_plaster_orange\plaster_birch_10.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_11.png block\connectable\framed_plaster_orange\plaster_birch_11.png block\connectable\framed_plaster_orange\plaster_birch_11.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_12.png block\connectable\framed_plaster_orange\plaster_birch_12.png block\connectable\framed_plaster_orange\plaster_birch_12.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_13.png block\connectable\framed_plaster_orange\plaster_birch_13.png block\connectable\framed_plaster_orange\plaster_birch_13.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_14.png block\connectable\framed_plaster_orange\plaster_birch_14.png block\connectable\framed_plaster_orange\plaster_birch_14.png
+
+
+
+
+
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_0.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_0.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_1.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_1.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_2.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_2.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_3.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_3.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_4.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_4.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_5.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_5.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_6.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_6.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_7.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_7.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_8.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_8.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_9.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_9.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_10.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_10.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_11.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_11.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_12.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_12.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_13.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_13.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_14.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_14.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_15.png block\planks_smooth_jungle.png -matte block\connectable\framed_plaster_orange\plaster_jungle_15.png
+
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_jungle_0.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_jungle_0.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_jungle_1.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_jungle_1.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_jungle_2.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_jungle_2.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_jungle_3.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_jungle_3.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_jungle_4.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_jungle_4.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_jungle_5.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_jungle_5.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_jungle_6.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_jungle_6.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_jungle_7.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_jungle_7.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_jungle_8.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_jungle_8.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_jungle_9.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_jungle_9.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_jungle_10.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_jungle_10.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_jungle_11.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_jungle_11.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_jungle_12.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_jungle_12.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_jungle_13.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_jungle_13.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_jungle_14.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_jungle_14.png
+
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_0.png block\connectable\framed_plaster_orange\plaster_jungle_0.png block\connectable\framed_plaster_orange\plaster_jungle_0.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_1.png block\connectable\framed_plaster_orange\plaster_jungle_1.png block\connectable\framed_plaster_orange\plaster_jungle_1.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_2.png block\connectable\framed_plaster_orange\plaster_jungle_2.png block\connectable\framed_plaster_orange\plaster_jungle_2.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_3.png block\connectable\framed_plaster_orange\plaster_jungle_3.png block\connectable\framed_plaster_orange\plaster_jungle_3.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_4.png block\connectable\framed_plaster_orange\plaster_jungle_4.png block\connectable\framed_plaster_orange\plaster_jungle_4.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_5.png block\connectable\framed_plaster_orange\plaster_jungle_5.png block\connectable\framed_plaster_orange\plaster_jungle_5.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_6.png block\connectable\framed_plaster_orange\plaster_jungle_6.png block\connectable\framed_plaster_orange\plaster_jungle_6.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_7.png block\connectable\framed_plaster_orange\plaster_jungle_7.png block\connectable\framed_plaster_orange\plaster_jungle_7.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_8.png block\connectable\framed_plaster_orange\plaster_jungle_8.png block\connectable\framed_plaster_orange\plaster_jungle_8.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_9.png block\connectable\framed_plaster_orange\plaster_jungle_9.png block\connectable\framed_plaster_orange\plaster_jungle_9.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_10.png block\connectable\framed_plaster_orange\plaster_jungle_10.png block\connectable\framed_plaster_orange\plaster_jungle_10.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_11.png block\connectable\framed_plaster_orange\plaster_jungle_11.png block\connectable\framed_plaster_orange\plaster_jungle_11.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_12.png block\connectable\framed_plaster_orange\plaster_jungle_12.png block\connectable\framed_plaster_orange\plaster_jungle_12.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_13.png block\connectable\framed_plaster_orange\plaster_jungle_13.png block\connectable\framed_plaster_orange\plaster_jungle_13.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_14.png block\connectable\framed_plaster_orange\plaster_jungle_14.png block\connectable\framed_plaster_orange\plaster_jungle_14.png
+
+
+
+
+
+
+
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_0.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_0.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_1.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_1.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_2.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_2.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_3.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_3.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_4.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_4.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_5.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_5.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_6.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_6.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_7.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_7.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_8.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_8.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_9.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_9.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_10.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_10.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_11.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_11.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_12.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_12.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_13.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_13.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_14.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_14.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_15.png block\planks_smooth_acacia.png -matte block\connectable\framed_plaster_orange\plaster_acacia_15.png
+
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_acacia_0.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_acacia_0.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_acacia_1.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_acacia_1.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_acacia_2.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_acacia_2.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_acacia_3.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_acacia_3.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_acacia_4.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_acacia_4.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_acacia_5.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_acacia_5.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_acacia_6.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_acacia_6.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_acacia_7.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_acacia_7.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_acacia_8.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_acacia_8.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_acacia_9.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_acacia_9.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_acacia_10.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_acacia_10.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_acacia_11.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_acacia_11.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_acacia_12.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_acacia_12.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_acacia_13.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_acacia_13.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_acacia_14.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_acacia_14.png
+
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_0.png block\connectable\framed_plaster_orange\plaster_acacia_0.png block\connectable\framed_plaster_orange\plaster_acacia_0.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_1.png block\connectable\framed_plaster_orange\plaster_acacia_1.png block\connectable\framed_plaster_orange\plaster_acacia_1.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_2.png block\connectable\framed_plaster_orange\plaster_acacia_2.png block\connectable\framed_plaster_orange\plaster_acacia_2.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_3.png block\connectable\framed_plaster_orange\plaster_acacia_3.png block\connectable\framed_plaster_orange\plaster_acacia_3.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_4.png block\connectable\framed_plaster_orange\plaster_acacia_4.png block\connectable\framed_plaster_orange\plaster_acacia_4.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_5.png block\connectable\framed_plaster_orange\plaster_acacia_5.png block\connectable\framed_plaster_orange\plaster_acacia_5.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_6.png block\connectable\framed_plaster_orange\plaster_acacia_6.png block\connectable\framed_plaster_orange\plaster_acacia_6.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_7.png block\connectable\framed_plaster_orange\plaster_acacia_7.png block\connectable\framed_plaster_orange\plaster_acacia_7.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_8.png block\connectable\framed_plaster_orange\plaster_acacia_8.png block\connectable\framed_plaster_orange\plaster_acacia_8.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_9.png block\connectable\framed_plaster_orange\plaster_acacia_9.png block\connectable\framed_plaster_orange\plaster_acacia_9.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_10.png block\connectable\framed_plaster_orange\plaster_acacia_10.png block\connectable\framed_plaster_orange\plaster_acacia_10.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_11.png block\connectable\framed_plaster_orange\plaster_acacia_11.png block\connectable\framed_plaster_orange\plaster_acacia_11.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_12.png block\connectable\framed_plaster_orange\plaster_acacia_12.png block\connectable\framed_plaster_orange\plaster_acacia_12.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_13.png block\connectable\framed_plaster_orange\plaster_acacia_13.png block\connectable\framed_plaster_orange\plaster_acacia_13.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_14.png block\connectable\framed_plaster_orange\plaster_acacia_14.png block\connectable\framed_plaster_orange\plaster_acacia_14.png
+
+
+
+
+
+
+
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_0.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_0.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_1.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_1.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_2.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_2.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_3.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_3.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_4.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_4.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_5.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_5.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_6.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_6.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_7.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_7.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_8.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_8.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_9.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_9.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_10.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_10.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_11.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_11.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_12.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_12.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_13.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_13.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_14.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_14.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_15.png block\planks_smooth_dark_oak.png -matte block\connectable\framed_plaster_orange\plaster_dark_oak_15.png
+
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_dark_oak_0.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_dark_oak_0.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_dark_oak_1.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_dark_oak_1.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_dark_oak_2.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_dark_oak_2.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_dark_oak_3.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_dark_oak_3.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_dark_oak_4.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_dark_oak_4.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_dark_oak_5.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_dark_oak_5.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_dark_oak_6.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_dark_oak_6.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_dark_oak_7.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_dark_oak_7.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_dark_oak_8.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_dark_oak_8.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_dark_oak_9.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_dark_oak_9.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_dark_oak_10.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_dark_oak_10.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_dark_oak_11.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_dark_oak_11.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_dark_oak_12.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_dark_oak_12.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_dark_oak_13.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_dark_oak_13.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_dark_oak_14.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_dark_oak_14.png
+
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_0.png block\connectable\framed_plaster_orange\plaster_dark_oak_0.png block\connectable\framed_plaster_orange\plaster_dark_oak_0.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_1.png block\connectable\framed_plaster_orange\plaster_dark_oak_1.png block\connectable\framed_plaster_orange\plaster_dark_oak_1.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_2.png block\connectable\framed_plaster_orange\plaster_dark_oak_2.png block\connectable\framed_plaster_orange\plaster_dark_oak_2.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_3.png block\connectable\framed_plaster_orange\plaster_dark_oak_3.png block\connectable\framed_plaster_orange\plaster_dark_oak_3.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_4.png block\connectable\framed_plaster_orange\plaster_dark_oak_4.png block\connectable\framed_plaster_orange\plaster_dark_oak_4.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_5.png block\connectable\framed_plaster_orange\plaster_dark_oak_5.png block\connectable\framed_plaster_orange\plaster_dark_oak_5.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_6.png block\connectable\framed_plaster_orange\plaster_dark_oak_6.png block\connectable\framed_plaster_orange\plaster_dark_oak_6.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_7.png block\connectable\framed_plaster_orange\plaster_dark_oak_7.png block\connectable\framed_plaster_orange\plaster_dark_oak_7.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_8.png block\connectable\framed_plaster_orange\plaster_dark_oak_8.png block\connectable\framed_plaster_orange\plaster_dark_oak_8.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_9.png block\connectable\framed_plaster_orange\plaster_dark_oak_9.png block\connectable\framed_plaster_orange\plaster_dark_oak_9.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_10.png block\connectable\framed_plaster_orange\plaster_dark_oak_10.png block\connectable\framed_plaster_orange\plaster_dark_oak_10.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_11.png block\connectable\framed_plaster_orange\plaster_dark_oak_11.png block\connectable\framed_plaster_orange\plaster_dark_oak_11.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_12.png block\connectable\framed_plaster_orange\plaster_dark_oak_12.png block\connectable\framed_plaster_orange\plaster_dark_oak_12.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_13.png block\connectable\framed_plaster_orange\plaster_dark_oak_13.png block\connectable\framed_plaster_orange\plaster_dark_oak_13.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_14.png block\connectable\framed_plaster_orange\plaster_dark_oak_14.png block\connectable\framed_plaster_orange\plaster_dark_oak_14.png
+
+
+
+
+
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_0.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_0.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_1.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_1.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_2.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_2.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_3.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_3.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_4.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_4.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_5.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_5.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_6.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_6.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_7.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_7.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_8.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_8.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_9.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_9.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_10.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_10.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_11.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_11.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_12.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_12.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_13.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_13.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_14.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_14.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_15.png block\planks_smooth_sakura.png -matte block\connectable\framed_plaster_orange\plaster_sakura_15.png
+
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_sakura_0.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_sakura_0.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_sakura_1.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_sakura_1.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_sakura_2.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_sakura_2.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_sakura_3.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_sakura_3.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_sakura_4.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_sakura_4.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_sakura_5.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_sakura_5.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_sakura_6.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_sakura_6.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_sakura_7.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_sakura_7.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_sakura_8.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_sakura_8.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_sakura_9.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_sakura_9.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_sakura_10.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_sakura_10.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_sakura_11.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_sakura_11.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_sakura_12.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_sakura_12.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_sakura_13.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_sakura_13.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_sakura_14.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_sakura_14.png
+
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_0.png block\connectable\framed_plaster_orange\plaster_sakura_0.png block\connectable\framed_plaster_orange\plaster_sakura_0.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_1.png block\connectable\framed_plaster_orange\plaster_sakura_1.png block\connectable\framed_plaster_orange\plaster_sakura_1.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_2.png block\connectable\framed_plaster_orange\plaster_sakura_2.png block\connectable\framed_plaster_orange\plaster_sakura_2.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_3.png block\connectable\framed_plaster_orange\plaster_sakura_3.png block\connectable\framed_plaster_orange\plaster_sakura_3.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_4.png block\connectable\framed_plaster_orange\plaster_sakura_4.png block\connectable\framed_plaster_orange\plaster_sakura_4.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_5.png block\connectable\framed_plaster_orange\plaster_sakura_5.png block\connectable\framed_plaster_orange\plaster_sakura_5.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_6.png block\connectable\framed_plaster_orange\plaster_sakura_6.png block\connectable\framed_plaster_orange\plaster_sakura_6.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_7.png block\connectable\framed_plaster_orange\plaster_sakura_7.png block\connectable\framed_plaster_orange\plaster_sakura_7.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_8.png block\connectable\framed_plaster_orange\plaster_sakura_8.png block\connectable\framed_plaster_orange\plaster_sakura_8.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_9.png block\connectable\framed_plaster_orange\plaster_sakura_9.png block\connectable\framed_plaster_orange\plaster_sakura_9.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_10.png block\connectable\framed_plaster_orange\plaster_sakura_10.png block\connectable\framed_plaster_orange\plaster_sakura_10.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_11.png block\connectable\framed_plaster_orange\plaster_sakura_11.png block\connectable\framed_plaster_orange\plaster_sakura_11.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_12.png block\connectable\framed_plaster_orange\plaster_sakura_12.png block\connectable\framed_plaster_orange\plaster_sakura_12.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_13.png block\connectable\framed_plaster_orange\plaster_sakura_13.png block\connectable\framed_plaster_orange\plaster_sakura_13.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_14.png block\connectable\framed_plaster_orange\plaster_sakura_14.png block\connectable\framed_plaster_orange\plaster_sakura_14.png
+
+
+
+
+
+
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_0.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_0.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_1.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_1.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_2.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_2.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_3.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_3.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_4.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_4.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_5.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_5.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_6.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_6.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_7.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_7.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_8.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_8.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_9.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_9.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_10.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_10.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_11.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_11.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_12.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_12.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_13.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_13.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_14.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_14.png
+magick composite -gravity center -compose dst-out C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\pr\pr_15.png block\planks_smooth_cypress.png -matte block\connectable\framed_plaster_orange\plaster_cypress_15.png
+
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cypress_0.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cypress_0.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cypress_1.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cypress_1.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cypress_2.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cypress_2.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cypress_3.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cypress_3.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cypress_4.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cypress_4.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cypress_5.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cypress_5.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cypress_6.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cypress_6.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cypress_7.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cypress_7.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cypress_8.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cypress_8.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cypress_9.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cypress_9.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cypress_10.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cypress_10.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cypress_11.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cypress_11.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cypress_12.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cypress_12.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cypress_13.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cypress_13.png
+magick composite -gravity center -compose over block\connectable\framed_plaster_orange\plaster_cypress_14.png block\plaster_orange.png block\connectable\framed_plaster_orange\plaster_cypress_14.png
+
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_0.png block\connectable\framed_plaster_orange\plaster_cypress_0.png block\connectable\framed_plaster_orange\plaster_cypress_0.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_1.png block\connectable\framed_plaster_orange\plaster_cypress_1.png block\connectable\framed_plaster_orange\plaster_cypress_1.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_2.png block\connectable\framed_plaster_orange\plaster_cypress_2.png block\connectable\framed_plaster_orange\plaster_cypress_2.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_3.png block\connectable\framed_plaster_orange\plaster_cypress_3.png block\connectable\framed_plaster_orange\plaster_cypress_3.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_4.png block\connectable\framed_plaster_orange\plaster_cypress_4.png block\connectable\framed_plaster_orange\plaster_cypress_4.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_5.png block\connectable\framed_plaster_orange\plaster_cypress_5.png block\connectable\framed_plaster_orange\plaster_cypress_5.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_6.png block\connectable\framed_plaster_orange\plaster_cypress_6.png block\connectable\framed_plaster_orange\plaster_cypress_6.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_7.png block\connectable\framed_plaster_orange\plaster_cypress_7.png block\connectable\framed_plaster_orange\plaster_cypress_7.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_8.png block\connectable\framed_plaster_orange\plaster_cypress_8.png block\connectable\framed_plaster_orange\plaster_cypress_8.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_9.png block\connectable\framed_plaster_orange\plaster_cypress_9.png block\connectable\framed_plaster_orange\plaster_cypress_9.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_10.png block\connectable\framed_plaster_orange\plaster_cypress_10.png block\connectable\framed_plaster_orange\plaster_cypress_10.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_11.png block\connectable\framed_plaster_orange\plaster_cypress_11.png block\connectable\framed_plaster_orange\plaster_cypress_11.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_12.png block\connectable\framed_plaster_orange\plaster_cypress_12.png block\connectable\framed_plaster_orange\plaster_cypress_12.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_13.png block\connectable\framed_plaster_orange\plaster_cypress_13.png block\connectable\framed_plaster_orange\plaster_cypress_13.png
+magick composite -gravity center -compose over C:\イワライナー(メインドライブ)\Minecraft\MOD製作\テクスチャコマンド\framed\line\line_14.png block\connectable\framed_plaster_orange\plaster_cypress_14.png block\connectable\framed_plaster_orange\plaster_cypress_14.png
