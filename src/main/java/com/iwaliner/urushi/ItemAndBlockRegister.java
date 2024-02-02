@@ -1022,6 +1022,7 @@ public class ItemAndBlockRegister {
     public static final RegistryObject<Block> water_element_emitter_tier2 =BM("water_element_emitter_tier2","p",-1,() -> {return new EmitterBlock(2,ElementType.WaterElement,BlockBehaviour.Properties.of(Material.STONE, MaterialColor.EMERALD).sound(SoundType.STONE).strength(1.0F, 10.0F));});
     public static final RegistryObject<Item> amber_igniter =ITEMS.register("amber_igniter", () -> {return new AmberIgniterItem((new Item.Properties()).tab(ModCoreUrushi.UrushiMagicTab).durability(512));});
     public static final RegistryObject<Item> metal_club =ITEMS.register("metal_club", () -> {return new SwordItem(Tiers.IRON,2,-2.9F,(new Item.Properties()).tab(ModCoreUrushi.UrushiTab).durability(128));});
+    public static final RegistryObject<Item> halt_jufu =ITEMS.register("halt_jufu", () -> {return new HaltJufuItem((new Item.Properties()).tab(ModCoreUrushi.UrushiMagicTab));});
 
 
 

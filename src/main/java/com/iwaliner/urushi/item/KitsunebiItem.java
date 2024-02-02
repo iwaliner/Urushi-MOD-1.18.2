@@ -7,6 +7,7 @@ import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.UrushiUtils;
 import com.iwaliner.urushi.entiity.KitsunebiEntity;
 import com.iwaliner.urushi.util.interfaces.ElementItem;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -74,9 +75,9 @@ public class KitsunebiItem extends Item implements ElementItem {
                  for(int k=-range; k<range+1;k++) {
                     if( world.getBlockState(pos.offset(i,j,k))== ItemAndBlockRegister.kitsunebiBlock.get().defaultBlockState()){
                        Random rand=new Random();
-                       double d0 = (double)pos.getX()+(double)i + 0.1D*rand.nextInt(16);
-                       double d1 = (double)pos.getY() +(double)j+ 0.1D*rand.nextInt(16);
-                       double d2 = (double)pos.getZ() +(double)k+ 0.1D*rand.nextInt(16);
+                       double d0 = (double)pos.getX()+(double)i + 0.1D*rand.nextInt(10);
+                       double d1 = (double)pos.getY() +(double)j+ 0.1D*rand.nextInt(10);
+                       double d2 = (double)pos.getZ() +(double)k+ 0.1D*rand.nextInt(10);
                        if(rand.nextInt(8)==0) {
                           world.addParticle(ParticleTypes.FLAME, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 

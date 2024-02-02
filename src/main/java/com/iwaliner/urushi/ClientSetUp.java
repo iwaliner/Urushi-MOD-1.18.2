@@ -99,6 +99,7 @@ public class ClientSetUp {
         event.registerLayerDefinition(ROASTED_RICE_CAKE, RoastedRiceCakeFoodModel::createBodyLayer);
         event.registerLayerDefinition(CUSHION, CushionModel::createBodyLayer);
         event.registerLayerDefinition(RED_ONI, RedOniModel::createBodyLayer);
+
     }
 
     /**パーティクルの見た目を指定*/
