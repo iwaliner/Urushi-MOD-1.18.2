@@ -19,7 +19,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class CommonSetUp {
     @SubscribeEvent
     public static void RegisterRendererEvent(final FMLCommonSetupEvent event) {
+
         SpawnPlacements.register(EntityRegister.Ghost.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
-        SpawnPlacements.register(EntityRegister.RedOni.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
+       // SpawnPlacements.register(EntityRegister.RedOni.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules);
     }
 }

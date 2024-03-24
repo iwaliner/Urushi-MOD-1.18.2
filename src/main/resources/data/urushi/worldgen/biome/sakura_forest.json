@@ -52,12 +52,6 @@
         "weight": 5,
         "minCount": 1,
         "maxCount": 3
-      },
-      {
-        "type": "urushi:red_oni",
-        "weight": 5,
-        "minCount": 1,
-        "maxCount": 3
       }
     ],
     "ambient": [

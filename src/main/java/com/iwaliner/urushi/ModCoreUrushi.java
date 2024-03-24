@@ -17,6 +17,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -30,6 +31,7 @@ import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.Biome;
@@ -61,6 +63,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -517,7 +520,7 @@ public class ModCoreUrushi {
 
         if (event.getEntity() instanceof LivingEntity) {
             Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
-            if (!event.getEntity().isSuppressingBounce() && block != ItemAndBlockRegister.sanbo_tier1.get() && block != ItemAndBlockRegister.sanbo_tier2.get() && block != ItemAndBlockRegister.sanbo_tier3.get()) {
+            if (!event.getEntity().isSuppressingBounce() && block != ItemAndBlockRegister.sanbo_tier1.get() ) {
 
                 if (((LivingEntity) event.getEntity()).getItemInHand(event.getHand()).getItem() == Items.PAPER) {
                     if (ElementUtils.isWoodElement(event.getWorld().getBlockState(event.getPos()))) {
@@ -808,6 +811,15 @@ public class ModCoreUrushi {
             event.getTable().addPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemAndBlockRegister.sweetfish.get()).setWeight(25)).add(LootItem.lootTableItem(ItemAndBlockRegister.carp.get()).setWeight(25)).add(LootItem.lootTableItem(ItemAndBlockRegister.goldfish.get()).setWeight(25)).build());
         }else if(event.getName().equals(BuiltInLootTables.SIMPLE_DUNGEON)||event.getName().equals(BuiltInLootTables.SPAWN_BONUS_CHEST)||event.getName().equals(BuiltInLootTables.VILLAGE_PLAINS_HOUSE)){
             event.getTable().addPool(LootPool.lootPool().add(LootItem.lootTableItem(ItemAndBlockRegister.lacquer_sapling.get()).setWeight(30)).build());
+        }
+    }
+
+    @SubscribeEvent
+    public void MorningEvent(PlayerWakeUpEvent event) {
+        if(event.getPlayer().getLevel().getGameRules().getBoolean(GameRules.RULE_DAYLIGHT)) {
+            for (ServerLevel serverlevel : Objects.requireNonNull(event.getPlayer().getLevel().getServer()).getAllLevels()) {
+                serverlevel.setDayTime((long) 24000);
+            }
         }
     }
 

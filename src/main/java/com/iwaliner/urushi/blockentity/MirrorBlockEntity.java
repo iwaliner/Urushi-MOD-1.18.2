@@ -116,16 +116,29 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
         if(direction==ComplexDirection.FAIL){
             return ComplexDirection.FAIL;
         }else if(direction.getID()<9){
-           return getDirectionFromID(direction.getID()+8);
+            return getDirectionFromID(direction.getID()+8);
         }else if(direction.getID()<17){
             return getDirectionFromID(direction.getID()-8);
-        }else if(direction.getID()<31){
+        }else if(direction.getID()<23){
             return getDirectionFromID(direction.getID()+20);
-        }else if(direction.getID()<45){
+        }else if(direction.getID()<29){
+            return getDirectionFromID(direction.getID()+8);
+        }else if(direction.getID()==29){
+            return getDirectionFromID(43);
+        }else if(direction.getID()==30){
+            return getDirectionFromID(44);
+        }else if(direction.getID()<37){
+            return getDirectionFromID(direction.getID()-8);
+        }else if(direction.getID()<43){
             return getDirectionFromID(direction.getID()-20);
+        }else if(direction.getID()==43){
+            return getDirectionFromID(29);
+        }else if(direction.getID()==44){
+            return getDirectionFromID(30);
         }
         return ComplexDirection.FAIL;
     }
+
 
     /**右回りに90度の方角を返す*/
     private ComplexDirection getClockwise90DegreesDirection(ComplexDirection direction){
@@ -1130,7 +1143,7 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
         boolean b1=incidentDirection==ComplexDirection.N||incidentDirection==ComplexDirection.S||incidentDirection==ComplexDirection.E||incidentDirection==ComplexDirection.W;
         int range= b1? Mth.floor(EmitterBlockEntity.particleSpeed*80+0.6D) : Mth.floor((EmitterBlockEntity.particleSpeed*80+0.6D)/Math.sqrt(2));
 
-        int t1=range;
+        int t1=0;
 
             for (int i1 = 1; i1 < range; i1++) {
                 BlockPos pos = getDirectionFromComplexDirection(incidentDirection)[1] == null ? mirrorPos.relative(getDirectionFromComplexDirection(incidentDirection)[0], i1) : mirrorPos.relative(getDirectionFromComplexDirection(incidentDirection)[0], i1).relative(getDirectionFromComplexDirection(incidentDirection)[1], i1);
@@ -1209,5 +1222,9 @@ public class MirrorBlockEntity extends AbstractReiryokuStorableBlockEntity  impl
                 }
             }
         }
+    }
+    public boolean hasGoal(MirrorBlockEntity blockEntity){
+        BlockPos nextPos=blockEntity.getDisplayNextPos(blockEntity);
+        return blockEntity.getLevel().getBlockEntity(nextPos) instanceof ReiryokuImportable||blockEntity.getLevel().getBlockEntity(nextPos) instanceof Mirror;
     }
 }

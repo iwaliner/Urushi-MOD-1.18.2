@@ -206,7 +206,7 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
         BlockPos emitterPos=emitterBlockEntity.getBlockPos();
 
         int range=Mth.floor(this.particleSpeed*80-0.25D);
-        int j=range;
+        int j=0;
         for(int i=1;i<range;i++){
             BlockEntity blockEntity=level.getBlockEntity(emitterPos.relative(direction,i));
             BlockState state=level.getBlockState(emitterPos.relative(direction,i));
@@ -225,10 +225,18 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
     public BlockPos getDisplayNextPos(EmitterBlockEntity emitterBlockEntity){
         Level level=emitterBlockEntity.getLevel();
         BlockState emitterState=level.getBlockState(emitterBlockEntity.getBlockPos());
-        Direction direction=emitterState.getValue(EmitterBlock.FACING);
-        BlockPos emitterPos=emitterBlockEntity.getBlockPos();
+        if(emitterState.getBlock() instanceof EmitterBlock) {
+            Direction direction = emitterState.getValue(EmitterBlock.FACING);
+            BlockPos emitterPos = emitterBlockEntity.getBlockPos();
 
-        return emitterPos.relative(direction,1);
+            return emitterPos.relative(direction, 1);
+        }else{
+            return null;
+        }
+    }
+    public boolean hasGoal(EmitterBlockEntity blockEntity){
+        BlockPos nextPos=blockEntity.getDisplayNextPos(blockEntity);
+        return blockEntity.getLevel().getBlockEntity(nextPos) instanceof ReiryokuImportable||blockEntity.getLevel().getBlockEntity(nextPos) instanceof Mirror;
     }
 
 }

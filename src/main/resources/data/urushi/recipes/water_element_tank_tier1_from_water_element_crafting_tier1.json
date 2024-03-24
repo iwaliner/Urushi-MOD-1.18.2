@@ -1,21 +1,81 @@
 {
+
+
+
   "type": "urushi:water_element_tier1_crafting",
+
+
+
   "ingredients": [
+
+
+
   {
+
+
+
     "item": "urushi:water_amber"
+
+
+
     },
+
+
+
     {
+
+
+
     "item": "urushi:water_element_paper"
+
+
+
     },
+
+
+
     {
-    "item": "minecraft:diamond_block"
+
+
+
+    "tag": "forge:ingots/copper"
+
+
+
     },
+
+
+
     {
+
+
+
     "item": "urushi:smooth_birch_planks"
+
+
+
     }
+
+
+
   ],
+
+
+
   "result": {
+
+
+
   "item":"urushi:water_element_tank_tier1"
+
+
+
   },
+
+
+
   "reiryoku": 50
+
+
+
 }

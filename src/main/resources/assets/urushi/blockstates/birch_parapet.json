@@ -26,7 +26,7 @@
     "facing=south,on_slab=true": {
       "model": "urushi:block/parapet_birch_on_slab"
     },
-    "facing=west,on_slab=ture": {
+    "facing=west,on_slab=true": {
       "model": "urushi:block/parapet_birch_on_slab",
       "y": 90
     }

@@ -29,7 +29,7 @@ public class MediumParticle extends TextureSheetParticle {
         this.quadSize *= 2F;
         this.lifetime = 80;
         this.setSpriteFromAge(p_108353_);
-
+        this.hasPhysics=false;
 
     }
 

@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 
 public class RedOniEntity extends Zombie {
     public RedOniEntity(EntityType<? extends Zombie> p_34271_, Level p_34272_) {
-        super(EntityRegister.RedOni.get(), p_34272_);
+        super(EntityRegister.Ghost.get(), p_34272_);
     }
     protected SoundEvent getAmbientSound() {
         return SoundEvents.PUFFER_FISH_AMBIENT;
@@ -62,7 +62,7 @@ public class RedOniEntity extends Zombie {
 
 
     }
-    private ItemStack createSpawnWeapon() {
+  /*  private ItemStack createSpawnWeapon() {
         return  new ItemStack(ItemAndBlockRegister.metal_club.get());
     }
     @Nullable
@@ -76,6 +76,6 @@ public class RedOniEntity extends Zombie {
         this.populateDefaultEquipmentSlots(p_34718_);
         this.populateDefaultEquipmentEnchantments(p_34718_);
         return super.finalizeSpawn(p_34717_, p_34718_, p_34719_, p_34720_, p_34721_);
-    }
+    }*/
 
 }

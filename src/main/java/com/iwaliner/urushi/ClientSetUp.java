@@ -82,7 +82,7 @@ public class ClientSetUp {
             return new ThrownItemRenderer<>(p_174088_, 1.0F, true);
         });
         event.registerEntityRenderer(EntityRegister.Ghost.get(), GhostRenderer::new);
-        event.registerEntityRenderer(EntityRegister.RedOni.get(), RedOniRenderer::new);
+        //event.registerEntityRenderer(EntityRegister.RedOni.get(), RedOniRenderer::new);
         event.registerEntityRenderer(EntityRegister.Cushion.get(), CushionRenderer::new);
 
     }
@@ -177,8 +177,7 @@ public class ClientSetUp {
 
 
 
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.goldfish_bowl.get()));
-            ModCoreUrushi.removedItemList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_0.get()));
+           ModCoreUrushi.removedItemList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_0.get()));
             ModCoreUrushi.removedItemList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_1.get()));
             ModCoreUrushi.removedItemList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_2.get()));
             ModCoreUrushi.removedItemList.add(Item.byBlock(ItemAndBlockRegister.normal_iron_ingot_3.get()));
@@ -219,8 +218,6 @@ public class ClientSetUp {
             ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_tier_9.get());
             ModCoreUrushi.removedItemList.add(ItemAndBlockRegister.normal_katana_tier_10.get());
             ModCoreUrushi.underDevelopmentList.add(ItemAndBlockRegister.enhanced_jadeite.get());
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier2.get()));
-            ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.sanbo_tier3.get()));
             ModCoreUrushi.underDevelopmentList.add(Item.byBlock(ItemAndBlockRegister.senryoubako.get()));
 
 
@@ -632,17 +629,6 @@ public class ClientSetUp {
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.japanese_cedar_framed_lime_plaster.get()),"framed_plaster_lime/plaster_cedar_0");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.red_framed_lime_plaster.get()),"framed_plaster_lime/plaster_red_0");
             NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.black_framed_lime_plaster.get()),"framed_plaster_lime/plaster_black_0");
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.kettle.get()),"kettle");
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.wood_element_hokora.get()),"wood_element_hokora");
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.fire_element_hokora.get()),"fire_element_hokora");
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.earth_element_hokora.get()),"earth_element_hokora");
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.metal_element_hokora.get()),"metal_element_hokora");
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.water_element_hokora.get()),"water_element_hokora");
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.wood_element_emitter_tier2.get()),"wood_element_emitter_tier2");
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.fire_element_emitter_tier2.get()),"fire_element_emitter_tier2");
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.earth_element_emitter_tier2.get()),"earth_element_emitter_tier2");
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.metal_element_emitter_tier2.get()),"metal_element_emitter_tier2");
-            NormalBlockItemJsonMaker.INSTANCE.registerBlockModel(Item.byBlock(ItemAndBlockRegister.water_element_emitter_tier2.get()),"water_element_emitter_tier2");
 
 
             CubeAllBlockJsonMaker.INSTANCE.registerBlockModel(ItemAndBlockRegister.yomi_stone.get(),"yomi_stone");

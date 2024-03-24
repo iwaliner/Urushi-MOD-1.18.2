@@ -99,7 +99,6 @@ public class SacredRockBlock extends BaseEntityBlock implements Tiered, ElementB
 
     @Override
     public void appendHoverText(ItemStack p_49816_, @org.jetbrains.annotations.Nullable BlockGetter p_49817_, List<Component> list, TooltipFlag p_49819_) {
-        UrushiUtils.setInfo(list,"sacred_rock1");
         UrushiUtils.setInfo(list,"sacred_rock2");
         UrushiUtils.setInfo(list,"sacred_rock3");
     }

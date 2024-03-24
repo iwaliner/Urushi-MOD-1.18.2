@@ -1,5 +1,6 @@
 {
 	"parent": "block/block",
+	"render_type": "minecraft:translucent",
 	"textures": {
 		"0": "urushi:block/goldfish_bowl_water",
 		"1": "urushi:block/goldfish_bowl_side",
@@ -223,16 +224,6 @@
 				"north": {"uv": [0, 6, 16, 16], "texture": "#3"},
 				"south": {"uv": [16, 6, 0, 16], "texture": "#3"}
 			}
-		},
-		{
-			"from": [8, 0, 0],
-			"to": [8, 10, 16],
-			"rotation": {"angle": 45, "axis": "y", "origin": [8, 0, 8]},
-			"faces": {
-				"east": {"uv": [0, 6, 16, 16], "texture": "#3"},
-				"west": {"uv": [0, 6, 16, 16], "texture": "#3"}
-			}
 		}
-	],
-	"display": {}
+	]
 }
