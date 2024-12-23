@@ -295,7 +295,6 @@
     "urushi:fryer",
     "urushi:unfinished_shichirin",
     "urushi:shichirin",
-    "urushi:kettle",
     "urushi:hot_ironsand",
     "urushi:hot_iron_plate",
     "urushi:quenched_iron_plate",
@@ -366,7 +365,6 @@
     "urushi:petrified_log_with_metal_amber",
     "urushi:petrified_log_with_water_amber",
     "urushi:petrified_planks",
-    "urushi:sanbo_tier3",
     "urushi:wood_element_sacred_rock",
     "urushi:fire_element_sacred_rock",
     "urushi:earth_element_sacred_rock",
@@ -376,16 +374,6 @@
     "urushi:fire_element_emitter_tier1",
     "urushi:earth_element_emitter_tier1",
     "urushi:metal_element_emitter_tier1",
-    "urushi:water_element_emitter_tier1",
-    "urushi:wood_element_hokora",
-    "urushi:fire_element_hokora",
-    "urushi:earth_element_hokora",
-    "urushi:metal_element_hokora",
-    "urushi:water_element_hokora",
-    "urushi:wood_element_emitter_tier2",
-    "urushi:fire_element_emitter_tier2",
-    "urushi:earth_element_emitter_tier2",
-    "urushi:metal_element_emitter_tier2",
-    "urushi:water_element_emitter_tier2"
+    "urushi:water_element_emitter_tier1"
   ]
 }

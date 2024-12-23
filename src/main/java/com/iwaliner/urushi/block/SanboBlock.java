@@ -86,7 +86,7 @@ public class SanboBlock extends BaseEntityBlock implements Tiered {
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        if(world.getBlockEntity(pos)instanceof SanboBlockEntity) {
+
             if(!player.isSuppressingBounce()){
             SanboBlockEntity  tileEntity= (SanboBlockEntity) world.getBlockEntity(pos);
             ItemStack heldStack=player.getItemInHand(hand);
@@ -112,10 +112,7 @@ public class SanboBlock extends BaseEntityBlock implements Tiered {
                     return InteractionResult.SUCCESS;
                 }
             }
-            }else{
-                SanboBlockEntity  tileEntity= (SanboBlockEntity) world.getBlockEntity(pos);
-                     tileEntity.moveItemToExportSlot();
-            }
+
 
         }
         return InteractionResult.SUCCESS;

@@ -61,59 +61,59 @@ public class EmitterBlockEntity extends AbstractReiryokuStorableBlockEntity impl
 
     /**tick毎の処理*/
     public static void tick(Level level, BlockPos pos, BlockState state, EmitterBlockEntity emitterBlockEntity) {
+if(state.getBlock() instanceof EmitterBlock) {
+    /**送られた霊力を受け取る処理*/
+    emitterBlockEntity.recieveReiryoku(level, pos);
 
-        /**送られた霊力を受け取る処理*/
-        emitterBlockEntity.recieveReiryoku(level,pos);
-
-        /**後ろにあるブロックから霊力を吸いだす処理　開始*/
-       int i=1;
-          BlockPos importPos=pos.relative(state.getValue(SacredRockBlock.FACING).getOpposite());
-           BlockState importState=level.getBlockState(importPos);
-           BlockEntity importBlockEntity=level.getBlockEntity(importPos);
-           if(importBlockEntity instanceof ReiryokuStorable) {
-               ReiryokuStorable reiryokuStorable = (ReiryokuStorable) importBlockEntity;
-               ElementType elementType=reiryokuStorable.getStoredElementType();
-               if (reiryokuStorable.canDecreaseReiryoku(i)&&emitterBlockEntity.canAddReiryoku(i)&&emitterBlockEntity.getStoredElementType()==elementType) {
-                   reiryokuStorable.decreaseStoredReiryoku(i);
-                   emitterBlockEntity.addStoredReiryoku(i);
-                   reiryokuStorable.markUpdated();
-                   emitterBlockEntity.markUpdated();
-               }
-           }
-        /**後ろにあるブロックから霊力を吸いだす処理　終了*/
-
-
-        if(!state.getValue(EmitterBlock.POWERED)){
-            if(emitterBlockEntity.sendDistance(level,pos)!=0&&emitterBlockEntity.getStoredReiryoku()>0) {
-               double vX = 0D, vY = 0D, vZ = 0D;
-               double v0 = emitterBlockEntity.particleSpeed;
-               Direction direction = state.getValue(EmitterBlock.FACING);
-               double dx=0D,dy=0D,dz=0D;
-               if (direction == Direction.UP) {
-                   vY = v0;
-                  dy=-0.25D;
-               } else if (direction == Direction.DOWN) {
-                   vY = -v0;
-                   dy=0.25D;
-               } else if (direction == Direction.NORTH) {
-                   vZ = -v0;
-                   dz=0.25D;
-               } else if (direction == Direction.SOUTH) {
-                   vZ = v0;
-                   dz=-0.25D;
-               } else if (direction == Direction.EAST) {
-                   vX = v0;
-                   dx=-0.25D;
-               } else if (direction == Direction.WEST) {
-                   vX = -v0;
-                   dx=0.25D;
-               }
-                emitterBlockEntity.send(level,pos,pos.getX() + 0.5D+dx,pos.getY() + 0.5D+dy,pos.getZ() + 0.5D+dz,vX,vY,vZ);
-
-
-       }
+    /**後ろにあるブロックから霊力を吸いだす処理　開始*/
+    int i = 1;
+    BlockPos importPos = pos.relative(state.getValue(SacredRockBlock.FACING).getOpposite());
+    BlockState importState = level.getBlockState(importPos);
+    BlockEntity importBlockEntity = level.getBlockEntity(importPos);
+    if (importBlockEntity instanceof ReiryokuStorable) {
+        ReiryokuStorable reiryokuStorable = (ReiryokuStorable) importBlockEntity;
+        ElementType elementType = reiryokuStorable.getStoredElementType();
+        if (reiryokuStorable.canDecreaseReiryoku(i) && emitterBlockEntity.canAddReiryoku(i) && emitterBlockEntity.getStoredElementType() == elementType) {
+            reiryokuStorable.decreaseStoredReiryoku(i);
+            emitterBlockEntity.addStoredReiryoku(i);
+            reiryokuStorable.markUpdated();
+            emitterBlockEntity.markUpdated();
         }
+    }
+    /**後ろにあるブロックから霊力を吸いだす処理　終了*/
 
+
+    if (!state.getValue(EmitterBlock.POWERED)) {
+        if (emitterBlockEntity.sendDistance(level, pos) != 0 && emitterBlockEntity.getStoredReiryoku() > 0) {
+            double vX = 0D, vY = 0D, vZ = 0D;
+            double v0 = emitterBlockEntity.particleSpeed;
+            Direction direction = state.getValue(EmitterBlock.FACING);
+            double dx = 0D, dy = 0D, dz = 0D;
+            if (direction == Direction.UP) {
+                vY = v0;
+                dy = -0.25D;
+            } else if (direction == Direction.DOWN) {
+                vY = -v0;
+                dy = 0.25D;
+            } else if (direction == Direction.NORTH) {
+                vZ = -v0;
+                dz = 0.25D;
+            } else if (direction == Direction.SOUTH) {
+                vZ = v0;
+                dz = -0.25D;
+            } else if (direction == Direction.EAST) {
+                vX = v0;
+                dx = -0.25D;
+            } else if (direction == Direction.WEST) {
+                vX = -v0;
+                dx = 0.25D;
+            }
+            emitterBlockEntity.send(level, pos, pos.getX() + 0.5D + dx, pos.getY() + 0.5D + dy, pos.getZ() + 0.5D + dz, vX, vY, vZ);
+
+
+        }
+    }
+}
     }
 
     /**送信先のブロックが何ブロック離れているか*/

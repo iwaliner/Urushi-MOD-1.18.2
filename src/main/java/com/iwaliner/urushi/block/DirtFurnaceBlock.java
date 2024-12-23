@@ -36,7 +36,8 @@ public class DirtFurnaceBlock extends HorizonalRotateBlock {
     private static final VoxelShape Shape2 = Block.box(12D, 0.0D, 0D, 16D, 16D, 16D);
     private static final VoxelShape Shape3 = Block.box(0D, 0.0D, 0D, 16D, 16D, 4D);
     private static final VoxelShape Shape4 = Block.box(0D, 0.0D, 12D, 16D, 16D, 16D);
-    private static final VoxelShape AABB = Shapes.or(Shape1, Shape2, Shape3, Shape4);
+    private static final VoxelShape Shape5 = Block.box(0D, 14.0D, 0D, 16D, 16D, 16D);
+    private static final VoxelShape AABB = Shapes.or(Shape1, Shape2, Shape3, Shape4,Shape5);
 
     public DirtFurnaceBlock(Properties p_i48440_1_) {
         super(p_i48440_1_);

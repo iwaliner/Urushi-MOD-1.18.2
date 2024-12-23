@@ -2,6 +2,7 @@ package com.iwaliner.urushi;
 
 import com.iwaliner.urushi.block.*;
 import com.iwaliner.urushi.blockentity.ShichirinBlockEntity;
+import com.iwaliner.urushi.recipe.SenbakokiRecipe;
 import com.iwaliner.urushi.util.ElementType;
 import com.iwaliner.urushi.util.ElementUtils;
 import com.iwaliner.urushi.util.UrushiUtils;
@@ -21,6 +22,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -31,6 +33,7 @@ import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -65,10 +68,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.event.world.PistonEvent;
-import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.event.world.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -103,7 +103,7 @@ public class ModCoreUrushi {
     public static List<Item> underDevelopmentList=new ArrayList<>();
     public static List<Item> removedItemList=new ArrayList<>();
 
-    public static boolean isDebug=FMLPaths.GAMEDIR.get().toString().contains("イワライナー(メインドライブ)")&&FMLPaths.GAMEDIR.get().toString().contains("run");
+    public static boolean isDebug=FMLPaths.GAMEDIR.get().toString().contains("イワライナー")&&FMLPaths.GAMEDIR.get().toString().contains("run");
     public static Logger logger = LogManager.getLogger("urushi");
   //  public static final ResourceKey<Biome> SAKURA_FOREST = ResourceKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(ModCoreUrushi.ModID,"sakura_forest"));
     public static final CreativeModeTab UrushiTab = new CreativeModeTab("urushi") {
@@ -131,6 +131,36 @@ public class ModCoreUrushi {
         }
     };
     public static final CreativeModeTab UrushiMagicTab = new CreativeModeTab("urushi_magic") {
+        @Override
+        public void fillItemList(NonNullList<ItemStack> list) {
+
+            ItemStack itemStack1=new ItemStack(ItemAndBlockRegister.wood_element_magatama.get());
+            itemStack1.setTag(new CompoundTag());
+            itemStack1.getTag().putInt(ElementUtils.REIRYOKU_AMOUNT,ConfigUrushi.reiryokuCapacityOfMagatama.get());
+            list.add(itemStack1);
+
+            ItemStack itemStack2=new ItemStack(ItemAndBlockRegister.fire_element_magatama.get());
+            itemStack2.setTag(new CompoundTag());
+            itemStack2.getTag().putInt(ElementUtils.REIRYOKU_AMOUNT,ConfigUrushi.reiryokuCapacityOfMagatama.get());
+            list.add(itemStack2);
+
+            ItemStack itemStack3=new ItemStack(ItemAndBlockRegister.earth_element_magatama.get());
+            itemStack3.setTag(new CompoundTag());
+            itemStack3.getTag().putInt(ElementUtils.REIRYOKU_AMOUNT,ConfigUrushi.reiryokuCapacityOfMagatama.get());
+            list.add(itemStack3);
+
+            ItemStack itemStack4=new ItemStack(ItemAndBlockRegister.metal_element_magatama.get());
+            itemStack4.setTag(new CompoundTag());
+            itemStack4.getTag().putInt(ElementUtils.REIRYOKU_AMOUNT,ConfigUrushi.reiryokuCapacityOfMagatama.get());
+            list.add(itemStack4);
+
+            ItemStack itemStack5=new ItemStack(ItemAndBlockRegister.water_element_magatama.get());
+            itemStack5.setTag(new CompoundTag());
+            itemStack5.getTag().putInt(ElementUtils.REIRYOKU_AMOUNT,ConfigUrushi.reiryokuCapacityOfMagatama.get());
+            list.add(itemStack5);
+
+            super.fillItemList(list);
+        }
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(ItemAndBlockRegister.earth_element_magatama.get());
@@ -287,6 +317,49 @@ public class ModCoreUrushi {
     /**燃料を登録*/
     @SubscribeEvent
     public void FuelEvent(FurnaceFuelBurnTimeEvent event) {
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.japanese_timber_bamboo.get().asItem(),0.5F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.rice_crop.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.azuki_crop.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.soy_crop.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.lycoris.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.lantern_plant.get().asItem(),0.5F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.shiitake_item.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.eulalia.get().asItem(),0.5F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.lacquer_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.japanese_apricot_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.glowing_japanese_apricot_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.sakura_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.glowing_japanese_apricot_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.cypress_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.japanese_cedar_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.red_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.orange_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.yellow_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.lacquer_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.japanese_apricot_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.sakura_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.glowing_japanese_apricot_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.big_sakura_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.glowing_sakura_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.glowing_big_sakura_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.cypress_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.japanese_cedar_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.red_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.orange_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.yellow_sapling.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.raw_rice.get().asItem(),0.7F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.ajisai.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.yomotsuhegui_fruit.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.fallen_japanese_apricot_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.fallen_sakura_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.fallen_red_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.fallen_orange_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.fallen_yellow_leaves.get().asItem(),0.3F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.japanese_apricot_bark.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.sakura_bark.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.cypress_bark.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.japanese_cedar_bark.get().asItem(),0.65F);
+        ComposterBlock.COMPOSTABLES.put(ItemAndBlockRegister.wood_chip.get().asItem(),0.65F);
 
         DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
         DispenserBlock.registerBehavior(Items.BOWL, new OptionalDispenseItemBehavior() {
@@ -300,14 +373,9 @@ public class ModCoreUrushi {
                         this.setSuccess(true);
                         stack.shrink(1);
                         level.setBlockAndUpdate(blockpos, ItemAndBlockRegister.chiseled_lacquer_log.get().defaultBlockState().setValue(ChiseledLacquerLogBlock.FILLED, Boolean.valueOf(false)).setValue(ChiseledLacquerLogBlock.FACING, blockstate.getValue(ChiseledLacquerLogBlock.FACING)));
-                        level.gameEvent((Entity) null, GameEvent.BLOCK_PLACE, blockpos);
-                        if (stack.isEmpty()) {
-                            return new ItemStack(ItemAndBlockRegister.raw_urushi_ball.get());
-                        } else {
-                            if (source.<DispenserBlockEntity>getEntity().addItem(new ItemStack(ItemAndBlockRegister.raw_urushi_ball.get()).copy()) < 0) {
-                                defaultDispenseItemBehavior.dispense(source, new ItemStack(ItemAndBlockRegister.raw_urushi_ball.get()).copy());
-                            }
-                        }
+                        level.gameEvent(null, GameEvent.BLOCK_PLACE, blockpos);
+                        defaultDispenseItemBehavior.dispense(source, new ItemStack(ItemAndBlockRegister.raw_urushi_ball.get()).copy());
+
                     }
                     return stack;
                 }
@@ -323,17 +391,14 @@ public class ModCoreUrushi {
                 BlockPos blockpos = source.getPos().relative(direction);
                 BlockState blockstate = level.getBlockState(blockpos);
                 if (blockstate.getBlock() instanceof SenbakokiBlock) {
-                    this.setSuccess(true);
-                       stack.shrink(1);
-                       level.gameEvent((Entity) null, GameEvent.BLOCK_PLACE, blockpos);
-                        if (stack.isEmpty()) {
-                            return new ItemStack(ItemAndBlockRegister.raw_rice.get(),2);
-                        } else {
-                            if (source.<DispenserBlockEntity>getEntity().addItem(new ItemStack(ItemAndBlockRegister.raw_rice.get(),2).copy()) < 0) {
-                                defaultDispenseItemBehavior.dispense(source, new ItemStack(ItemAndBlockRegister.raw_rice.get(),2).copy());
-                            }
-                        }
-                    return stack;
+                    Optional<SenbakokiRecipe> recipe = Optional.of(level.getRecipeManager() )
+                            .flatMap(manager -> manager.getRecipeFor(RecipeTypeRegister.SenbakokiRecipe, new SimpleContainer(stack), level));
+                    if (recipe.isPresent()) {
+                        this.setSuccess(true);
+                        stack.shrink(1);
+                        defaultDispenseItemBehavior.dispense(source, recipe.get().getResultItem().copy());
+                        return stack;
+                    }
                 }
                 return super.execute(source, stack);
             }
@@ -733,6 +798,7 @@ public class ModCoreUrushi {
                     event.getToolTip().add((new TranslatableComponent("info.urushi.wellcooked" ).append(" "+level)).withStyle(color));
                 }else{
                     event.getToolTip().add((new TranslatableComponent("info.urushi.overcooked" ).append(" "+level)).withStyle(color));
+
                 }
             }
         }
@@ -790,12 +856,13 @@ public class ModCoreUrushi {
         if(tag.contains("cookingEnum")){
             int ID=tag.getInt("cookingEnum");
             int level=ShichirinBlockEntity.getCookingLevel(ID);
+
             if(ShichirinBlockEntity.getCookingType(ID).equals("undercooked")){
                 livingEntity.addEffect(new MobEffectInstance(MobEffects.HUNGER,300+60*level,level+15));
             }else if(ShichirinBlockEntity.getCookingType(ID).equals("wellcooked")){
-                livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION,40+level*10, 1));
+                livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION,60*20+level*200, 1));
                 if(ID==9){
-                    livingEntity.addEffect(new MobEffectInstance(MobEffects.ABSORPTION,200,0));
+                    livingEntity.addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST,180*20,0));
                 }
             }else{
                 livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON,10+10*level,1));
@@ -815,11 +882,15 @@ public class ModCoreUrushi {
     }
 
     @SubscribeEvent
-    public void MorningEvent(PlayerWakeUpEvent event) {
-        if(event.getPlayer().getLevel().getGameRules().getBoolean(GameRules.RULE_DAYLIGHT)) {
-            for (ServerLevel serverlevel : Objects.requireNonNull(event.getPlayer().getLevel().getServer()).getAllLevels()) {
-                serverlevel.setDayTime((long) 24000);
+    public void MorningEvent(SleepFinishedTimeEvent event) {
+        if(event.getWorld()instanceof ServerLevel) {
+            ServerLevel serverLevel= (ServerLevel) event.getWorld();
+            if(serverLevel.dimension()==DimensionRegister.KakuriyoKey){
+                ModCoreUrushi.logger.info("sleepInKakuriyo");
+                long j = event.getWorld().getServer().getLevel(Level.OVERWORLD).getDayTime() + 24000L;
+                event.getWorld().getServer().getLevel(Level.OVERWORLD).setDayTime((long) j - j % 24000L);
             }
+
         }
     }
 

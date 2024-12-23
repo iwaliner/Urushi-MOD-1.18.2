@@ -28,7 +28,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SenbakokiBlock extends HorizonalRotateBlock{
-    protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2D, 14.0D, 13.0D, 14.0D);
+    protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2D, 14.0D, 9.0D, 14.0D);
     private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
     public SenbakokiBlock(Properties p_i48377_1_) {
@@ -45,9 +45,7 @@ public class SenbakokiBlock extends HorizonalRotateBlock{
         ItemStack stack=player.getItemInHand(hand);
         if(stack.getItem()== Item.byBlock(ItemAndBlockRegister.rice_crop.get())){
             stack.shrink(1);
-            if (stack.isEmpty()) {
-                player.setItemInHand(hand, new ItemStack(ItemAndBlockRegister.raw_rice.get(),2));
-            } else if (!player.getInventory().add(new ItemStack(ItemAndBlockRegister.raw_rice.get(),2))) {
+             if (!player.getInventory().add(new ItemStack(ItemAndBlockRegister.raw_rice.get(),2))) {
                 player.drop(new ItemStack(ItemAndBlockRegister.raw_rice.get(),2), false);
             }
             level.playSound((Player) null,(double) pos.getX()+0.5D,(double) pos.getY()+0.5D,(double) pos.getZ()+0.5D, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS,1.5F,1F);

@@ -205,94 +205,95 @@ public  class ShichirinBlockEntity extends BaseContainerBlockEntity implements W
             ItemStack slot1Stack = blockEntity.items.get(1);
             ItemStack fuelStack = blockEntity.items.get(2);
             BlockState state = level.getBlockState(pos);
+if(state.getBlock() instanceof ShichirinBlock) {
 
+    if (fuelStack.isEmpty() && state.getValue(ShichirinBlock.SHICHIRIN) != 0) {
+        level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 0), 2);
+    }
+    if (state.getValue(ShichirinBlock.SHICHIRIN) == 0 && !fuelStack.isEmpty()) {
+        if (blockEntity.prePerfectFire == 0) {
+            blockEntity.prePerfectFire = 350;
+        }
+        level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 1), 2);
+    }
+    if (state.getValue(ShichirinBlock.SHICHIRIN) != 0) {
 
-            if (fuelStack.isEmpty() && state.getValue(ShichirinBlock.SHICHIRIN) != 0) {
-                level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 0), 2);
+        if (blockEntity.fire > 0) {
+            --blockEntity.fire;
+        } else {
+            blockEntity.fire = 0;
+        }
+        if (blockEntity.canWork() && blockEntity.canBurn(recipe, blockEntity.items, blockEntity.getMaxStackSize())) {
+            blockEntity.processingTime++;
+            if (blockEntity.processingTime > 20 * 5) {
+                blockEntity.differ += blockEntity.fire - blockEntity.getPerfectFire(campfireCookingRecipe);
             }
-            if (state.getValue(ShichirinBlock.SHICHIRIN) == 0 && !fuelStack.isEmpty()) {
-                if(blockEntity.prePerfectFire==0){
-                    blockEntity.prePerfectFire=350;
-                }
-                level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 1), 2);
+        } else {
+            blockEntity.processingTime = 0;
+        }
+        if (!blockEntity.canBurn(recipe, blockEntity.items, blockEntity.getMaxStackSize())) {
+            blockEntity.moveItemToExportSlot();
+        }
+        if (blockEntity.processingTime >= blockEntity.getMaxProcessTime(campfireCookingRecipe) && blockEntity.canBurn(recipe, blockEntity.items, blockEntity.getMaxStackSize())) {
+            blockEntity.prePerfectFire = blockEntity.getPerfectFire(campfireCookingRecipe);
+            ItemStack resultStack = ((Recipe<WorldlyContainer>) recipe).assemble(blockEntity);
+            resultStack.grow(slot0Stack.getCount() - 1);
+            if (resultStack.getTag() == null) {
+                resultStack.setTag(new CompoundTag());
             }
-            if (state.getValue(ShichirinBlock.SHICHIRIN) != 0) {
+            CompoundTag tag = resultStack.getTag();
 
-                if (blockEntity.fire > 0) {
-                    --blockEntity.fire;
-                } else {
-                    blockEntity.fire = 0;
-                }
-                if (blockEntity.canWork() && blockEntity.canBurn(recipe, blockEntity.items, blockEntity.getMaxStackSize())) {
-                    blockEntity.processingTime++;
-                    if (blockEntity.processingTime > 20 * 5) {
-                        blockEntity.differ += blockEntity.fire - blockEntity.getPerfectFire(campfireCookingRecipe);
-                    }
-                } else {
-                    blockEntity.processingTime = 0;
-                }
-                if (!blockEntity.canBurn(recipe, blockEntity.items, blockEntity.getMaxStackSize())) {
-                    blockEntity.moveItemToExportSlot();
-                }
-                if (blockEntity.processingTime >= blockEntity.getMaxProcessTime(campfireCookingRecipe) && blockEntity.canBurn(recipe, blockEntity.items, blockEntity.getMaxStackSize())) {
-                    blockEntity.prePerfectFire=blockEntity.getPerfectFire(campfireCookingRecipe);
-                    ItemStack resultStack = ((Recipe<WorldlyContainer>) recipe).assemble(blockEntity);
-                    resultStack.grow(slot0Stack.getCount() - 1);
-                    if (resultStack.getTag() == null) {
-                        resultStack.setTag(new CompoundTag());
-                    }
-                    CompoundTag tag = resultStack.getTag();
+            blockEntity.setCookingNBT(tag, blockEntity.differ);
+            blockEntity.items.set(0, resultStack.copy());
+            blockEntity.processingTime = 0;
+            blockEntity.differ = 0;
+            blockEntity.moveItemToExportSlot();
 
-                    blockEntity.setCookingNBT(tag, blockEntity.differ);
-                    blockEntity.items.set(0, resultStack.copy());
-                    blockEntity.processingTime = 0;
-                    blockEntity.differ = 0;
-                    blockEntity.moveItemToExportSlot();
-
-                    if (level.random.nextInt(5) == 0) {
-                        fuelStack.shrink(1);
-                    }
-                    level.playSound((Player) null,pos,SoundEvents.FIRE_EXTINGUISH,SoundSource.BLOCKS,1F,1F);
-                }
-                if (blockEntity.fire == 0 && state.getValue(ShichirinBlock.SHICHIRIN) != 0 && state.getValue(ShichirinBlock.SHICHIRIN) != 1) {
-                    //火を消す
-                    level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 1), 2);
-                    level.playSound((Player) null,pos,SoundEvents.FIRE_EXTINGUISH,SoundSource.BLOCKS,1F,1F);
-                } else if (blockEntity.getCookingTypeByFire(campfireCookingRecipe) == 0 && state.getValue(ShichirinBlock.SHICHIRIN) != 2) {
-                    level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 2), 2);
-                    level.playSound((Player) null,pos,SoundEvents.FIRE_AMBIENT,SoundSource.BLOCKS,1F,1F);
-                } else if (blockEntity.getCookingTypeByFire(campfireCookingRecipe) == 1 && state.getValue(ShichirinBlock.SHICHIRIN) != 3) {
-                    level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 3), 2);
-                    level.playSound((Player) null,pos,SoundEvents.FIRE_AMBIENT,SoundSource.BLOCKS,1F,1F);
-                } else if (blockEntity.getCookingTypeByFire(campfireCookingRecipe) == 2 && state.getValue(ShichirinBlock.SHICHIRIN) != 4) {
-                    level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 4), 2);
-                    level.playSound((Player) null,pos,SoundEvents.FIRE_AMBIENT,SoundSource.BLOCKS,1F,1F);
-                }
+            if (level.random.nextInt(5) == 0) {
+                fuelStack.shrink(1);
+            }
+            level.playSound((Player) null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1F, 1F);
+        }
+        if (blockEntity.fire == 0 && state.getValue(ShichirinBlock.SHICHIRIN) != 0 && state.getValue(ShichirinBlock.SHICHIRIN) != 1) {
+            //火を消す
+            level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 1), 2);
+            level.playSound((Player) null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1F, 1F);
+        } else if (blockEntity.getCookingTypeByFire(campfireCookingRecipe) == 0 && state.getValue(ShichirinBlock.SHICHIRIN) != 2) {
+            level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 2), 2);
+            level.playSound((Player) null, pos, SoundEvents.FIRE_AMBIENT, SoundSource.BLOCKS, 1F, 1F);
+        } else if (blockEntity.getCookingTypeByFire(campfireCookingRecipe) == 1 && state.getValue(ShichirinBlock.SHICHIRIN) != 3) {
+            level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 3), 2);
+            level.playSound((Player) null, pos, SoundEvents.FIRE_AMBIENT, SoundSource.BLOCKS, 1F, 1F);
+        } else if (blockEntity.getCookingTypeByFire(campfireCookingRecipe) == 2 && state.getValue(ShichirinBlock.SHICHIRIN) != 4) {
+            level.setBlock(pos, state.setValue(ShichirinBlock.SHICHIRIN, 4), 2);
+            level.playSound((Player) null, pos, SoundEvents.FIRE_AMBIENT, SoundSource.BLOCKS, 1F, 1F);
+        }
 
 
-                List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(1D));
-                if (!list.isEmpty()) {
-                    for (LivingEntity entity : list) {
-                        if (entity instanceof Player) {
-                            Player player = (Player) entity;
-                             TranslatableComponent component = new TranslatableComponent("info.urushi.shichirin.message");
-                            String filled = "█";
-                            String empty = "▒";
-                            String center_filled = "★";
-                            String center_empty = "☆";
-                             int iconAmount= blockEntity.iconAmount;
+        List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(1D));
+        if (!list.isEmpty()) {
+            for (LivingEntity entity : list) {
+                if (entity instanceof Player) {
+                    Player player = (Player) entity;
+                    TranslatableComponent component = new TranslatableComponent("info.urushi.shichirin.message");
+                    String filled = "█";
+                    String empty = "▒";
+                    String center_filled = "★";
+                    String center_empty = "☆";
+                    int iconAmount = blockEntity.iconAmount;
 
-                            int j1=Mth.floor(iconAmount*(double) blockEntity.fire/(double) blockEntity.getPerfectFire(campfireCookingRecipe));
-                             int j2= j1>iconAmount-1? iconAmount : blockEntity.fire==0? 0 : j1+1;
-                            int j3= j1<iconAmount+1? 0 : j1>iconAmount*2? iconAmount : j1-iconAmount;
-                            int j4= j1>iconAmount-1? 1 : 0;
-                            int j5= j1>iconAmount-1? 0 : 1;
-                            player.displayClientMessage(component.append(filled.repeat(j2)).append(empty.repeat(iconAmount - j2)).append(center_filled.repeat(j4)).append(center_empty.repeat(j5)).append(filled.repeat(j3)).append(empty.repeat(iconAmount-j3)).withStyle(ChatFormatting.YELLOW).withStyle(ChatFormatting.UNDERLINE), true);
+                    int j1 = Mth.floor(iconAmount * (double) blockEntity.fire / (double) blockEntity.getPerfectFire(campfireCookingRecipe));
+                    int j2 = j1 > iconAmount - 1 ? iconAmount : blockEntity.fire == 0 ? 0 : j1 + 1;
+                    int j3 = j1 < iconAmount + 1 ? 0 : j1 > iconAmount * 2 ? iconAmount : j1 - iconAmount;
+                    int j4 = j1 > iconAmount - 1 ? 1 : 0;
+                    int j5 = j1 > iconAmount - 1 ? 0 : 1;
+                    player.displayClientMessage(component.append(filled.repeat(j2)).append(empty.repeat(iconAmount - j2)).append(center_filled.repeat(j4)).append(center_empty.repeat(j5)).append(filled.repeat(j3)).append(empty.repeat(iconAmount - j3)).withStyle(ChatFormatting.YELLOW).withStyle(ChatFormatting.UNDERLINE), true);
 
-                        }
-                    }
                 }
             }
+        }
+    }
+}
         }
 
     }

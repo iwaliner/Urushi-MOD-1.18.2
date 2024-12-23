@@ -20,7 +20,9 @@ public class BlockRenderTypeRegister {
     public static void onRenderTypeSetup(FMLClientSetupEvent event) {
         BlockColors blockcolors = Minecraft.getInstance().getBlockColors();
         ItemColors itemcolors = Minecraft.getInstance().getItemColors();
-        blockcolors.register((state, reader, pos, i) -> BiomeColors.getAverageGrassColor(reader, pos),
+        blockcolors.register((state, reader, pos, i) ->
+                pos!=null&&reader!=null?
+                        BiomeColors.getAverageGrassColor(reader, pos) : 12300080,
                 ItemAndBlockRegister.grass_block_with_fallen_red_leaves.get(),
                 ItemAndBlockRegister.grass_block_with_fallen_orange_leaves.get(),
                 ItemAndBlockRegister.grass_block_with_fallen_yellow_leaves.get(),

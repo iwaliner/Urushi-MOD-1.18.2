@@ -84,7 +84,8 @@ public class ElementCraftingTableBlockEntity extends AbstractReiryokuStorableBlo
 
 
     public static void tick(Level level, BlockPos pos, BlockState state, ElementCraftingTableBlockEntity elementCraftingTable) {
-       elementCraftingTable.recieveReiryoku(level,pos);
+       if(state.getBlock() instanceof ElementCraftingTableBlock){
+        elementCraftingTable.recieveReiryoku(level,pos);
        if(elementCraftingTable.getCoolTime()>0){
            elementCraftingTable.coolTime--;
        }else if(elementCraftingTable.getCoolTime()<0){
@@ -147,7 +148,7 @@ public class ElementCraftingTableBlockEntity extends AbstractReiryokuStorableBlo
            }
        }
 
-    }
+    }}
 
     @Override
     public ElementType getImportElementType() {
